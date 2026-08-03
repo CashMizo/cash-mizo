@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CASH-MIZO | Pawisa Hlawhna</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      color: #1f2937;
+    }
+    .app-container {
+      width: 100%;
+      max-width: 420px;
+      background-color: #f8f9fa;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* LOGIN SCREEN */
+    #login-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+    .login-logo {
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+    #login-screen h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #4b5563;
+      letter-spacing: 1px;
+    }
+    .cash-mizo-title {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #10b981, #059669);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    #login-screen p {
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      padding: 12px 24px;
+      border-radius: 30px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      color: #374151;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .google-btn:active {
+      background: #f3f4f6;
+    }
+    .google-btn img {
+      width: 24px;
+      margin-right: 12px;
+    }
+    /* MAIN APP */
+    #main-app {
+      display: none;
+      padding-bottom: 90px;
+    }
+    .header {
+      background: #ffffff;
+      padding: 20px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .profile-pic {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .user-details h2 {
+      font-size: 16px;
+      color: #111827;
+    }
+    .user-details p {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .balance-wrapper { padding: 20px; }
+    .balance-card {
+      background: #111827; 
+      border-radius: 20px;
+      padding: 24px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2);
+    }
+    .balance-info p {
+      color: #9ca3af;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .balance-info h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #10b981; 
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .withdraw-btn {
+      background: #ffffff;
+      color: #111827;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      padding: 0 20px 20px 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .quick-actions::-webkit-scrollbar { display: none; }
+    .action-box {
+      background: #ffffff;
+      min-width: 100px;
+      padding: 16px 12px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+    .action-box span { font-size: 24px; display: block; margin-bottom: 8px; }
+    .action-box p { font-size: 12px; font-weight: 600; color: #4b5563; }
+    .tasks-container { padding: 0 20px; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .section-header h4 { font-size: 18px; color: #111827; }
+    .section-header span { font-size: 13px; color: #2563eb; font-weight: 600; }
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .task-item {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .task-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-right: 16px;
+      background: #f3f4f6;
+    }
+    .task-info { flex-grow: 1; }
+    .task-info h5 {
+      font-size: 15px;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    .task-info p {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .reward-pill {
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 24px 20px 24px;
+      border-top: 1px solid #e5e7eb;
+      z-index: 50;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #9ca3af;
+      gap: 4px;
+    }
+    .nav-item.active { color: #111827; }
+    .nav-item i { font-size: 22px; }
+    .nav-item span { font-size: 11px; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen">
+    <div class="login-logo">💰</div>
+    <h1>PAWISA HLAWHNA</h1>
+    <h2 class="cash-mizo-title">CASH-MIZO</h2>
+    <p>A thlawna pawisa i hlawh chhuah theihna</p>
+    <button class="google-btn" onclick="login()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+      Sign in with Google
+    </button>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="main-app">
+    <div class="header">
+      <div class="profile-section">
+        <div class="profile-pic">M</div>
+        <div class="user-details">
+          <h2>Malsawmdawngkima</h2>
+          <p>Lifetime earned: 14,500 Coins</p>
+        </div>
+      </div>
+      <div style="font-size: 24px; color: #4b5563;">🎧</div>
+    </div>
+
+    <div class="balance-wrapper">
+      <div class="balance-card">
+        <div class="balance-info">
+          <p>I Balance (Coins)</p>
+          <h3>🪙 2,500</h3>
+        </div>
+        <button class="withdraw-btn">Withdraw</button>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <div class="action-box"><span>📅</span><p>Daily Check</p></div>
+      <div class="action-box"><span>🎡</span><p>Spin Wheel</p></div>
+      <div class="action-box"><span>🤝</span><p>Refer & Earn</p></div>
+      <div class="action-box"><span>🏆</span><p>Leaderboard</p></div>
+    </div>
+
+    <div class="tasks-container">
+      <div class="section-header">
+        <h4>Play Games and Earn</h4>
+        <span>View All</span>
+      </div>
+      <div class="task-list">
+        <div class="task-item">
+          <div class="task-icon" style="background: #fee2e2;">🐉</div>
+          <div class="task-info">
+            <h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p>
+          </div>
+          <div class="reward-pill">+ 2,373 C</div>
+        </div>
+        <div class="task-item">
+          <div class="task-icon" style="background: #e0e7ff;">🦸‍♂️</div>
+          <div class="task-info">
+            <h5>Superheroes Idle RPG</h5><p>Complete Chapter 3</p>
+          </div>
+          <div class="reward-pill">+ 2,273 C</div>
+        </div>
+        <div class="task-item">
+          <div class="task-icon" style="background: #fef3c7;">📝</div>
+          <div class="task-info">
+            <h5>Answer Surveys</h5><p>5 mins profile survey</p>
+          </div>
+          <div class="reward-pill">+ 450 C</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item active"><i>🏠</i><span>Home</span></div>
+      <div class="nav-item"><i>📋</i><span>Surveys</span></div>
+      <div class="nav-item"><i>🎁</i><span>Deals</span></div>
+      <div class="nav-item"><i>⚙️</i><span>Settings</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // App leh Thluak Thlunzawmna
+  const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
+  const supabaseKey = 'sb_publishable_sHFIA40gydYnpvZLjIVoEA_v8IS7IBX'; 
+  
+  // Hming kan thlak ta (supabaseClient) error a awm tawh lo ang
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  // 1. User a lo luh tawh sa chuan Login Screen thuhruk nghal tur
+  async function checkUser() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('main-app').style.display = 'block';
+    } else {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('main-app').style.display = 'none';
+    }
+  }
+  
+  // App a in-load rualin a check nghal ang
+  checkUser();
+
+  // 2. Google hmanga Login (A tak tak)
+  async function login() {
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+    });
+    
+    if (error) {
+      alert("Luh theih rih loh: " + error.message);
+    }
+  }
+</script>
+
+</body>
+</html>
