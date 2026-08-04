@@ -62,20 +62,23 @@
     .nav-item span { font-size: 11px; font-weight: 600; }
 
     /* TOAST NOTIFICATION */
-    #toast {
-      position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-      background: #10b981; color: white; padding: 12px 24px; border-radius: 30px;
-      font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: top 0.3s ease; white-space: nowrap;
-    }
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: top 0.3s ease; white-space: nowrap; }
     #toast.error { background: #ef4444; } 
 
-    /* WITHDRAW MODAL */
-    #withdraw-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
-    .modal-content { background: white; width: 90%; max-width: 340px; padding: 24px; border-radius: 24px; text-align: center; }
+    /* MODALS PUI (Withdraw & Leaderboard) */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+    .modal-content { background: white; width: 90%; max-width: 340px; padding: 24px; border-radius: 24px; text-align: center; max-height: 80vh; overflow-y: auto; }
     .modal-content h3 { margin-bottom: 8px; color: #111827; }
     .modal-content p { font-size: 14px; color: #6b7280; margin-bottom: 20px; }
-    .close-modal-btn { background: #f3f4f6; color: #374151; border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; width: 100%; cursor: pointer; }
+    .close-modal-btn { background: #f3f4f6; color: #374151; border: none; padding: 12px 20px; border-radius: 20px; font-weight: 600; width: 100%; cursor: pointer; margin-top: 8px; }
+    
+    .input-field { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 12px; margin-bottom: 16px; font-size: 14px; }
+    
+    /* LEADERBOARD LIST STYLE */
+    .lb-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+    .lb-item:last-child { border-bottom: none; }
+    .lb-name { font-weight: 600; color: #1f2937; display: flex; align-items: center; gap: 8px; }
+    .lb-coins { font-weight: 700; color: #10b981; }
   </style>
 </head>
 <body>
@@ -83,11 +86,38 @@
 <div class="app-container">
   <div id="toast">Hlawhtling!</div>
 
-  <div id="withdraw-modal">
+  <!-- WITHDRAW MODAL THAR -->
+  <div id="withdraw-modal" class="modal-overlay">
     <div class="modal-content">
-      <h3>Withdraw Theih Rih Loh 🚫</h3>
-      <p>Withdraw turin Coin 10,000 tal i neih a ngai. Tasks ti la khawl belh rawh le!</p>
-      <button class="close-modal-btn" onclick="closeWithdraw()">OK, Ka Hrethiam e</button>
+      
+      <!-- Error (Tlin loh) State -->
+      <div id="withdraw-error" style="display:none;">
+        <h3>Withdraw Theih Rih Loh 🚫</h3>
+        <p>Withdraw turin Coin 5,000 tal i neih a ngai. (Tunah <span id="wd-current-coin">0</span> i nei mek).</p>
+        <button class="close-modal-btn" onclick="closeWithdraw()">OK, Ka Hrethiam e</button>
+      </div>
+
+      <!-- Form (Tlin tawh hnu) State -->
+      <div id="withdraw-form" style="display:none;">
+        <h3>💸 Pawisa Lakchhuahna</h3>
+        <p>Pawisa hi i UPI Account ah direct in kan rawn thun ang.</p>
+        <input type="text" id="upi-input" class="input-field" placeholder="I UPI ID (e.g. 9876543210@ybl)">
+        <button class="close-modal-btn" style="background: #10b981; color: white;" onclick="submitWithdraw()">Withdraw 5,000 Coins</button>
+        <button class="close-modal-btn" onclick="closeWithdraw()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEADERBOARD MODAL -->
+  <div id="leaderboard-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3>🏆 Top 10 Leaderboard</h3>
+      <p style="margin-bottom: 8px;">Hausa ber ber te list</p>
+      <div id="leaderboard-list" style="text-align: left; margin-bottom: 20px;">
+        <!-- Javascript atangin a rawn in load ang -->
+      </div>
+      <button class="close-modal-btn" onclick="closeLeaderboard()">Close</button>
     </div>
   </div>
 
@@ -127,8 +157,9 @@
     <div class="quick-actions">
       <div class="action-box" id="btn-daily" onclick="claimDaily()"><span>📅</span><p>Daily Check</p></div>
       <div class="action-box" onclick="showToast('Spin wheel la siam loh', true)"><span>🎡</span><p>Spin Wheel</p></div>
-      <div class="action-box" onclick="showToast('Refer & Earn siam mek', true)"><span>🤝</span><p>Refer & Earn</p></div>
-      <div class="action-box" onclick="showToast('Leaderboard siam mek', true)"><span>🏆</span><p>Leaderboard</p></div>
+      <!-- Leaderboard Modal hawngna function kan pe -->
+      <div class="action-box" onclick="openLeaderboard()"><span>🏆</span><p>Leaderboard</p></div>
+      <div class="action-box" onclick="showToast('Refer & Earn siam mek', true)"><span>🤝</span><p>Refer</p></div>
     </div>
 
     <div class="tasks-container">
@@ -155,10 +186,11 @@
           <div class="reward-pill">+ 500 C</div>
         </div>
 
-        <div class="task-item" id="task-video" onclick="claimTask(100, 'task-video', 'Watch Ads')">
+        <!-- Hei hi i tlin theih nan coin tam deuh ka pe lawk -->
+        <div class="task-item" id="task-video" onclick="claimTask(600, 'task-video', 'Watch Ads')">
           <div class="task-icon" style="background: #d1fae5;">📺</div>
           <div class="task-info"><h5>Watch Ads</h5><p>Watch a 30-second video</p></div>
-          <div class="reward-pill">+ 100 C</div>
+          <div class="reward-pill">+ 600 C</div>
         </div>
       </div>
     </div>
@@ -166,7 +198,7 @@
     <div class="bottom-nav">
       <div class="nav-item active"><i>🏠</i><span>Home</span></div>
       <div class="nav-item"><i>📋</i><span>Tasks</span></div>
-      <div class="nav-item"><i>🎁</i><span>Deals</span></div>
+      <div class="nav-item" onclick="openLeaderboard()"><i>🏆</i><span>Rank</span></div>
       <div class="nav-item" onclick="logout()"><i>⚙️</i><span>Settings</span></div>
     </div>
   </div>
@@ -296,8 +328,84 @@
     }, 3000);
   }
 
-  function openWithdraw() { document.getElementById('withdraw-modal').style.display = 'flex'; }
+  /* --- LEADERBOARD FUNCTIONS --- */
+  async function openLeaderboard() {
+    document.getElementById('leaderboard-modal').style.display = 'flex';
+    document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; color:#6b7280;">Loading...</p>';
+    
+    // DB atangin Coin ngah ber ber 10 la chhuak rawh
+    const { data, error } = await supabaseClient
+      .from('user_profiles')
+      .select('name, coins')
+      .order('coins', { ascending: false })
+      .limit(10);
+      
+    if (data) {
+      let htmlString = '';
+      data.forEach((user, index) => {
+        let medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `<b>${index+1}.</b>`;
+        htmlString += `
+          <div class="lb-item">
+            <span class="lb-name">${medal} ${user.name}</span>
+            <span class="lb-coins">${user.coins.toLocaleString()} C</span>
+          </div>
+        `;
+      });
+      document.getElementById('leaderboard-list').innerHTML = htmlString;
+    }
+  }
+  
+  function closeLeaderboard() { document.getElementById('leaderboard-modal').style.display = 'none'; }
+
+  /* --- WITHDRAW FUNCTIONS --- */
+  function openWithdraw() { 
+    document.getElementById('withdraw-modal').style.display = 'flex'; 
+    document.getElementById('wd-current-coin').innerText = userCoins.toLocaleString();
+    
+    // Coin 5000 a neih tlin leh tlin loh check
+    if (userCoins >= 5000) {
+      document.getElementById('withdraw-error').style.display = 'none';
+      document.getElementById('withdraw-form').style.display = 'block';
+    } else {
+      document.getElementById('withdraw-error').style.display = 'block';
+      document.getElementById('withdraw-form').style.display = 'none';
+    }
+  }
+  
   function closeWithdraw() { document.getElementById('withdraw-modal').style.display = 'none'; }
+
+  async function submitWithdraw() {
+    const upiId = document.getElementById('upi-input').value;
+    if (!upiId) {
+      alert("Khawngaihin i UPI ID chhu lut rawh!");
+      return;
+    }
+
+    if (userCoins < 5000) return;
+
+    // Withdraw submit button hmeh in Coin 5000 a cut nghal ang
+    userCoins -= 5000;
+    
+    // 1. Withdraw Request thar siam rawh
+    const { error: insertError } = await supabaseClient
+      .from('withdraw_requests')
+      .insert([{ user_id: currentUserId, upi_id: upiId, amount: 5000 }]);
+
+    if (insertError) {
+      alert("Buaina a awm: " + insertError.message);
+      return;
+    }
+
+    // 2. A Coin cut tak kha Profile ah vawng tha (save) leh rawh
+    await supabaseClient
+      .from('user_profiles')
+      .update({ coins: userCoins })
+      .eq('id', currentUserId);
+
+    updateBalanceUI();
+    closeWithdraw();
+    showToast("Withdraw Hlawhtling! Kan rawn thun thuai ang.");
+  }
 
   async function logout() {
     await supabaseClient.auth.signOut();
