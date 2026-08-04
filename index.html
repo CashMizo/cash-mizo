@@ -286,7 +286,6 @@
       <div style="font-size: 24px; color: #4b5563;">🎧</div>
     </div>
 
-    <!-- ... (MAIN APP UI ZAWNG ZAWNG A NGAI VEK) ... -->
     <div class="balance-wrapper">
       <div class="balance-card">
         <div class="balance-info">
@@ -296,12 +295,14 @@
         <button class="withdraw-btn">Withdraw</button>
       </div>
     </div>
+    
     <div class="quick-actions">
       <div class="action-box"><span>📅</span><p>Daily Check</p></div>
       <div class="action-box"><span>🎡</span><p>Spin Wheel</p></div>
       <div class="action-box"><span>🤝</span><p>Refer & Earn</p></div>
       <div class="action-box"><span>🏆</span><p>Leaderboard</p></div>
     </div>
+
     <div class="tasks-container">
       <div class="section-header">
         <h4>Play Games and Earn</h4>
@@ -315,60 +316,61 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
-<!-- Supabase Library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'sb_publishable_sHFIA40gydYnpvZLjIVoEA_v8IS7IBX'; 
-  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, {
+    auth: { flowType: 'implicit' }
+  });
 
   function showMainApp() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
   }
 
-  // 1. URL a thil awm check hmasak (Error a awm em?)
-  window.addEventListener('load', () => {
+  window.addEventListener('load', async () => {
     const hash = window.location.hash;
-    if (hash && hash.includes('error=')) {
-      alert("GOOGLE ATANGIN ERROR: " + decodeURIComponent(hash));
-    } else if (hash && hash.includes('access_token=')) {
-      alert("DEBUG: Pass chu a rawn thleng, Supabase kan check tir mek...");
-    }
-  });
 
-  // 2. Supabase Check (Pop up nen)
-  supabaseClient.auth.getSession().then(({ data, error }) => {
-    if (error) {
-      alert("SESSION ERROR (Supabase ah data a lut thei lo): " + error.message);
-    } else if (data.session) {
-      showMainApp();
-    }
-  });
+    // 1. Google in Pass a rawn vawm let hi manual in kan keih thla ang
+    if (hash && hash.includes('access_token=')) {
+      const hashParams = new URLSearchParams(hash.substring(1));
+      const accessToken = hashParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token');
 
-  // 3. Auth State Change (Pop up nen)
-  supabaseClient.auth.onAuthStateChange((event, session) => {
-    // Event thleng a rawn pop-up ang (Entirnan: INITIAL_SESSION, SIGN_IN vel)
-    if (event === 'SIGNED_IN') {
-       alert("Luh a hlawhtling e! (SIGNED_IN)");
-    }
+      if (accessToken && refreshToken) {
+        // Supabase chu kan barh lui (Force feed) hmak dawn
+        const { data, error } = await supabaseClient.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken
+        });
 
-    if (session) {
-      showMainApp();
+        if (error) {
+          alert("A lut thei tlat lo: " + error.message);
+        } else {
+          // A hlawhtling! URL atanga Pass lang kha paih bo ila, Main App phawrh rawh
+          window.history.replaceState(null, null, window.location.pathname);
+          showMainApp();
+        }
+      }
     } else {
-       // A hlawhchham a, mahse URL-ah token a awm bawk si chuan
-       if(window.location.hash.includes('access_token')) {
-          alert("DEBUG: Token chu a awm, mahse Supabase in Session-ah a chantir thei lo. (Event: " + event + ")");
-       }
+      // 2. Pass a awm loh chuan, a hma in a lo in login tawh em tih kan check ang
+      supabaseClient.auth.getSession().then(({ data: { session } }) => {
+        if (session) showMainApp();
+      });
     }
   });
 
-  // Google hmanga Login
+  // Google Login Hmeh ruala thil thleng
   async function login() {
+    const btnText = document.querySelector('.google-btn span');
+    btnText.innerHTML = 'Lut mek...'; 
+    
     const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -377,7 +379,8 @@
     });
     
     if (error) {
-      alert("LOGIN HMEH LAIIN ERROR: " + error.message);
+      alert("Buaina a awm: " + error.message);
+      btnText.innerHTML = 'Sign in with Google';
     }
   }
 </script>
