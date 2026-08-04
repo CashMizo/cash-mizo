@@ -269,7 +269,7 @@
     <p>A thlawna pawisa i hlawh chhuah theihna</p>
     <button class="google-btn" onclick="login()">
       <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
-      Sign in with Google
+      <span>Sign in with Google</span>
     </button>
   </div>
 
@@ -286,6 +286,7 @@
       <div style="font-size: 24px; color: #4b5563;">🎧</div>
     </div>
 
+    <!-- ... (MAIN APP UI ZAWNG ZAWNG A NGAI VEK) ... -->
     <div class="balance-wrapper">
       <div class="balance-card">
         <div class="balance-info">
@@ -295,14 +296,12 @@
         <button class="withdraw-btn">Withdraw</button>
       </div>
     </div>
-
     <div class="quick-actions">
       <div class="action-box"><span>📅</span><p>Daily Check</p></div>
       <div class="action-box"><span>🎡</span><p>Spin Wheel</p></div>
       <div class="action-box"><span>🤝</span><p>Refer & Earn</p></div>
       <div class="action-box"><span>🏆</span><p>Leaderboard</p></div>
     </div>
-
     <div class="tasks-container">
       <div class="section-header">
         <h4>Play Games and Earn</h4>
@@ -311,33 +310,10 @@
       <div class="task-list">
         <div class="task-item">
           <div class="task-icon" style="background: #fee2e2;">🐉</div>
-          <div class="task-info">
-            <h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p>
-          </div>
+          <div class="task-info"><h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p></div>
           <div class="reward-pill">+ 2,373 C</div>
         </div>
-        <div class="task-item">
-          <div class="task-icon" style="background: #e0e7ff;">🦸‍♂️</div>
-          <div class="task-info">
-            <h5>Superheroes Idle RPG</h5><p>Complete Chapter 3</p>
-          </div>
-          <div class="reward-pill">+ 2,273 C</div>
-        </div>
-        <div class="task-item">
-          <div class="task-icon" style="background: #fef3c7;">📝</div>
-          <div class="task-info">
-            <h5>Answer Surveys</h5><p>5 mins profile survey</p>
-          </div>
-          <div class="reward-pill">+ 450 C</div>
-        </div>
       </div>
-    </div>
-
-    <div class="bottom-nav">
-      <div class="nav-item active"><i>🏠</i><span>Home</span></div>
-      <div class="nav-item"><i>📋</i><span>Surveys</span></div>
-      <div class="nav-item"><i>🎁</i><span>Deals</span></div>
-      <div class="nav-item"><i>⚙️</i><span>Settings</span></div>
     </div>
   </div>
 </div>
@@ -346,36 +322,48 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // App leh Thluak Thlunzawmna
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'sb_publishable_sHFIA40gydYnpvZLjIVoEA_v8IS7IBX'; 
-  
-  // Hei hi a pawimawh ber thar chu a ni - Implicit flow hmang turin kan force
-  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, {
-    auth: {
-      flowType: 'implicit'
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  function showMainApp() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'block';
+  }
+
+  // 1. URL a thil awm check hmasak (Error a awm em?)
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (hash && hash.includes('error=')) {
+      alert("GOOGLE ATANGIN ERROR: " + decodeURIComponent(hash));
+    } else if (hash && hash.includes('access_token=')) {
+      alert("DEBUG: Pass chu a rawn thleng, Supabase kan check tir mek...");
     }
   });
 
-  // App load rualin session a check nghal ang
-  supabaseClient.auth.getSession().then(({ data: { session } }) => {
-    if (session) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('main-app').style.display = 'block';
-    } else {
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('main-app').style.display = 'none';
+  // 2. Supabase Check (Pop up nen)
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      alert("SESSION ERROR (Supabase ah data a lut thei lo): " + error.message);
+    } else if (data.session) {
+      showMainApp();
     }
   });
 
-  // Login a hlawhtlin rual leh URL a token a rawn hawn nghakin a lo chang ang
+  // 3. Auth State Change (Pop up nen)
   supabaseClient.auth.onAuthStateChange((event, session) => {
+    // Event thleng a rawn pop-up ang (Entirnan: INITIAL_SESSION, SIGN_IN vel)
+    if (event === 'SIGNED_IN') {
+       alert("Luh a hlawhtling e! (SIGNED_IN)");
+    }
+
     if (session) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('main-app').style.display = 'block';
+      showMainApp();
     } else {
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('main-app').style.display = 'none';
+       // A hlawhchham a, mahse URL-ah token a awm bawk si chuan
+       if(window.location.hash.includes('access_token')) {
+          alert("DEBUG: Token chu a awm, mahse Supabase in Session-ah a chantir thei lo. (Event: " + event + ")");
+       }
     }
   });
 
@@ -389,7 +377,7 @@
     });
     
     if (error) {
-      alert("Luh theih rih loh: " + error.message);
+      alert("LOGIN HMEH LAIIN ERROR: " + error.message);
     }
   }
 </script>
