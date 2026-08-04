@@ -36,8 +36,9 @@
     .withdraw-btn { background: #ffffff; color: #111827; border: none; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 14px; cursor: pointer; }
     
     .quick-actions { display: flex; gap: 12px; padding: 0 20px 20px 20px; overflow-x: auto; scrollbar-width: none; }
-    .action-box { background: #ffffff; min-width: 100px; padding: 16px 12px; border-radius: 16px; text-align: center; border: 1px solid #e5e7eb; cursor: pointer; }
+    .action-box { background: #ffffff; min-width: 100px; padding: 16px 12px; border-radius: 16px; text-align: center; border: 1px solid #e5e7eb; cursor: pointer; transition: 0.2s; }
     .action-box:active { background: #f9fafb; }
+    .action-box.disabled { opacity: 0.5; pointer-events: none; } 
     .action-box span { font-size: 24px; display: block; margin-bottom: 8px; }
     .action-box p { font-size: 12px; font-weight: 600; color: #4b5563; }
     
@@ -46,7 +47,8 @@
     .section-header h4 { font-size: 18px; color: #111827; }
     .section-header span { font-size: 13px; color: #2563eb; font-weight: 600; cursor: pointer; }
     .task-list { display: flex; flex-direction: column; gap: 12px; }
-    .task-item { background: #ffffff; border-radius: 16px; padding: 16px; display: flex; align-items: center; border: 1px solid #e5e7eb; cursor: pointer; }
+    .task-item { background: #ffffff; border-radius: 16px; padding: 16px; display: flex; align-items: center; border: 1px solid #e5e7eb; cursor: pointer; transition: 0.2s; }
+    .task-item.disabled { opacity: 0.5; pointer-events: none; } 
     .task-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-right: 16px; background: #f3f4f6; }
     .task-info { flex-grow: 1; }
     .task-info h5 { font-size: 15px; color: #111827; margin-bottom: 4px; }
@@ -64,8 +66,9 @@
       position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
       background: #10b981; color: white; padding: 12px 24px; border-radius: 30px;
       font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: top 0.3s ease;
+      transition: top 0.3s ease; white-space: nowrap;
     }
+    #toast.error { background: #ef4444; } 
 
     /* WITHDRAW MODAL */
     #withdraw-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
@@ -78,11 +81,8 @@
 <body>
 
 <div class="app-container">
-
-  <!-- TOAST NOTIFICATION -->
   <div id="toast">Hlawhtling!</div>
 
-  <!-- WITHDRAW MODAL -->
   <div id="withdraw-modal">
     <div class="modal-content">
       <h3>Withdraw Theih Rih Loh 🚫</h3>
@@ -91,7 +91,6 @@
     </div>
   </div>
 
-  <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-logo">💰</div>
     <h1>PAWISA HLAWHNA</h1>
@@ -103,7 +102,6 @@
     </button>
   </div>
 
-  <!-- MAIN APP -->
   <div id="main-app">
     <div class="header">
       <div class="profile-section">
@@ -127,48 +125,41 @@
     </div>
     
     <div class="quick-actions">
-      <div class="action-box" onclick="addCoins(50, 'Daily Check')"><span>📅</span><p>Daily Check</p></div>
-      <div class="action-box" onclick="addCoins(20, 'Spin Wheel')"><span>🎡</span><p>Spin Wheel</p></div>
-      <div class="action-box" onclick="showToast('Refer & Earn siam mek a ni')"><span>🤝</span><p>Refer & Earn</p></div>
-      <div class="action-box" onclick="showToast('Leaderboard siam mek a ni')"><span>🏆</span><p>Leaderboard</p></div>
+      <div class="action-box" id="btn-daily" onclick="claimDaily()"><span>📅</span><p>Daily Check</p></div>
+      <div class="action-box" onclick="showToast('Spin wheel la siam loh', true)"><span>🎡</span><p>Spin Wheel</p></div>
+      <div class="action-box" onclick="showToast('Refer & Earn siam mek', true)"><span>🤝</span><p>Refer & Earn</p></div>
+      <div class="action-box" onclick="showToast('Leaderboard siam mek', true)"><span>🏆</span><p>Leaderboard</p></div>
     </div>
 
-    <!-- TASK LIST THAR TE -->
     <div class="tasks-container">
       <div class="section-header">
         <h4>Play Games and Earn</h4>
         <span>View All</span>
       </div>
       <div class="task-list">
-        
-        <!-- Task 1 -->
-        <div class="task-item" onclick="addCoins(2373, 'Dragon Farm')">
+        <div class="task-item" id="task-dragon" onclick="claimTask(2373, 'task-dragon', 'Dragon Farm')">
           <div class="task-icon" style="background: #fee2e2;">🐉</div>
           <div class="task-info"><h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p></div>
           <div class="reward-pill">+ 2,373 C</div>
         </div>
 
-        <!-- Task 2 -->
-        <div class="task-item" onclick="addCoins(1500, 'Mafia City')">
+        <div class="task-item" id="task-mafia" onclick="claimTask(1500, 'task-mafia', 'Mafia City')">
           <div class="task-icon" style="background: #e0e7ff;">🕴️</div>
           <div class="task-info"><h5>Mafia City</h5><p>Upgrade Mansion to Level 10</p></div>
           <div class="reward-pill">+ 1,500 C</div>
         </div>
 
-        <!-- Task 3 -->
-        <div class="task-item" onclick="addCoins(500, 'Profile Survey')">
+        <div class="task-item" id="task-survey" onclick="claimTask(500, 'task-survey', 'Profile Survey')">
           <div class="task-icon" style="background: #fef3c7;">📝</div>
           <div class="task-info"><h5>Profile Survey</h5><p>Complete your user profile (5 mins)</p></div>
           <div class="reward-pill">+ 500 C</div>
         </div>
 
-        <!-- Task 4 -->
-        <div class="task-item" onclick="addCoins(100, 'Watch Video')">
+        <div class="task-item" id="task-video" onclick="claimTask(100, 'task-video', 'Watch Ads')">
           <div class="task-icon" style="background: #d1fae5;">📺</div>
           <div class="task-info"><h5>Watch Ads</h5><p>Watch a 30-second video</p></div>
           <div class="reward-pill">+ 100 C</div>
         </div>
-
       </div>
     </div>
 
@@ -184,18 +175,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // SUPABASE SETUP
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, {
     auth: { flowType: 'implicit' }
   });
 
-  // GLOBAL VARIABLES
   let userCoins = 0;
   let currentUserId = null;
+  let lastDailyCheck = null;
+  let claimedTasks = [];
 
-  // APP PHAWRH LEH DATABASE ATANGA DATA LAK
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
@@ -209,67 +199,112 @@
 
       const { data, error } = await supabaseClient
         .from('user_profiles')
-        .select('coins')
+        .select('coins, last_daily_check, claimed_tasks')
         .eq('id', currentUserId)
         .single();
 
       if (data) {
-        userCoins = data.coins;
+        userCoins = data.coins || 0;
+        lastDailyCheck = data.last_daily_check;
+        claimedTasks = data.claimed_tasks || [];
       } else {
         await supabaseClient
           .from('user_profiles')
           .insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
       }
+      
       updateBalanceUI();
+      checkClaimedUI(); 
     }
   }
 
-  // BALANCE ZAT TIACTUAL LANNA
   function updateBalanceUI() {
     let formattedCoins = userCoins.toLocaleString('en-US');
     document.getElementById('current-balance').innerText = '🪙 ' + formattedCoins;
     document.getElementById('lifetime-earned').innerText = formattedCoins;
   }
 
-  // PAWISA ADD NA FUNCTION 
-  async function addCoins(amount, taskName) {
-    if (!currentUserId) return; 
+  function checkClaimedUI() {
+    const today = new Date().toDateString();
+    let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
+    if (lastCheckStr === today) {
+      document.getElementById('btn-daily').classList.add('disabled');
+    }
 
-    userCoins += amount;
-    updateBalanceUI();
-    showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
-
-    const { error } = await supabaseClient
-      .from('user_profiles')
-      .update({ coins: userCoins })
-      .eq('id', currentUserId);
-      
-    if (error) console.log("Database update error:", error);
+    claimedTasks.forEach(taskId => {
+      const element = document.getElementById(taskId);
+      if(element) element.classList.add('disabled');
+    });
   }
 
-  // TOAST (Notification Pop-up) FUNCTION
-  function showToast(message) {
+  async function claimDaily() {
+    if (!currentUserId) return;
+
+    const today = new Date().toDateString();
+    let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
+    
+    if (lastCheckStr === today) {
+      showToast("🚫 Vawiin atan chuan i la tawh!", true);
+      return;
+    }
+
+    userCoins += 50;
+    lastDailyCheck = new Date().toISOString(); 
+    
+    updateBalanceUI();
+    document.getElementById('btn-daily').classList.add('disabled');
+    showToast(`+50 Coins: Daily Check Hlawhtling!`);
+
+    await supabaseClient
+      .from('user_profiles')
+      .update({ coins: userCoins, last_daily_check: lastDailyCheck })
+      .eq('id', currentUserId);
+  }
+
+  async function claimTask(amount, taskId, taskName) {
+    if (!currentUserId) return; 
+
+    if (claimedTasks.includes(taskId)) {
+      showToast(`🚫 ${taskName} chu i la tawh!`, true);
+      return;
+    }
+
+    userCoins += amount;
+    claimedTasks.push(taskId); 
+    
+    updateBalanceUI();
+    document.getElementById(taskId).classList.add('disabled');
+    showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
+
+    await supabaseClient
+      .from('user_profiles')
+      .update({ coins: userCoins, claimed_tasks: claimedTasks })
+      .eq('id', currentUserId);
+  }
+
+  function showToast(message, isError = false) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
+    
+    if(isError) toast.classList.add('error');
+    else toast.classList.remove('error');
+
     toast.style.top = '80px'; 
     setTimeout(() => {
       toast.style.top = '-100px';
     }, 3000);
   }
 
-  // WITHDRAW MODAL FUNCTIONS
   function openWithdraw() { document.getElementById('withdraw-modal').style.display = 'flex'; }
   function closeWithdraw() { document.getElementById('withdraw-modal').style.display = 'none'; }
 
-  // LOGOUT FUNCTION
   async function logout() {
     await supabaseClient.auth.signOut();
     window.history.replaceState(null, null, window.location.pathname);
     window.location.reload();
   }
 
-  // INITIAL LOAD (Token Check)
   window.addEventListener('load', async () => {
     const hash = window.location.hash;
     if (hash && hash.includes('access_token=')) {
@@ -294,7 +329,6 @@
     }
   });
 
-  // LOGIN FUNCTION
   async function login() {
     const btnText = document.querySelector('.google-btn span');
     btnText.innerHTML = 'Lut mek...'; 
