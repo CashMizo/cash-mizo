@@ -51,7 +51,7 @@
     .task-info { flex-grow: 1; }
     .task-info h5 { font-size: 15px; color: #111827; margin-bottom: 4px; }
     .task-info p { font-size: 12px; color: #6b7280; }
-    .reward-pill { background: #eff6ff; color: #2563eb; padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; }
+    .reward-pill { background: #eff6ff; color: #2563eb; padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; min-width: 70px; text-align: center; }
     
     .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-between; padding: 12px 24px 20px 24px; border-top: 1px solid #e5e7eb; z-index: 50; }
     .nav-item { display: flex; flex-direction: column; align-items: center; color: #9ca3af; gap: 4px; cursor: pointer; }
@@ -59,7 +59,7 @@
     .nav-item i { font-size: 22px; }
     .nav-item span { font-size: 11px; font-weight: 600; }
 
-    /* TOAST NOTIFICATION (Siam tha tawh - a lang theih nan top: 80px) */
+    /* TOAST NOTIFICATION */
     #toast {
       position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
       background: #10b981; color: white; padding: 12px 24px; border-radius: 30px;
@@ -133,17 +133,42 @@
       <div class="action-box" onclick="showToast('Leaderboard siam mek a ni')"><span>🏆</span><p>Leaderboard</p></div>
     </div>
 
+    <!-- TASK LIST THAR TE -->
     <div class="tasks-container">
       <div class="section-header">
         <h4>Play Games and Earn</h4>
         <span>View All</span>
       </div>
       <div class="task-list">
-        <div class="task-item" onclick="addCoins(2373, 'Dragon Farm Game')">
+        
+        <!-- Task 1 -->
+        <div class="task-item" onclick="addCoins(2373, 'Dragon Farm')">
           <div class="task-icon" style="background: #fee2e2;">🐉</div>
           <div class="task-info"><h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p></div>
           <div class="reward-pill">+ 2,373 C</div>
         </div>
+
+        <!-- Task 2 -->
+        <div class="task-item" onclick="addCoins(1500, 'Mafia City')">
+          <div class="task-icon" style="background: #e0e7ff;">🕴️</div>
+          <div class="task-info"><h5>Mafia City</h5><p>Upgrade Mansion to Level 10</p></div>
+          <div class="reward-pill">+ 1,500 C</div>
+        </div>
+
+        <!-- Task 3 -->
+        <div class="task-item" onclick="addCoins(500, 'Profile Survey')">
+          <div class="task-icon" style="background: #fef3c7;">📝</div>
+          <div class="task-info"><h5>Profile Survey</h5><p>Complete your user profile (5 mins)</p></div>
+          <div class="reward-pill">+ 500 C</div>
+        </div>
+
+        <!-- Task 4 -->
+        <div class="task-item" onclick="addCoins(100, 'Watch Video')">
+          <div class="task-icon" style="background: #d1fae5;">📺</div>
+          <div class="task-info"><h5>Watch Ads</h5><p>Watch a 30-second video</p></div>
+          <div class="reward-pill">+ 100 C</div>
+        </div>
+
       </div>
     </div>
 
@@ -179,11 +204,9 @@
       currentUserId = session.user.id;
       let fullName = session.user.user_metadata.full_name || 'User';
       
-      // Hming UI ah dah
       document.getElementById('user-display-name').innerText = fullName;
       document.getElementById('profile-initial').innerText = fullName.charAt(0).toUpperCase();
 
-      // Database atangin Coins va la chhuak rawh
       const { data, error } = await supabaseClient
         .from('user_profiles')
         .select('coins')
@@ -191,10 +214,8 @@
         .single();
 
       if (data) {
-        // A hma in profile a lo nei tawh a nih chuan, a coin neihsa la rawh
         userCoins = data.coins;
       } else {
-        // Profile a la nei lo a nih chuan (User thar), database ah insert (siam) rawh
         await supabaseClient
           .from('user_profiles')
           .insert([{ id: currentUserId, name: fullName, coins: 0 }]);
@@ -211,31 +232,27 @@
     document.getElementById('lifetime-earned').innerText = formattedCoins;
   }
 
-  // PAWISA ADD NA FUNCTION (App leh Database a rualin a thlak ang)
+  // PAWISA ADD NA FUNCTION 
   async function addCoins(amount, taskName) {
-    if (!currentUserId) return; // User a in login loh chuan engmah ti suh
+    if (!currentUserId) return; 
 
-    // 1. App ah a rawn pung hmasa ang (UI update)
     userCoins += amount;
     updateBalanceUI();
     showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
 
-    // 2. Database ah a va update nghal thlap ang
     const { error } = await supabaseClient
       .from('user_profiles')
       .update({ coins: userCoins })
       .eq('id', currentUserId);
       
-    if (error) {
-      console.log("Database update error:", error);
-    }
+    if (error) console.log("Database update error:", error);
   }
 
   // TOAST (Notification Pop-up) FUNCTION
   function showToast(message) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
-    toast.style.top = '80px'; // A rawn lang thla thui tawh ang
+    toast.style.top = '80px'; 
     setTimeout(() => {
       toast.style.top = '-100px';
     }, 3000);
