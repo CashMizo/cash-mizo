@@ -370,9 +370,12 @@
 
   // 2. Google hmanga Login (A tak tak)
   async function login() {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
-      provider: 'google',
-    });
+const { data, error } = await supabaseClient.auth.signInWithOAuth({
+  provider: 'google',
+  options: {
+    redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/'
+  }
+});
     
     if (error) {
       alert("Luh theih rih loh: " + error.message);
