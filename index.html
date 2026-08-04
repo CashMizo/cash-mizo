@@ -366,7 +366,10 @@
   }
   
   // App a in-load rualin a check nghal ang
+  // Login a hlawhtlin rualin a check chauh ang
+supabaseClient.auth.onAuthStateChange((event, session) => {
   checkUser();
+});
 
   // 2. Google hmanga Login (A tak tak)
   async function login() {
