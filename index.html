@@ -6,80 +6,31 @@
   <title>CASH-MIZO | Pawisa Hlawhna</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      background-color: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      color: #1f2937;
-    }
-    .app-container {
-      width: 100%;
-      max-width: 420px;
-      background-color: #f8f9fa;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #f0f2f5; display: flex; justify-content: center; color: #1f2937; }
+    .app-container { width: 100%; max-width: 420px; background-color: #f8f9fa; min-height: 100vh; position: relative; overflow-x: hidden; }
+    
     /* LOGIN SCREEN */
-    #login-screen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 20px;
-    }
+    #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
     .login-logo { font-size: 56px; margin-bottom: 16px; }
     #login-screen h1 { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: #4b5563; letter-spacing: 1px; }
-    .cash-mizo-title {
-      font-size: 42px; font-weight: 800; margin-bottom: 16px; letter-spacing: 1px; text-align: center;
-      background: linear-gradient(135deg, #10b981, #059669);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .cash-mizo-title { font-size: 42px; font-weight: 800; margin-bottom: 16px; letter-spacing: 1px; text-align: center; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     #login-screen p { color: #6b7280; text-align: center; margin-bottom: 40px; font-size: 14px; }
-    .google-btn {
-      display: flex; align-items: center; justify-content: center; background: #ffffff;
-      border: 1px solid #d1d5db; padding: 12px 24px; border-radius: 30px; width: 100%;
-      font-size: 16px; font-weight: 600; color: #374151; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s;
-    }
+    .google-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid #d1d5db; padding: 12px 24px; border-radius: 30px; width: 100%; font-size: 16px; font-weight: 600; color: #374151; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s; }
     .google-btn:active { background: #f3f4f6; }
     .google-btn img { width: 24px; margin-right: 12px; }
     
     /* MAIN APP */
     #main-app { display: none; padding-bottom: 90px; }
-    .header {
-      background: #ffffff; padding: 20px; border-bottom: 1px solid #e5e7eb;
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    .header { background: #ffffff; padding: 20px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
     .profile-section { display: flex; align-items: center; gap: 12px; }
-    .profile-pic {
-      width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #059669);
-      color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700;
-    }
+    .profile-pic { width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; }
     .user-details h2 { font-size: 16px; color: #111827; }
     .user-details p { font-size: 12px; color: #6b7280; }
-    
-    .logout-btn {
-      background: #fee2e2; color: #dc2626; border: none; padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer;
-    }
+    .logout-btn { background: #fee2e2; color: #dc2626; border: none; padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
     
     .balance-wrapper { padding: 20px; }
-    .balance-card {
-      background: #111827; border-radius: 20px; padding: 24px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2);
-    }
+    .balance-card { background: #111827; border-radius: 20px; padding: 24px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2); }
     .balance-info p { color: #9ca3af; font-size: 13px; margin-bottom: 4px; }
     .balance-info h3 { font-size: 32px; font-weight: 700; color: #10b981; display: flex; align-items: center; gap: 8px; }
     .withdraw-btn { background: #ffffff; color: #111827; border: none; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 14px; cursor: pointer; }
@@ -108,22 +59,17 @@
     .nav-item i { font-size: 22px; }
     .nav-item span { font-size: 11px; font-weight: 600; }
 
-    /* TOAST NOTIFICATION */
+    /* TOAST NOTIFICATION (Siam tha tawh - a lang theih nan top: 80px) */
     #toast {
-      position: fixed; top: -50px; left: 50%; transform: translateX(-50%);
+      position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
       background: #10b981; color: white; padding: 12px 24px; border-radius: 30px;
       font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: top 0.3s ease;
     }
 
     /* WITHDRAW MODAL */
-    #withdraw-modal {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center;
-    }
-    .modal-content {
-      background: white; width: 90%; max-width: 340px; padding: 24px; border-radius: 24px; text-align: center;
-    }
+    #withdraw-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+    .modal-content { background: white; width: 90%; max-width: 340px; padding: 24px; border-radius: 24px; text-align: center; }
     .modal-content h3 { margin-bottom: 8px; color: #111827; }
     .modal-content p { font-size: 14px; color: #6b7280; margin-bottom: 20px; }
     .close-modal-btn { background: #f3f4f6; color: #374151; border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; width: 100%; cursor: pointer; }
@@ -164,10 +110,9 @@
         <div class="profile-pic" id="profile-initial">C</div>
         <div class="user-details">
           <h2 id="user-display-name">Loading...</h2>
-          <p>Lifetime earned: <span id="lifetime-earned">0</span> Coins</p>
+          <p>Lifetime earned: <span id="lifetime-earned">...</span> Coins</p>
         </div>
       </div>
-      <!-- Logout Button kan dah thar -->
       <button class="logout-btn" onclick="logout()">Logout 🚪</button>
     </div>
 
@@ -175,14 +120,13 @@
       <div class="balance-card">
         <div class="balance-info">
           <p>I Balance (Coins)</p>
-          <h3 id="current-balance">🪙 0</h3>
+          <h3 id="current-balance">🪙 ...</h3>
         </div>
         <button class="withdraw-btn" onclick="openWithdraw()">Withdraw</button>
       </div>
     </div>
     
     <div class="quick-actions">
-      <!-- Click theih turin function kan pe -->
       <div class="action-box" onclick="addCoins(50, 'Daily Check')"><span>📅</span><p>Daily Check</p></div>
       <div class="action-box" onclick="addCoins(20, 'Spin Wheel')"><span>🎡</span><p>Spin Wheel</p></div>
       <div class="action-box" onclick="showToast('Refer & Earn siam mek a ni')"><span>🤝</span><p>Refer & Earn</p></div>
@@ -222,65 +166,90 @@
     auth: { flowType: 'implicit' }
   });
 
-  // LOCAL VARIABLES (Database a kan dah tak tak hma)
+  // GLOBAL VARIABLES
   let userCoins = 0;
+  let currentUserId = null;
 
-  // APP PHAWRH LEH UI UPDATE
-  function showMainApp(session) {
+  // APP PHAWRH LEH DATABASE ATANGA DATA LAK
+  async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
 
-    if (session && session.user && session.user.user_metadata && session.user.user_metadata.full_name) {
-      let fullName = session.user.user_metadata.full_name;
+    if (session && session.user) {
+      currentUserId = session.user.id;
+      let fullName = session.user.user_metadata.full_name || 'User';
+      
+      // Hming UI ah dah
       document.getElementById('user-display-name').innerText = fullName;
       document.getElementById('profile-initial').innerText = fullName.charAt(0).toUpperCase();
+
+      // Database atangin Coins va la chhuak rawh
+      const { data, error } = await supabaseClient
+        .from('user_profiles')
+        .select('coins')
+        .eq('id', currentUserId)
+        .single();
+
+      if (data) {
+        // A hma in profile a lo nei tawh a nih chuan, a coin neihsa la rawh
+        userCoins = data.coins;
+      } else {
+        // Profile a la nei lo a nih chuan (User thar), database ah insert (siam) rawh
+        await supabaseClient
+          .from('user_profiles')
+          .insert([{ id: currentUserId, name: fullName, coins: 0 }]);
+        userCoins = 0;
+      }
+      updateBalanceUI();
     }
-    updateBalanceUI();
   }
 
   // BALANCE ZAT TIACTUAL LANNA
   function updateBalanceUI() {
-    // Number hi comma (,) hmanga a in then theih nan
     let formattedCoins = userCoins.toLocaleString('en-US');
     document.getElementById('current-balance').innerText = '🪙 ' + formattedCoins;
     document.getElementById('lifetime-earned').innerText = formattedCoins;
   }
 
-  // PAWISA ADD NA FUNCTION (Button hmeh in)
-  function addCoins(amount, taskName) {
+  // PAWISA ADD NA FUNCTION (App leh Database a rualin a thlak ang)
+  async function addCoins(amount, taskName) {
+    if (!currentUserId) return; // User a in login loh chuan engmah ti suh
+
+    // 1. App ah a rawn pung hmasa ang (UI update)
     userCoins += amount;
     updateBalanceUI();
     showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
+
+    // 2. Database ah a va update nghal thlap ang
+    const { error } = await supabaseClient
+      .from('user_profiles')
+      .update({ coins: userCoins })
+      .eq('id', currentUserId);
+      
+    if (error) {
+      console.log("Database update error:", error);
+    }
   }
 
   // TOAST (Notification Pop-up) FUNCTION
   function showToast(message) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
-    toast.style.top = '20px';
+    toast.style.top = '80px'; // A rawn lang thla thui tawh ang
     setTimeout(() => {
-      toast.style.top = '-50px';
+      toast.style.top = '-100px';
     }, 3000);
   }
 
   // WITHDRAW MODAL FUNCTIONS
-  function openWithdraw() {
-    document.getElementById('withdraw-modal').style.display = 'flex';
-  }
-  function closeWithdraw() {
-    document.getElementById('withdraw-modal').style.display = 'none';
-  }
+  function openWithdraw() { document.getElementById('withdraw-modal').style.display = 'flex'; }
+  function closeWithdraw() { document.getElementById('withdraw-modal').style.display = 'none'; }
 
   // LOGOUT FUNCTION
   async function logout() {
-    const { error } = await supabaseClient.auth.signOut();
-    if (!error) {
-      // Url thianfai la, reload rawh (Login screen-ah a kir ang)
-      window.history.replaceState(null, null, window.location.pathname);
-      window.location.reload();
-    } else {
-      alert("Logout theih rih loh: " + error.message);
-    }
+    await supabaseClient.auth.signOut();
+    window.history.replaceState(null, null, window.location.pathname);
+    window.location.reload();
   }
 
   // INITIAL LOAD (Token Check)
