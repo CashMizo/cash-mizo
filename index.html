@@ -349,36 +349,29 @@
   // App leh Thluak Thlunzawmna
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'sb_publishable_sHFIA40gydYnpvZLjIVoEA_v8IS7IBX'; 
-  
-  // Hming kan thlak ta (supabaseClient) error a awm tawh lo ang
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  // 1. User a lo luh tawh sa chuan Login Screen thuhruk nghal tur
-  async function checkUser() {
-    const { data: { user } } = await supabaseClient.auth.getUser();
-    if (user) {
+  // 1. URL a token (Pass) awm a chhiar theih nan leh in-load ruala a hriat nan
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session) {
+      // A hlawhtling! Login screen thukru la, Main App phawrh rawh
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('main-app').style.display = 'block';
     } else {
+      // A la login lo
       document.getElementById('login-screen').style.display = 'flex';
       document.getElementById('main-app').style.display = 'none';
     }
-  }
-  
-  // App a in-load rualin a check nghal ang
-  // Login a hlawhtlin rualin a check chauh ang
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  checkUser();
-});
+  });
 
   // 2. Google hmanga Login (A tak tak)
   async function login() {
-const { data, error } = await supabaseClient.auth.signInWithOAuth({
-  provider: 'google',
-  options: {
-    redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/'
-  }
-});
+    const { error } = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/'
+      }
+    });
     
     if (error) {
       alert("Luh theih rih loh: " + error.message);
