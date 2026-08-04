@@ -8,15 +8,12 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     
     :root {
-      --bg-main: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #10b981;
-      --border-color: #334155;
+      --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8;
+      --primary: #10b981; --border-color: #334155;
       --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
       --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
       --glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
+      --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -24,9 +21,7 @@
     body { background-color: #000000; display: flex; justify-content: center; color: var(--text-main); }
     .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; }
     
-    /* LOGIN SCREEN */
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
-    
     .login-box { background: var(--bg-card); padding: 40px 24px; border-radius: 24px; width: 100%; max-width: 340px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: var(--glow-green); }
     .login-logo { font-size: 56px; margin-bottom: 16px; }
     .login-box h1 { font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
@@ -37,7 +32,6 @@
     .google-btn:active { transform: scale(0.98); }
     .google-btn img { width: 22px; margin-right: 12px; }
     
-    /* MAIN APP */
     #main-app { display: none; padding-bottom: 90px; }
     .header { background: var(--bg-main); padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
     .profile-section { display: flex; align-items: center; gap: 12px; }
@@ -55,7 +49,6 @@
     .action-box { background: var(--bg-card); min-width: 95px; padding: 16px 10px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; }
     .action-box:active { border-color: var(--primary); }
     
-    /* HMEH TAWH (DISABLED) STYLE THAR */
     .action-box.disabled, .task-item.disabled { opacity: 0.5; pointer-events: none; border: 1px dashed var(--text-muted); background: rgba(0,0,0,0.2); } 
     .task-item.disabled .reward-pill { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
     
@@ -82,11 +75,9 @@
     .nav-item i { font-size: 20px; }
     .nav-item span { font-size: 11px; font-weight: 500; }
 
-    /* TOAST NOTIFICATION */
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); color: var(--text-main); padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 500; z-index: 1000; border: 1px solid var(--primary); box-shadow: var(--glow-green); transition: top 0.3s ease; white-space: nowrap; }
     #toast.error { border-color: #ef4444; box-shadow: var(--glow-red); } 
 
-    /* CLEAN & GLOWING MODALS */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; }
     .modal-content { background: var(--bg-card); width: 90%; max-width: 320px; padding: 28px 24px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); position: relative; }
     
@@ -94,6 +85,7 @@
     #withdraw-modal.can-withdraw .modal-content { box-shadow: var(--glow-green); }
     #leaderboard-modal .modal-content { box-shadow: var(--glow-blue); max-height: 80vh; overflow-y: auto; }
     #settings-modal .modal-content { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    #spin-modal .modal-content { box-shadow: var(--glow-purple); } /* Spin modal color */
     
     .modal-icon { font-size: 40px; margin-bottom: 12px; }
     .modal-content h3 { font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
@@ -111,7 +103,6 @@
     .lb-name { font-size: 14px; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
     .lb-coins { font-size: 14px; font-weight: 600; color: var(--primary); }
 
-    /* SETTINGS MENU BUTTONS */
     .settings-menu { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
     .settings-btn { background: rgba(255,255,255,0.02); color: var(--text-main); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s; text-align: left;}
     .settings-btn:active { background: rgba(255,255,255,0.08); }
@@ -124,7 +115,26 @@
   
   <div id="toast">Hlawhtling!</div>
 
-  <!-- WITHDRAW MODAL -->
+  <!-- SPIN WHEEL MODAL THAR -->
+  <div id="spin-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-icon">🎡</div>
+      <h3>Spin & Earn</h3>
+      <p style="margin-bottom: 20px;">Ni khatah vawikhat i spin thei e.</p>
+      
+      <!-- CSS Wheel -->
+      <div style="position: relative; width: 180px; height: 180px; margin: 0 auto 24px;">
+        <!-- Kawk Tu (Pointer) -->
+        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 32px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">🔽</div>
+        <!-- Vir tur (Wheel) -->
+        <div id="wheel" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(#ef4444 0 90deg, #3b82f6 90deg 180deg, #eab308 180deg 270deg, #10b981 270deg 360deg); transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1); border: 4px solid var(--border-color); box-shadow: 0 0 15px rgba(255,255,255,0.1);"></div>
+      </div>
+      
+      <button id="spin-btn" class="close-modal-btn btn-primary" onclick="startSpin()">Spin Wheel</button>
+      <button class="close-modal-btn" onclick="closeSpin()">Close</button>
+    </div>
+  </div>
+
   <div id="withdraw-modal" class="modal-overlay">
     <div class="modal-content">
       <div id="withdraw-error" style="display:none;">
@@ -144,19 +154,16 @@
     </div>
   </div>
 
-  <!-- LEADERBOARD MODAL -->
   <div id="leaderboard-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-icon">🏆</div>
       <h3>Top 10 Leaderboard</h3>
       <p style="margin-bottom: 16px;">Coin ngah ber ber te list</p>
-      <div id="leaderboard-list" style="text-align: left; margin-bottom: 24px; background: rgba(0,0,0,0.2); padding: 0 16px; border-radius: 16px; border: 1px solid var(--border-color);">
-      </div>
+      <div id="leaderboard-list" style="text-align: left; margin-bottom: 24px; background: rgba(0,0,0,0.2); padding: 0 16px; border-radius: 16px; border: 1px solid var(--border-color);"></div>
       <button class="close-modal-btn" onclick="closeLeaderboard()">Close</button>
     </div>
   </div>
 
-  <!-- SETTINGS MODAL THAR -->
   <div id="settings-modal" class="modal-overlay">
     <div class="modal-content">
       <h3 style="margin-bottom: 20px;">⚙️ Settings</h3>
@@ -169,7 +176,6 @@
     </div>
   </div>
 
-  <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-box">
       <div class="login-logo">💰</div>
@@ -183,7 +189,6 @@
     </div>
   </div>
 
-  <!-- MAIN APP -->
   <div id="main-app">
     <div class="header">
       <div class="profile-section">
@@ -193,7 +198,6 @@
           <p>Lifetime earned: <span id="lifetime-earned">...</span></p>
         </div>
       </div>
-      <!-- Profile zawn a logout awm thin kha ka la sawn, a hmuhnawm loh a -->
     </div>
 
     <div class="balance-wrapper">
@@ -208,7 +212,8 @@
     
     <div class="quick-actions">
       <div class="action-box" id="btn-daily" onclick="claimDaily()"><span>📅</span><p id="txt-daily">Daily Check</p></div>
-      <div class="action-box" onclick="showToast('Spin wheel la siam loh', true)"><span>🎡</span><p>Spin Wheel</p></div>
+      <!-- SPIN WHEEL HMEHNA KAN DAH LUT -->
+      <div class="action-box" onclick="openSpin()"><span>🎡</span><p id="txt-spin">Spin Wheel</p></div>
       <div class="action-box" onclick="openLeaderboard()"><span>🏆</span><p>Leaderboard</p></div>
       <div class="action-box" onclick="showToast('Refer & Earn siam mek', true)"><span>🤝</span><p>Refer</p></div>
     </div>
@@ -223,19 +228,16 @@
           <div class="task-info"><h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p></div>
           <div class="reward-pill">+ 2,373 C</div>
         </div>
-
         <div class="task-item" id="task-mafia" onclick="claimTask(1500, 'task-mafia', 'Mafia City')">
           <div class="task-icon">🕴️</div>
           <div class="task-info"><h5>Mafia City</h5><p>Upgrade Mansion to Level 10</p></div>
           <div class="reward-pill">+ 1,500 C</div>
         </div>
-
         <div class="task-item" id="task-survey" onclick="claimTask(500, 'task-survey', 'Profile Survey')">
           <div class="task-icon">📝</div>
           <div class="task-info"><h5>Profile Survey</h5><p>Complete your user profile</p></div>
           <div class="reward-pill">+ 500 C</div>
         </div>
-
         <div class="task-item" id="task-video" onclick="claimTask(600, 'task-video', 'Watch Ads')">
           <div class="task-icon">📺</div>
           <div class="task-info"><h5>Watch Ads</h5><p>Watch a 30-second video</p></div>
@@ -248,7 +250,6 @@
       <div class="nav-item active"><i>🏠</i><span>Home</span></div>
       <div class="nav-item"><i>📋</i><span>Tasks</span></div>
       <div class="nav-item" onclick="openLeaderboard()"><i>🏆</i><span>Rank</span></div>
-      <!-- HETA SETTINGS HIAN MODAL A HAWNG TAWH ANG -->
       <div class="nav-item" onclick="openSettings()"><i>⚙️</i><span>Settings</span></div>
     </div>
   </div>
@@ -261,7 +262,7 @@
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
-  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let claimedTasks = [];
+  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let claimedTasks = []; let lastSpinDate = null;
 
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
@@ -273,9 +274,10 @@
       document.getElementById('user-display-name').innerText = fullName;
       document.getElementById('profile-initial').innerText = fullName.charAt(0).toUpperCase();
 
-      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, claimed_tasks').eq('id', currentUserId).single();
+      // Databae atangin last_spin_date pawh kan la tel tawh ang
+      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, claimed_tasks, last_spin_date').eq('id', currentUserId).single();
       if (data) {
-        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; claimedTasks = data.claimed_tasks || [];
+        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; claimedTasks = data.claimed_tasks || []; lastSpinDate = data.last_spin_date;
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
@@ -292,18 +294,24 @@
 
   function checkClaimedUI() {
     const today = new Date().toDateString();
+    
+    // Daily Check Disable
     let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
     if (lastCheckStr === today) {
-      let btn = document.getElementById('btn-daily');
-      btn.classList.add('disabled');
+      document.getElementById('btn-daily').classList.add('disabled');
       document.getElementById('txt-daily').innerText = "Lak tawh ✅";
     }
+    
+    // Spin Check Disable (Box ah a lan loh nan kan siam ang)
+    let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
+    if (lastSpinStr === today) {
+      document.getElementById('txt-spin').innerText = "Spin tawh ✅";
+    }
+
+    // Tasks Disable
     claimedTasks.forEach(taskId => {
       const element = document.getElementById(taskId);
-      if(element) {
-        element.classList.add('disabled');
-        element.querySelector('.reward-pill').innerText = "Lak tawh ✅";
-      }
+      if(element) { element.classList.add('disabled'); element.querySelector('.reward-pill').innerText = "Lak tawh ✅"; }
     });
   }
 
@@ -315,12 +323,8 @@
 
     userCoins += 50; lastDailyCheck = new Date().toISOString(); 
     updateBalanceUI();
-    
-    let btn = document.getElementById('btn-daily');
-    btn.classList.add('disabled');
-    document.getElementById('txt-daily').innerText = "Lak tawh ✅";
+    document.getElementById('btn-daily').classList.add('disabled'); document.getElementById('txt-daily').innerText = "Lak tawh ✅";
     showToast(`+50 Coins: Daily Check Hlawhtling!`);
-
     await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
   }
 
@@ -330,12 +334,8 @@
 
     userCoins += amount; claimedTasks.push(taskId); 
     updateBalanceUI();
-    
-    let element = document.getElementById(taskId);
-    element.classList.add('disabled');
-    element.querySelector('.reward-pill').innerText = "Lak tawh ✅";
+    let element = document.getElementById(taskId); element.classList.add('disabled'); element.querySelector('.reward-pill').innerText = "Lak tawh ✅";
     showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
-
     await supabaseClient.from('user_profiles').update({ coins: userCoins, claimed_tasks: claimedTasks }).eq('id', currentUserId);
   }
 
@@ -345,7 +345,58 @@
     toast.style.top = '40px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
 
-  /* --- MODAL FUNCTIONS --- */
+  /* --- SPIN WHEEL LOGIC --- */
+  function openSpin() {
+    document.getElementById('spin-modal').style.display = 'flex';
+    const today = new Date().toDateString();
+    let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
+    const btn = document.getElementById('spin-btn');
+    
+    // A lo Spin tawh chuan button kha a hmet thei tawh lo ang
+    if (lastSpinStr === today) {
+      btn.innerText = "Vawiin atan i Spin tawh";
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+    } else {
+      btn.innerText = "Spin Wheel";
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  }
+  function closeSpin() { document.getElementById('spin-modal').style.display = 'none'; }
+
+  async function startSpin() {
+    if (!currentUserId) return;
+    const btn = document.getElementById('spin-btn');
+    btn.disabled = true;
+    btn.innerText = "Vir mek... 🎡";
+    btn.style.opacity = '0.5';
+
+    // Vir kual tir (Random degree)
+    const wheel = document.getElementById('wheel');
+    const randomDeg = Math.floor(Math.random() * 1800) + 1800; // Vir kual vak se
+    wheel.style.transform = `rotate(${randomDeg}deg)`;
+
+    // Wait 3 Seconds vir chhung
+    setTimeout(async () => {
+      // Random Coins pe rawh (10, 20, 50, emaw 100)
+      const rewards = [10, 50, 20, 100];
+      const winAmount = rewards[Math.floor(Math.random() * rewards.length)];
+      
+      userCoins += winAmount;
+      lastSpinDate = new Date().toISOString(); 
+      updateBalanceUI();
+      document.getElementById('txt-spin').innerText = "Spin tawh ✅";
+      
+      showToast(`🎉 Vannei lutuk! +${winAmount} Coins i hlawh e!`);
+      btn.innerText = "Vawiin atan i Spin tawh";
+
+      // DB ah save
+      await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
+    }, 3000);
+  }
+
+  /* --- MODAL FUNCTIONS (Settings, Leaderboard, Withdraw) --- */
   function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
   function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
 
