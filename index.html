@@ -3,184 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CASH-MIZO | Earn Rewards</title>
+  <title>CASH-MIZO | Original Rewards</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
     :root {
-      /* SWAGBUCKS STYLE LIGHT THEME */
-      --bg-main: #f3f4f6; 
+      /* ORIGINAL PREMIUM THEME */
+      --bg-main: #f8fafc; 
       --bg-card: #ffffff; 
-      --text-main: #1f2937; 
-      --text-muted: #6b7280;
-      --primary: #1a56d9; /* Swagbucks Blue */
-      --secondary: #0d9488;
-      --border-color: #e5e7eb;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --text-main: #0f172a; 
+      --text-muted: #64748b;
+      --primary: #4f46e5; /* Deep Indigo */
+      --primary-light: #e0e7ff;
+      --secondary: #10b981; /* Emerald Green */
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius-lg: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     
-    body { background-color: #e5e7eb; display: flex; justify-content: center; color: var(--text-main); }
+    body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); }
     .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto; box-shadow: var(--shadow-lg);}
     
-    /* LOGIN SCREEN - SWAGBUCKS STYLE */
-    #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1e3a8a 0%, #1a56d9 50%, #0d9488 100%); display: flex; flex-direction: column; z-index: 100; overflow: hidden; }
-    .login-hero { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 24px; color: white; text-align: center; }
-    .login-logo-text { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: auto; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .login-logo-text img { width: 28px; }
-    .login-hero h1 { font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .live-counter-box { margin-top: 20px; }
-    .live-counter-box p { font-size: 14px; font-weight: 500; margin-bottom: 12px; opacity: 0.9; }
-    .counter-numbers { background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); display: inline-block; padding: 8px 16px; border-radius: 8px; font-size: 24px; font-weight: 700; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.1); }
+    /* LOGIN SCREEN - ORIGINAL */
+    #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow: hidden; }
+    .login-hero { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 30px; color: white; text-align: left; }
+    .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: auto; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
+    .login-hero h1 { font-size: 40px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .login-hero p { font-size: 16px; color: #c7d2fe; line-height: 1.6; }
     
-    .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); text-align: left; }
-    .login-bottom-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 20px; color: var(--text-main); }
-    .terms-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; }
-    .terms-checkbox input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--primary); }
-    .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-    .terms-checkbox span a { color: var(--primary); text-decoration: none; }
+    .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); }
+    .terms-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); }
+    .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); }
+    .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
     
-    .auth-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid var(--border-color); padding: 14px 24px; border-radius: 12px; width: 100%; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
-    .auth-btn:active { background: #f9fafb; transform: scale(0.98); }
-    .auth-btn img { width: 22px; margin-right: 12px; }
-    .auth-btn.email-btn { background: #f3f4f6; border: none; }
+    .auth-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); }
+    .auth-btn:active { background: #f1f5f9; transform: scale(0.98); }
+    .auth-btn img { width: 24px; margin-right: 12px; }
     
     #main-app { display: none; padding-bottom: 90px; }
     
-    /* HEADER (CLEAN LIGHT) */
-    .header { background: var(--bg-card); padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; }
-    .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; display: flex; align-items: center; gap: 6px; }
-    .brand-logo span { font-size: 20px; }
-    .header-right { display: flex; align-items: center; gap: 16px; }
-    .balance-pill { background: #eff6ff; color: var(--primary); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 20px; border: 1px solid #bfdbfe; }
-    .menu-icon { font-size: 24px; color: var(--text-main); cursor: pointer; }
+    /* HEADER */
+    .header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; }
+    .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; }
+    .menu-icon { font-size: 24px; color: var(--text-main); cursor: pointer; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
     
-    /* DASHBOARD CARDS */
-    .dashboard-content { padding: 20px; }
+    /* DASHBOARD */
+    .dashboard-content { padding: 24px; }
     
-    .grid-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-    .grid-card { background: var(--bg-card); padding: 16px 8px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; transition: 0.2s; position: relative; }
-    .grid-card:active { transform: scale(0.96); box-shadow: none; }
-    .grid-card.locked { opacity: 0.7; background: #fef2f2; border-color: #fca5a5; }
-    .grid-card.locked::after { content: '🔒'; position: absolute; top: 4px; right: 4px; font-size: 12px; }
-    .icon-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 8px; }
-    .grid-card p { font-size: 12px; font-weight: 600; color: var(--text-main); }
+    .balance-card-main { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 24px; border-radius: var(--radius-lg); color: white; margin-bottom: 24px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+    .balance-card-main::after { content: ''; position: absolute; top: -50%; right: -20%; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .balance-card-main p { font-size: 14px; color: #94a3b8; font-weight: 500; margin-bottom: 8px; }
+    .balance-card-main h2 { font-size: 36px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .withdraw-btn-main { background: var(--secondary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; border: none; margin-top: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
     
-    /* Specific Icon Colors */
+    .grid-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+    .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: var(--radius-lg); text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; transition: 0.2s; position: relative; display: flex; flex-direction: column; gap: 12px; }
+    .grid-card:active { transform: scale(0.97); }
+    .grid-card.locked { opacity: 0.8; background: #f8fafc; }
+    .grid-card.locked::after { content: '🔒'; position: absolute; top: 16px; right: 16px; font-size: 14px; background: white; padding: 4px; border-radius: 50%; box-shadow: var(--shadow-sm); }
+    
+    .icon-box { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
     .ic-daily { background: #fef3c7; color: #d97706; }
     .ic-spin { background: #e0e7ff; color: #4338ca; }
     .ic-refer { background: #dcfce7; color: #15803d; }
     .ic-rank { background: #fae8ff; color: #a21caf; }
-    .ic-redeem { background: #fee2e2; color: #b91c1c; }
-    .ic-survey { background: #e0f2fe; color: #0369a1; }
     
-    .section-title { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .grid-card h4 { font-size: 15px; font-weight: 700; color: var(--text-main); }
+    .grid-card p { font-size: 12px; color: var(--text-muted); font-weight: 500; }
     
-    .task-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-    .task-item { background: var(--bg-card); border-radius: 16px; padding: 16px; display: flex; align-items: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; }
-    .task-item.highlight { border-color: #bfdbfe; background: #eff6ff; }
-    .task-icon { font-size: 32px; margin-right: 16px; }
+    .section-title { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    
+    .task-item { background: var(--bg-card); border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); cursor: pointer; }
+    .task-icon { width: 56px; height: 56px; background: #f1f5f9; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-right: 16px; }
     .task-info { flex-grow: 1; }
-    .task-info h5 { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
-    .task-info p { font-size: 13px; color: var(--text-muted); }
-    .reward-pill { background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; box-shadow: var(--shadow-sm); }
+    .task-info h5 { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+    .task-info p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .btn-open { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; border: none; }
     
-    /* BOTTOM NAV */
-    .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; background: var(--bg-card); display: flex; justify-content: space-between; padding: 12px 24px 20px 24px; border-top: 1px solid var(--border-color); z-index: 30; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); gap: 4px; cursor: pointer; transition: 0.2s; }
-    .nav-item.active { color: var(--primary); }
-    .nav-item i { font-size: 22px; font-style: normal; }
-    .nav-item span { font-size: 11px; font-weight: 600; }
-
-    /* TOAST */
-    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1f2937; color: white; padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 600; z-index: 1000; box-shadow: var(--shadow-lg); transition: top 0.3s ease; white-space: nowrap; }
-    #toast.error { background: #ef4444; } 
-
-    /* SIDE MENU (DRAWER) */
-    .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 150; opacity: 0; pointer-events: none; transition: 0.3s; }
+    /* DETAILED MENU DRAWER */
+    .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 150; opacity: 0; pointer-events: none; transition: 0.3s; }
     .menu-overlay.active { opacity: 1; pointer-events: all; }
-    .side-menu { position: fixed; top: 0; right: -300px; width: 280px; max-width: 80%; height: 100%; background: var(--bg-card); z-index: 160; box-shadow: -5px 0 25px rgba(0,0,0,0.1); transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+    .side-menu { position: fixed; top: 0; right: -320px; width: 300px; max-width: 85%; height: 100%; background: var(--bg-main); z-index: 160; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; overflow-y: auto;}
     .side-menu.active { right: 0; }
-    .side-menu-header { padding: 24px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: #f9fafb; }
-    .side-menu-header h3 { font-size: 16px; font-weight: 700; color: var(--text-main); }
-    .close-side-btn { font-size: 24px; color: var(--text-muted); cursor: pointer; }
-    .side-menu-list { padding: 12px 0; overflow-y: auto; flex-grow: 1; }
-    .side-menu-item { padding: 16px 24px; display: flex; align-items: center; gap: 16px; color: var(--text-main); font-size: 15px; font-weight: 500; cursor: pointer; border-bottom: 1px solid var(--border-color); }
-    .side-menu-item:active { background: #f3f4f6; }
-    .side-menu-item i { font-style: normal; font-size: 20px; width: 24px; text-align: center; color: var(--text-muted); }
-    .side-menu-item.logout { color: #ef4444; margin-top: auto; border-bottom: none; }
+    
+    .menu-user-profile { padding: 30px 24px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); }
+    .menu-avatar { width: 56px; height: 56px; background: var(--primary); color: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+    .menu-user-profile h3 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+    .menu-user-profile p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    
+    .menu-group-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 24px 24px 8px; }
+    .side-menu-item { padding: 14px 24px; display: flex; align-items: center; gap: 16px; color: var(--text-main); font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .side-menu-item:active { background: #e2e8f0; }
+    .side-menu-item i { font-style: normal; font-size: 18px; width: 24px; text-align: center; color: var(--text-muted); }
+    .side-menu-item.logout { color: #ef4444; }
     .side-menu-item.logout i { color: #ef4444; }
 
-    /* FULLSCREEN PAGES - SWAGBUCKS PROFILE STYLE */
+    /* FULLSCREEN PAGES */
     .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; overflow-y: auto; }
     .fs-page.active { left: 0; }
-    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
-    .back-btn { font-size: 24px; color: var(--text-main); cursor: pointer; display: flex; align-items: center; }
-    .fs-header h3 { font-size: 16px; font-weight: 700; color: var(--text-main); }
-    
-    /* PROFILE HERO SPECIFIC (Screenshot 6 & 7 match) */
-    .profile-hero { background: linear-gradient(135deg, #1e3a8a, #0d9488); padding: 30px 20px 60px; text-align: center; color: white; position: relative; }
-    .profile-hero h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-    .profile-hero p { font-size: 14px; opacity: 0.9; }
-    
-    .profile-avatar-container { margin-top: -45px; text-align: center; position: relative; z-index: 5; margin-bottom: 16px; }
-    .profile-pic-large { width: 90px; height: 90px; background: white; color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; margin: 0 auto; border: 4px solid var(--bg-main); box-shadow: var(--shadow-md); }
-    .profile-username { text-align: center; font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 24px; }
-    
-    .profile-content { padding: 0 20px 40px; }
-    .prof-card { background: var(--bg-card); border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
-    .prof-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .prof-card-header h4 { font-size: 16px; font-weight: 700; color: var(--text-main); }
-    .prof-card-header i { color: var(--text-muted); }
-    .prof-row { display: flex; flex-direction: column; margin-bottom: 16px; }
+    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
+    .back-btn { width: 40px; height: 40px; background: #f1f5f9; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; cursor: pointer; font-weight: bold; }
+    .fs-header h3 { font-size: 18px; font-weight: 800; color: var(--text-main); }
+    .fs-content { padding: 24px; padding-bottom: 40px; }
+
+    /* PROFILE & LINK ACCOUNT (UPI) */
+    .prof-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
+    .prof-card h4 { font-size: 15px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;}
+    .prof-row { margin-bottom: 16px; }
     .prof-row:last-child { margin-bottom: 0; }
-    .prof-row span { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
-    .prof-row strong { font-size: 15px; color: var(--text-main); font-weight: 600; }
+    .prof-row span { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 500;}
+    .prof-row strong { font-size: 15px; color: var(--text-main); font-weight: 700; }
     
-    /* LINKED ACCOUNT STYLE */
-    .linked-account { display: flex; align-items: center; gap: 16px; }
-    .linked-icon { width: 40px; height: 40px; background: #eff6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #0284c7; }
-    .linked-info h5 { font-size: 14px; color: var(--text-main); margin-bottom: 4px; }
-    .linked-info a { font-size: 13px; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .upi-input-group { display: flex; gap: 8px; margin-top: 8px; }
+    .upi-input-group input { flex: 1; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 14px; font-weight: 600; outline: none; background: #f8fafc; }
+    .upi-input-group input:focus { border-color: var(--primary); background: white; }
+    .upi-save-btn { background: var(--primary); color: white; border: none; padding: 0 20px; border-radius: 12px; font-weight: 700; cursor: pointer; }
 
-    /* TERMS TYPOGRAPHY */
-    .fs-content-padding { padding: 20px; padding-bottom: 40px; }
-    .terms-document { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
-    .terms-document h2 { font-size: 20px; color: var(--primary); margin-bottom: 16px; font-weight: 800; }
-    .terms-document p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
-    .terms-document h4 { font-size: 15px; color: var(--text-main); margin-top: 24px; margin-bottom: 8px; font-weight: 700; }
-    .terms-document ul { padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
-    .terms-document li { margin-bottom: 6px; }
-
-    /* OTHER ELEMENTS */
-    .contact-btn { display: flex; align-items: center; gap: 12px; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 12px; text-decoration: none; box-shadow: var(--shadow-sm);}
-    .lang-option { background: var(--bg-card); padding: 18px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid var(--border-color); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-sm); }
-    .lang-option.active-lang { border-color: var(--primary); background: #eff6ff; color: var(--primary); }
+    /* TEXT DOCUMENTS (Terms, Info) */
+    .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
+    .doc-box h2 { font-size: 20px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; }
+    .doc-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; font-weight: 500;}
+    .doc-box h4 { font-size: 16px; color: var(--text-main); margin-top: 24px; margin-bottom: 10px; font-weight: 800; }
+    .doc-box ul { padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px; line-height: 1.7; font-weight: 500;}
 
     /* ACTION MODALS */
-    .action-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 250; align-items: center; justify-content: center; }
-    .action-modal-content { background: var(--bg-card); width: 90%; max-width: 340px; padding: 28px 24px; border-radius: 24px; text-align: center; box-shadow: var(--shadow-lg); }
-    .modal-icon { font-size: 48px; margin-bottom: 16px; }
-    .action-modal-content h3 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
-    .action-modal-content p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
-    .close-action-btn { background: #f3f4f6; color: var(--text-main); border: none; padding: 14px 20px; border-radius: 12px; font-size: 15px; font-weight: 600; width: 100%; cursor: pointer; margin-top: 12px; }
-    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 600; padding: 14px 20px; border-radius: 12px; width: 100%; font-size: 15px; }
+    .action-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(6px); z-index: 250; align-items: center; justify-content: center; }
+    .action-modal-content { background: var(--bg-card); width: 90%; max-width: 360px; padding: 32px 24px; border-radius: 32px; text-align: center; box-shadow: var(--shadow-lg); }
+    .modal-icon { font-size: 56px; margin-bottom: 16px; }
+    .action-modal-content h3 { font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+    .action-modal-content p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; font-weight: 500; }
+    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+    .btn-secondary { background: #f1f5f9; color: var(--text-main); border: none; padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     
-    .input-field { width: 100%; padding: 14px; background: #f9fafb; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; color: var(--text-main); outline: none; }
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 14px 28px; border-radius: 30px; font-size: 14px; font-weight: 700; z-index: 1000; box-shadow: var(--shadow-lg); transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
+    #toast.error { background: #ef4444; } 
+    
+    /* Custom input & copy */
+    .input-field { width: 100%; padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 16px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; }
     .input-field:focus { border-color: var(--primary); background: white; }
     
-    .copy-box { display: flex; align-items: center; background: #f9fafb; border: 1px solid var(--border-color); border-radius: 12px; padding: 8px 8px 8px 16px; margin-bottom: 20px; }
-    .copy-box input { flex: 1; background: transparent; border: none; color: var(--text-main); font-size: 14px; outline: none; font-weight: 500; }
-    .copy-btn { background: var(--primary); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .copy-box { display: flex; align-items: center; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 16px; padding: 8px 8px 8px 16px; margin-bottom: 24px; }
+    .copy-box input { flex: 1; background: transparent; border: none; color: var(--text-main); font-size: 14px; outline: none; font-weight: 600; }
+    .copy-btn { background: var(--text-main); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
 
-    /* LEADERBOARD LIST */
     .lb-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color); }
     .lb-item:last-child { border-bottom: none; }
-    .lb-name { font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
-    .lb-coins { font-size: 15px; font-weight: 700; color: var(--primary); }
+    .lb-name { font-size: 15px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
+    .lb-coins { font-size: 15px; font-weight: 800; color: var(--secondary); }
   </style>
 </head>
 <body>
@@ -189,35 +163,25 @@
   
   <div id="toast" data-i18n="success">Hlawhtling!</div>
 
-  <!-- LOGIN SCREEN (SWAGBUCKS STYLE) -->
+  <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-hero">
-      <div class="login-logo-text">💰 <span>CASH-MIZO</span></div>
-      <h1 data-i18n="hero_title">Save Money.<br>Make Money.</h1>
-      
-      <div class="live-counter-box">
-        <p data-i18n="members_cashed">Members like you have already cashed out:</p>
-        <div class="counter-numbers">₹ 7,008,608</div>
-      </div>
+      <div class="login-logo-text">⚡ CASH-MIZO</div>
+      <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
+      <p data-i18n="hero_desc">Join thousands of Mizo youths earning from their smartphones everyday.</p>
     </div>
     
     <div class="login-bottom-card">
-      <h2 data-i18n="join_free">Join for free!</h2>
+      <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-main);" data-i18n="join_free">Create Account</h2>
       
       <label class="terms-checkbox">
         <input type="checkbox" id="agree-check">
-        <span data-i18n="agree_terms">I agree to the Terms of Use and to receive marketing messages, and I accept the Privacy Policy.</span>
+        <span data-i18n="agree_terms">I have read and agree to the Terms of Service and Privacy Policy.</span>
       </label>
       
       <button class="auth-btn" onclick="login()">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
         <span id="btn-login-text">Continue with Google</span>
-      </button>
-      
-      <div style="text-align: center; margin: 16px 0; color: var(--text-muted); font-size: 13px; font-weight: 600;">OR</div>
-      
-      <button class="auth-btn email-btn" onclick="alert('Google login chauh hman theih a ni rih.')">
-        ✉️ Continue with Email
       </button>
     </div>
   </div>
@@ -225,156 +189,182 @@
 
   <!-- MAIN DASHBOARD -->
   <div id="main-app">
-    <!-- HEADER -->
     <div class="header">
-      <div class="brand-logo">💰 <span>CASH-MIZO</span></div>
-      <div class="header-right">
-        <div class="balance-pill"><span id="current-balance">0</span> SB</div>
+      <div class="brand-logo">⚡ CASH-MIZO</div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="balance-pill"><span id="header-balance">0</span> C</div>
         <div class="menu-icon" onclick="openMenu()">☰</div>
       </div>
     </div>
     
-    <!-- GRID ACTIONS (Swagbucks "More" style) -->
     <div class="dashboard-content">
+      <!-- MAIN BALANCE CARD -->
+      <div class="balance-card-main">
+        <p data-i18n="your_balance">Total Balance</p>
+        <h2><span id="current-balance">0</span> Coins</h2>
+        <button class="withdraw-btn-main" onclick="openWithdraw()" data-i18n="withdraw">Withdraw Funds</button>
+      </div>
+
+      <!-- GRID ACTIONS -->
       <div class="grid-actions">
         <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
-          <div class="icon-circle ic-daily">📅</div>
-          <p data-i18n="daily_check" id="txt-daily">Daily Bonus</p>
+          <div class="icon-box ic-daily">📅</div>
+          <div>
+            <h4 data-i18n="daily_check" id="txt-daily">Daily Claim</h4>
+            <p>+50 Coins</p>
+          </div>
         </div>
+        
         <div class="grid-card locked" id="btn-spin" onclick="checkLockAndRun('spin')">
-          <div class="icon-circle ic-spin">🎡</div>
-          <p data-i18n="spin_wheel" id="txt-spin">Lucky Spin</p>
+          <div class="icon-box ic-spin">🎡</div>
+          <div>
+            <h4 data-i18n="spin_wheel" id="txt-spin">Lucky Spin</h4>
+            <p>Win up to 100</p>
+          </div>
         </div>
-        <div class="grid-card" onclick="openActionModal('withdraw-modal')">
-          <div class="icon-circle ic-redeem">💳</div>
-          <p data-i18n="withdraw">Redeem</p>
-        </div>
+        
         <div class="grid-card locked" id="btn-refer" onclick="checkLockAndRun('refer')">
-          <div class="icon-circle ic-refer">🤝</div>
-          <p data-i18n="refer">Refer & Earn</p>
+          <div class="icon-box ic-refer">🤝</div>
+          <div>
+            <h4 data-i18n="refer">Refer Friends</h4>
+            <p>10% Commission</p>
+          </div>
         </div>
+        
         <div class="grid-card" onclick="openActionModal('leaderboard-modal')">
-          <div class="icon-circle ic-rank">🏆</div>
-          <p data-i18n="rank">Rank</p>
-        </div>
-        <div class="grid-card" onclick="openPage('profile-page')">
-          <div class="icon-circle ic-survey">👤</div>
-          <p data-i18n="profile">Profile</p>
+          <div class="icon-box ic-rank">🏆</div>
+          <div>
+            <h4 data-i18n="rank">Leaderboard</h4>
+            <p>Top earners</p>
+          </div>
         </div>
       </div>
 
       <!-- OFFERS SECTION -->
-      <div class="section-title" data-i18n="high_paying">Ways to Earn</div>
-      <div class="task-list">
-        <div class="task-item highlight" onclick="openTimeWall()">
-          <div class="task-icon">⏱️</div>
-          <div class="task-info">
-            <h5>TimeWall Offers</h5>
-            <p data-i18n="timewall_desc">Complete tasks to unlock features</p>
-          </div>
-          <div class="reward-pill" data-i18n="open">Open</div>
+      <div class="section-title" data-i18n="high_paying">PREMIUM OFFERS</div>
+      
+      <div class="task-item" onclick="openTimeWall()">
+        <div class="task-icon">⏱️</div>
+        <div class="task-info">
+          <h5>TimeWall Partner</h5>
+          <p data-i18n="timewall_desc">Complete tasks & surveys</p>
         </div>
+        <button class="btn-open" data-i18n="open">Open</button>
       </div>
-    </div>
-
-    <!-- BOTTOM NAV -->
-    <div class="bottom-nav">
-      <div class="nav-item active"><i>🏠</i><span data-i18n="home">Home</span></div>
-      <div class="nav-item" onclick="openTimeWall()"><i>📋</i><span data-i18n="tasks">Surveys</span></div>
-      <div class="nav-item" onclick="openActionModal('leaderboard-modal')"><i>🏆</i><span data-i18n="rank">Rank</span></div>
-      <div class="nav-item" onclick="openMenu()"><i>☰</i><span data-i18n="menu">More</span></div>
     </div>
   </div>
 
 
-  <!-- SIDE MENU DRAWER (Light Theme) -->
+  <!-- DETAILED SIDE MENU DRAWER -->
   <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
   <div id="side-menu" class="side-menu">
-    <div class="side-menu-header">
-      <h3 data-i18n="menu">Menu</h3>
-      <div class="close-side-btn" onclick="closeMenu()">✕</div>
+    <div class="menu-user-profile">
+      <div class="menu-avatar" id="menu-initial">U</div>
+      <h3 id="menu-name">User Name</h3>
+      <p id="menu-email">user@gmail.com</p>
     </div>
-    <div class="side-menu-list">
-      <div class="side-menu-item" onclick="openPage('profile-page')">
-        <i>👤</i> <span data-i18n="profile">My Profile</span>
-      </div>
-      <div class="side-menu-item" onclick="openPage('lang-page')">
-        <i>🌐</i> <span data-i18n="language">Language</span>
-      </div>
-      <div class="side-menu-item" onclick="openPage('contact-page')">
-        <i>🎧</i> <span data-i18n="contact">Contact Us</span>
-      </div>
-      <div class="side-menu-item" onclick="openPage('terms-page')">
-        <i>📜</i> <span data-i18n="terms">Terms & Conditions</span>
-      </div>
-      <div class="side-menu-item logout" onclick="logout()">
-        <i>🚪</i> <span data-i18n="logout">Log Out</span>
-      </div>
+    
+    <div class="menu-group-title">General</div>
+    <div class="side-menu-item" onclick="openPage('profile-page')">
+      <i>👤</i> <span data-i18n="profile">My Account & Payment</span>
+    </div>
+    <div class="side-menu-item" onclick="openPage('lang-page')">
+      <i>🌐</i> <span data-i18n="language">App Language</span>
+    </div>
+    
+    <div class="menu-group-title">Information & Legal</div>
+    <div class="side-menu-item" onclick="openPage('info-page')">
+      <i>💡</i> <span data-i18n="how_it_works">How it works</span>
+    </div>
+    <div class="side-menu-item" onclick="openPage('terms-page')">
+      <i>📜</i> <span data-i18n="terms">Terms & Privacy</span>
+    </div>
+    
+    <div class="menu-group-title">Connect</div>
+    <div class="side-menu-item" onclick="openPage('contact-page')">
+      <i>🎧</i> <span data-i18n="contact">Contact Support</span>
+    </div>
+    <div class="side-menu-item" onclick="window.open('https://t.me/cashmizo_official', '_blank')">
+      <i>✈️</i> <span>Telegram Channel</span>
+    </div>
+
+    <div style="flex-grow: 1;"></div>
+    <div class="side-menu-item logout" style="border-top: 1px solid var(--border-color); padding-top: 20px; margin-bottom: 20px;" onclick="logout()">
+      <i>🚪</i> <span data-i18n="logout">Log Out</span>
     </div>
   </div>
 
 
-  <!-- FULLSCREEN PAGE: PROFILE (SWAGBUCKS STYLE) -->
+  <!-- FULLSCREEN PAGE: PROFILE & PAYMENT (UPI LINKING) -->
   <div id="profile-page" class="fs-page">
-    <div class="fs-header" style="background: white;">
+    <div class="fs-header">
       <div class="back-btn" onclick="closePage('profile-page')">←</div>
       <h3 data-i18n="profile">My Account</h3>
-      <div style="width: 24px;"></div>
+      <div style="width: 40px;"></div>
     </div>
     
-    <div class="profile-hero">
-      <h2 id="welcome-text">Welcome back!</h2>
-      <p><span data-i18n="lifetime_earned">Lifetime earned:</span> <span id="prof-lifetime">0</span> SB</p>
-    </div>
-    
-    <div class="profile-avatar-container">
-      <div class="profile-pic-large" id="profile-page-initial">U</div>
-    </div>
-    <div class="profile-username" id="profile-page-name">User Name</div>
-    
-    <div class="profile-content">
-      <!-- Account Info Card -->
+    <div class="fs-content">
       <div class="prof-card">
-        <div class="prof-card-header">
-          <h4>Account Info</h4>
-          <i>✎</i>
-        </div>
+        <h4>User Details</h4>
         <div class="prof-row">
           <span>Full Name</span>
-          <strong id="info-name">Loading...</strong>
+          <strong id="prof-name">User Name</strong>
         </div>
         <div class="prof-row">
-          <span>Email</span>
-          <strong id="info-email">Connected via Google</strong>
+          <span>Email Address</span>
+          <strong id="prof-email">user@gmail.com</strong>
         </div>
         <div class="prof-row">
-          <span>Language Preference</span>
-          <strong id="info-lang">Mizo</strong>
+          <span>Lifetime Earned</span>
+          <strong style="color: var(--secondary);"><span id="prof-lifetime">0</span> Coins</strong>
         </div>
       </div>
       
-      <!-- Address Card (Placeholder) -->
+      <!-- PAYMENT LINKING SECTION -->
       <div class="prof-card">
-        <div class="prof-card-header">
-          <h4>Address</h4>
-          <i>✎</i>
+        <h4>Payment Method</h4>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Link your UPI ID to receive payouts.</p>
+        
+        <div class="prof-row" id="upi-display-section" style="display: none;">
+          <span>Linked UPI ID</span>
+          <strong id="prof-upi-id" style="color: var(--primary);">Not linked yet</strong>
+          <button style="background: none; border: none; color: var(--text-muted); font-size: 12px; text-decoration: underline; margin-top: 8px; cursor: pointer; font-weight: 700;" onclick="toggleUpiEdit()">Change UPI ID</button>
         </div>
-        <div class="prof-row"><span>Country</span><strong>India</strong></div>
-        <div class="prof-row"><span>State</span><strong>-</strong></div>
-      </div>
-      
-      <!-- Linked Accounts Card -->
-      <div class="prof-card">
-        <div class="prof-card-header" style="margin-bottom: 8px;">
-          <h4>Linked Accounts</h4>
-        </div>
-        <div class="linked-account">
-          <div class="linked-icon">💳</div>
-          <div class="linked-info">
-            <h5>Link your UPI account to turn your SB into cash</h5>
-            <a href="#" onclick="openActionModal('withdraw-modal'); closePage('profile-page');">Link Account</a>
+
+        <div id="upi-edit-section">
+          <span>Enter UPI ID (e.g., number@ybl)</span>
+          <div class="upi-input-group">
+            <input type="text" id="upi-save-input" placeholder="Your UPI ID">
+            <button class="upi-save-btn" onclick="saveUpiId()">Save</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN PAGE: INFO (How it works) -->
+  <div id="info-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('info-page')">←</div>
+      <h3 data-i18n="how_it_works">How it works</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <h2>App hman dan tlangpui</h2>
+        <p>CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni. Hetiang hian a thawk:</p>
+        <h4>1. Coins Hlawh chhuah dan</h4>
+        <ul>
+          <li><strong>TimeWall:</strong> Heta tang hian pawisa a hlawh theih ber. Survey chhan, App download, leh Website tlawh kual atangin Coins tam tak a hlawh theih.</li>
+          <li><strong>Daily Claim & Spin:</strong> TimeWall ah task pakhat tal i tih zawh tawh chuan, nitin a thlawnin Coins i claim theiin i spin thei ang.</li>
+          <li><strong>Refer:</strong> I thiante sawm lut la, an Coins hlawhchhuah atangin 10% i hlawh ve zel ang.</li>
+        </ul>
+        <h4>2. Pawisa Lakchhuah (Withdraw)</h4>
+        <ul>
+          <li>Coins 5,000 i tlin veleh Withdraw i dil thei ang.</li>
+          <li>I profile ah i UPI ID dik tak i save hmasak a ngai.</li>
+          <li>Withdraw i dil atangin ni 3 atanga 7 chhungin i account ah pawisa a rawn lut ang.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -383,50 +373,50 @@
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')">←</div>
-      <h3 data-i18n="terms">Terms & Conditions</h3>
-      <div style="width: 24px;"></div>
+      <h3 data-i18n="terms">Terms & Privacy</h3>
+      <div style="width: 40px;"></div>
     </div>
-    <div class="fs-content-padding">
-      <div class="terms-document">
+    <div class="fs-content">
+      <div class="doc-box">
         <h2>Terms of Service & Privacy Policy</h2>
-        <p>Welcome to <strong>CASH-MIZO</strong>. By accessing or using our application, you agree to be bound by these terms.</p>
-        
+        <p>By accessing or using CASH-MIZO, you agree to be bound by these terms.</p>
         <h4>1. Account Registration</h4>
         <ul>
           <li>Users must register using a valid Google Account.</li>
-          <li><strong>One Account Rule:</strong> You are strictly permitted to create only ONE (1) account per person.</li>
+          <li><strong>One Account Rule:</strong> You are strictly permitted to create only ONE (1) account per person and per physical device.</li>
         </ul>
-
         <h4>2. Anti-Fraud Policy</h4>
-        <p>Our system uses advanced security tracking. The following activities are prohibited:</p>
+        <p>Our system uses advanced security tracking. Prohibited activities:</p>
         <ul>
           <li>Using Virtual Private Networks (VPNs) or Proxies.</li>
           <li>Using Emulators or Auto-clickers.</li>
         </ul>
         <p>Violation will result in immediate account termination.</p>
-
-        <h4>3. Earnings & Offerwalls</h4>
+        <h4>3. Earnings & Withdrawals</h4>
         <ul>
-          <li>Tasks are provided by third-party partners.</li>
-          <li>Coins are credited after the partner successfully verifies completion.</li>
+          <li>Coins are credited after the third-party partner verifies completion.</li>
+          <li>We reserve the right to audit your account before processing any withdrawal.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: CONTACT US -->
+  <!-- FULLSCREEN PAGE: CONTACT -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')">←</div>
-      <h3 data-i18n="contact">Contact Us</h3>
-      <div style="width: 24px;"></div>
+      <h3 data-i18n="contact">Contact Support</h3>
+      <div style="width: 40px;"></div>
     </div>
-    <div class="fs-content-padding">
-      <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;" data-i18n="support_desc">Need help?</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 14px;">Reach out to our official support channels.</p>
-      
-      <a href="mailto:support@cashmizo.com" class="contact-btn email">📧 <span data-i18n="email_us">Email Support</span></a>
-      <a href="https://t.me/cashmizo_official" target="_blank" class="contact-btn tg">✈️ <span data-i18n="join_tg">Join Telegram</span></a>
+    <div class="fs-content">
+      <div class="doc-box" style="text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 16px;">🎧</div>
+        <h2 data-i18n="support_desc">Need help?</h2>
+        <p style="margin-bottom: 24px;">If you have any issues with withdrawals or tasks, feel free to reach out to our official support.</p>
+        
+        <a href="mailto:support@cashmizo.com" style="display: block; background: #f1f5f9; padding: 16px; border-radius: 12px; font-weight: 700; color: var(--text-main); text-decoration: none; margin-bottom: 12px;">📧 Email Support</a>
+        <a href="https://wa.me/919876543210" target="_blank" style="display: block; background: #ecfdf5; color: #047857; padding: 16px; border-radius: 12px; font-weight: 700; text-decoration: none;">💬 WhatsApp Message</a>
+      </div>
     </div>
   </div>
 
@@ -434,55 +424,67 @@
   <div id="lang-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('lang-page')">←</div>
-      <h3 data-i18n="language">Language</h3>
-      <div style="width: 24px;"></div>
+      <h3 data-i18n="language">App Language</h3>
+      <div style="width: 40px;"></div>
     </div>
-    <div class="fs-content-padding">
-      <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">Select your preferred language.</p>
-      <div class="lang-option active-lang" onclick="setLanguage('mizo'); closePage('lang-page')" id="btn-lang-mizo">Mizo (Default)</div>
-      <div class="lang-option" onclick="setLanguage('en'); closePage('lang-page')" id="btn-lang-en">English</div>
-      <div class="lang-option" onclick="setLanguage('hi'); closePage('lang-page')" id="btn-lang-hi">हिन्दी (Hindi)</div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <p style="margin-bottom: 20px;">Select your preferred app interface language.</p>
+        <div class="lang-option" onclick="setLanguage('mizo'); closePage('lang-page')" id="btn-lang-mizo" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer;">Mizo (Default)</div>
+        <div class="lang-option" onclick="setLanguage('en'); closePage('lang-page')" id="btn-lang-en" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer;">English</div>
+        <div class="lang-option" onclick="setLanguage('hi'); closePage('lang-page')" id="btn-lang-hi" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; cursor: pointer;">हिन्दी (Hindi)</div>
+      </div>
     </div>
   </div>
 
 
-  <!-- ACTION MODALS (Popups for Quick Actions) -->
+  <!-- ACTION MODALS (Popups) -->
   <div id="spin-modal" class="action-modal-overlay">
     <div class="action-modal-content">
       <h3 data-i18n="spin_title" style="color: var(--primary);">LUCKY SPIN</h3>
       <p data-i18n="spin_desc">Complete 1 task to get 1 Spin.</p>
-      <!-- Demo placeholder for Spin UI -->
-      <div style="font-size: 60px; margin: 20px 0;">🎡</div>
+      <div style="font-size: 64px; margin: 24px 0; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">🎡</div>
       <button id="spin-btn" class="btn-primary" onclick="startSpin()" data-i18n="spin_btn">Spin Wheel</button>
-      <button class="close-action-btn" onclick="closeActionModal('spin-modal')" data-i18n="close">Close</button>
+      <button class="btn-secondary" onclick="closeActionModal('spin-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
   <div id="withdraw-modal" class="action-modal-overlay">
     <div class="action-modal-content">
       <div id="withdraw-error" style="display:none;">
-        <div class="modal-icon">🚫</div>
+        <div class="modal-icon">🔒</div>
         <h3 data-i18n="wd_error_title">Cannot Withdraw Yet</h3>
-        <p><span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span><br>(Balance: <strong style="color:var(--text-main);" id="wd-current-coin">0</strong>)</p>
-        <button class="btn-primary" onclick="closeActionModal('withdraw-modal')" data-i18n="ok_understand">OK, I Understand</button>
+        <p><span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span><br><br>Current Balance: <strong style="color:var(--text-main);" id="wd-current-coin">0</strong></p>
+        <button class="btn-secondary" onclick="closeActionModal('withdraw-modal')" data-i18n="ok_understand">OK, I Understand</button>
       </div>
+      
       <div id="withdraw-form" style="display:none;">
-        <div class="modal-icon">💳</div>
+        <div class="modal-icon">💸</div>
         <h3 data-i18n="wd_title">Withdraw Funds</h3>
-        <p data-i18n="wd_desc">Money will be sent directly to your UPI Account.</p>
-        <input type="text" id="upi-input" class="input-field" placeholder="UPI ID (e.g. 9876543210@ybl)">
-        <button class="btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 SB</button>
-        <button class="close-action-btn" onclick="closeActionModal('withdraw-modal')" data-i18n="cancel">Cancel</button>
+        
+        <div id="wd-no-upi" style="display: block;">
+          <p style="color: #ef4444; font-weight: 600;">You haven't linked your UPI ID yet!</p>
+          <p>Please go to Profile -> Payment Method to link your account first.</p>
+          <button class="btn-primary" onclick="closeActionModal('withdraw-modal'); openPage('profile-page');">Go to Profile</button>
+        </div>
+        
+        <div id="wd-has-upi" style="display: none;">
+          <p data-i18n="wd_desc">Money will be sent to your linked UPI Account:</p>
+          <div style="background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); font-weight: 700; color: var(--primary); margin-bottom: 20px;" id="wd-display-upi">user@upi</div>
+          <button class="btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 Coins</button>
+        </div>
+        
+        <button class="btn-secondary" onclick="closeActionModal('withdraw-modal')" data-i18n="cancel">Cancel</button>
       </div>
     </div>
   </div>
 
   <div id="leaderboard-modal" class="action-modal-overlay">
-    <div class="action-modal-content" style="max-height: 80vh; overflow-y: auto;">
+    <div class="action-modal-content" style="max-height: 80vh; overflow-y: auto; padding: 24px;">
       <h3 data-i18n="lb_title">Leaderboard</h3>
       <p data-i18n="lb_desc" style="margin-bottom: 20px;">List of top earners</p>
       <div id="leaderboard-list"></div>
-      <button class="close-action-btn" onclick="closeActionModal('leaderboard-modal')" data-i18n="close">Close</button>
+      <button class="btn-secondary" onclick="closeActionModal('leaderboard-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
@@ -496,7 +498,7 @@
         <button class="copy-btn" onclick="copyReferLink()">Copy</button>
       </div>
       <button class="btn-primary" onclick="shareToWhatsApp()" data-i18n="share_wa">Share to WhatsApp</button>
-      <button class="close-action-btn" onclick="closeActionModal('refer-modal')" data-i18n="close">Close</button>
+      <button class="btn-secondary" onclick="closeActionModal('refer-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
@@ -510,42 +512,35 @@
     mizo: {
       success: "Hlawhtling!",
       hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.",
-      members_cashed: "Mizo thiante lakchhuah tawh zat:",
-      join_free: "A thlawnin lut rawh!",
-      agree_terms: "Terms of Use leh Privacy Policy ka pawm e.",
+      hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.",
+      agree_terms: "Terms of Service leh Privacy Policy ka pawm e.",
       earn_money: "PAWISA HLAWHNA",
-      login_desc: "I mimal nihna thupin, him takin pawisa i hlawh chhuak thei e.",
-      lifetime_earned: "Lifetime earned:",
-      your_balance: "I Balance (SB)",
-      withdraw: "Redeem",
-      daily_check: "Daily Bonus",
+      your_balance: "Total Balance",
+      withdraw: "Withdraw Funds",
+      daily_check: "Daily Claim",
       spin_wheel: "Lucky Spin",
-      refer: "Refer & Earn",
-      rank: "Rank",
-      high_paying: "Ways to Earn",
+      refer: "Refer Friends",
+      rank: "Leaderboard",
+      high_paying: "PREMIUM OFFERS",
       timewall_desc: "Survey chhang la, pawisa hlawh rawh",
       open: "Open",
-      home: "Home",
-      tasks: "Surveys",
-      menu: "More",
-      language: "Language / Tawng",
-      profile: "My Account",
-      contact: "Contact Us",
+      profile: "My Account & Payment",
+      language: "App Language",
+      how_it_works: "How it works",
+      terms: "Terms & Privacy",
+      contact: "Contact Support",
       support_desc: "Buaina i nei em? Heta tang hian min rawn be rawh.",
       email_us: "Email Support",
-      join_tg: "Join Telegram",
-      whatsapp_us: "WhatsApp Support",
-      terms: "Terms & Conditions",
+      join_tg: "Join Telegram Channel",
+      whatsapp_us: "WhatsApp Message",
       logout: "Log Out",
       close: "Close",
-      back: "Back",
-      i_agree: "I Understand & Agree",
       cancel: "Cancel",
       wd_title: "Pawisa Lakchhuahna",
-      wd_desc: "Pawisa hi i UPI Account ah direct in kan rawn thun ang.",
-      wd_btn: "Withdraw 5,000 SB",
+      wd_desc: "Pawisa hi i UPI Account ah direct in kan rawn thun ang:",
+      wd_btn: "Withdraw 5,000 Coins",
       wd_error_title: "Withdraw Theih Rih Loh",
-      wd_error_desc: "Withdraw turin SB 5,000 tal i neih a ngai.",
+      wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.",
       ok_understand: "OK, Ka Hrethiam e",
       spin_title: "LUCKY SPIN",
       spin_desc: "Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.",
@@ -559,48 +554,40 @@
       claimed: "Lak tawh ✅",
       spinned: "Spin tawh ✅",
       lock_msg: "TimeWall-ah Task 1 tal tih zawh hmasak a ngai! 🔒",
-      spin_lucky: "🎉 Vannei lutuk!",
       spin_today_done: "Vawiin ah i Spin tawh"
     },
     en: {
       success: "Success!",
-      hero_title: "Save Money.\nMake Money.",
-      members_cashed: "Members like you have already cashed out:",
-      join_free: "Join for free!",
-      agree_terms: "I agree to the Terms of Use and Privacy Policy.",
+      hero_title: "Earn real money.\nSecure & Fast.",
+      hero_desc: "Join thousands of youths earning from their smartphones everyday.",
+      agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
       earn_money: "EARN MONEY",
-      login_desc: "Earn real money securely while keeping your identity private.",
-      lifetime_earned: "Lifetime earned:",
-      your_balance: "Your Balance (SB)",
-      withdraw: "Redeem",
-      daily_check: "Daily Bonus",
+      your_balance: "Total Balance",
+      withdraw: "Withdraw Funds",
+      daily_check: "Daily Claim",
       spin_wheel: "Lucky Spin",
-      refer: "Refer & Earn",
-      rank: "Rank",
-      high_paying: "Ways to Earn",
-      timewall_desc: "Complete tasks to unlock features",
+      refer: "Refer Friends",
+      rank: "Leaderboard",
+      high_paying: "PREMIUM OFFERS",
+      timewall_desc: "Complete tasks & surveys",
       open: "Open",
-      home: "Home",
-      tasks: "Surveys",
-      menu: "More",
-      language: "Language",
-      profile: "My Account",
-      contact: "Contact Us",
-      support_desc: "Need help? Reach out to us below.",
+      profile: "My Account & Payment",
+      language: "App Language",
+      how_it_works: "How it works",
+      terms: "Terms & Privacy",
+      contact: "Contact Support",
+      support_desc: "Need help? Reach out to our official support.",
       email_us: "Email Support",
-      join_tg: "Join Telegram",
-      whatsapp_us: "WhatsApp Support",
-      terms: "Terms & Conditions",
+      join_tg: "Join Telegram Channel",
+      whatsapp_us: "WhatsApp Message",
       logout: "Log Out",
       close: "Close",
-      back: "Back",
-      i_agree: "I Understand & Agree",
       cancel: "Cancel",
       wd_title: "Withdraw Funds",
-      wd_desc: "Money will be sent directly to your UPI Account.",
-      wd_btn: "Withdraw 5,000 SB",
+      wd_desc: "Money will be sent to your linked UPI Account:",
+      wd_btn: "Withdraw 5,000 Coins",
       wd_error_title: "Cannot Withdraw Yet",
-      wd_error_desc: "You need at least 5,000 SB to withdraw.",
+      wd_error_desc: "You need at least 5,000 Coins to withdraw.",
       ok_understand: "OK, I Understand",
       spin_title: "LUCKY SPIN",
       spin_desc: "Complete 1 task to get 1 Spin.",
@@ -608,54 +595,46 @@
       lb_title: "Top 10 Leaderboard",
       lb_desc: "List of top earners",
       refer_title: "Refer & Earn",
-      refer_desc: "Invite your friends and earn ",
+      refer_desc: "Invite friends and earn ",
       refer_desc_2: " of what they earn!",
       share_wa: "Share to WhatsApp",
       claimed: "Claimed ✅",
       spinned: "Spun ✅",
       lock_msg: "You must complete at least 1 TimeWall task first! 🔒",
-      spin_lucky: "🎉 You're lucky!",
       spin_today_done: "Spun today already"
     },
     hi: {
       success: "सफल!",
-      hero_title: "पैसे बचाएं।\nपैसे कमाएं।",
-      members_cashed: "आप जैसे सदस्यों ने पहले ही निकाल लिए हैं:",
-      join_free: "मुफ्त में जुड़ें!",
-      agree_terms: "मैं उपयोग की शर्तों और गोपनीयता नीति से सहमत हूं।",
+      hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।",
+      hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।",
+      agree_terms: "मैंने नियम व शर्तें और गोपनीयता नीति पढ़ ली है और सहमत हूँ।",
       earn_money: "पैसे कमाएं",
-      login_desc: "अपनी पहचान गुप्त रखते हुए सुरक्षित रूप से असली पैसे कमाएं।",
-      lifetime_earned: "कुल कमाई:",
-      your_balance: "आपका बैलेंस (SB)",
-      withdraw: "रिडीम (Redeem)",
-      daily_check: "डेली बोनस",
+      your_balance: "कुल बैलेंस",
+      withdraw: "पैसे निकालें (Withdraw)",
+      daily_check: "डेली क्लेम",
       spin_wheel: "लकी स्पिन",
       refer: "रेफर करें",
-      rank: "रैंक",
-      high_paying: "कमाने के तरीके",
-      timewall_desc: "अनलॉक करने के लिए टास्क पूरा करें",
+      rank: "लीडरबोर्ड",
+      high_paying: "प्रीमियम ऑफर्स",
+      timewall_desc: "टास्क और सर्वे पूरे करें",
       open: "खोलें",
-      home: "होम",
-      tasks: "सर्वे (Surveys)",
-      menu: "अधिक (More)",
-      language: "भाषा (Language)",
-      profile: "मेरा खाता",
-      contact: "हमसे संपर्क करें",
-      support_desc: "मदद चाहिए? नीचे दिए गए माध्यम से संपर्क करें।",
+      profile: "मेरा खाता और पेमेंट",
+      language: "ऐप की भाषा",
+      how_it_works: "यह कैसे काम करता है",
+      terms: "नियम और गोपनीयता",
+      contact: "सपोर्ट से संपर्क करें",
+      support_desc: "मदद चाहिए? हमारे आधिकारिक सपोर्ट से संपर्क करें।",
       email_us: "ईमेल सपोर्ट",
       join_tg: "टेलीग्राम से जुड़ें",
-      whatsapp_us: "WhatsApp सपोर्ट",
-      terms: "नियम और शर्तें",
+      whatsapp_us: "WhatsApp मैसेज",
       logout: "लॉग आउट",
       close: "बंद करें",
-      back: "वापस",
-      i_agree: "मैं सहमत हूँ",
       cancel: "रद्द करें",
       wd_title: "पैसे निकालें",
-      wd_desc: "पैसे सीधे आपके UPI अकाउंट में भेजे जाएंगे।",
-      wd_btn: "5,000 SB निकालें",
+      wd_desc: "पैसे सीधे आपके लिंक्ड UPI अकाउंट में भेजे जाएंगे:",
+      wd_btn: "5,000 Coins निकालें",
       wd_error_title: "अभी पैसे नहीं निकाल सकते",
-      wd_error_desc: "पैसे निकालने के लिए आपके पास कम से कम 5,000 SB होने चाहिए।",
+      wd_error_desc: "पैसे निकालने के लिए आपके पास कम से कम 5,000 Coins होने चाहिए।",
       ok_understand: "ठीक है, मैं समझ गया",
       spin_title: "लकी स्पिन",
       spin_desc: "हर टास्क पूरा करने पर 1 स्पिन कमाएं।",
@@ -663,13 +642,12 @@
       lb_title: "टॉप 10 लीडरबोर्ड",
       lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
       refer_title: "रेफर करें और कमाएं",
-      refer_desc: "अपने दोस्तों को आमंत्रित करें और उनकी कमाई का ",
+      refer_desc: "दोस्तों को आमंत्रित करें और उनकी कमाई का ",
       refer_desc_2: " कमाएं!",
       share_wa: "WhatsApp पर शेयर करें",
       claimed: "प्राप्त किया ✅",
       spinned: "स्पिन किया ✅",
       lock_msg: "आपको पहले कम से कम 1 TimeWall टास्क पूरा करना होगा! 🔒",
-      spin_lucky: "🎉 आप भाग्यशाली हैं!",
       spin_today_done: "आज स्पिन कर चुके हैं"
     }
   };
@@ -682,29 +660,22 @@
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       if (translations[lang][key]) {
-        // Handle line breaks in hero_title
-        if(key === 'hero_title') {
-            element.innerHTML = translations[lang][key].replace('\n', '<br>');
-        } else {
-            element.innerText = translations[lang][key];
-        }
+        if(key === 'hero_title') element.innerHTML = translations[lang][key].replace('\n', '<br>');
+        else element.innerText = translations[lang][key];
       }
     });
     
-    // Update language selection UI
-    document.getElementById('btn-lang-mizo').classList.remove('active-lang');
-    document.getElementById('btn-lang-en').classList.remove('active-lang');
-    document.getElementById('btn-lang-hi').classList.remove('active-lang');
-    document.getElementById(`btn-lang-${lang}`).classList.add('active-lang');
-    
-    // Update Profile language display
-    let langDisplay = lang === 'mizo' ? 'Mizo' : (lang === 'en' ? 'English' : 'Hindi');
-    document.getElementById('info-lang').innerText = langDisplay;
+    // Style active language
+    document.getElementById('btn-lang-mizo').style.borderColor = 'var(--border-color)';
+    document.getElementById('btn-lang-en').style.borderColor = 'var(--border-color)';
+    document.getElementById('btn-lang-hi').style.borderColor = 'var(--border-color)';
+    document.getElementById(`btn-lang-${lang}`).style.borderColor = 'var(--primary)';
+    document.getElementById(`btn-lang-${lang}`).style.color = 'var(--primary)';
     
     checkClaimedUI(); 
   }
 
-  // --- MENU & NAVIGATION SYSTEM ---
+  // --- MENU & NAVIGATION ---
   function openMenu() {
     document.getElementById('menu-overlay').classList.add('active');
     document.getElementById('side-menu').classList.add('active');
@@ -727,6 +698,7 @@
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
+  let userUpiId = null; // UPI ID atanga kan lak chhuah theih nan
   let hasCompletedTaskToday = false; 
 
   async function showMainApp(session) {
@@ -737,33 +709,75 @@
     if (session && session.user) {
       currentUserId = session.user.id;
       let fullName = session.user.user_metadata.full_name || 'User';
+      let email = session.user.email || '';
       
-      // Update names
-      document.getElementById('welcome-text').innerText = `Welcome back, ${fullName.split(' ')[0]}!`;
-      document.getElementById('profile-page-name').innerText = fullName;
-      document.getElementById('info-name').innerText = fullName;
-      document.getElementById('info-email').innerText = session.user.email || 'Connected via Google';
-      
-      let initial = fullName.charAt(0).toUpperCase();
-      document.getElementById('profile-page-initial').innerText = initial;
+      // Update Menu and Profile Info
+      document.getElementById('menu-name').innerText = fullName;
+      document.getElementById('menu-email').innerText = email;
+      document.getElementById('prof-name').innerText = fullName;
+      document.getElementById('prof-email').innerText = email;
+      document.getElementById('menu-initial').innerText = fullName.charAt(0).toUpperCase();
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date').eq('id', currentUserId).single();
+      // FETCH FROM DATABASE (Including upi_id)
+      // Note: Make sure 'upi_id' column exists in your user_profiles table in Supabase
+      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id').eq('id', currentUserId).single();
+      
       if (data) {
-        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
+        userCoins = data.coins || 0; 
+        lastDailyCheck = data.last_daily_check; 
+        lastSpinDate = data.last_spin_date;
+        userUpiId = data.upi_id; // Set UPI ID from database
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
       }
-      updateBalanceUI(); checkClaimedUI(); 
+      
+      updateBalanceUI(); 
+      checkClaimedUI(); 
+      updateUpiUI(); // UI a lang turin
     }
   }
 
   function updateBalanceUI() {
     let formattedCoins = userCoins.toLocaleString('en-US');
+    document.getElementById('header-balance').innerText = formattedCoins;
     document.getElementById('current-balance').innerText = formattedCoins;
     document.getElementById('prof-lifetime').innerText = formattedCoins;
+  }
+
+  // UPI LINKING LOGIC
+  function updateUpiUI() {
+    if (userUpiId) {
+      document.getElementById('upi-display-section').style.display = 'block';
+      document.getElementById('upi-edit-section').style.display = 'none';
+      document.getElementById('prof-upi-id').innerText = userUpiId;
+    } else {
+      document.getElementById('upi-display-section').style.display = 'none';
+      document.getElementById('upi-edit-section').style.display = 'block';
+    }
+  }
+  
+  function toggleUpiEdit() {
+    document.getElementById('upi-display-section').style.display = 'none';
+    document.getElementById('upi-edit-section').style.display = 'block';
+    if(userUpiId) document.getElementById('upi-save-input').value = userUpiId;
+  }
+
+  async function saveUpiId() {
+    const input = document.getElementById('upi-save-input').value.trim();
+    if(input === '') { showToast("UPI ID chhu lut rawh", true); return; }
+    
+    // Save to Supabase
+    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: input }).eq('id', currentUserId);
+    if(error) {
+      showToast("Save theih loh: " + error.message, true);
+    } else {
+      userUpiId = input;
+      updateUpiUI();
+      showToast(translations[currentLang].success);
+    }
   }
 
   function checkLockAndRun(action) {
@@ -816,7 +830,7 @@
     userCoins += 50; lastDailyCheck = new Date().toISOString(); 
     updateBalanceUI();
     document.getElementById('txt-daily').innerText = translations[currentLang].claimed;
-    showToast(`+50 SB!`);
+    showToast(`+50 Coins!`);
     await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
   }
 
@@ -835,7 +849,7 @@
       userCoins += 10; lastSpinDate = new Date().toISOString(); 
       updateBalanceUI();
       document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
-      showToast(`+10 SB!`);
+      showToast(`+10 Coins!`);
       btn.innerText = translations[currentLang].spin_today_done;
       await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
     }, 1500);
@@ -849,7 +863,7 @@
       let htmlString = '';
       data.forEach((user, index) => {
         let medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `<span style="color:var(--text-muted); font-size:12px;">${index+1}</span>`;
-        htmlString += `<div class="lb-item"><span class="lb-name">${medal} ${user.name}</span><span class="lb-coins">${user.coins.toLocaleString()} SB</span></div>`;
+        htmlString += `<div class="lb-item"><span class="lb-name">${medal} ${user.name}</span><span class="lb-coins">${user.coins.toLocaleString()} C</span></div>`;
       });
       document.getElementById('leaderboard-list').innerHTML = htmlString;
     }
@@ -858,26 +872,38 @@
   function openWithdraw() { 
     openActionModal('withdraw-modal');
     document.getElementById('wd-current-coin').innerText = userCoins.toLocaleString();
+    
     if (userCoins >= 5000) {
-      document.getElementById('withdraw-modal').querySelector('.action-modal-content').style.borderColor = '#10b981';
       document.getElementById('withdraw-error').style.display = 'none'; 
       document.getElementById('withdraw-form').style.display = 'block';
+      
+      // Check if UPI is linked
+      if (userUpiId) {
+        document.getElementById('wd-no-upi').style.display = 'none';
+        document.getElementById('wd-has-upi').style.display = 'block';
+        document.getElementById('wd-display-upi').innerText = userUpiId;
+      } else {
+        document.getElementById('wd-no-upi').style.display = 'block';
+        document.getElementById('wd-has-upi').style.display = 'none';
+      }
     } else {
-      document.getElementById('withdraw-modal').querySelector('.action-modal-content').style.borderColor = 'transparent';
       document.getElementById('withdraw-error').style.display = 'block'; 
       document.getElementById('withdraw-form').style.display = 'none';
     }
   }
   
   async function submitWithdraw() {
-    const upiId = document.getElementById('upi-input').value;
-    if (!upiId) { return; }
+    if (!userUpiId) return; // Fimkhur nan
     if (userCoins < 5000) return;
+    
     userCoins -= 5000;
-    const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: upiId, amount: 5000 }]);
-    if (insertError) { return; }
+    const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userUpiId, amount: 5000 }]);
+    if (insertError) { showToast("Error: " + insertError.message, true); return; }
+    
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-    updateBalanceUI(); closeActionModal('withdraw-modal'); showToast(translations[currentLang].success);
+    updateBalanceUI(); 
+    closeActionModal('withdraw-modal'); 
+    showToast(translations[currentLang].success);
   }
   
   async function logout() { await supabaseClient.auth.signOut(); window.history.replaceState(null, null, window.location.pathname); window.location.reload(); }
@@ -895,7 +921,7 @@
     
     // Login check box logic
     document.getElementById('agree-check').addEventListener('change', function() {
-        const loginBtn = document.querySelector('.auth-btn:not(.email-btn)');
+        const loginBtn = document.querySelector('.auth-btn');
         if(this.checked) {
             loginBtn.style.opacity = '1';
             loginBtn.style.pointerEvents = 'all';
@@ -904,9 +930,8 @@
             loginBtn.style.pointerEvents = 'none';
         }
     });
-    // Init state
-    document.querySelector('.auth-btn:not(.email-btn)').style.opacity = '0.5';
-    document.querySelector('.auth-btn:not(.email-btn)').style.pointerEvents = 'none';
+    document.querySelector('.auth-btn').style.opacity = '0.5';
+    document.querySelector('.auth-btn').style.pointerEvents = 'none';
   });
   
   async function login() {
