@@ -8,14 +8,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
     :root {
-      /* ORIGINAL PREMIUM THEME */
       --bg-main: #f8fafc; 
       --bg-card: #ffffff; 
       --text-main: #0f172a; 
       --text-muted: #64748b;
-      --primary: #4f46e5; /* Deep Indigo */
+      --primary: #4f46e5; 
       --primary-light: #e0e7ff;
-      --secondary: #10b981; /* Emerald Green */
+      --secondary: #10b981; 
       --border-color: #e2e8f0;
       --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -26,23 +25,24 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     
     body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); }
+    /* OVERFLOW Y AUTO belh a ni scroll theih nan */
     .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto; box-shadow: var(--shadow-lg);}
     
-    /* LOGIN SCREEN - ORIGINAL */
-    #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow: hidden; }
-    .login-hero { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 30px; color: white; text-align: left; }
-    .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: auto; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
+    /* LOGIN SCREEN - Scrollable */
+    #login-screen { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
+    .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
+    .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: 40px; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
     .login-hero h1 { font-size: 40px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
     .login-hero p { font-size: 16px; color: #c7d2fe; line-height: 1.6; }
     
-    .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); }
+    .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); flex-grow: 1;}
     .terms-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); }
     .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); }
     .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
     
-    .auth-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); }
+    .auth-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
     .auth-btn:active { background: #f1f5f9; transform: scale(0.98); }
-    .auth-btn img { width: 24px; margin-right: 12px; }
+    .auth-btn img, .auth-btn i { width: 24px; font-size: 20px; margin-right: 12px; font-style: normal; display: flex; justify-content: center; align-items: center;}
     
     #main-app { display: none; padding-bottom: 90px; }
     
@@ -85,7 +85,7 @@
     .task-info p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
     .btn-open { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; border: none; }
     
-    /* DETAILED MENU DRAWER */
+    /* MENU DRAWER */
     .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 150; opacity: 0; pointer-events: none; transition: 0.3s; }
     .menu-overlay.active { opacity: 1; pointer-events: all; }
     .side-menu { position: fixed; top: 0; right: -320px; width: 300px; max-width: 85%; height: 100%; background: var(--bg-main); z-index: 160; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; overflow-y: auto;}
@@ -111,7 +111,7 @@
     .fs-header h3 { font-size: 18px; font-weight: 800; color: var(--text-main); }
     .fs-content { padding: 24px; padding-bottom: 40px; }
 
-    /* PROFILE & LINK ACCOUNT (UPI) */
+    /* PROFILE & PAYMENT SECTION (Dropdown added) */
     .prof-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
     .prof-card h4 { font-size: 15px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;}
     .prof-row { margin-bottom: 16px; }
@@ -119,14 +119,11 @@
     .prof-row span { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 500;}
     .prof-row strong { font-size: 15px; color: var(--text-main); font-weight: 700; }
     
-    .upi-input-group { display: flex; gap: 8px; margin-top: 8px; }
-    .upi-input-group input { flex: 1; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 14px; font-weight: 600; outline: none; background: #f8fafc; }
-    .upi-input-group input:focus { border-color: var(--primary); background: white; }
-    .upi-save-btn { background: var(--primary); color: white; border: none; padding: 0 20px; border-radius: 12px; font-weight: 700; cursor: pointer; }
-
-    /* TEXT DOCUMENTS (Terms, Info) */
+    select.input-field { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
+    
+    /* TEXT DOCUMENTS (Terms, Info) - More readable */
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
-    .doc-box h2 { font-size: 20px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; }
+    .doc-box h2 { font-size: 20px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; line-height: 1.3;}
     .doc-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; font-weight: 500;}
     .doc-box h4 { font-size: 16px; color: var(--text-main); margin-top: 24px; margin-bottom: 10px; font-weight: 800; }
     .doc-box ul { padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px; line-height: 1.7; font-weight: 500;}
@@ -140,11 +137,13 @@
     .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
     .btn-secondary { background: #f1f5f9; color: var(--text-main); border: none; padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     
-    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 14px 28px; border-radius: 30px; font-size: 14px; font-weight: 700; z-index: 1000; box-shadow: var(--shadow-lg); transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
-    #toast.error { background: #ef4444; } 
+    /* TOAST (Small & Clean) */
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 24px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 1000; box-shadow: var(--shadow-md); transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+    #toast.error { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; } 
+    #toast.error i { content: '⚠️'; }
     
     /* Custom input & copy */
-    .input-field { width: 100%; padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 16px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; }
+    .input-field { width: 100%; padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; }
     .input-field:focus { border-color: var(--primary); background: white; }
     
     .copy-box { display: flex; align-items: center; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 16px; padding: 8px 8px 8px 16px; margin-bottom: 24px; }
@@ -161,14 +160,14 @@
 
 <div class="app-container">
   
-  <div id="toast" data-i18n="success">Hlawhtling!</div>
+  <div id="toast" data-i18n="success"><i>✅</i> Hlawhtling!</div>
 
   <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-hero">
       <div class="login-logo-text">⚡ CASH-MIZO</div>
       <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
-      <p data-i18n="hero_desc">Join thousands of Mizo youths earning from their smartphones everyday.</p>
+      <p data-i18n="hero_desc">Join thousands of youths earning from their smartphones everyday.</p>
     </div>
     
     <div class="login-bottom-card">
@@ -179,9 +178,20 @@
         <span data-i18n="agree_terms">I have read and agree to the Terms of Service and Privacy Policy.</span>
       </label>
       
-      <button class="auth-btn" onclick="login()">
+      <!-- Added multiple login buttons as requested -->
+      <button class="auth-btn btn-google" onclick="login()">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
         <span id="btn-login-text">Continue with Google</span>
+      </button>
+      
+      <button class="auth-btn btn-apple" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <i style="color: black;">🍎</i>
+        <span>Continue with Apple</span>
+      </button>
+
+      <button class="auth-btn btn-email" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <i style="color: gray;">✉️</i>
+        <span>Continue with Email</span>
       </button>
     </div>
   </div>
@@ -255,7 +265,7 @@
   </div>
 
 
-  <!-- DETAILED SIDE MENU DRAWER -->
+  <!-- DETAILED SIDE MENU DRAWER (Translations applied) -->
   <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
   <div id="side-menu" class="side-menu">
     <div class="menu-user-profile">
@@ -264,7 +274,7 @@
       <p id="menu-email">user@gmail.com</p>
     </div>
     
-    <div class="menu-group-title">General</div>
+    <div class="menu-group-title" data-i18n="m_general">General</div>
     <div class="side-menu-item" onclick="openPage('profile-page')">
       <i>👤</i> <span data-i18n="profile">My Account & Payment</span>
     </div>
@@ -272,7 +282,7 @@
       <i>🌐</i> <span data-i18n="language">App Language</span>
     </div>
     
-    <div class="menu-group-title">Information & Legal</div>
+    <div class="menu-group-title" data-i18n="m_info">Information & Legal</div>
     <div class="side-menu-item" onclick="openPage('info-page')">
       <i>💡</i> <span data-i18n="how_it_works">How it works</span>
     </div>
@@ -280,12 +290,9 @@
       <i>📜</i> <span data-i18n="terms">Terms & Privacy</span>
     </div>
     
-    <div class="menu-group-title">Connect</div>
+    <div class="menu-group-title" data-i18n="m_connect">Connect</div>
     <div class="side-menu-item" onclick="openPage('contact-page')">
-      <i>🎧</i> <span data-i18n="contact">Contact Support</span>
-    </div>
-    <div class="side-menu-item" onclick="window.open('https://t.me/cashmizo_official', '_blank')">
-      <i>✈️</i> <span>Telegram Channel</span>
+      <i>🤖</i> <span data-i18n="contact">AI Support & Contact</span>
     </div>
 
     <div style="flex-grow: 1;"></div>
@@ -295,54 +302,70 @@
   </div>
 
 
-  <!-- FULLSCREEN PAGE: PROFILE & PAYMENT (UPI LINKING) -->
+  <!-- FULLSCREEN PAGE: PROFILE & PAYMENT (UPI/BANK/PAYPAL) -->
   <div id="profile-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('profile-page')">←</div>
-      <h3 data-i18n="profile">My Account</h3>
+      <h3 data-i18n="profile">My Account & Payment</h3>
       <div style="width: 40px;"></div>
     </div>
     
     <div class="fs-content">
       <div class="prof-card">
-        <h4>User Details</h4>
+        <h4 data-i18n="user_details">User Details</h4>
         <div class="prof-row">
-          <span>Full Name</span>
+          <span data-i18n="full_name">Full Name</span>
           <strong id="prof-name">User Name</strong>
         </div>
         <div class="prof-row">
-          <span>Email Address</span>
+          <span data-i18n="email_addr">Email Address</span>
           <strong id="prof-email">user@gmail.com</strong>
         </div>
         <div class="prof-row">
-          <span>Lifetime Earned</span>
+          <span data-i18n="lifetime_earned">Lifetime Earned</span>
           <strong style="color: var(--secondary);"><span id="prof-lifetime">0</span> Coins</strong>
         </div>
       </div>
       
-      <!-- PAYMENT LINKING SECTION -->
+      <!-- ADVANCED PAYMENT LINKING SECTION -->
       <div class="prof-card">
-        <h4>Payment Method</h4>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Link your UPI ID to receive payouts.</p>
+        <h4 data-i18n="payment_method">Payment Method</h4>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;" data-i18n="payment_desc">Choose how you want to receive your money.</p>
         
-        <div class="prof-row" id="upi-display-section" style="display: none;">
-          <span>Linked UPI ID</span>
-          <strong id="prof-upi-id" style="color: var(--primary);">Not linked yet</strong>
-          <button style="background: none; border: none; color: var(--text-muted); font-size: 12px; text-decoration: underline; margin-top: 8px; cursor: pointer; font-weight: 700;" onclick="toggleUpiEdit()">Change UPI ID</button>
+        <div id="payment-display-section" style="display: none; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px;">
+          <span style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" id="display-pay-type">UPI ID</span>
+          <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px;">Not linked yet</strong>
         </div>
+        
+        <button id="btn-change-pay" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: var(--shadow-sm);" onclick="togglePaymentEdit()" data-i18n="change_payment">Change Payment Method</button>
 
-        <div id="upi-edit-section">
-          <span>Enter UPI ID (e.g., number@ybl)</span>
-          <div class="upi-input-group">
-            <input type="text" id="upi-save-input" placeholder="Your UPI ID">
-            <button class="upi-save-btn" onclick="saveUpiId()">Save</button>
+        <div id="payment-edit-section" style="margin-top: 16px;">
+          <select id="pay-type-select" class="input-field" onchange="changePayTypeUI()">
+            <option value="upi">UPI (GPay/PhonePe/Paytm)</option>
+            <option value="bank">Bank Transfer (A/C & IFSC)</option>
+            <option value="paypal">PayPal Email</option>
+          </select>
+          
+          <div id="input-upi-wrap">
+            <input type="text" id="pay-input-upi" class="input-field" placeholder="Enter UPI ID (e.g. 9876543210@ybl)">
           </div>
+          
+          <div id="input-bank-wrap" style="display: none;">
+            <input type="number" id="pay-input-acc" class="input-field" placeholder="Account Number">
+            <input type="text" id="pay-input-ifsc" class="input-field" placeholder="IFSC Code">
+          </div>
+          
+          <div id="input-paypal-wrap" style="display: none;">
+            <input type="email" id="pay-input-paypal" class="input-field" placeholder="PayPal Email Address">
+          </div>
+          
+          <button class="btn-primary" style="padding: 12px; font-size: 14px; border-radius: 12px;" onclick="savePaymentInfo()" data-i18n="save">Save Details</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: INFO (How it works) -->
+  <!-- FULLSCREEN PAGE: INFO (How it works) - Detailed -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')">←</div>
@@ -351,25 +374,27 @@
     </div>
     <div class="fs-content">
       <div class="doc-box">
-        <h2>App hman dan tlangpui</h2>
-        <p>CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni. Hetiang hian a thawk:</p>
-        <h4>1. Coins Hlawh chhuah dan</h4>
+        <h2 data-i18n="doc_how_title">Welcome to CASH-MIZO</h2>
+        <p data-i18n="doc_how_desc">CASH-MIZO is a premium rewards platform that allows users to earn real money by completing simple tasks, participating in surveys, and engaging with our partner offers.</p>
+        
+        <h4 data-i18n="doc_how_h1">1. Earning Coins</h4>
         <ul>
-          <li><strong>TimeWall:</strong> Heta tang hian pawisa a hlawh theih ber. Survey chhan, App download, leh Website tlawh kual atangin Coins tam tak a hlawh theih.</li>
-          <li><strong>Daily Claim & Spin:</strong> TimeWall ah task pakhat tal i tih zawh tawh chuan, nitin a thlawnin Coins i claim theiin i spin thei ang.</li>
-          <li><strong>Refer:</strong> I thiante sawm lut la, an Coins hlawhchhuah atangin 10% i hlawh ve zel ang.</li>
+          <li data-i18n="doc_how_l1"><strong>TimeWall Partner:</strong> This is our primary earning wall. You can earn thousands of Coins by completing surveys, downloading tested apps, or viewing partner websites.</li>
+          <li data-i18n="doc_how_l2"><strong>Daily Claim & Lucky Spin:</strong> To reward active users, once you complete at least 1 task on TimeWall, you unlock the ability to claim free Daily Coins and use the Lucky Spin wheel every 24 hours.</li>
+          <li data-i18n="doc_how_l3"><strong>Referral Program:</strong> Share your unique invite link. When your friends sign up and earn Coins from tasks, you receive a 10% commission on their earnings automatically.</li>
         </ul>
-        <h4>2. Pawisa Lakchhuah (Withdraw)</h4>
+        
+        <h4 data-i18n="doc_how_h2">2. Withdrawing Your Funds</h4>
         <ul>
-          <li>Coins 5,000 i tlin veleh Withdraw i dil thei ang.</li>
-          <li>I profile ah i UPI ID dik tak i save hmasak a ngai.</li>
-          <li>Withdraw i dil atangin ni 3 atanga 7 chhungin i account ah pawisa a rawn lut ang.</li>
+          <li data-i18n="doc_how_l4">Once your account reaches the minimum threshold of 5,000 Coins, you can request a withdrawal.</li>
+          <li data-i18n="doc_how_l5">You must link a valid Payment Method (UPI, Bank Account, or PayPal) in your Profile settings before withdrawing.</li>
+          <li data-i18n="doc_how_l6">All withdrawal requests are manually reviewed for security purposes and are typically processed within 3 to 7 business days.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: TERMS -->
+  <!-- FULLSCREEN PAGE: TERMS - Detailed -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')">←</div>
@@ -378,44 +403,57 @@
     </div>
     <div class="fs-content">
       <div class="doc-box">
-        <h2>Terms of Service & Privacy Policy</h2>
-        <p>By accessing or using CASH-MIZO, you agree to be bound by these terms.</p>
-        <h4>1. Account Registration</h4>
+        <h2 data-i18n="doc_term_title">Terms of Service & Privacy Policy</h2>
+        <p data-i18n="doc_term_desc">By accessing, registering, or using CASH-MIZO, you agree to be bound by these legally binding Terms of Service.</p>
+        
+        <h4 data-i18n="doc_term_h1">1. Account Registration & Eligibility</h4>
         <ul>
-          <li>Users must register using a valid Google Account.</li>
-          <li><strong>One Account Rule:</strong> You are strictly permitted to create only ONE (1) account per person and per physical device.</li>
+          <li data-i18n="doc_term_l1">Users must register using a valid, authentic Google Account.</li>
+          <li data-i18n="doc_term_l2"><strong>Strict One Account Rule:</strong> You are strictly permitted to create and maintain only ONE (1) account per person, per household, and per physical device. Creating multiple accounts will result in a permanent ban.</li>
         </ul>
-        <h4>2. Anti-Fraud Policy</h4>
-        <p>Our system uses advanced security tracking. Prohibited activities:</p>
+        
+        <h4 data-i18n="doc_term_h2">2. Strict Anti-Fraud Policy</h4>
+        <p data-i18n="doc_term_p1">Our platform employs advanced, automated security tracking to ensure fair play. The following activities are strictly prohibited:</p>
         <ul>
-          <li>Using Virtual Private Networks (VPNs) or Proxies.</li>
-          <li>Using Emulators or Auto-clickers.</li>
+          <li data-i18n="doc_term_l3">Using Virtual Private Networks (VPNs), Proxies, or Tor nodes to mask or alter your real location.</li>
+          <li data-i18n="doc_term_l4">Using Emulators (e.g., Bluestacks, Nox) or Virtual Machines.</li>
+          <li data-i18n="doc_term_l5">Employing Auto-clickers, macros, bots, or any automation software.</li>
         </ul>
-        <p>Violation will result in immediate account termination.</p>
-        <h4>3. Earnings & Withdrawals</h4>
+        <p data-i18n="doc_term_p2">Violation of these rules will trigger our fraud-detection systems, resulting in immediate account termination and forfeiture of all accumulated earnings.</p>
+        
+        <h4 data-i18n="doc_term_h3">3. Earnings & Third-Party Offerwalls</h4>
         <ul>
-          <li>Coins are credited after the third-party partner verifies completion.</li>
-          <li>We reserve the right to audit your account before processing any withdrawal.</li>
+          <li data-i18n="doc_term_l6">All tasks and surveys are provided by independent third-party partners.</li>
+          <li data-i18n="doc_term_l7">Coins are only credited to your account after the third-party partner successfully verifies and approves the completion. CASH-MIZO is not responsible for rejected or pending tasks.</li>
         </ul>
+        
+        <h4 data-i18n="doc_term_h4">4. Privacy & Data Security</h4>
+        <p data-i18n="doc_term_p3">Your privacy is our priority. We collect minimal necessary data (Google Name, Email, and internal User ID) solely to maintain your Coin balance and process your payments. We do not sell or rent your personal data to any third parties. All data is secured using Supabase's advanced Row Level Security (RLS) database protocols.</p>
       </div>
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: CONTACT -->
+  <!-- FULLSCREEN PAGE: CONTACT & AI -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')">←</div>
-      <h3 data-i18n="contact">Contact Support</h3>
+      <h3 data-i18n="contact">AI Support & Contact</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
+      
+      <!-- AI Support Banner -->
+      <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: var(--radius-lg); padding: 24px; color: white; text-align: center; margin-bottom: 24px; position: relative; overflow: hidden;">
+        <div style="font-size: 48px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));">🤖</div>
+        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;" data-i18n="ai_title">CASH-MIZO AI Assistant</h3>
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.5; margin-bottom: 20px;" data-i18n="ai_desc">Get instant answers about tasks, withdrawals, and app rules. Available 24/7.</p>
+        <button style="background: var(--secondary); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);" onclick="showToast(translations[currentLang].wip_feature, true)" data-i18n="ai_btn">Chat with AI</button>
+      </div>
+
       <div class="doc-box" style="text-align: center;">
-        <div style="font-size: 48px; margin-bottom: 16px;">🎧</div>
-        <h2 data-i18n="support_desc">Need help?</h2>
-        <p style="margin-bottom: 24px;">If you have any issues with withdrawals or tasks, feel free to reach out to our official support.</p>
-        
-        <a href="mailto:support@cashmizo.com" style="display: block; background: #f1f5f9; padding: 16px; border-radius: 12px; font-weight: 700; color: var(--text-main); text-decoration: none; margin-bottom: 12px;">📧 Email Support</a>
-        <a href="https://wa.me/919876543210" target="_blank" style="display: block; background: #ecfdf5; color: #047857; padding: 16px; border-radius: 12px; font-weight: 700; text-decoration: none;">💬 WhatsApp Message</a>
+        <h4 style="margin-top: 0;" data-i18n="human_support">Human Support</h4>
+        <p style="margin-bottom: 24px;" data-i18n="human_support_desc">For complex issues like payment failures, please email our support team directly.</p>
+        <a href="mailto:support@cashmizo.com" style="display: block; background: #f1f5f9; padding: 16px; border-radius: 12px; font-weight: 700; color: var(--text-main); text-decoration: none; margin-bottom: 12px;">📧 Email: support@cashmizo.com</a>
       </div>
     </div>
   </div>
@@ -429,10 +467,10 @@
     </div>
     <div class="fs-content">
       <div class="doc-box">
-        <p style="margin-bottom: 20px;">Select your preferred app interface language.</p>
-        <div class="lang-option" onclick="setLanguage('mizo'); closePage('lang-page')" id="btn-lang-mizo" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer;">Mizo (Default)</div>
-        <div class="lang-option" onclick="setLanguage('en'); closePage('lang-page')" id="btn-lang-en" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer;">English</div>
-        <div class="lang-option" onclick="setLanguage('hi'); closePage('lang-page')" id="btn-lang-hi" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; cursor: pointer;">हिन्दी (Hindi)</div>
+        <p style="margin-bottom: 20px;" data-i18n="lang_select_desc">Select your preferred app interface language.</p>
+        <div class="lang-option" onclick="setLanguage('mizo'); closePage('lang-page')" id="btn-lang-mizo" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer; transition: 0.2s;">Mizo (Default)</div>
+        <div class="lang-option" onclick="setLanguage('en'); closePage('lang-page')" id="btn-lang-en" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer; transition: 0.2s;">English</div>
+        <div class="lang-option" onclick="setLanguage('hi'); closePage('lang-page')" id="btn-lang-hi" style="padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s;">हिन्दी (Hindi)</div>
       </div>
     </div>
   </div>
@@ -462,15 +500,15 @@
         <div class="modal-icon">💸</div>
         <h3 data-i18n="wd_title">Withdraw Funds</h3>
         
-        <div id="wd-no-upi" style="display: block;">
-          <p style="color: #ef4444; font-weight: 600;">You haven't linked your UPI ID yet!</p>
-          <p>Please go to Profile -> Payment Method to link your account first.</p>
-          <button class="btn-primary" onclick="closeActionModal('withdraw-modal'); openPage('profile-page');">Go to Profile</button>
+        <div id="wd-no-pay" style="display: block;">
+          <p style="color: #ef4444; font-weight: 600;" data-i18n="wd_no_pay_msg">You haven't linked a payment method!</p>
+          <p data-i18n="wd_no_pay_desc">Please go to Profile -> Payment Method to set up your account first.</p>
+          <button class="btn-primary" onclick="closeActionModal('withdraw-modal'); openPage('profile-page');" data-i18n="go_profile">Go to Profile</button>
         </div>
         
-        <div id="wd-has-upi" style="display: none;">
-          <p data-i18n="wd_desc">Money will be sent to your linked UPI Account:</p>
-          <div style="background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); font-weight: 700; color: var(--primary); margin-bottom: 20px;" id="wd-display-upi">user@upi</div>
+        <div id="wd-has-pay" style="display: none;">
+          <p data-i18n="wd_send_to">Money will be sent to your linked account:</p>
+          <div style="background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); font-weight: 700; color: var(--primary); margin-bottom: 20px; font-size: 13px; word-break: break-all;" id="wd-display-pay">user@upi</div>
           <button class="btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 Coins</button>
         </div>
         
@@ -507,13 +545,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // --- TRANSLATION DICTIONARY ---
+  // --- TRANSLATION DICTIONARY (Updated) ---
   const translations = {
     mizo: {
       success: "Hlawhtling!",
       hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.",
       hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.",
+      join_free: "Create Account",
       agree_terms: "Terms of Service leh Privacy Policy ka pawm e.",
+      wip_feature: "He feature hi siam mek a ni. Google hmang rih rawh.",
       earn_money: "PAWISA HLAWHNA",
       your_balance: "Total Balance",
       withdraw: "Withdraw Funds",
@@ -524,23 +564,66 @@
       high_paying: "PREMIUM OFFERS",
       timewall_desc: "Survey chhang la, pawisa hlawh rawh",
       open: "Open",
+      m_general: "General",
+      m_info: "Information & Legal",
+      m_connect: "Connect",
       profile: "My Account & Payment",
+      user_details: "User Details",
+      full_name: "Full Name",
+      email_addr: "Email Address",
+      lifetime_earned: "Lifetime Earned",
+      payment_method: "Payment Method",
+      payment_desc: "Pawisa lakchhuah i duh dan thlang rawh.",
+      change_payment: "Change Payment Method",
+      save: "Save Details",
       language: "App Language",
+      lang_select_desc: "App tawng i duh ber thlang rawh.",
       how_it_works: "How it works",
+      doc_how_title: "CASH-MIZO ah lo lawm le",
+      doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.",
+      doc_how_h1: "1. Coins Hlawh chhuah dan",
+      doc_how_l1: "TimeWall Partner: Heta tang hian pawisa a hlawh theih ber. Survey chhan, App download atangin Coins tam tak a hlawh theih.",
+      doc_how_l2: "Daily Claim & Lucky Spin: TimeWall ah task pakhat tal i tih zawh tawh chuan, nitin a thlawnin Coins i claim theiin i spin thei ang.",
+      doc_how_l3: "Referral Program: I thiante sawm lut la, an Coins hlawhchhuah atangin 10% commission i hlawh ve zel ang.",
+      doc_how_h2: "2. Pawisa Lakchhuah (Withdraw)",
+      doc_how_l4: "Coins 5,000 i tlin veleh Withdraw i dil thei ang.",
+      doc_how_l5: "I profile ah Payment Method (UPI, Bank, emaw PayPal) i save hmasak a ngai.",
+      doc_how_l6: "Withdraw i dil atangin ni 3 atanga 7 chhungin i account ah pawisa a rawn lut ang.",
       terms: "Terms & Privacy",
-      contact: "Contact Support",
-      support_desc: "Buaina i nei em? Heta tang hian min rawn be rawh.",
-      email_us: "Email Support",
-      join_tg: "Join Telegram Channel",
-      whatsapp_us: "WhatsApp Message",
+      doc_term_title: "Terms of Service & Privacy Policy",
+      doc_term_desc: "CASH-MIZO app i hman hian heng dan te hi i zawm tur a ni.",
+      doc_term_h1: "1. Account Registration",
+      doc_term_l1: "Google Account dik tak hman tur a ni.",
+      doc_term_l2: "One Account Rule: Phone pakhat leh mi pakhat atan account pakhat chauh siam phal a ni. Account siam teuh chu ban (hnawhchhuah) nghal a ni ang.",
+      doc_term_h2: "2. Anti-Fraud Policy",
+      doc_term_p1: "Kan system hian uluk takin a vil reng a, heng te hi khap tlat a ni:",
+      doc_term_l3: "VPN emaw Proxy hman phal a ni lo.",
+      doc_term_l4: "Emulator (Bluestacks) hman phal a ni lo.",
+      doc_term_l5: "Auto-clicker emaw Bot hman phal a ni lo.",
+      doc_term_p2: "Heng dan bawhchhia te chu an pawisa hlawhsa zawng zawng chhuhsak leh hnawhchhuah nghal an ni ang.",
+      doc_term_h3: "3. Earnings & Offerwalls",
+      doc_term_l6: "Task zawng zawng hi third-party (Partner) te rawn chhawpchhuah a ni.",
+      doc_term_l7: "Partner ten task i ti tha tih an pawm (approve) hunah chauh Coins a lut ang.",
+      doc_term_h4: "4. Privacy",
+      doc_term_p3: "I mimal data (Email, Hming) te hi app tihnun nan chauha hman a ni a, tuman an hmu ve thei lo. Supabase Security hmanga venhim tlat a ni.",
+      contact: "AI Support & Contact",
+      ai_title: "CASH-MIZO AI Assistant",
+      ai_desc: "App hman dan, pawisa lakchhuah dan leh harsatna i neih chu AI hnenah hian zawt rawh. 24/7 inpeih reng a ni.",
+      ai_btn: "Chat with AI",
+      human_support: "Human Support",
+      human_support_desc: "Payment fail emaw buaina lian thamah chuan Email hmangin min rawn be dawn nia.",
       logout: "Log Out",
       close: "Close",
       cancel: "Cancel",
       wd_title: "Pawisa Lakchhuahna",
-      wd_desc: "Pawisa hi i UPI Account ah direct in kan rawn thun ang:",
+      wd_desc: "Pawisa hi i account ah direct in kan rawn thun ang:",
       wd_btn: "Withdraw 5,000 Coins",
       wd_error_title: "Withdraw Theih Rih Loh",
       wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.",
+      wd_no_pay_msg: "Payment Method i la thlang lo!",
+      wd_no_pay_desc: "Profile -> Payment Method ah lut la, i UPI emaw Bank details va dah hmasa rawh.",
+      go_profile: "Go to Profile",
+      wd_send_to: "Heta hian pawisa chu thawn a ni ang:",
       ok_understand: "OK, Ka Hrethiam e",
       spin_title: "LUCKY SPIN",
       spin_desc: "Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.",
@@ -560,7 +643,9 @@
       success: "Success!",
       hero_title: "Earn real money.\nSecure & Fast.",
       hero_desc: "Join thousands of youths earning from their smartphones everyday.",
+      join_free: "Create Account",
       agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
+      wip_feature: "This feature is WIP. Please use Google Login.",
       earn_money: "EARN MONEY",
       your_balance: "Total Balance",
       withdraw: "Withdraw Funds",
@@ -571,23 +656,66 @@
       high_paying: "PREMIUM OFFERS",
       timewall_desc: "Complete tasks & surveys",
       open: "Open",
+      m_general: "General",
+      m_info: "Information & Legal",
+      m_connect: "Connect",
       profile: "My Account & Payment",
+      user_details: "User Details",
+      full_name: "Full Name",
+      email_addr: "Email Address",
+      lifetime_earned: "Lifetime Earned",
+      payment_method: "Payment Method",
+      payment_desc: "Choose how you want to receive your money.",
+      change_payment: "Change Payment Method",
+      save: "Save Details",
       language: "App Language",
+      lang_select_desc: "Select your preferred app interface language.",
       how_it_works: "How it works",
+      doc_how_title: "Welcome to CASH-MIZO",
+      doc_how_desc: "CASH-MIZO is a premium rewards platform that allows users to earn real money.",
+      doc_how_h1: "1. Earning Coins",
+      doc_how_l1: "TimeWall Partner: This is our primary earning wall. Earn Coins by completing surveys and app tasks.",
+      doc_how_l2: "Daily Claim & Lucky Spin: Unlock free daily rewards by completing at least 1 task on TimeWall.",
+      doc_how_l3: "Referral Program: Invite friends and earn a 10% commission on their task earnings.",
+      doc_how_h2: "2. Withdrawing Your Funds",
+      doc_how_l4: "Minimum withdrawal threshold is 5,000 Coins.",
+      doc_how_l5: "You must link a valid Payment Method (UPI, Bank Account, or PayPal).",
+      doc_how_l6: "Withdrawals are processed within 3 to 7 business days.",
       terms: "Terms & Privacy",
-      contact: "Contact Support",
-      support_desc: "Need help? Reach out to our official support.",
-      email_us: "Email Support",
-      join_tg: "Join Telegram Channel",
-      whatsapp_us: "WhatsApp Message",
+      doc_term_title: "Terms of Service & Privacy Policy",
+      doc_term_desc: "By accessing CASH-MIZO, you agree to these Terms of Service.",
+      doc_term_h1: "1. Account Registration",
+      doc_term_l1: "Users must register using a valid Google Account.",
+      doc_term_l2: "One Account Rule: Strictly ONE (1) account per person and device.",
+      doc_term_h2: "2. Strict Anti-Fraud Policy",
+      doc_term_p1: "The following activities are strictly prohibited:",
+      doc_term_l3: "Using VPNs or Proxies.",
+      doc_term_l4: "Using Emulators or Virtual Machines.",
+      doc_term_l5: "Using Auto-clickers or bots.",
+      doc_term_p2: "Violation results in immediate account termination.",
+      doc_term_h3: "3. Earnings",
+      doc_term_l6: "Tasks are provided by independent third-party partners.",
+      doc_term_l7: "Coins are credited only after partner verification.",
+      doc_term_h4: "4. Privacy",
+      doc_term_p3: "We collect minimal data (Name, Email) to process payments. Secured by Supabase RLS.",
+      contact: "AI Support & Contact",
+      ai_title: "CASH-MIZO AI Assistant",
+      ai_desc: "Get instant answers about tasks, withdrawals, and rules. 24/7.",
+      ai_btn: "Chat with AI",
+      human_support: "Human Support",
+      human_support_desc: "For complex issues like payment failures, email us.",
       logout: "Log Out",
       close: "Close",
       cancel: "Cancel",
       wd_title: "Withdraw Funds",
-      wd_desc: "Money will be sent to your linked UPI Account:",
+      wd_desc: "Money will be sent to your linked account:",
       wd_btn: "Withdraw 5,000 Coins",
       wd_error_title: "Cannot Withdraw Yet",
       wd_error_desc: "You need at least 5,000 Coins to withdraw.",
+      wd_no_pay_msg: "Payment method not linked!",
+      wd_no_pay_desc: "Please go to Profile -> Payment Method to set up your account.",
+      go_profile: "Go to Profile",
+      wd_send_to: "Money will be sent to:",
       ok_understand: "OK, I Understand",
       spin_title: "LUCKY SPIN",
       spin_desc: "Complete 1 task to get 1 Spin.",
@@ -607,7 +735,9 @@
       success: "सफल!",
       hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।",
       hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।",
+      join_free: "अकाउंट बनाएं",
       agree_terms: "मैंने नियम व शर्तें और गोपनीयता नीति पढ़ ली है और सहमत हूँ।",
+      wip_feature: "यह सुविधा अभी उपलब्ध नहीं है। Google का उपयोग करें।",
       earn_money: "पैसे कमाएं",
       your_balance: "कुल बैलेंस",
       withdraw: "पैसे निकालें (Withdraw)",
@@ -618,23 +748,66 @@
       high_paying: "प्रीमियम ऑफर्स",
       timewall_desc: "टास्क और सर्वे पूरे करें",
       open: "खोलें",
+      m_general: "सामान्य (General)",
+      m_info: "जानकारी और नियम",
+      m_connect: "संपर्क करें",
       profile: "मेरा खाता और पेमेंट",
+      user_details: "उपयोगकर्ता विवरण",
+      full_name: "पूरा नाम",
+      email_addr: "ईमेल आईडी",
+      lifetime_earned: "कुल कमाई",
+      payment_method: "पेमेंट का तरीका",
+      payment_desc: "पैसे प्राप्त करने का तरीका चुनें।",
+      change_payment: "पेमेंट तरीका बदलें",
+      save: "सेव करें",
       language: "ऐप की भाषा",
+      lang_select_desc: "अपनी पसंदीदा भाषा चुनें।",
       how_it_works: "यह कैसे काम करता है",
+      doc_how_title: "CASH-MIZO में स्वागत है",
+      doc_how_desc: "यह एक प्रीमियम रिवॉर्ड ऐप है जहाँ आप टास्क पूरे करके पैसे कमा सकते हैं।",
+      doc_how_h1: "1. पैसे कमाना",
+      doc_how_l1: "TimeWall: यहाँ से आप सबसे ज्यादा कमा सकते हैं।",
+      doc_how_l2: "डेली क्लेम और स्पिन: 1 टास्क पूरा करने के बाद ये अनलॉक हो जाते हैं।",
+      doc_how_l3: "रेफरल: दोस्तों को बुलाएं और 10% कमीशन पाएं।",
+      doc_how_h2: "2. पैसे निकालना",
+      doc_how_l4: "पैसे निकालने के लिए 5,000 Coins चाहिए।",
+      doc_how_l5: "पहले पेमेंट मेथड (UPI, Bank, PayPal) लिंक करें।",
+      doc_how_l6: "पैसे 3 से 7 दिनों में अकाउंट में आ जाएंगे।",
       terms: "नियम और गोपनीयता",
-      contact: "सपोर्ट से संपर्क करें",
-      support_desc: "मदद चाहिए? हमारे आधिकारिक सपोर्ट से संपर्क करें।",
-      email_us: "ईमेल सपोर्ट",
-      join_tg: "टेलीग्राम से जुड़ें",
-      whatsapp_us: "WhatsApp मैसेज",
+      doc_term_title: "नियम और शर्तें",
+      doc_term_desc: "CASH-MIZO का उपयोग करने पर आप इन नियमों से सहमत होते हैं।",
+      doc_term_h1: "1. अकाउंट",
+      doc_term_l1: "Google Account होना अनिवार्य है।",
+      doc_term_l2: "सिर्फ एक अकाउंट: एक व्यक्ति एक ही अकाउंट बना सकता है।",
+      doc_term_h2: "2. धोखाधड़ी नीति",
+      doc_term_p1: "ये चीजें सख्त मना हैं:",
+      doc_term_l3: "VPN या Proxy का उपयोग।",
+      doc_term_l4: "एमुलेटर (Emulator) का उपयोग।",
+      doc_term_l5: "ऑटो-क्लिकर (Auto-clicker) का उपयोग।",
+      doc_term_p2: "नियम तोड़ने पर अकाउंट हमेशा के लिए बंद कर दिया जाएगा।",
+      doc_term_h3: "3. कमाई",
+      doc_term_l6: "टास्क थर्ड-पार्टी द्वारा दिए जाते हैं।",
+      doc_term_l7: "उनके अप्रूव करने के बाद ही Coins मिलेंगे।",
+      doc_term_h4: "4. गोपनीयता",
+      doc_term_p3: "आपका डेटा पूरी तरह सुरक्षित है और किसी को बेचा नहीं जाता।",
+      contact: "AI सपोर्ट और संपर्क",
+      ai_title: "CASH-MIZO AI असिस्टेंट",
+      ai_desc: "किसी भी सवाल का तुरंत जवाब पाएं। 24/7 उपलब्ध।",
+      ai_btn: "AI से बात करें",
+      human_support: "ईमेल सपोर्ट",
+      human_support_desc: "पेमेंट फेल होने जैसी समस्याओं के लिए ईमेल करें।",
       logout: "लॉग आउट",
       close: "बंद करें",
       cancel: "रद्द करें",
       wd_title: "पैसे निकालें",
-      wd_desc: "पैसे सीधे आपके लिंक्ड UPI अकाउंट में भेजे जाएंगे:",
+      wd_desc: "पैसे आपके लिंक्ड अकाउंट में भेजे जाएंगे:",
       wd_btn: "5,000 Coins निकालें",
       wd_error_title: "अभी पैसे नहीं निकाल सकते",
       wd_error_desc: "पैसे निकालने के लिए आपके पास कम से कम 5,000 Coins होने चाहिए।",
+      wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है!",
+      wd_no_pay_desc: "प्रोफ़ाइल -> पेमेंट मेथड में जाकर अपना अकाउंट सेट करें।",
+      go_profile: "प्रोफ़ाइल पर जाएं",
+      wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
       ok_understand: "ठीक है, मैं समझ गया",
       spin_title: "लकी स्पिन",
       spin_desc: "हर टास्क पूरा करने पर 1 स्पिन कमाएं।",
@@ -665,13 +838,16 @@
       }
     });
     
-    // Style active language
-    document.getElementById('btn-lang-mizo').style.borderColor = 'var(--border-color)';
-    document.getElementById('btn-lang-en').style.borderColor = 'var(--border-color)';
-    document.getElementById('btn-lang-hi').style.borderColor = 'var(--border-color)';
-    document.getElementById(`btn-lang-${lang}`).style.borderColor = 'var(--primary)';
-    document.getElementById(`btn-lang-${lang}`).style.color = 'var(--primary)';
-    
+    // Style active language option
+    document.querySelectorAll('.lang-option').forEach(el => {
+        el.style.borderColor = 'var(--border-color)';
+        el.style.color = 'var(--text-main)';
+    });
+    const activeEl = document.getElementById(`btn-lang-${lang}`);
+    if(activeEl) {
+        activeEl.style.borderColor = 'var(--primary)';
+        activeEl.style.color = 'var(--primary)';
+    }
     checkClaimedUI(); 
   }
 
@@ -691,6 +867,18 @@
   function closePage(pageId) { document.getElementById(pageId).classList.remove('active'); }
   function openActionModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
   function closeActionModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+
+  // --- PAYMENT METHOD UI LOGIC ---
+  function changePayTypeUI() {
+    const type = document.getElementById('pay-type-select').value;
+    document.getElementById('input-upi-wrap').style.display = 'none';
+    document.getElementById('input-bank-wrap').style.display = 'none';
+    document.getElementById('input-paypal-wrap').style.display = 'none';
+    if(type === 'upi') document.getElementById('input-upi-wrap').style.display = 'block';
+    if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
+    if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
+  }
+
   // ------------------------------------
 
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
@@ -698,12 +886,15 @@
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
-  let userUpiId = null; // UPI ID atanga kan lak chhuah theih nan
+  // Store payment info as JSON string in database (upi_id column reused or parsed)
+  let userPayInfo = null; 
   let hasCompletedTaskToday = false; 
 
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
+    
+    // Apply translations on load
     setLanguage(currentLang);
 
     if (session && session.user) {
@@ -711,7 +902,6 @@
       let fullName = session.user.user_metadata.full_name || 'User';
       let email = session.user.email || '';
       
-      // Update Menu and Profile Info
       document.getElementById('menu-name').innerText = fullName;
       document.getElementById('menu-email').innerText = email;
       document.getElementById('prof-name').innerText = fullName;
@@ -720,15 +910,14 @@
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      // FETCH FROM DATABASE (Including upi_id)
-      // Note: Make sure 'upi_id' column exists in your user_profiles table in Supabase
+      // FETCH FROM DATABASE
       const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id').eq('id', currentUserId).single();
       
       if (data) {
         userCoins = data.coins || 0; 
         lastDailyCheck = data.last_daily_check; 
         lastSpinDate = data.last_spin_date;
-        userUpiId = data.upi_id; // Set UPI ID from database
+        userPayInfo = data.upi_id; // Using upi_id column to store generic payment string for now
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
@@ -736,7 +925,7 @@
       
       updateBalanceUI(); 
       checkClaimedUI(); 
-      updateUpiUI(); // UI a lang turin
+      updatePaymentUI();
     }
   }
 
@@ -747,35 +936,67 @@
     document.getElementById('prof-lifetime').innerText = formattedCoins;
   }
 
-  // UPI LINKING LOGIC
-  function updateUpiUI() {
-    if (userUpiId) {
-      document.getElementById('upi-display-section').style.display = 'block';
-      document.getElementById('upi-edit-section').style.display = 'none';
-      document.getElementById('prof-upi-id').innerText = userUpiId;
+  // PAYMENT LOGIC
+  function updatePaymentUI() {
+    if (userPayInfo && userPayInfo !== '') {
+      document.getElementById('payment-display-section').style.display = 'block';
+      document.getElementById('payment-edit-section').style.display = 'none';
+      document.getElementById('btn-change-pay').style.display = 'block';
+      
+      // Basic parsing (Format: TYPE::VALUE) e.g. upi::9876@ybl or bank::AC1234|IFSC001
+      let displayType = "UPI ID";
+      let displayValue = userPayInfo;
+      
+      if(userPayInfo.includes('::')) {
+          let parts = userPayInfo.split('::');
+          if(parts[0] === 'upi') { displayType = "UPI ID"; displayValue = parts[1]; }
+          if(parts[0] === 'paypal') { displayType = "PayPal Email"; displayValue = parts[1]; }
+          if(parts[0] === 'bank') { 
+              displayType = "Bank Transfer"; 
+              displayValue = parts[1].replace('|', '  - IFSC: '); 
+          }
+      }
+      document.getElementById('display-pay-type').innerText = displayType;
+      document.getElementById('prof-pay-id').innerText = displayValue;
     } else {
-      document.getElementById('upi-display-section').style.display = 'none';
-      document.getElementById('upi-edit-section').style.display = 'block';
+      document.getElementById('payment-display-section').style.display = 'none';
+      document.getElementById('payment-edit-section').style.display = 'block';
+      document.getElementById('btn-change-pay').style.display = 'none';
     }
   }
   
-  function toggleUpiEdit() {
-    document.getElementById('upi-display-section').style.display = 'none';
-    document.getElementById('upi-edit-section').style.display = 'block';
-    if(userUpiId) document.getElementById('upi-save-input').value = userUpiId;
+  function togglePaymentEdit() {
+    document.getElementById('payment-display-section').style.display = 'none';
+    document.getElementById('payment-edit-section').style.display = 'block';
+    document.getElementById('btn-change-pay').style.display = 'none';
   }
 
-  async function saveUpiId() {
-    const input = document.getElementById('upi-save-input').value.trim();
-    if(input === '') { showToast("UPI ID chhu lut rawh", true); return; }
+  async function savePaymentInfo() {
+    const type = document.getElementById('pay-type-select').value;
+    let saveString = "";
     
-    // Save to Supabase
-    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: input }).eq('id', currentUserId);
+    if(type === 'upi') {
+        const val = document.getElementById('pay-input-upi').value.trim();
+        if(!val) { showToast("UPI ID chhu lut rawh", true); return; }
+        saveString = `upi::${val}`;
+    } else if(type === 'paypal') {
+        const val = document.getElementById('pay-input-paypal').value.trim();
+        if(!val) { showToast("PayPal Email chhu lut rawh", true); return; }
+        saveString = `paypal::${val}`;
+    } else if(type === 'bank') {
+        const acc = document.getElementById('pay-input-acc').value.trim();
+        const ifsc = document.getElementById('pay-input-ifsc').value.trim();
+        if(!acc || !ifsc) { showToast("Account No. leh IFSC chhu lut rawh", true); return; }
+        saveString = `bank::A/C ${acc} | ${ifsc}`;
+    }
+    
+    // Save to Database (using upi_id column)
+    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
     if(error) {
-      showToast("Save theih loh: " + error.message, true);
+      showToast("Error: " + error.message, true);
     } else {
-      userUpiId = input;
-      updateUpiUI();
+      userPayInfo = saveString;
+      updatePaymentUI();
       showToast(translations[currentLang].success);
     }
   }
@@ -834,10 +1055,12 @@
     await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
   }
 
+  // TOAST FIX - Cleaner UI
   function showToast(message, isError = false) {
-    const toast = document.getElementById('toast'); toast.innerText = message;
+    const toast = document.getElementById('toast'); 
+    toast.innerHTML = isError ? `<i>⚠️</i> ${message}` : `<i>✅</i> ${message}`;
     if(isError) toast.classList.add('error'); else toast.classList.remove('error');
-    toast.style.top = '40px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
+    toast.style.top = '20px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
 
   async function startSpin() {
@@ -877,14 +1100,17 @@
       document.getElementById('withdraw-error').style.display = 'none'; 
       document.getElementById('withdraw-form').style.display = 'block';
       
-      // Check if UPI is linked
-      if (userUpiId) {
-        document.getElementById('wd-no-upi').style.display = 'none';
-        document.getElementById('wd-has-upi').style.display = 'block';
-        document.getElementById('wd-display-upi').innerText = userUpiId;
+      // Check if Payment is linked
+      if (userPayInfo && userPayInfo !== '') {
+        document.getElementById('wd-no-pay').style.display = 'none';
+        document.getElementById('wd-has-pay').style.display = 'block';
+        
+        let displayValue = userPayInfo;
+        if(userPayInfo.includes('::')) displayValue = userPayInfo.split('::')[1];
+        document.getElementById('wd-display-pay').innerText = displayValue;
       } else {
-        document.getElementById('wd-no-upi').style.display = 'block';
-        document.getElementById('wd-has-upi').style.display = 'none';
+        document.getElementById('wd-no-pay').style.display = 'block';
+        document.getElementById('wd-has-pay').style.display = 'none';
       }
     } else {
       document.getElementById('withdraw-error').style.display = 'block'; 
@@ -893,11 +1119,12 @@
   }
   
   async function submitWithdraw() {
-    if (!userUpiId) return; // Fimkhur nan
+    if (!userPayInfo) return; 
     if (userCoins < 5000) return;
     
     userCoins -= 5000;
-    const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userUpiId, amount: 5000 }]);
+    // saving payment info to upi_id column temporarily
+    const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
     if (insertError) { showToast("Error: " + insertError.message, true); return; }
     
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
@@ -909,7 +1136,9 @@
   async function logout() { await supabaseClient.auth.signOut(); window.history.replaceState(null, null, window.location.pathname); window.location.reload(); }
   
   window.addEventListener('load', async () => {
+    // Translation applies on load
     setLanguage(currentLang);
+    
     const hash = window.location.hash;
     if (hash && hash.includes('access_token=')) {
       const hashParams = new URLSearchParams(hash.substring(1));
@@ -921,22 +1150,25 @@
     
     // Login check box logic
     document.getElementById('agree-check').addEventListener('change', function() {
-        const loginBtn = document.querySelector('.auth-btn');
-        if(this.checked) {
-            loginBtn.style.opacity = '1';
-            loginBtn.style.pointerEvents = 'all';
-        } else {
-            loginBtn.style.opacity = '0.5';
-            loginBtn.style.pointerEvents = 'none';
-        }
+        const loginBtns = document.querySelectorAll('.auth-btn.btn-google'); // Enable only google
+        loginBtns.forEach(btn => {
+            if(this.checked) {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'all';
+            } else {
+                btn.style.opacity = '0.5';
+                btn.style.pointerEvents = 'none';
+            }
+        });
     });
-    document.querySelector('.auth-btn').style.opacity = '0.5';
-    document.querySelector('.auth-btn').style.pointerEvents = 'none';
+    // Init state (Google button disabled initially)
+    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
+    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
   });
   
   async function login() {
     if(!document.getElementById('agree-check').checked) {
-        alert("Khawngaihin Terms and Privacy Policy kha pawm (check) hmasa rawh.");
+        showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true);
         return;
     }
     document.getElementById('btn-login-text').innerHTML = '...'; 
