@@ -181,8 +181,6 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
         <span id="btn-login-text">Continue with Google</span>
       </button>
-      
-      <!-- Apple leh Email Login thup (hide) rih a ni -->
     </div>
   </div>
 
@@ -192,6 +190,8 @@
     <div class="header">
       <div class="brand-logo">⚡ CASH-MIZO</div>
       <div style="display: flex; align-items: center; gap: 12px;">
+        <!-- LANGUAGE ICON TAH HIAN KA SAWN E -->
+        <div onclick="openPage('lang-page')" style="font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%;">🌐</div>
         <div class="balance-pill"><span id="header-balance">0</span> C</div>
         <div class="menu-icon" onclick="openMenu()">☰</div>
       </div>
@@ -243,7 +243,8 @@
       <div class="task-item" onclick="openTimeWall()">
         <div class="task-icon">⏱️</div>
         <div class="task-info">
-          <h5>TimeWall Partner</h5>
+          <!-- Hming thlak a ni e -->
+          <h5 data-i18n="premium_tasks">Premium Tasks</h5>
           <p data-i18n="timewall_desc">Complete tasks & surveys</p>
         </div>
         <button class="btn-open" data-i18n="open">Open</button>
@@ -263,9 +264,6 @@
     <div class="menu-group-title" data-i18n="m_general">General</div>
     <div class="side-menu-item" onclick="openPage('profile-page')">
       <i>👤</i> <span data-i18n="profile">My Account & Payment</span>
-    </div>
-    <div class="side-menu-item" onclick="openPage('lang-page')">
-      <i>🌐</i> <span data-i18n="language">App Language</span>
     </div>
     
     <div class="menu-group-title" data-i18n="m_info">Information & Legal</div>
@@ -541,40 +539,41 @@
       wip_feature: "He feature hi siam mek a ni. Google hmang rih rawh.",
       earn_money: "PAWISA HLAWHNA",
       your_balance: "Total Balance",
-      withdraw: "Withdraw Funds",
+      withdraw: "Pawisa Lakchhuah",
       daily_check: "Daily Claim",
       spin_wheel: "Lucky Spin",
-      refer: "Refer Friends",
+      refer: "Thiante Sawmna",
       rank: "Leaderboard",
       high_paying: "PREMIUM OFFERS",
-      timewall_desc: "Survey chhang la, pawisa hlawh rawh",
-      open: "Open",
-      m_general: "General",
-      m_info: "Information & Legal",
-      m_connect: "Connect",
-      profile: "My Account & Payment",
+      premium_tasks: "Premium Tasks",
+      timewall_desc: "Task thawk la, pawisa hlawh rawh",
+      open: "Hawng",
+      m_general: "Tlangpui",
+      m_info: "Hriattirna & Dan",
+      m_connect: "Biak Pawhna",
+      profile: "Ka Account & Payment",
       user_details: "User Details",
-      full_name: "Full Name",
+      full_name: "Hming Pum",
       email_addr: "Email Address",
-      lifetime_earned: "Lifetime Earned",
+      lifetime_earned: "Hlawhchhuah Tawh Zawng",
       payment_method: "Payment Method",
       payment_desc: "Pawisa lakchhuah i duh dan thlang rawh.",
-      change_payment: "Change Payment Method",
+      change_payment: "Payment Method Thlakna",
       save: "Save Details",
-      language: "App Language",
-      lang_select_desc: "App tawng i duh ber thlang rawh.",
-      how_it_works: "How it works",
+      language: "App Tawng Thlan",
+      lang_select_desc: "App ṭawng i duh ber thlang rawh.",
+      how_it_works: "Hman Dan Tur",
       doc_how_title: "CASH-MIZO ah lo lawm le",
       doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.",
       doc_how_h1: "1. Coins Hlawh chhuah dan",
-      doc_how_l1: "TimeWall Partner: Heta tang hian pawisa a hlawh theih ber. Survey chhan, App download atangin Coins tam tak a hlawh theih.",
-      doc_how_l2: "Daily Claim & Lucky Spin: TimeWall ah task pakhat tal i tih zawh tawh chuan, nitin a thlawnin Coins i claim theiin i spin thei ang.",
-      doc_how_l3: "Referral Program: I thiante sawm lut la, an Coins hlawhchhuah atangin 10% commission i hlawh ve zel ang.",
+      doc_how_l1: "Premium Tasks: Heta ṭang hian pawisa a hlawh theih ber. Survey chhan, App download aṭangin Coins tam tak a hlawh theih.",
+      doc_how_l2: "Daily Claim & Lucky Spin: Task pakhat tal i tih zawh tawh chuan, nitin a thlawnin Coins i claim theiin i spin thei ang.",
+      doc_how_l3: "Referral Program: I ṭhiante sawm lut la, an Coins hlawhchhuah aṭangin 10% commission i hlawh ve zel ang.",
       doc_how_h2: "2. Pawisa Lakchhuah (Withdraw)",
       doc_how_l4: "Coins 5,000 i tlin veleh Withdraw i dil thei ang.",
       doc_how_l5: "I profile ah Payment Method (UPI, Bank, emaw PayPal) i save hmasak a ngai.",
-      doc_how_l6: "Withdraw i dil atangin ni 3 atanga 7 chhungin i account ah pawisa a rawn lut ang.",
-      terms: "Terms & Privacy",
+      doc_how_l6: "Withdraw i dil aṭangin ni 3 aṭanga 7 chhungin i account ah pawisa a rawn lut ang.",
+      terms: "Dan Leh Hrai",
       doc_term_title: "Terms of Service & Privacy Policy",
       doc_term_desc: "CASH-MIZO app i hman hian heng dan te hi i zawm tur a ni.",
       doc_term_h1: "1. Account Registration",
@@ -588,7 +587,7 @@
       doc_term_p2: "Heng dan bawhchhia te chu an pawisa hlawhsa zawng zawng chhuhsak leh hnawhchhuah nghal an ni ang.",
       doc_term_h3: "3. Earnings & Offerwalls",
       doc_term_l6: "Task zawng zawng hi third-party (Partner) te rawn chhawpchhuah a ni.",
-      doc_term_l7: "Partner ten task i ti tha tih an pawm (approve) hunah chauh Coins a lut ang.",
+      doc_term_l7: "Partner ten task i ti ṭha tih an pawm (approve) hunah chauh Coins a lut ang.",
       doc_term_h4: "4. Privacy",
       doc_term_p3: "I mimal data (Email, Hming) te hi app tihnun nan chauha hman a ni a, tuman an hmu ve thei lo. Supabase Security hmanga venhim tlat a ni.",
       contact: "AI Support & Contact",
@@ -597,8 +596,8 @@
       ai_btn: "Chat with AI",
       human_support: "Human Support",
       human_support_desc: "Payment fail emaw buaina lian thamah chuan Email hmangin min rawn be dawn nia.",
-      logout: "Log Out",
-      close: "Close",
+      logout: "Log Out (Chhuak)",
+      close: "Khul (Close)",
       cancel: "Cancel",
       wd_title: "Pawisa Lakchhuahna",
       wd_desc: "Pawisa hi i account ah direct in kan rawn thun ang:",
@@ -607,7 +606,7 @@
       wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.",
       wd_no_pay_msg: "Payment Method i la thlang lo!",
       wd_no_pay_desc: "Profile -> Payment Method ah lut la, i UPI emaw Bank details va dah hmasa rawh.",
-      go_profile: "Go to Profile",
+      go_profile: "Profile Ah Lut Rawh",
       wd_send_to: "Heta hian pawisa chu thawn a ni ang:",
       ok_understand: "OK, Ka Hrethiam e",
       spin_title: "LUCKY SPIN",
@@ -616,12 +615,12 @@
       lb_title: "Top 10 Leaderboard",
       lb_desc: "Coin ngah ber ber te list",
       refer_title: "Refer & Earn",
-      refer_desc: "I thiante sawm lut la, an pawisa hlawh chhuah atangin ",
+      refer_desc: "I ṭhiante sawm lut la, an pawisa hlawh chhuah aṭangin ",
       refer_desc_2: " hlawh ve zel rawh!",
       share_wa: "WhatsApp ah Thawn rawh",
       claimed: "Lak tawh ✅",
       spinned: "Spin tawh ✅",
-      lock_msg: "TimeWall-ah Task 1 tal tih zawh hmasak a ngai! 🔒",
+      lock_msg: "Task 1 tal tih zawh hmasak a ngai! 🔒",
       spin_today_done: "Vawiin ah i Spin tawh"
     },
     en: {
@@ -639,6 +638,7 @@
       refer: "Refer Friends",
       rank: "Leaderboard",
       high_paying: "PREMIUM OFFERS",
+      premium_tasks: "Premium Tasks",
       timewall_desc: "Complete tasks & surveys",
       open: "Open",
       m_general: "General",
@@ -659,8 +659,8 @@
       doc_how_title: "Welcome to CASH-MIZO",
       doc_how_desc: "CASH-MIZO is a premium rewards platform that allows users to earn real money.",
       doc_how_h1: "1. Earning Coins",
-      doc_how_l1: "TimeWall Partner: This is our primary earning wall. Earn Coins by completing surveys and app tasks.",
-      doc_how_l2: "Daily Claim & Lucky Spin: Unlock free daily rewards by completing at least 1 task on TimeWall.",
+      doc_how_l1: "Premium Tasks: This is our primary earning wall. Earn Coins by completing surveys and app tasks.",
+      doc_how_l2: "Daily Claim & Lucky Spin: Unlock free daily rewards by completing at least 1 task.",
       doc_how_l3: "Referral Program: Invite friends and earn a 10% commission on their task earnings.",
       doc_how_h2: "2. Withdrawing Your Funds",
       doc_how_l4: "Minimum withdrawal threshold is 5,000 Coins.",
@@ -713,7 +713,7 @@
       share_wa: "Share to WhatsApp",
       claimed: "Claimed ✅",
       spinned: "Spun ✅",
-      lock_msg: "You must complete at least 1 TimeWall task first! 🔒",
+      lock_msg: "You must complete at least 1 task first! 🔒",
       spin_today_done: "Spun today already"
     },
     hi: {
@@ -731,6 +731,7 @@
       refer: "रेफर करें",
       rank: "लीडरबोर्ड",
       high_paying: "प्रीमियम ऑफर्स",
+      premium_tasks: "प्रीमियम टास्क",
       timewall_desc: "टास्क और सर्वे पूरे करें",
       open: "खोलें",
       m_general: "सामान्य (General)",
@@ -751,7 +752,7 @@
       doc_how_title: "CASH-MIZO में स्वागत है",
       doc_how_desc: "यह एक प्रीमियम रिवॉर्ड ऐप है जहाँ आप टास्क पूरे करके पैसे कमा सकते हैं।",
       doc_how_h1: "1. पैसे कमाना",
-      doc_how_l1: "TimeWall: यहाँ से आप सबसे ज्यादा कमा सकते हैं।",
+      doc_how_l1: "प्रीमियम टास्क: यहाँ से आप सबसे ज्यादा कमा सकते हैं।",
       doc_how_l2: "डेली क्लेम और स्पिन: 1 टास्क पूरा करने के बाद ये अनलॉक हो जाते हैं।",
       doc_how_l3: "रेफरल: दोस्तों को बुलाएं और 10% कमीशन पाएं।",
       doc_how_h2: "2. पैसे निकालना",
@@ -805,7 +806,7 @@
       share_wa: "WhatsApp पर शेयर करें",
       claimed: "प्राप्त किया ✅",
       spinned: "स्पिन किया ✅",
-      lock_msg: "आपको पहले कम से कम 1 TimeWall टास्क पूरा करना होगा! 🔒",
+      lock_msg: "आपको पहले कम से कम 1 टास्क पूरा करना होगा! 🔒",
       spin_today_done: "आज स्पिन कर चुके हैं"
     }
   };
@@ -852,7 +853,7 @@
   function openActionModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
   function closeActionModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
 
-  // --- PAYMENT METHOD UI LOGIC (UPDATED) ---
+  // --- PAYMENT METHOD UI LOGIC ---
   function changePayTypeUI() {
     const type = document.getElementById('pay-type-select').value;
     document.getElementById('input-upi-wrap').style.display = 'none';
