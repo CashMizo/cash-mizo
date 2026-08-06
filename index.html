@@ -20,7 +20,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
     
     body { background-color: #000000; display: flex; justify-content: center; color: var(--text-main); }
-    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; }
+    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto;}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
     .login-box { background: var(--bg-card); padding: 40px 24px; border-radius: 24px; width: 100%; max-width: 340px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: var(--glow-green); }
@@ -34,11 +34,14 @@
     .google-btn img { width: 22px; margin-right: 12px; }
     
     #main-app { display: none; padding-bottom: 90px; }
-    .header { background: var(--bg-main); padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-    .profile-section { display: flex; align-items: center; gap: 12px; }
-    .profile-pic { width: 44px; height: 44px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; box-shadow: var(--glow-blue); }
-    .user-details h2 { font-size: 15px; font-weight: 600; color: var(--text-main); }
-    .user-details p { font-size: 12px; color: var(--text-muted); }
+    
+    /* NEW HEADER DESIGN */
+    .header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; }
+    .profile-section { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .profile-pic { width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; box-shadow: var(--glow-blue); }
+    .user-details h2 { font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .user-details p { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+    .menu-icon { font-size: 24px; color: var(--text-main); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; }
     
     .balance-wrapper { padding: 20px; }
     .balance-card { background: linear-gradient(145deg, #1e293b, #0f172a); border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); box-shadow: var(--glow-green); }
@@ -48,99 +51,108 @@
     
     .quick-actions { display: flex; gap: 12px; padding: 0 20px 20px 20px; overflow-x: auto; scrollbar-width: none; }
     .action-box { background: var(--bg-card); min-width: 95px; padding: 16px 10px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; position: relative; }
-    .action-box:active { border-color: var(--primary); }
-    
+    .action-box:active { border-color: var(--primary); transform: scale(0.95); }
     .action-box.locked { opacity: 0.7; border: 1px dashed #ef4444; background: rgba(239, 68, 68, 0.05); }
     .action-box.locked::after { content: '🔒'; position: absolute; top: -8px; right: -8px; font-size: 16px; background: var(--bg-card); border-radius: 50%; padding: 4px; border: 1px solid #ef4444; }
-    
-    .action-box.disabled, .task-item.disabled { opacity: 0.5; pointer-events: none; border: 1px dashed var(--text-muted); background: rgba(0,0,0,0.2); } 
-    .task-item.disabled .reward-pill { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
-    
     .action-box span { font-size: 22px; display: block; margin-bottom: 8px; }
     .action-box p { font-size: 12px; font-weight: 500; color: var(--text-muted); }
     
     .tasks-container { padding: 0 20px; }
     .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .section-header h4 { font-size: 16px; font-weight: 600; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-header h4 { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     
     .task-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
     .task-item { background: var(--bg-card); border-radius: 16px; padding: 16px; display: flex; align-items: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; }
     .task-item:active { border-color: var(--primary); }
-    
     .task-item.highlight { border-color: var(--primary); background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), transparent); }
     
     .task-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-right: 16px; background: rgba(255,255,255,0.05); }
     .task-info { flex-grow: 1; }
-    .task-info h5 { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+    .task-info h5 { font-size: 15px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
     .task-info p { font-size: 12px; color: var(--text-muted); }
-    .reward-pill { background: rgba(16, 185, 129, 0.1); color: var(--primary); border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; min-width: 65px; text-align: center; }
+    .reward-pill { background: rgba(16, 185, 129, 0.1); color: var(--primary); border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 12px; text-align: center; }
     .reward-pill.open-btn { background: var(--primary); color: #000; }
     
-    .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; padding: 12px 24px 20px 24px; border-top: 1px solid var(--border-color); z-index: 50; }
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-between; padding: 12px 24px 20px 24px; border-top: 1px solid var(--border-color); z-index: 30; }
     .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); gap: 4px; cursor: pointer; transition: 0.2s; }
     .nav-item.active { color: var(--primary); }
-    .nav-item i { font-size: 20px; }
+    .nav-item i { font-size: 20px; font-style: normal; }
     .nav-item span { font-size: 11px; font-weight: 500; }
 
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); color: var(--text-main); padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 500; z-index: 1000; border: 1px solid var(--primary); box-shadow: var(--glow-green); transition: top 0.3s ease; white-space: nowrap; }
     #toast.error { border-color: #ef4444; box-shadow: var(--glow-red); } 
 
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; }
+    /* SIDE MENU (DRAWER) */
+    .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(2px); z-index: 150; opacity: 0; pointer-events: none; transition: 0.3s; }
+    .menu-overlay.active { opacity: 1; pointer-events: all; }
+    .side-menu { position: fixed; top: 0; right: -300px; width: 280px; max-width: 80%; height: 100%; background: var(--bg-card); z-index: 160; box-shadow: -5px 0 25px rgba(0,0,0,0.5); transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border-left: 1px solid var(--border-color); }
+    .side-menu.active { right: 0; }
+    .side-menu-header { padding: 24px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+    .side-menu-header h3 { font-size: 16px; font-weight: 600; color: var(--text-main); }
+    .close-side-btn { font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 4px; }
+    .side-menu-list { padding: 12px 0; overflow-y: auto; flex-grow: 1; }
+    .side-menu-item { padding: 16px 24px; display: flex; align-items: center; gap: 16px; color: var(--text-main); font-size: 15px; font-weight: 500; cursor: pointer; transition: 0.2s; }
+    .side-menu-item:active { background: rgba(255,255,255,0.05); }
+    .side-menu-item i { font-style: normal; font-size: 18px; width: 24px; text-align: center; }
+    .side-menu-item.logout { color: #f87171; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); }
+
+    /* FULLSCREEN PAGES (Chang kang zawk) */
+    .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+    .fs-page.active { left: 0; }
+    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border-color); background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; }
+    .back-btn { font-size: 14px; font-weight: 500; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 0; }
+    .back-btn:active { color: var(--text-main); }
+    .fs-header h3 { font-size: 16px; font-weight: 600; color: var(--text-main); position: absolute; left: 50%; transform: translateX(-50%); }
+    .fs-content { padding: 20px; overflow-y: auto; flex-grow: 1; padding-bottom: 40px; }
+    
+    /* TERMS & CONDITIONS TYPOGRAPHY (Fel fai thlap) */
+    .terms-document { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border-color); }
+    .terms-document h2 { font-size: 20px; color: var(--primary); margin-bottom: 16px; font-weight: 600; }
+    .terms-document p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .terms-document h4 { font-size: 15px; color: var(--text-main); margin-top: 24px; margin-bottom: 10px; font-weight: 600; }
+    .terms-document ul { padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+    .terms-document li { margin-bottom: 8px; }
+
+    /* CONTACT US & OTHERS */
+    .contact-card { background: var(--bg-card); padding: 24px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 20px; }
+    .contact-card .icon { font-size: 40px; margin-bottom: 12px; }
+    .contact-btn { display: flex; align-items: center; justify-content: center; gap: 12px; background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 500; cursor: pointer; transition: 0.2s; width: 100%; margin-bottom: 12px; text-decoration: none;}
+    .contact-btn:active { background: rgba(255,255,255,0.1); }
+    .contact-btn.email { border-color: rgba(239, 68, 68, 0.5); }
+    .contact-btn.tg { border-color: rgba(59, 130, 246, 0.5); }
+    
+    .lang-option { background: var(--bg-card); padding: 18px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid var(--border-color); transition: 0.2s; font-size: 15px; font-weight: 500; }
+    .lang-option:active { background: rgba(255,255,255,0.05); }
+    .lang-option.active-lang { border-color: var(--primary); background: rgba(16, 185, 129, 0.1); color: var(--primary); }
+
+    /* OLD MODALS (Kept for Actions: Spin, Withdraw, Refer) */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 250; align-items: center; justify-content: center; }
     .modal-content { background: var(--bg-card); width: 90%; max-width: 340px; padding: 28px 24px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); position: relative; }
-    
-    #withdraw-modal .modal-content { box-shadow: var(--glow-red); }
-    #withdraw-modal.can-withdraw .modal-content { box-shadow: var(--glow-green); }
-    #leaderboard-modal .modal-content { box-shadow: var(--glow-blue); max-height: 80vh; overflow-y: auto; }
-    #settings-modal .modal-content { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    #spin-modal .modal-content { box-shadow: var(--glow-purple); background: linear-gradient(180deg, #1e293b, #0f172a); } 
-    #refer-modal .modal-content { box-shadow: var(--glow-yellow); }
-    #lang-modal .modal-content { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    
-    #terms-modal .modal-content { max-height: 85vh; overflow-y: auto; text-align: left; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    #terms-modal h3 { text-align: center; margin-bottom: 20px; font-size: 20px; }
-    .terms-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-    .terms-text h4 { color: var(--text-main); font-size: 14px; margin-top: 16px; margin-bottom: 6px; }
-    
     .modal-icon { font-size: 40px; margin-bottom: 12px; }
     .modal-content h3 { font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
     .modal-content p { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
-    
     .close-modal-btn { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; width: 100%; cursor: pointer; margin-top: 16px; transition: 0.2s; }
-    .close-modal-btn:active { background: rgba(255,255,255,0.1); }
     .btn-primary { background: linear-gradient(135deg, #34d399, #10b981); color: #000; border: none; font-weight: 600; }
-    
     .input-field { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 14px; color: var(--text-main); outline: none; }
-    .input-field:focus { border-color: var(--primary); }
-    
     .copy-box { display: flex; align-items: center; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; margin-bottom: 20px; }
     .copy-box input { flex: 1; background: transparent; border: none; color: var(--text-main); font-size: 13px; outline: none; }
     .copy-btn { background: var(--primary); color: #000; border: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; }
-
+    
+    #spin-modal .modal-content { box-shadow: var(--glow-purple); background: linear-gradient(180deg, #1e293b, #0f172a); } 
     .wheel-container { position: relative; width: 220px; height: 220px; margin: 0 auto 24px; }
     .wheel-pointer { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 40px; z-index: 10; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); }
     #wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); border: 6px solid #334155; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(0,0,0,0.5); }
-    
     .slice { position: absolute; top: 0; right: 0; width: 50%; height: 50%; transform-origin: 0% 100%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
     .slice-1 { transform: rotate(0deg) skewY(0deg); background: linear-gradient(45deg, #ef4444, #b91c1c); } 
     .slice-2 { transform: rotate(90deg) skewY(0deg); background: linear-gradient(45deg, #3b82f6, #1d4ed8); } 
     .slice-3 { transform: rotate(180deg) skewY(0deg); background: linear-gradient(45deg, #eab308, #a16207); } 
     .slice-4 { transform: rotate(270deg) skewY(0deg); background: linear-gradient(45deg, #10b981, #047857); } 
     .slice-text { position: absolute; bottom: 20px; left: 20px; transform: rotate(45deg); text-align: center; line-height: 1.2; }
-
+    
     .lb-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .lb-item:last-child { border-bottom: none; }
     .lb-name { font-size: 14px; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
     .lb-coins { font-size: 14px; font-weight: 600; color: var(--primary); }
-
-    .settings-menu { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-    .settings-btn { background: rgba(255,255,255,0.02); color: var(--text-main); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s; text-align: left;}
-    .settings-btn:active { background: rgba(255,255,255,0.08); }
-    .settings-btn.logout { color: #f87171; background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2); justify-content: center; margin-top: 10px; font-weight: 600; }
-    
-    /* LANGUAGE SELECTOR CLASSES */
-    .lang-option { background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid var(--border-color); transition: 0.2s; }
-    .lang-option:active { background: rgba(255,255,255,0.1); }
-    .lang-option.active-lang { border-color: var(--primary); background: rgba(16, 185, 129, 0.1); font-weight: bold; color: var(--primary); }
   </style>
 </head>
 <body>
@@ -149,40 +161,126 @@
   
   <div id="toast" data-i18n="success">Hlawhtling!</div>
 
-  <!-- LANGUAGE MODAL (THAR) -->
-  <div id="lang-modal" class="modal-overlay">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 20px;">🌐 Select Language</h3>
-      <div class="lang-option active-lang" onclick="setLanguage('mizo')" id="btn-lang-mizo">Mizo (Default)</div>
-      <div class="lang-option" onclick="setLanguage('en')" id="btn-lang-en">English</div>
-      <div class="lang-option" onclick="setLanguage('hi')" id="btn-lang-hi">हिन्दी (Hindi)</div>
-      <button class="close-modal-btn" onclick="closeLang()">Close</button>
+  <!-- SIDE MENU OVERLAY -->
+  <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <!-- SIDE MENU DRAWER -->
+  <div id="side-menu" class="side-menu">
+    <div class="side-menu-header">
+      <h3 data-i18n="menu">Menu</h3>
+      <div class="close-side-btn" onclick="closeMenu()">✕</div>
     </div>
-  </div>
-
-  <!-- TERMS & CONDITIONS MODAL -->
-  <div id="terms-modal" class="modal-overlay">
-    <div class="modal-content">
-      <h3>Terms & Conditions</h3>
-      <div class="terms-text">
-        <p>By accessing and using the CASH-MIZO app, you agree to comply with the following Terms and Conditions.</p>
-        <h4>1. Account Integrity</h4>
-        <p>Users are permitted to create only <strong>one (1) account per person and per device</strong>. Creating multiple accounts will result in an immediate and permanent ban.</p>
-        <h4>2. Anti-Fraud Policy</h4>
-        <p>The use of VPNs, Proxies, Emulators, Auto-clickers, or any software designed to manipulate earnings is strictly prohibited.</p>
-        <h4>3. Task Completions</h4>
-        <p>All tasks, surveys, and offers are provided by our third-party partners (Offerwalls). Coins will only be credited to your balance once the partner successfully verifies and approves the completion.</p>
+    <div class="side-menu-list">
+      <div class="side-menu-item" onclick="openPage('profile-page')">
+        <i>👤</i> <span data-i18n="profile">My Profile</span>
       </div>
-      <button class="close-modal-btn btn-primary" onclick="closeTerms()" data-i18n="i_agree">I Understand & Agree</button>
+      <div class="side-menu-item" onclick="openPage('lang-page')">
+        <i>🌐</i> <span data-i18n="language">Language</span>
+      </div>
+      <div class="side-menu-item" onclick="openPage('contact-page')">
+        <i>🎧</i> <span data-i18n="contact">Contact Us</span>
+      </div>
+      <div class="side-menu-item" onclick="openPage('terms-page')">
+        <i>📜</i> <span data-i18n="terms">Terms & Conditions</span>
+      </div>
+      <div class="side-menu-item logout" onclick="logout()">
+        <i>🚪</i> <span data-i18n="logout">Logout</span>
+      </div>
     </div>
   </div>
 
-  <!-- SPIN WHEEL MODAL -->
+  <!-- FULLSCREEN PAGE: TERMS & CONDITIONS -->
+  <div id="terms-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('terms-page')">← <span data-i18n="back">Back</span></div>
+      <h3 data-i18n="terms">Terms & Conditions</h3>
+      <div style="width: 50px;"></div> <!-- Spacer for centering -->
+    </div>
+    <div class="fs-content">
+      <div class="terms-document">
+        <h2>Terms of Service & Privacy Policy</h2>
+        <p>Welcome to <strong>CASH-MIZO</strong>. By accessing or using our application, you agree to be bound by these terms. Please read them carefully.</p>
+        
+        <h4>1. Account Registration & Integrity</h4>
+        <ul>
+          <li>Users must register using a valid Google Account.</li>
+          <li><strong>One Account Rule:</strong> You are strictly permitted to create only ONE (1) account per person and per physical device.</li>
+          <li>Multiple accounts, sharing devices, or using temporary emails will result in a permanent ban.</li>
+        </ul>
+
+        <h4>2. Anti-Fraud & Security Policy</h4>
+        <p>Our system uses advanced security tracking. The following activities are strictly prohibited:</p>
+        <ul>
+          <li>Using Virtual Private Networks (VPNs) or Proxies to mask your location.</li>
+          <li>Using Emulators (e.g., Bluestacks) or Virtual Machines.</li>
+          <li>Using Auto-clickers, scripts, or any automation software.</li>
+        </ul>
+        <p>Violation of these rules will trigger our automatic fraud-detection system, resulting in immediate account termination and forfeiture of all earnings.</p>
+
+        <h4>3. Earnings & Third-Party Offerwalls</h4>
+        <ul>
+          <li>All tasks, surveys, and app installations are provided by third-party partners.</li>
+          <li>Coins are only credited to your account after the partner successfully verifies the completion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN PAGE: CONTACT US -->
+  <div id="contact-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('contact-page')">← <span data-i18n="back">Back</span></div>
+      <h3 data-i18n="contact">Contact Us</h3>
+      <div style="width: 50px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="contact-card">
+        <div class="icon">🎧</div>
+        <h3 style="margin-bottom: 12px;" data-i18n="support_desc">Need help?</h3>
+        <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 14px;">If you have any issues with withdrawals or tasks, feel free to reach out to our official support channels.</p>
+        
+        <a href="mailto:support@cashmizo.com" class="contact-btn email">📧 <span data-i18n="email_us">Email Support</span></a>
+        <a href="https://t.me/cashmizo_official" target="_blank" class="contact-btn tg">✈️ <span data-i18n="join_tg">Join Telegram Channel</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN PAGE: LANGUAGE -->
+  <div id="lang-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('lang-page')">← <span data-i18n="back">Back</span></div>
+      <h3 data-i18n="language">Language</h3>
+      <div style="width: 50px;"></div>
+    </div>
+    <div class="fs-content">
+      <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">Select your preferred language for the app interface.</p>
+      <div class="lang-option active-lang" onclick="setLanguage('mizo'); closePage('lang-page')" id="btn-lang-mizo">Mizo (Default)</div>
+      <div class="lang-option" onclick="setLanguage('en'); closePage('lang-page')" id="btn-lang-en">English</div>
+      <div class="lang-option" onclick="setLanguage('hi'); closePage('lang-page')" id="btn-lang-hi">हिन्दी (Hindi)</div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN PAGE: PROFILE -->
+  <div id="profile-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('profile-page')">← <span data-i18n="back">Back</span></div>
+      <h3 data-i18n="profile">My Profile</h3>
+      <div style="width: 50px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="contact-card">
+        <div class="profile-pic" id="profile-page-initial" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">C</div>
+        <h2 id="profile-page-name" style="margin-bottom: 8px;">User Name</h2>
+        <p style="color: var(--text-muted); font-size: 13px;" data-i18n="profile_wip">Your profile details will appear here soon.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ACTION MODALS (Spin, Withdraw, Refer, Leaderboard) - Kept as popups because they are actions -->
   <div id="spin-modal" class="modal-overlay">
     <div class="modal-content">
-      <h3 style="color: #a855f7; font-size: 24px; text-transform: uppercase; letter-spacing: 1px;" data-i18n="spin_title">Lucky Spin</h3>
-      <p style="margin-bottom: 24px; color: #cbd5e1;" data-i18n="spin_desc">Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.</p>
-      
+      <h3 style="color: #a855f7; font-size: 24px; font-weight: 700; margin-bottom: 8px;" data-i18n="spin_title">LUCKY SPIN</h3>
+      <p style="margin-bottom: 24px; color: #cbd5e1;" data-i18n="spin_desc">Complete 1 task to get 1 Spin.</p>
       <div class="wheel-container">
         <div class="wheel-pointer">🔻</div>
         <div id="wheel">
@@ -192,74 +290,55 @@
           <div class="slice slice-4"><div class="slice-text">10<br>Coins</div></div>
         </div>
       </div>
-      
       <button id="spin-btn" class="close-modal-btn btn-primary" onclick="startSpin()" data-i18n="spin_btn">Spin Wheel</button>
-      <button class="close-modal-btn" onclick="closeSpin()" data-i18n="close">Close</button>
+      <button class="close-modal-btn" onclick="closeActionModal('spin-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
-  <!-- WITHDRAW MODAL -->
   <div id="withdraw-modal" class="modal-overlay">
     <div class="modal-content">
       <div id="withdraw-error" style="display:none;">
         <div class="modal-icon">🚫</div>
         <h3 data-i18n="wd_error_title">Withdraw Theih Rih Loh</h3>
         <p><span data-i18n="wd_error_desc">Withdraw turin Coin 5,000 tal i neih a ngai.</span><br>(Tunah <strong style="color:var(--text-main);" id="wd-current-coin">0</strong> i nei mek).</p>
-        <button class="close-modal-btn" onclick="closeWithdraw()" data-i18n="ok_understand">OK, Ka Hrethiam e</button>
+        <button class="close-modal-btn" onclick="closeActionModal('withdraw-modal')" data-i18n="ok_understand">OK, I Understand</button>
       </div>
       <div id="withdraw-form" style="display:none;">
         <div class="modal-icon">💸</div>
-        <h3 data-i18n="wd_title">Pawisa Lakchhuahna</h3>
-        <p data-i18n="wd_desc">Pawisa hi i UPI Account ah direct in kan rawn thun ang.</p>
+        <h3 data-i18n="wd_title">Withdraw Funds</h3>
+        <p data-i18n="wd_desc">Money will be sent directly to your UPI Account.</p>
         <input type="text" id="upi-input" class="input-field" placeholder="UPI ID (e.g. 9876543210@ybl)">
         <button class="close-modal-btn btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 Coins</button>
-        <button class="close-modal-btn" onclick="closeWithdraw()" data-i18n="cancel">Cancel</button>
+        <button class="close-modal-btn" onclick="closeActionModal('withdraw-modal')" data-i18n="cancel">Cancel</button>
       </div>
     </div>
   </div>
 
-  <!-- LEADERBOARD MODAL -->
   <div id="leaderboard-modal" class="modal-overlay">
-    <div class="modal-content">
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
       <div class="modal-icon">🏆</div>
       <h3 data-i18n="lb_title">Top 10 Leaderboard</h3>
-      <p style="margin-bottom: 16px;" data-i18n="lb_desc">Coin ngah ber ber te list</p>
+      <p style="margin-bottom: 16px;" data-i18n="lb_desc">List of top earners</p>
       <div id="leaderboard-list" style="text-align: left; margin-bottom: 24px; background: rgba(0,0,0,0.2); padding: 0 16px; border-radius: 16px; border: 1px solid var(--border-color);"></div>
-      <button class="close-modal-btn" onclick="closeLeaderboard()" data-i18n="close">Close</button>
+      <button class="close-modal-btn" onclick="closeActionModal('leaderboard-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
-  <!-- REFER & EARN MODAL -->
   <div id="refer-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-icon">🤝</div>
       <h3 data-i18n="refer_title">Refer & Earn</h3>
-      <p><span data-i18n="refer_desc">I thiante sawm lut la, an pawisa hlawh chhuah atangin </span> <strong>10% Commission</strong> <span data-i18n="refer_desc_2">hlawh ve zel rawh!</span></p>
-      
+      <p><span data-i18n="refer_desc">Invite your friends and earn</span> <strong>10% Commission</strong> <span data-i18n="refer_desc_2">of what they earn!</span></p>
       <div class="copy-box">
         <input type="text" id="refer-link-input" value="https://hrangluroa-lab.github.io/cash-mizo/" readonly>
         <button class="copy-btn" onclick="copyReferLink()">Copy</button>
       </div>
-      
-      <button class="close-modal-btn btn-primary" onclick="shareToWhatsApp()" data-i18n="share_wa">WhatsApp ah Thawn rawh</button>
-      <button class="close-modal-btn" onclick="closeRefer()" data-i18n="close">Close</button>
+      <button class="close-modal-btn btn-primary" onclick="shareToWhatsApp()" data-i18n="share_wa">Share to WhatsApp</button>
+      <button class="close-modal-btn" onclick="closeActionModal('refer-modal')" data-i18n="close">Close</button>
     </div>
   </div>
 
-  <!-- SETTINGS MODAL -->
-  <div id="settings-modal" class="modal-overlay">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 20px;" data-i18n="settings">⚙️ Settings</h3>
-      <div class="settings-menu">
-        <button class="settings-btn" onclick="openLang()">🌐 <span data-i18n="language">Language / Tawng</span></button>
-        <button class="settings-btn" onclick="showToast(translations[currentLang].profile_wip)">👤 <span data-i18n="profile">Ka Profile</span></button>
-        <button class="settings-btn" onclick="openTerms()">📜 <span data-i18n="terms">Terms & Conditions</span></button>
-        <button class="settings-btn logout" onclick="logout()">🚪 <span data-i18n="logout">Logout (Chhuahna)</span></button>
-      </div>
-      <button class="close-modal-btn" onclick="closeSettings()" data-i18n="close">Close</button>
-    </div>
-  </div>
-
+  <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-box">
       <div class="login-logo">💰</div>
@@ -273,14 +352,19 @@
     </div>
   </div>
 
+  <!-- MAIN DASHBOARD -->
   <div id="main-app">
     <div class="header">
-      <div class="profile-section">
+      <div class="profile-section" onclick="openPage('profile-page')">
         <div class="profile-pic" id="profile-initial">C</div>
         <div class="user-details">
           <h2 id="user-display-name">Loading...</h2>
-          <p><span data-i18n="lifetime_earned">Lifetime earned:</span> <span id="lifetime-earned">...</span></p>
+          <p><span data-i18n="profile">My Profile</span> <span>›</span></p>
         </div>
+      </div>
+      <div class="menu-icon" onclick="openMenu()">
+        <!-- Hamburger Icon SVG -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </div>
     </div>
 
@@ -290,7 +374,7 @@
           <p data-i18n="your_balance">I Balance (Coins)</p>
           <h3 id="current-balance">🪙 ...</h3>
         </div>
-        <button class="withdraw-btn" onclick="openWithdraw()" data-i18n="withdraw">Withdraw</button>
+        <button class="withdraw-btn" onclick="openActionModal('withdraw-modal')" data-i18n="withdraw">Withdraw</button>
       </div>
     </div>
     
@@ -298,7 +382,7 @@
       <div class="action-box locked" id="btn-daily" onclick="checkLockAndRun('daily')"><span>📅</span><p id="txt-daily" data-i18n="daily_check">Daily Check</p></div>
       <div class="action-box locked" id="btn-spin" onclick="checkLockAndRun('spin')"><span>🎡</span><p id="txt-spin" data-i18n="spin_wheel">Spin Wheel</p></div>
       <div class="action-box locked" id="btn-refer" onclick="checkLockAndRun('refer')"><span>🤝</span><p data-i18n="refer">Refer</p></div>
-      <div class="action-box" onclick="openLeaderboard()"><span>🏆</span><p data-i18n="rank">Rank</p></div>
+      <div class="action-box" onclick="openActionModal('leaderboard-modal')"><span>🏆</span><p data-i18n="rank">Rank</p></div>
     </div>
 
     <div class="tasks-container">
@@ -308,17 +392,17 @@
       <div class="task-list">
         <div class="task-item highlight" onclick="openTimeWall()">
           <div class="task-icon">⏱️</div>
-          <div class="task-info"><h5>TimeWall</h5><p data-i18n="timewall_desc">Survey chhang la, Lock hawng rawh</p></div>
+          <div class="task-info"><h5>TimeWall</h5><p data-i18n="timewall_desc">Complete tasks to unlock features</p></div>
           <div class="reward-pill open-btn" data-i18n="open">Open</div>
         </div>
       </div>
     </div>
 
-    <div class="bottom-nav">
+    <!-- Hidden Bottom Nav for cleanliness, as we have Side Menu now. If you want it back, remove display:none -->
+    <div class="bottom-nav" style="display: none;">
       <div class="nav-item active"><i>🏠</i><span data-i18n="home">Home</span></div>
       <div class="nav-item" onclick="openTimeWall()"><i>📋</i><span data-i18n="tasks">Tasks</span></div>
-      <div class="nav-item" onclick="openLeaderboard()"><i>🏆</i><span data-i18n="rank">Rank</span></div>
-      <div class="nav-item" onclick="openSettings()"><i>⚙️</i><span data-i18n="settings_nav">Settings</span></div>
+      <div class="nav-item" onclick="openActionModal('leaderboard-modal')"><i>🏆</i><span data-i18n="rank">Rank</span></div>
     </div>
   </div>
 </div>
@@ -344,13 +428,18 @@
       open: "Open",
       home: "Home",
       tasks: "Tasks",
-      settings_nav: "Settings",
-      settings: "⚙️ Settings",
+      menu: "Menu",
       language: "Language / Tawng",
       profile: "Ka Profile",
+      contact: "Biakpawhna",
+      support_desc: "Buaina i nei em? Heta tang hian min rawn be rawh.",
+      email_us: "Email Support",
+      join_tg: "Join Telegram",
+      whatsapp_us: "WhatsApp Support",
       terms: "Terms & Conditions",
       logout: "Logout (Chhuahna)",
       close: "Close",
+      back: "Back",
       i_agree: "I Understand & Agree",
       cancel: "Cancel",
       wd_title: "Pawisa Lakchhuahna",
@@ -359,18 +448,18 @@
       wd_error_title: "Withdraw Theih Rih Loh",
       wd_error_desc: "Withdraw turin Coin 5,000 tal i neih a ngai.",
       ok_understand: "OK, Ka Hrethiam e",
-      spin_title: "Lucky Spin",
+      spin_title: "LUCKY SPIN",
       spin_desc: "Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.",
       spin_btn: "Spin Wheel",
       lb_title: "Top 10 Leaderboard",
       lb_desc: "Coin ngah ber ber te list",
       refer_title: "Refer & Earn",
-      refer_desc: "I thiante sawm lut la, an pawisa hlawh chhuah atangin",
-      refer_desc_2: "hlawh ve zel rawh!",
+      refer_desc: "I thiante sawm lut la, an pawisa hlawh chhuah atangin ",
+      refer_desc_2: " hlawh ve zel rawh!",
       share_wa: "WhatsApp ah Thawn rawh",
       claimed: "Lak tawh ✅",
       spinned: "Spin tawh ✅",
-      profile_wip: "Profile update theihna siam mek a ni",
+      profile_wip: "Profile siam that theihna la buaipui mek a ni.",
       lock_msg: "TimeWall-ah Task 1 tal tih zawh hmasak a ngai! 🔒",
       spin_lucky: "🎉 Vannei lutuk!",
       spin_today_done: "Vawiin ah i Spin tawh"
@@ -387,17 +476,22 @@
       refer: "Refer",
       rank: "Rank",
       high_paying: "HIGH PAYING OFFERS",
-      timewall_desc: "Complete a survey to unlock",
+      timewall_desc: "Complete tasks to unlock features",
       open: "Open",
       home: "Home",
       tasks: "Tasks",
-      settings_nav: "Settings",
-      settings: "⚙️ Settings",
-      language: "Language / Tawng",
+      menu: "Menu",
+      language: "Language",
       profile: "My Profile",
+      contact: "Contact Us",
+      support_desc: "Need help? Reach out to us below.",
+      email_us: "Email Support",
+      join_tg: "Join Telegram",
+      whatsapp_us: "WhatsApp Support",
       terms: "Terms & Conditions",
       logout: "Logout",
       close: "Close",
+      back: "Back",
       i_agree: "I Understand & Agree",
       cancel: "Cancel",
       wd_title: "Withdraw Funds",
@@ -406,18 +500,18 @@
       wd_error_title: "Cannot Withdraw Yet",
       wd_error_desc: "You need at least 5,000 Coins to withdraw.",
       ok_understand: "OK, I Understand",
-      spin_title: "Lucky Spin",
-      spin_desc: "Earn 1 Spin for every task you complete.",
+      spin_title: "LUCKY SPIN",
+      spin_desc: "Complete 1 task to get 1 Spin.",
       spin_btn: "Spin Wheel",
       lb_title: "Top 10 Leaderboard",
       lb_desc: "List of top earners",
       refer_title: "Refer & Earn",
-      refer_desc: "Invite your friends and earn",
-      refer_desc_2: "of what they earn!",
+      refer_desc: "Invite your friends and earn ",
+      refer_desc_2: " of what they earn!",
       share_wa: "Share to WhatsApp",
       claimed: "Claimed ✅",
-      spinned: "Spinned ✅",
-      profile_wip: "Profile update is currently WIP",
+      spinned: "Spun ✅",
+      profile_wip: "Profile editing is currently a work in progress.",
       lock_msg: "You must complete at least 1 TimeWall task first! 🔒",
       spin_lucky: "🎉 You're lucky!",
       spin_today_done: "Spun today already"
@@ -428,23 +522,28 @@
       login_desc: "अपनी पहचान गुप्त रखते हुए सुरक्षित रूप से असली पैसे कमाएं।",
       lifetime_earned: "कुल कमाई:",
       your_balance: "आपका बैलेंस (Coins)",
-      withdraw: "पैसे निकालें (Withdraw)",
+      withdraw: "पैसे निकालें",
       daily_check: "डेली चेक-इन",
       spin_wheel: "स्पिन व्हील",
       refer: "रेफर करें",
       rank: "रैंक",
       high_paying: "ज्यादा पैसे वाले ऑफर्स",
-      timewall_desc: "अनलॉक करने के लिए सर्वे पूरा करें",
+      timewall_desc: "अनलॉक करने के लिए टास्क पूरा करें",
       open: "खोलें",
       home: "होम",
       tasks: "टास्क",
-      settings_nav: "सेटिंग्स",
-      settings: "⚙️ सेटिंग्स",
-      language: "Language / भाषा",
+      menu: "मेनू",
+      language: "भाषा (Language)",
       profile: "मेरी प्रोफाइल",
+      contact: "हमसे संपर्क करें",
+      support_desc: "मदद चाहिए? नीचे दिए गए माध्यम से संपर्क करें।",
+      email_us: "ईमेल सपोर्ट",
+      join_tg: "टेलीग्राम से जुड़ें",
+      whatsapp_us: "WhatsApp सपोर्ट",
       terms: "नियम और शर्तें",
       logout: "लॉग आउट",
       close: "बंद करें",
+      back: "वापस",
       i_agree: "मैं सहमत हूँ",
       cancel: "रद्द करें",
       wd_title: "पैसे निकालें",
@@ -459,8 +558,8 @@
       lb_title: "टॉप 10 लीडरबोर्ड",
       lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
       refer_title: "रेफर करें और कमाएं",
-      refer_desc: "अपने दोस्तों को आमंत्रित करें और उनकी कमाई का",
-      refer_desc_2: "कमाएं!",
+      refer_desc: "अपने दोस्तों को आमंत्रित करें और उनकी कमाई का ",
+      refer_desc_2: " कमाएं!",
       share_wa: "WhatsApp पर शेयर करें",
       claimed: "प्राप्त किया ✅",
       spinned: "स्पिन किया ✅",
@@ -476,34 +575,43 @@
   function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('cashmizo_lang', lang);
-    
-    // Update UI text based on data-i18n attributes
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       if (translations[lang][key]) {
         element.innerText = translations[lang][key];
       }
     });
-
-    // Update active class in modal
     document.getElementById('btn-lang-mizo').classList.remove('active-lang');
     document.getElementById('btn-lang-en').classList.remove('active-lang');
     document.getElementById('btn-lang-hi').classList.remove('active-lang');
     document.getElementById(`btn-lang-${lang}`).classList.add('active-lang');
-    
-    checkClaimedUI(); // Re-apply checked labels based on language
-    closeLang();
+    checkClaimedUI(); 
   }
 
-  function openLang() { 
-    document.getElementById('settings-modal').style.display = 'none';
-    document.getElementById('lang-modal').style.display = 'flex'; 
-    document.getElementById(`btn-lang-${currentLang}`).classList.add('active-lang');
+  // --- NEW MENU & NAVIGATION SYSTEM ---
+  function openMenu() {
+    document.getElementById('menu-overlay').classList.add('active');
+    document.getElementById('side-menu').classList.add('active');
   }
-  function closeLang() { document.getElementById('lang-modal').style.display = 'none'; }
+  
+  function closeMenu() {
+    document.getElementById('menu-overlay').classList.remove('active');
+    document.getElementById('side-menu').classList.remove('active');
+  }
+
+  function openPage(pageId) {
+    closeMenu(); // Close side menu if open
+    document.getElementById(pageId).classList.add('active');
+  }
+  
+  function closePage(pageId) {
+    document.getElementById(pageId).classList.remove('active');
+  }
+
+  function openActionModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+  function closeActionModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
   // ------------------------------------
 
-  // I Supabase credentials
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
@@ -514,15 +622,18 @@
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
-
-    // Apply language on load
     setLanguage(currentLang);
 
     if (session && session.user) {
       currentUserId = session.user.id;
       let fullName = session.user.user_metadata.full_name || 'User';
       document.getElementById('user-display-name').innerText = fullName;
-      document.getElementById('profile-initial').innerText = fullName.charAt(0).toUpperCase();
+      document.getElementById('profile-page-name').innerText = fullName;
+      
+      let initial = fullName.charAt(0).toUpperCase();
+      document.getElementById('profile-initial').innerText = initial;
+      document.getElementById('profile-page-initial').innerText = initial;
+      
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
       const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date').eq('id', currentUserId).single();
@@ -539,7 +650,6 @@
   function updateBalanceUI() {
     let formattedCoins = userCoins.toLocaleString('en-US');
     document.getElementById('current-balance').innerText = '🪙 ' + formattedCoins;
-    document.getElementById('lifetime-earned').innerText = formattedCoins;
   }
 
   function checkLockAndRun(action) {
@@ -548,8 +658,8 @@
       return;
     }
     if (action === 'daily') claimDaily();
-    if (action === 'spin') openSpin();
-    if (action === 'refer') openRefer();
+    if (action === 'spin') openActionModal('spin-modal');
+    if (action === 'refer') openActionModal('refer-modal');
   }
 
   function checkClaimedUI() {
@@ -557,7 +667,14 @@
     let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
     if (lastCheckStr === today) { document.getElementById('txt-daily').innerText = translations[currentLang].claimed; }
     let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
-    if (lastSpinStr === today) { document.getElementById('txt-spin').innerText = translations[currentLang].spinned; }
+    
+    const spinBtn = document.getElementById('spin-btn');
+    if (lastSpinStr === today) { 
+      document.getElementById('txt-spin').innerText = translations[currentLang].spinned; 
+      if(spinBtn) { spinBtn.innerText = translations[currentLang].spin_today_done; spinBtn.disabled = true; spinBtn.style.opacity = '0.5'; }
+    } else {
+      if(spinBtn) { spinBtn.innerText = translations[currentLang].spin_btn; spinBtn.disabled = false; spinBtn.style.opacity = '1'; }
+    }
   }
 
   function openTimeWall() {
@@ -566,14 +683,6 @@
     window.open(timeWallUrl, '_blank');
   }
 
-  function openTerms() {
-    document.getElementById('settings-modal').style.display = 'none'; 
-    document.getElementById('terms-modal').style.display = 'flex';
-  }
-  function closeTerms() { document.getElementById('terms-modal').style.display = 'none'; }
-
-  function openRefer() { document.getElementById('refer-modal').style.display = 'flex'; }
-  function closeRefer() { document.getElementById('refer-modal').style.display = 'none'; }
   function copyReferLink() {
     const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
     showToast(translations[currentLang].success);
@@ -602,20 +711,6 @@
     if(isError) toast.classList.add('error'); else toast.classList.remove('error');
     toast.style.top = '40px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
-
-  function openSpin() {
-    document.getElementById('spin-modal').style.display = 'flex';
-    const today = new Date().toDateString();
-    let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
-    const btn = document.getElementById('spin-btn');
-    
-    if (lastSpinStr === today) {
-      btn.innerText = translations[currentLang].spin_today_done; btn.disabled = true; btn.style.opacity = '0.5';
-    } else {
-      btn.innerText = translations[currentLang].spin_btn; btn.disabled = false; btn.style.opacity = '1';
-    }
-  }
-  function closeSpin() { document.getElementById('spin-modal').style.display = 'none'; }
 
   let currentRotation = 0;
   async function startSpin() {
@@ -649,12 +744,9 @@
       }
     }, 4000);
   }
-
-  function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
-  function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
   
   async function openLeaderboard() {
-    document.getElementById('leaderboard-modal').style.display = 'flex';
+    openActionModal('leaderboard-modal');
     document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
     const { data, error } = await supabaseClient.from('user_profiles').select('name, coins').order('coins', { ascending: false }).limit(10);
     if (data) {
@@ -666,18 +758,16 @@
       document.getElementById('leaderboard-list').innerHTML = htmlString;
     }
   }
-  function closeLeaderboard() { document.getElementById('leaderboard-modal').style.display = 'none'; }
-  
+
   function openWithdraw() { 
-    const modal = document.getElementById('withdraw-modal'); modal.style.display = 'flex'; 
+    openActionModal('withdraw-modal');
     document.getElementById('wd-current-coin').innerText = userCoins.toLocaleString();
     if (userCoins >= 5000) {
-      modal.classList.add('can-withdraw'); document.getElementById('withdraw-error').style.display = 'none'; document.getElementById('withdraw-form').style.display = 'block';
+      document.getElementById('withdraw-modal').classList.add('can-withdraw'); document.getElementById('withdraw-error').style.display = 'none'; document.getElementById('withdraw-form').style.display = 'block';
     } else {
-      modal.classList.remove('can-withdraw'); document.getElementById('withdraw-error').style.display = 'block'; document.getElementById('withdraw-form').style.display = 'none';
+      document.getElementById('withdraw-modal').classList.remove('can-withdraw'); document.getElementById('withdraw-error').style.display = 'block'; document.getElementById('withdraw-form').style.display = 'none';
     }
   }
-  function closeWithdraw() { document.getElementById('withdraw-modal').style.display = 'none'; }
   
   async function submitWithdraw() {
     const upiId = document.getElementById('upi-input').value;
@@ -687,7 +777,7 @@
     const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: upiId, amount: 5000 }]);
     if (insertError) { return; }
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-    updateBalanceUI(); closeWithdraw(); showToast(translations[currentLang].success);
+    updateBalanceUI(); closeActionModal('withdraw-modal'); showToast(translations[currentLang].success);
   }
   
   async function logout() { await supabaseClient.auth.signOut(); window.history.replaceState(null, null, window.location.pathname); window.location.reload(); }
