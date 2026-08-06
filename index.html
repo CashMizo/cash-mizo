@@ -137,7 +137,7 @@
     .btn-primary:active { transform: scale(0.98); }
     .btn-secondary { background: #f1f5f9; color: var(--text-main); border: none; padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     
-    /* TOAST (SIAM THAT LAAI) */
+    /* TOAST */
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: var(--shadow-md); transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-width: 85%; width: max-content; text-align: center; line-height: 1.4; display: flex; align-items: center; justify-content: center; gap: 8px; }
     #toast.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; } 
     #toast.error i { font-style: normal; }
@@ -190,7 +190,6 @@
     <div class="header">
       <div class="brand-logo">⚡ CASH-MIZO</div>
       <div style="display: flex; align-items: center; gap: 12px;">
-        <!-- LANGUAGE ICON TAH HIAN KA SAWN E -->
         <div onclick="openPage('lang-page')" style="font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%;">🌐</div>
         <div class="balance-pill"><span id="header-balance">0</span> C</div>
         <div class="menu-icon" onclick="openMenu()">☰</div>
@@ -243,7 +242,6 @@
       <div class="task-item" onclick="openTimeWall()">
         <div class="task-icon">⏱️</div>
         <div class="task-info">
-          <!-- Hming thlak a ni e -->
           <h5 data-i18n="premium_tasks">Premium Tasks</h5>
           <p data-i18n="timewall_desc">Complete tasks & surveys</p>
         </div>
@@ -411,7 +409,7 @@
         </ul>
         
         <h4 data-i18n="doc_term_h4">4. Privacy & Data Security</h4>
-        <p data-i18n="doc_term_p3">Your privacy is our priority. We collect minimal necessary data (Google Name, Email, and internal User ID) solely to maintain your Coin balance and process your payments. We do not sell or rent your personal data to any third parties. All data is secured using Supabase's advanced Row Level Security (RLS) database protocols.</p>
+        <p data-i18n="doc_term_p3">Your privacy is our priority. We collect minimal necessary data (Google Name, Email, and internal User ID) solely to maintain your Coin balance and process your payments. We do not sell or rent your personal data to any third parties.</p>
       </div>
     </div>
   </div>
@@ -589,7 +587,7 @@
       doc_term_l6: "Task zawng zawng hi third-party (Partner) te rawn chhawpchhuah a ni.",
       doc_term_l7: "Partner ten task i ti ṭha tih an pawm (approve) hunah chauh Coins a lut ang.",
       doc_term_h4: "4. Privacy",
-      doc_term_p3: "I mimal data (Email, Hming) te hi app tihnun nan chauha hman a ni a, tuman an hmu ve thei lo. Supabase Security hmanga venhim tlat a ni.",
+      doc_term_p3: "I mimal data (Email, Hming) te hi app tihnun nan chauha hman a ni a, tuman an hmu ve thei lo. Uluk taka venhim a ni.",
       contact: "AI Support & Contact",
       ai_title: "CASH-MIZO AI Assistant",
       ai_desc: "App hman dan, pawisa lakchhuah dan leh harsatna i neih chu AI hnenah hian zawt rawh. 24/7 inpeih reng a ni.",
@@ -682,7 +680,7 @@
       doc_term_l6: "Tasks are provided by independent third-party partners.",
       doc_term_l7: "Coins are credited only after partner verification.",
       doc_term_h4: "4. Privacy",
-      doc_term_p3: "We collect minimal data (Name, Email) to process payments. Secured by Supabase RLS.",
+      doc_term_p3: "We collect minimal data (Name, Email) to process payments. All data is highly secured.",
       contact: "AI Support & Contact",
       ai_title: "CASH-MIZO AI Assistant",
       ai_desc: "Get instant answers about tasks, withdrawals, and rules. 24/7.",
