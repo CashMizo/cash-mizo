@@ -13,7 +13,8 @@
       --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
       --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
       --glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
-      --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
+      --glow-purple: 0 0 30px rgba(168, 85, 247, 0.4);
+      --glow-yellow: 0 0 20px rgba(234, 179, 8, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -46,8 +47,11 @@
     .withdraw-btn { background: var(--text-main); color: var(--bg-main); border: none; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 13px; cursor: pointer; }
     
     .quick-actions { display: flex; gap: 12px; padding: 0 20px 20px 20px; overflow-x: auto; scrollbar-width: none; }
-    .action-box { background: var(--bg-card); min-width: 95px; padding: 16px 10px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; }
+    .action-box { background: var(--bg-card); min-width: 95px; padding: 16px 10px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; position: relative; }
     .action-box:active { border-color: var(--primary); }
+    
+    .action-box.locked { opacity: 0.7; border: 1px dashed #ef4444; background: rgba(239, 68, 68, 0.05); }
+    .action-box.locked::after { content: '🔒'; position: absolute; top: -8px; right: -8px; font-size: 16px; background: var(--bg-card); border-radius: 50%; padding: 4px; border: 1px solid #ef4444; }
     
     .action-box.disabled, .task-item.disabled { opacity: 0.5; pointer-events: none; border: 1px dashed var(--text-muted); background: rgba(0,0,0,0.2); } 
     .task-item.disabled .reward-pill { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
@@ -57,17 +61,20 @@
     
     .tasks-container { padding: 0 20px; }
     .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .section-header h4 { font-size: 16px; font-weight: 600; color: var(--text-main); }
+    .section-header h4 { font-size: 16px; font-weight: 600; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
     
-    .task-list { display: flex; flex-direction: column; gap: 12px; }
+    .task-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
     .task-item { background: var(--bg-card); border-radius: 16px; padding: 16px; display: flex; align-items: center; border: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; }
     .task-item:active { border-color: var(--primary); }
+    
+    .task-item.highlight { border-color: var(--primary); background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), transparent); }
     
     .task-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-right: 16px; background: rgba(255,255,255,0.05); }
     .task-info { flex-grow: 1; }
     .task-info h5 { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
     .task-info p { font-size: 12px; color: var(--text-muted); }
     .reward-pill { background: rgba(16, 185, 129, 0.1); color: var(--primary); border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; min-width: 65px; text-align: center; }
+    .reward-pill.open-btn { background: var(--primary); color: #000; }
     
     .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); display: flex; justify-content: space-between; padding: 12px 24px 20px 24px; border-top: 1px solid var(--border-color); z-index: 50; }
     .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); gap: 4px; cursor: pointer; transition: 0.2s; }
@@ -78,26 +85,48 @@
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); color: var(--text-main); padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 500; z-index: 1000; border: 1px solid var(--primary); box-shadow: var(--glow-green); transition: top 0.3s ease; white-space: nowrap; }
     #toast.error { border-color: #ef4444; box-shadow: var(--glow-red); } 
 
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; }
-    .modal-content { background: var(--bg-card); width: 90%; max-width: 320px; padding: 28px 24px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); position: relative; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; }
+    .modal-content { background: var(--bg-card); width: 90%; max-width: 340px; padding: 28px 24px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); position: relative; }
     
     #withdraw-modal .modal-content { box-shadow: var(--glow-red); }
     #withdraw-modal.can-withdraw .modal-content { box-shadow: var(--glow-green); }
     #leaderboard-modal .modal-content { box-shadow: var(--glow-blue); max-height: 80vh; overflow-y: auto; }
     #settings-modal .modal-content { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    #spin-modal .modal-content { box-shadow: var(--glow-purple); } 
+    #spin-modal .modal-content { box-shadow: var(--glow-purple); background: linear-gradient(180deg, #1e293b, #0f172a); } 
+    #refer-modal .modal-content { box-shadow: var(--glow-yellow); }
+    #lang-modal .modal-content { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    
+    #terms-modal .modal-content { max-height: 85vh; overflow-y: auto; text-align: left; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    #terms-modal h3 { text-align: center; margin-bottom: 20px; font-size: 20px; }
+    .terms-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .terms-text h4 { color: var(--text-main); font-size: 14px; margin-top: 16px; margin-bottom: 6px; }
     
     .modal-icon { font-size: 40px; margin-bottom: 12px; }
     .modal-content h3 { font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
     .modal-content p { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
     
-    .close-modal-btn { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; width: 100%; cursor: pointer; margin-top: 8px; transition: 0.2s; }
+    .close-modal-btn { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; width: 100%; cursor: pointer; margin-top: 16px; transition: 0.2s; }
     .close-modal-btn:active { background: rgba(255,255,255,0.1); }
     .btn-primary { background: linear-gradient(135deg, #34d399, #10b981); color: #000; border: none; font-weight: 600; }
     
     .input-field { width: 100%; padding: 14px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 14px; color: var(--text-main); outline: none; }
     .input-field:focus { border-color: var(--primary); }
     
+    .copy-box { display: flex; align-items: center; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; margin-bottom: 20px; }
+    .copy-box input { flex: 1; background: transparent; border: none; color: var(--text-main); font-size: 13px; outline: none; }
+    .copy-btn { background: var(--primary); color: #000; border: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; }
+
+    .wheel-container { position: relative; width: 220px; height: 220px; margin: 0 auto 24px; }
+    .wheel-pointer { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 40px; z-index: 10; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); }
+    #wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); border: 6px solid #334155; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(0,0,0,0.5); }
+    
+    .slice { position: absolute; top: 0; right: 0; width: 50%; height: 50%; transform-origin: 0% 100%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+    .slice-1 { transform: rotate(0deg) skewY(0deg); background: linear-gradient(45deg, #ef4444, #b91c1c); } 
+    .slice-2 { transform: rotate(90deg) skewY(0deg); background: linear-gradient(45deg, #3b82f6, #1d4ed8); } 
+    .slice-3 { transform: rotate(180deg) skewY(0deg); background: linear-gradient(45deg, #eab308, #a16207); } 
+    .slice-4 { transform: rotate(270deg) skewY(0deg); background: linear-gradient(45deg, #10b981, #047857); } 
+    .slice-text { position: absolute; bottom: 20px; left: 20px; transform: rotate(45deg); text-align: center; line-height: 1.2; }
+
     .lb-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .lb-item:last-child { border-bottom: none; }
     .lb-name { font-size: 14px; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
@@ -107,81 +136,139 @@
     .settings-btn { background: rgba(255,255,255,0.02); color: var(--text-main); border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s; text-align: left;}
     .settings-btn:active { background: rgba(255,255,255,0.08); }
     .settings-btn.logout { color: #f87171; background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2); justify-content: center; margin-top: 10px; font-weight: 600; }
+    
+    /* LANGUAGE SELECTOR CLASSES */
+    .lang-option { background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid var(--border-color); transition: 0.2s; }
+    .lang-option:active { background: rgba(255,255,255,0.1); }
+    .lang-option.active-lang { border-color: var(--primary); background: rgba(16, 185, 129, 0.1); font-weight: bold; color: var(--primary); }
   </style>
 </head>
 <body>
 
 <div class="app-container">
   
-  <div id="toast">Hlawhtling!</div>
+  <div id="toast" data-i18n="success">Hlawhtling!</div>
+
+  <!-- LANGUAGE MODAL (THAR) -->
+  <div id="lang-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3 style="margin-bottom: 20px;">🌐 Select Language</h3>
+      <div class="lang-option active-lang" onclick="setLanguage('mizo')" id="btn-lang-mizo">Mizo (Default)</div>
+      <div class="lang-option" onclick="setLanguage('en')" id="btn-lang-en">English</div>
+      <div class="lang-option" onclick="setLanguage('hi')" id="btn-lang-hi">हिन्दी (Hindi)</div>
+      <button class="close-modal-btn" onclick="closeLang()">Close</button>
+    </div>
+  </div>
+
+  <!-- TERMS & CONDITIONS MODAL -->
+  <div id="terms-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3>Terms & Conditions</h3>
+      <div class="terms-text">
+        <p>By accessing and using the CASH-MIZO app, you agree to comply with the following Terms and Conditions.</p>
+        <h4>1. Account Integrity</h4>
+        <p>Users are permitted to create only <strong>one (1) account per person and per device</strong>. Creating multiple accounts will result in an immediate and permanent ban.</p>
+        <h4>2. Anti-Fraud Policy</h4>
+        <p>The use of VPNs, Proxies, Emulators, Auto-clickers, or any software designed to manipulate earnings is strictly prohibited.</p>
+        <h4>3. Task Completions</h4>
+        <p>All tasks, surveys, and offers are provided by our third-party partners (Offerwalls). Coins will only be credited to your balance once the partner successfully verifies and approves the completion.</p>
+      </div>
+      <button class="close-modal-btn btn-primary" onclick="closeTerms()" data-i18n="i_agree">I Understand & Agree</button>
+    </div>
+  </div>
 
   <!-- SPIN WHEEL MODAL -->
   <div id="spin-modal" class="modal-overlay">
     <div class="modal-content">
-      <div class="modal-icon">🎡</div>
-      <h3>Spin & Earn</h3>
-      <p style="margin-bottom: 20px;">Ni khatah vawikhat i spin thei e.</p>
+      <h3 style="color: #a855f7; font-size: 24px; text-transform: uppercase; letter-spacing: 1px;" data-i18n="spin_title">Lucky Spin</h3>
+      <p style="margin-bottom: 24px; color: #cbd5e1;" data-i18n="spin_desc">Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.</p>
       
-      <div style="position: relative; width: 180px; height: 180px; margin: 0 auto 24px;">
-        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 32px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">🔽</div>
-        <div id="wheel" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(#ef4444 0 90deg, #3b82f6 90deg 180deg, #eab308 180deg 270deg, #10b981 270deg 360deg); transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1); border: 4px solid var(--border-color); box-shadow: 0 0 15px rgba(255,255,255,0.1);"></div>
+      <div class="wheel-container">
+        <div class="wheel-pointer">🔻</div>
+        <div id="wheel">
+          <div class="slice slice-1"><div class="slice-text">100<br>Coins</div></div>
+          <div class="slice slice-2"><div class="slice-text">50<br>Coins</div></div>
+          <div class="slice slice-3"><div class="slice-text">+1<br>Spin</div></div>
+          <div class="slice slice-4"><div class="slice-text">10<br>Coins</div></div>
+        </div>
       </div>
       
-      <button id="spin-btn" class="close-modal-btn btn-primary" onclick="startSpin()">Spin Wheel</button>
-      <button class="close-modal-btn" onclick="closeSpin()">Close</button>
+      <button id="spin-btn" class="close-modal-btn btn-primary" onclick="startSpin()" data-i18n="spin_btn">Spin Wheel</button>
+      <button class="close-modal-btn" onclick="closeSpin()" data-i18n="close">Close</button>
     </div>
   </div>
 
+  <!-- WITHDRAW MODAL -->
   <div id="withdraw-modal" class="modal-overlay">
     <div class="modal-content">
       <div id="withdraw-error" style="display:none;">
         <div class="modal-icon">🚫</div>
-        <h3>Withdraw Theih Rih Loh</h3>
-        <p>Withdraw turin Coin 5,000 tal i neih a ngai.<br>(Tunah <strong style="color:var(--text-main);" id="wd-current-coin">0</strong> i nei mek).</p>
-        <button class="close-modal-btn" onclick="closeWithdraw()">OK, Ka Hrethiam e</button>
+        <h3 data-i18n="wd_error_title">Withdraw Theih Rih Loh</h3>
+        <p><span data-i18n="wd_error_desc">Withdraw turin Coin 5,000 tal i neih a ngai.</span><br>(Tunah <strong style="color:var(--text-main);" id="wd-current-coin">0</strong> i nei mek).</p>
+        <button class="close-modal-btn" onclick="closeWithdraw()" data-i18n="ok_understand">OK, Ka Hrethiam e</button>
       </div>
       <div id="withdraw-form" style="display:none;">
         <div class="modal-icon">💸</div>
-        <h3>Pawisa Lakchhuahna</h3>
-        <p>Pawisa hi i UPI Account ah direct in kan rawn thun ang.</p>
-        <input type="text" id="upi-input" class="input-field" placeholder="I UPI ID (e.g. 9876543210@ybl)">
-        <button class="close-modal-btn btn-primary" onclick="submitWithdraw()">Withdraw 5,000 Coins</button>
-        <button class="close-modal-btn" onclick="closeWithdraw()">Cancel</button>
+        <h3 data-i18n="wd_title">Pawisa Lakchhuahna</h3>
+        <p data-i18n="wd_desc">Pawisa hi i UPI Account ah direct in kan rawn thun ang.</p>
+        <input type="text" id="upi-input" class="input-field" placeholder="UPI ID (e.g. 9876543210@ybl)">
+        <button class="close-modal-btn btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 Coins</button>
+        <button class="close-modal-btn" onclick="closeWithdraw()" data-i18n="cancel">Cancel</button>
       </div>
     </div>
   </div>
 
+  <!-- LEADERBOARD MODAL -->
   <div id="leaderboard-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-icon">🏆</div>
-      <h3>Top 10 Leaderboard</h3>
-      <p style="margin-bottom: 16px;">Coin ngah ber ber te list</p>
+      <h3 data-i18n="lb_title">Top 10 Leaderboard</h3>
+      <p style="margin-bottom: 16px;" data-i18n="lb_desc">Coin ngah ber ber te list</p>
       <div id="leaderboard-list" style="text-align: left; margin-bottom: 24px; background: rgba(0,0,0,0.2); padding: 0 16px; border-radius: 16px; border: 1px solid var(--border-color);"></div>
-      <button class="close-modal-btn" onclick="closeLeaderboard()">Close</button>
+      <button class="close-modal-btn" onclick="closeLeaderboard()" data-i18n="close">Close</button>
     </div>
   </div>
 
+  <!-- REFER & EARN MODAL -->
+  <div id="refer-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-icon">🤝</div>
+      <h3 data-i18n="refer_title">Refer & Earn</h3>
+      <p><span data-i18n="refer_desc">I thiante sawm lut la, an pawisa hlawh chhuah atangin </span> <strong>10% Commission</strong> <span data-i18n="refer_desc_2">hlawh ve zel rawh!</span></p>
+      
+      <div class="copy-box">
+        <input type="text" id="refer-link-input" value="https://hrangluroa-lab.github.io/cash-mizo/" readonly>
+        <button class="copy-btn" onclick="copyReferLink()">Copy</button>
+      </div>
+      
+      <button class="close-modal-btn btn-primary" onclick="shareToWhatsApp()" data-i18n="share_wa">WhatsApp ah Thawn rawh</button>
+      <button class="close-modal-btn" onclick="closeRefer()" data-i18n="close">Close</button>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
   <div id="settings-modal" class="modal-overlay">
     <div class="modal-content">
-      <h3 style="margin-bottom: 20px;">⚙️ Settings</h3>
+      <h3 style="margin-bottom: 20px;" data-i18n="settings">⚙️ Settings</h3>
       <div class="settings-menu">
-        <button class="settings-btn" onclick="showToast('Profile siam mek a ni')">👤 Ka Profile</button>
-        <button class="settings-btn" onclick="showToast('Rules siam mek a ni')">📜 App Hman Dan (Rules)</button>
-        <button class="settings-btn logout" onclick="logout()">🚪 Logout (Chhuahna)</button>
+        <button class="settings-btn" onclick="openLang()">🌐 <span data-i18n="language">Language / Tawng</span></button>
+        <button class="settings-btn" onclick="showToast(translations[currentLang].profile_wip)">👤 <span data-i18n="profile">Ka Profile</span></button>
+        <button class="settings-btn" onclick="openTerms()">📜 <span data-i18n="terms">Terms & Conditions</span></button>
+        <button class="settings-btn logout" onclick="logout()">🚪 <span data-i18n="logout">Logout (Chhuahna)</span></button>
       </div>
-      <button class="close-modal-btn" onclick="closeSettings()">Close</button>
+      <button class="close-modal-btn" onclick="closeSettings()" data-i18n="close">Close</button>
     </div>
   </div>
 
   <div id="login-screen">
     <div class="login-box">
       <div class="login-logo">💰</div>
-      <h1>Pawisa Hlawhna</h1>
+      <h1 data-i18n="earn_money">Pawisa Hlawhna</h1>
       <h2 class="cash-mizo-title">CASH-MIZO</h2>
-      <p>I mimal nihna thupin, him takin pawisa i hlawh chhuak thei e.</p>
+      <p data-i18n="login_desc">I mimal nihna thupin, him takin pawisa i hlawh chhuak thei e.</p>
       <button class="google-btn" onclick="login()">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
-        <span>Sign in with Google</span>
+        <span id="btn-login-text">Sign in with Google</span>
       </button>
     </div>
   </div>
@@ -192,7 +279,7 @@
         <div class="profile-pic" id="profile-initial">C</div>
         <div class="user-details">
           <h2 id="user-display-name">Loading...</h2>
-          <p>Lifetime earned: <span id="lifetime-earned">...</span></p>
+          <p><span data-i18n="lifetime_earned">Lifetime earned:</span> <span id="lifetime-earned">...</span></p>
         </div>
       </div>
     </div>
@@ -200,53 +287,38 @@
     <div class="balance-wrapper">
       <div class="balance-card">
         <div class="balance-info">
-          <p>I Balance (Coins)</p>
+          <p data-i18n="your_balance">I Balance (Coins)</p>
           <h3 id="current-balance">🪙 ...</h3>
         </div>
-        <button class="withdraw-btn" onclick="openWithdraw()">Withdraw</button>
+        <button class="withdraw-btn" onclick="openWithdraw()" data-i18n="withdraw">Withdraw</button>
       </div>
     </div>
     
     <div class="quick-actions">
-      <div class="action-box" id="btn-daily" onclick="claimDaily()"><span>📅</span><p id="txt-daily">Daily Check</p></div>
-      <div class="action-box" onclick="openSpin()"><span>🎡</span><p id="txt-spin">Spin Wheel</p></div>
-      <div class="action-box" onclick="openLeaderboard()"><span>🏆</span><p>Leaderboard</p></div>
-      <div class="action-box" onclick="showToast('Refer & Earn siam mek', true)"><span>🤝</span><p>Refer</p></div>
+      <div class="action-box locked" id="btn-daily" onclick="checkLockAndRun('daily')"><span>📅</span><p id="txt-daily" data-i18n="daily_check">Daily Check</p></div>
+      <div class="action-box locked" id="btn-spin" onclick="checkLockAndRun('spin')"><span>🎡</span><p id="txt-spin" data-i18n="spin_wheel">Spin Wheel</p></div>
+      <div class="action-box locked" id="btn-refer" onclick="checkLockAndRun('refer')"><span>🤝</span><p data-i18n="refer">Refer</p></div>
+      <div class="action-box" onclick="openLeaderboard()"><span>🏆</span><p data-i18n="rank">Rank</p></div>
     </div>
 
     <div class="tasks-container">
       <div class="section-header">
-        <h4>Play Games & Earn</h4>
+        <h4 data-i18n="high_paying">High Paying Offers</h4>
       </div>
       <div class="task-list">
-        <div class="task-item" id="task-dragon" onclick="claimTask(2373, 'task-dragon', 'Dragon Farm')">
-          <div class="task-icon">🐉</div>
-          <div class="task-info"><h5>Dragon Farm</h5><p>Reach level 15 in 7 days</p></div>
-          <div class="reward-pill">+ 2,373 C</div>
-        </div>
-        <div class="task-item" id="task-mafia" onclick="claimTask(1500, 'task-mafia', 'Mafia City')">
-          <div class="task-icon">🕴️</div>
-          <div class="task-info"><h5>Mafia City</h5><p>Upgrade Mansion to Level 10</p></div>
-          <div class="reward-pill">+ 1,500 C</div>
-        </div>
-        <div class="task-item" id="task-survey" onclick="claimTask(500, 'task-survey', 'Profile Survey')">
-          <div class="task-icon">📝</div>
-          <div class="task-info"><h5>Profile Survey</h5><p>Complete your user profile</p></div>
-          <div class="reward-pill">+ 500 C</div>
-        </div>
-        <div class="task-item" id="task-video" onclick="claimTask(600, 'task-video', 'Watch Ads')">
-          <div class="task-icon">📺</div>
-          <div class="task-info"><h5>Watch Ads</h5><p>Watch a 30-second video</p></div>
-          <div class="reward-pill">+ 600 C</div>
+        <div class="task-item highlight" onclick="openTimeWall()">
+          <div class="task-icon">⏱️</div>
+          <div class="task-info"><h5>TimeWall</h5><p data-i18n="timewall_desc">Survey chhang la, Lock hawng rawh</p></div>
+          <div class="reward-pill open-btn" data-i18n="open">Open</div>
         </div>
       </div>
     </div>
 
     <div class="bottom-nav">
-      <div class="nav-item active"><i>🏠</i><span>Home</span></div>
-      <div class="nav-item"><i>📋</i><span>Tasks</span></div>
-      <div class="nav-item" onclick="openLeaderboard()"><i>🏆</i><span>Rank</span></div>
-      <div class="nav-item" onclick="openSettings()"><i>⚙️</i><span>Settings</span></div>
+      <div class="nav-item active"><i>🏠</i><span data-i18n="home">Home</span></div>
+      <div class="nav-item" onclick="openTimeWall()"><i>📋</i><span data-i18n="tasks">Tasks</span></div>
+      <div class="nav-item" onclick="openLeaderboard()"><i>🏆</i><span data-i18n="rank">Rank</span></div>
+      <div class="nav-item" onclick="openSettings()"><i>⚙️</i><span data-i18n="settings_nav">Settings</span></div>
     </div>
   </div>
 </div>
@@ -254,25 +326,208 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+  // --- TRANSLATION DICTIONARY ---
+  const translations = {
+    mizo: {
+      success: "Hlawhtling!",
+      earn_money: "PAWISA HLAWHNA",
+      login_desc: "I mimal nihna thupin, him takin pawisa i hlawh chhuak thei e.",
+      lifetime_earned: "Lifetime earned:",
+      your_balance: "I Balance (Coins)",
+      withdraw: "Withdraw",
+      daily_check: "Daily Check",
+      spin_wheel: "Spin Wheel",
+      refer: "Refer",
+      rank: "Rank",
+      high_paying: "HIGH PAYING OFFERS",
+      timewall_desc: "Survey chhang la, Lock hawng rawh",
+      open: "Open",
+      home: "Home",
+      tasks: "Tasks",
+      settings_nav: "Settings",
+      settings: "⚙️ Settings",
+      language: "Language / Tawng",
+      profile: "Ka Profile",
+      terms: "Terms & Conditions",
+      logout: "Logout (Chhuahna)",
+      close: "Close",
+      i_agree: "I Understand & Agree",
+      cancel: "Cancel",
+      wd_title: "Pawisa Lakchhuahna",
+      wd_desc: "Pawisa hi i UPI Account ah direct in kan rawn thun ang.",
+      wd_btn: "Withdraw 5,000 Coins",
+      wd_error_title: "Withdraw Theih Rih Loh",
+      wd_error_desc: "Withdraw turin Coin 5,000 tal i neih a ngai.",
+      ok_understand: "OK, Ka Hrethiam e",
+      spin_title: "Lucky Spin",
+      spin_desc: "Task 1 i tih zawh apiangin Spin vawi 1 i hlawh ang.",
+      spin_btn: "Spin Wheel",
+      lb_title: "Top 10 Leaderboard",
+      lb_desc: "Coin ngah ber ber te list",
+      refer_title: "Refer & Earn",
+      refer_desc: "I thiante sawm lut la, an pawisa hlawh chhuah atangin",
+      refer_desc_2: "hlawh ve zel rawh!",
+      share_wa: "WhatsApp ah Thawn rawh",
+      claimed: "Lak tawh ✅",
+      spinned: "Spin tawh ✅",
+      profile_wip: "Profile update theihna siam mek a ni",
+      lock_msg: "TimeWall-ah Task 1 tal tih zawh hmasak a ngai! 🔒",
+      spin_lucky: "🎉 Vannei lutuk!",
+      spin_today_done: "Vawiin ah i Spin tawh"
+    },
+    en: {
+      success: "Success!",
+      earn_money: "EARN MONEY",
+      login_desc: "Earn real money securely while keeping your identity private.",
+      lifetime_earned: "Lifetime earned:",
+      your_balance: "Your Balance (Coins)",
+      withdraw: "Withdraw",
+      daily_check: "Daily Check",
+      spin_wheel: "Spin Wheel",
+      refer: "Refer",
+      rank: "Rank",
+      high_paying: "HIGH PAYING OFFERS",
+      timewall_desc: "Complete a survey to unlock",
+      open: "Open",
+      home: "Home",
+      tasks: "Tasks",
+      settings_nav: "Settings",
+      settings: "⚙️ Settings",
+      language: "Language / Tawng",
+      profile: "My Profile",
+      terms: "Terms & Conditions",
+      logout: "Logout",
+      close: "Close",
+      i_agree: "I Understand & Agree",
+      cancel: "Cancel",
+      wd_title: "Withdraw Funds",
+      wd_desc: "Money will be sent directly to your UPI Account.",
+      wd_btn: "Withdraw 5,000 Coins",
+      wd_error_title: "Cannot Withdraw Yet",
+      wd_error_desc: "You need at least 5,000 Coins to withdraw.",
+      ok_understand: "OK, I Understand",
+      spin_title: "Lucky Spin",
+      spin_desc: "Earn 1 Spin for every task you complete.",
+      spin_btn: "Spin Wheel",
+      lb_title: "Top 10 Leaderboard",
+      lb_desc: "List of top earners",
+      refer_title: "Refer & Earn",
+      refer_desc: "Invite your friends and earn",
+      refer_desc_2: "of what they earn!",
+      share_wa: "Share to WhatsApp",
+      claimed: "Claimed ✅",
+      spinned: "Spinned ✅",
+      profile_wip: "Profile update is currently WIP",
+      lock_msg: "You must complete at least 1 TimeWall task first! 🔒",
+      spin_lucky: "🎉 You're lucky!",
+      spin_today_done: "Spun today already"
+    },
+    hi: {
+      success: "सफल!",
+      earn_money: "पैसे कमाएं",
+      login_desc: "अपनी पहचान गुप्त रखते हुए सुरक्षित रूप से असली पैसे कमाएं।",
+      lifetime_earned: "कुल कमाई:",
+      your_balance: "आपका बैलेंस (Coins)",
+      withdraw: "पैसे निकालें (Withdraw)",
+      daily_check: "डेली चेक-इन",
+      spin_wheel: "स्पिन व्हील",
+      refer: "रेफर करें",
+      rank: "रैंक",
+      high_paying: "ज्यादा पैसे वाले ऑफर्स",
+      timewall_desc: "अनलॉक करने के लिए सर्वे पूरा करें",
+      open: "खोलें",
+      home: "होम",
+      tasks: "टास्क",
+      settings_nav: "सेटिंग्स",
+      settings: "⚙️ सेटिंग्स",
+      language: "Language / भाषा",
+      profile: "मेरी प्रोफाइल",
+      terms: "नियम और शर्तें",
+      logout: "लॉग आउट",
+      close: "बंद करें",
+      i_agree: "मैं सहमत हूँ",
+      cancel: "रद्द करें",
+      wd_title: "पैसे निकालें",
+      wd_desc: "पैसे सीधे आपके UPI अकाउंट में भेजे जाएंगे।",
+      wd_btn: "5,000 Coins निकालें",
+      wd_error_title: "अभी पैसे नहीं निकाल सकते",
+      wd_error_desc: "पैसे निकालने के लिए आपके पास कम से कम 5,000 Coins होने चाहिए।",
+      ok_understand: "ठीक है, मैं समझ गया",
+      spin_title: "लकी स्पिन",
+      spin_desc: "हर टास्क पूरा करने पर 1 स्पिन कमाएं।",
+      spin_btn: "स्पिन व्हील",
+      lb_title: "टॉप 10 लीडरबोर्ड",
+      lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
+      refer_title: "रेफर करें और कमाएं",
+      refer_desc: "अपने दोस्तों को आमंत्रित करें और उनकी कमाई का",
+      refer_desc_2: "कमाएं!",
+      share_wa: "WhatsApp पर शेयर करें",
+      claimed: "प्राप्त किया ✅",
+      spinned: "स्पिन किया ✅",
+      profile_wip: "प्रोफ़ाइल अपडेट अभी बन रहा है",
+      lock_msg: "आपको पहले कम से कम 1 TimeWall टास्क पूरा करना होगा! 🔒",
+      spin_lucky: "🎉 आप भाग्यशाली हैं!",
+      spin_today_done: "आज स्पिन कर चुके हैं"
+    }
+  };
+
+  let currentLang = localStorage.getItem('cashmizo_lang') || 'mizo';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('cashmizo_lang', lang);
+    
+    // Update UI text based on data-i18n attributes
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[lang][key]) {
+        element.innerText = translations[lang][key];
+      }
+    });
+
+    // Update active class in modal
+    document.getElementById('btn-lang-mizo').classList.remove('active-lang');
+    document.getElementById('btn-lang-en').classList.remove('active-lang');
+    document.getElementById('btn-lang-hi').classList.remove('active-lang');
+    document.getElementById(`btn-lang-${lang}`).classList.add('active-lang');
+    
+    checkClaimedUI(); // Re-apply checked labels based on language
+    closeLang();
+  }
+
+  function openLang() { 
+    document.getElementById('settings-modal').style.display = 'none';
+    document.getElementById('lang-modal').style.display = 'flex'; 
+    document.getElementById(`btn-lang-${currentLang}`).classList.add('active-lang');
+  }
+  function closeLang() { document.getElementById('lang-modal').style.display = 'none'; }
+  // ------------------------------------
+
+  // I Supabase credentials
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
-  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let claimedTasks = []; let lastSpinDate = null;
+  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
+  let hasCompletedTaskToday = false; 
 
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
+
+    // Apply language on load
+    setLanguage(currentLang);
 
     if (session && session.user) {
       currentUserId = session.user.id;
       let fullName = session.user.user_metadata.full_name || 'User';
       document.getElementById('user-display-name').innerText = fullName;
       document.getElementById('profile-initial').innerText = fullName.charAt(0).toUpperCase();
+      document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, claimed_tasks, last_spin_date').eq('id', currentUserId).single();
+      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date').eq('id', currentUserId).single();
       if (data) {
-        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; claimedTasks = data.claimed_tasks || []; lastSpinDate = data.last_spin_date;
+        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
@@ -287,59 +542,59 @@
     document.getElementById('lifetime-earned').innerText = formattedCoins;
   }
 
+  function checkLockAndRun(action) {
+    if (!hasCompletedTaskToday) {
+      showToast(translations[currentLang].lock_msg, true);
+      return;
+    }
+    if (action === 'daily') claimDaily();
+    if (action === 'spin') openSpin();
+    if (action === 'refer') openRefer();
+  }
+
   function checkClaimedUI() {
     const today = new Date().toDateString();
-    
-    // Check Supabase AND LocalStorage
     let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
-    let localDaily = localStorage.getItem('cashmizo_daily_date');
-    if (lastCheckStr === today || localDaily === today) {
-      document.getElementById('btn-daily').classList.add('disabled');
-      document.getElementById('txt-daily').innerText = "Lak tawh ✅";
-    }
-    
+    if (lastCheckStr === today) { document.getElementById('txt-daily').innerText = translations[currentLang].claimed; }
     let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
-    let localSpin = localStorage.getItem('cashmizo_spin_date');
-    if (lastSpinStr === today || localSpin === today) {
-      document.getElementById('txt-spin').innerText = "Spin tawh ✅";
-    }
+    if (lastSpinStr === today) { document.getElementById('txt-spin').innerText = translations[currentLang].spinned; }
+  }
 
-    claimedTasks.forEach(taskId => {
-      const element = document.getElementById(taskId);
-      if(element) { element.classList.add('disabled'); element.querySelector('.reward-pill').innerText = "Lak tawh ✅"; }
-    });
+  function openTimeWall() {
+    if (!currentUserId) { return; }
+    const timeWallUrl = `https://timewall.io/offers?uid=${currentUserId}`;
+    window.open(timeWallUrl, '_blank');
+  }
+
+  function openTerms() {
+    document.getElementById('settings-modal').style.display = 'none'; 
+    document.getElementById('terms-modal').style.display = 'flex';
+  }
+  function closeTerms() { document.getElementById('terms-modal').style.display = 'none'; }
+
+  function openRefer() { document.getElementById('refer-modal').style.display = 'flex'; }
+  function closeRefer() { document.getElementById('refer-modal').style.display = 'none'; }
+  function copyReferLink() {
+    const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
+    showToast(translations[currentLang].success);
+  }
+  function shareToWhatsApp() {
+    const link = document.getElementById('refer-link-input').value;
+    const text = `Join CASH-MIZO app! Link: ${link}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   }
 
   async function claimDaily() {
     if (!currentUserId) return;
     const today = new Date().toDateString();
     let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
-    let localDaily = localStorage.getItem('cashmizo_daily_date');
-    
-    // Anti Multi-Account Check (He phone hian a lo hmang tawh em?)
-    if (lastCheckStr === today || localDaily === today) { 
-      showToast("He phone atang hian vawiin ah lak tawh a ni!", true); 
-      return; 
-    }
+    if (lastCheckStr === today) { return; }
 
     userCoins += 50; lastDailyCheck = new Date().toISOString(); 
     updateBalanceUI();
-    document.getElementById('btn-daily').classList.add('disabled'); document.getElementById('txt-daily').innerText = "Lak tawh ✅";
-    showToast(`+50 Coins: Daily Check Hlawhtling!`);
-    
-    localStorage.setItem('cashmizo_daily_date', today); // Save to LocalStorage
+    document.getElementById('txt-daily').innerText = translations[currentLang].claimed;
+    showToast(`+50 Coins!`);
     await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
-  }
-
-  async function claimTask(amount, taskId, taskName) {
-    if (!currentUserId) return; 
-    if (claimedTasks.includes(taskId)) { showToast(`${taskName} chu i la tawh!`, true); return; }
-
-    userCoins += amount; claimedTasks.push(taskId); 
-    updateBalanceUI();
-    let element = document.getElementById(taskId); element.classList.add('disabled'); element.querySelector('.reward-pill').innerText = "Lak tawh ✅";
-    showToast(`+${amount} Coins: ${taskName} Hlawhtling!`);
-    await supabaseClient.from('user_profiles').update({ coins: userCoins, claimed_tasks: claimedTasks }).eq('id', currentUserId);
   }
 
   function showToast(message, isError = false) {
@@ -352,51 +607,52 @@
     document.getElementById('spin-modal').style.display = 'flex';
     const today = new Date().toDateString();
     let lastSpinStr = lastSpinDate ? new Date(lastSpinDate).toDateString() : "";
-    let localSpin = localStorage.getItem('cashmizo_spin_date');
     const btn = document.getElementById('spin-btn');
     
-    // Anti Multi-Account Check
-    if (lastSpinStr === today || localSpin === today) {
-      btn.innerText = "He phone ah hian i Spin tawh";
-      btn.disabled = true;
-      btn.style.opacity = '0.5';
+    if (lastSpinStr === today) {
+      btn.innerText = translations[currentLang].spin_today_done; btn.disabled = true; btn.style.opacity = '0.5';
     } else {
-      btn.innerText = "Spin Wheel";
-      btn.disabled = false;
-      btn.style.opacity = '1';
+      btn.innerText = translations[currentLang].spin_btn; btn.disabled = false; btn.style.opacity = '1';
     }
   }
   function closeSpin() { document.getElementById('spin-modal').style.display = 'none'; }
 
+  let currentRotation = 0;
   async function startSpin() {
     if (!currentUserId) return;
     const btn = document.getElementById('spin-btn');
-    btn.disabled = true; btn.innerText = "Vir mek... 🎡"; btn.style.opacity = '0.5';
+    btn.disabled = true; btn.innerText = "..."; btn.style.opacity = '0.5';
 
     const wheel = document.getElementById('wheel');
-    const randomDeg = Math.floor(Math.random() * 1800) + 1800;
-    wheel.style.transform = `rotate(${randomDeg}deg)`;
+    const slices = [
+      { id: 1, name: "100 Coins", amount: 100, deg: 0 },
+      { id: 4, name: "10 Coins", amount: 10, deg: 90 },
+      { id: 3, name: "+1 Spin", amount: 0, extra: true, deg: 180 },
+      { id: 2, name: "50 Coins", amount: 50, deg: 270 }
+    ];
+    const winningSlice = slices[Math.floor(Math.random() * slices.length)];
+    const extraSpins = 5 * 360; 
+    currentRotation += extraSpins + winningSlice.deg;
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
 
     setTimeout(async () => {
-      const rewards = [10, 50, 20, 100];
-      const winAmount = rewards[Math.floor(Math.random() * rewards.length)];
-      
-      userCoins += winAmount; lastSpinDate = new Date().toISOString(); 
-      updateBalanceUI();
-      document.getElementById('txt-spin').innerText = "Spin tawh ✅";
-      showToast(`🎉 Vannei lutuk! +${winAmount} Coins i hlawh e!`);
-      btn.innerText = "He phone ah hian i Spin tawh";
-
-      const today = new Date().toDateString();
-      localStorage.setItem('cashmizo_spin_date', today); // Save to LocalStorage
-      
-      await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
-    }, 3000);
+      if (winningSlice.extra) {
+        showToast(translations[currentLang].spin_lucky);
+        btn.innerText = translations[currentLang].spin_btn; btn.disabled = false; btn.style.opacity = '1';
+      } else {
+        userCoins += winningSlice.amount; lastSpinDate = new Date().toISOString(); 
+        updateBalanceUI();
+        document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
+        showToast(`+${winningSlice.amount} Coins!`);
+        btn.innerText = translations[currentLang].spin_today_done;
+        await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
+      }
+    }, 4000);
   }
 
   function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
   function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
-
+  
   async function openLeaderboard() {
     document.getElementById('leaderboard-modal').style.display = 'flex';
     document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
@@ -411,7 +667,7 @@
     }
   }
   function closeLeaderboard() { document.getElementById('leaderboard-modal').style.display = 'none'; }
-
+  
   function openWithdraw() { 
     const modal = document.getElementById('withdraw-modal'); modal.style.display = 'flex'; 
     document.getElementById('wd-current-coin').innerText = userCoins.toLocaleString();
@@ -422,23 +678,22 @@
     }
   }
   function closeWithdraw() { document.getElementById('withdraw-modal').style.display = 'none'; }
-
+  
   async function submitWithdraw() {
     const upiId = document.getElementById('upi-input').value;
-    if (!upiId) { showToast("I UPI ID chhu lut rawh!", true); return; }
+    if (!upiId) { return; }
     if (userCoins < 5000) return;
-
     userCoins -= 5000;
     const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: upiId, amount: 5000 }]);
-    if (insertError) { showToast("Buaina a awm: " + insertError.message, true); return; }
+    if (insertError) { return; }
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-
-    updateBalanceUI(); closeWithdraw(); showToast("Withdraw dilna kan dawng e!");
+    updateBalanceUI(); closeWithdraw(); showToast(translations[currentLang].success);
   }
-
+  
   async function logout() { await supabaseClient.auth.signOut(); window.history.replaceState(null, null, window.location.pathname); window.location.reload(); }
-
+  
   window.addEventListener('load', async () => {
+    setLanguage(currentLang);
     const hash = window.location.hash;
     if (hash && hash.includes('access_token=')) {
       const hashParams = new URLSearchParams(hash.substring(1));
@@ -448,13 +703,12 @@
       }
     } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
   });
-
+  
   async function login() {
-    const btnText = document.querySelector('.google-btn span'); btnText.innerHTML = 'Lut mek...'; 
+    document.getElementById('btn-login-text').innerHTML = '...'; 
     const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/' } });
-    if (error) { alert("Buaina a awm: " + error.message); btnText.innerHTML = 'Sign in with Google'; }
+    if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Sign in with Google'; }
   }
 </script>
-
 </body>
 </html>
