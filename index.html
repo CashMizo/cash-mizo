@@ -25,10 +25,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     
     body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); }
-    /* OVERFLOW Y AUTO belh a ni scroll theih nan */
     .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto; box-shadow: var(--shadow-lg);}
     
-    /* LOGIN SCREEN - Scrollable */
+    /* LOGIN SCREEN */
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
     .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: 40px; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
@@ -85,7 +84,7 @@
     .task-info p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
     .btn-open { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; border: none; }
     
-    /* MENU DRAWER */
+    /* DETAILED SIDE MENU DRAWER */
     .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 150; opacity: 0; pointer-events: none; transition: 0.3s; }
     .menu-overlay.active { opacity: 1; pointer-events: all; }
     .side-menu { position: fixed; top: 0; right: -320px; width: 300px; max-width: 85%; height: 100%; background: var(--bg-main); z-index: 160; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; overflow-y: auto;}
@@ -111,7 +110,7 @@
     .fs-header h3 { font-size: 18px; font-weight: 800; color: var(--text-main); }
     .fs-content { padding: 24px; padding-bottom: 40px; }
 
-    /* PROFILE & PAYMENT SECTION (Dropdown added) */
+    /* PROFILE & PAYMENT SECTION */
     .prof-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
     .prof-card h4 { font-size: 15px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;}
     .prof-row { margin-bottom: 16px; }
@@ -121,7 +120,7 @@
     
     select.input-field { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
     
-    /* TEXT DOCUMENTS (Terms, Info) - More readable */
+    /* TEXT DOCUMENTS */
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
     .doc-box h2 { font-size: 20px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; line-height: 1.3;}
     .doc-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; font-weight: 500;}
@@ -134,18 +133,18 @@
     .modal-icon { font-size: 56px; margin-bottom: 16px; }
     .action-modal-content h3 { font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
     .action-modal-content p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; font-weight: 500; }
-    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); transition: 0.2s;}
+    .btn-primary:active { transform: scale(0.98); }
     .btn-secondary { background: #f1f5f9; color: var(--text-main); border: none; padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     
-    /* TOAST (Small & Clean) */
+    /* TOAST */
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 24px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 1000; box-shadow: var(--shadow-md); transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; display: flex; align-items: center; gap: 8px; }
     #toast.error { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; } 
-    #toast.error i { content: '⚠️'; }
+    #toast.error i { font-style: normal; }
     
-    /* Custom input & copy */
+    /* Inputs */
     .input-field { width: 100%; padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; }
     .input-field:focus { border-color: var(--primary); background: white; }
-    
     .copy-box { display: flex; align-items: center; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 16px; padding: 8px 8px 8px 16px; margin-bottom: 24px; }
     .copy-box input { flex: 1; background: transparent; border: none; color: var(--text-main); font-size: 14px; outline: none; font-weight: 600; }
     .copy-btn { background: var(--text-main); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
@@ -178,7 +177,6 @@
         <span data-i18n="agree_terms">I have read and agree to the Terms of Service and Privacy Policy.</span>
       </label>
       
-      <!-- Added multiple login buttons as requested -->
       <button class="auth-btn btn-google" onclick="login()">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
         <span id="btn-login-text">Continue with Google</span>
@@ -208,15 +206,14 @@
     </div>
     
     <div class="dashboard-content">
-      <!-- MAIN BALANCE CARD -->
       <div class="balance-card-main">
         <p data-i18n="your_balance">Total Balance</p>
         <h2><span id="current-balance">0</span> Coins</h2>
         <button class="withdraw-btn-main" onclick="openWithdraw()" data-i18n="withdraw">Withdraw Funds</button>
       </div>
 
-      <!-- GRID ACTIONS -->
       <div class="grid-actions">
+        <!-- Buttons are ALWAYS locked visually until server unlocks them -->
         <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
           <div class="icon-box ic-daily">📅</div>
           <div>
@@ -250,7 +247,6 @@
         </div>
       </div>
 
-      <!-- OFFERS SECTION -->
       <div class="section-title" data-i18n="high_paying">PREMIUM OFFERS</div>
       
       <div class="task-item" onclick="openTimeWall()">
@@ -264,8 +260,7 @@
     </div>
   </div>
 
-
-  <!-- DETAILED SIDE MENU DRAWER (Translations applied) -->
+  <!-- SIDE MENU DRAWER -->
   <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
   <div id="side-menu" class="side-menu">
     <div class="menu-user-profile">
@@ -302,7 +297,7 @@
   </div>
 
 
-  <!-- FULLSCREEN PAGE: PROFILE & PAYMENT (UPI/BANK/PAYPAL) -->
+  <!-- FULLSCREEN PAGE: PROFILE & PAYMENT -->
   <div id="profile-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('profile-page')">←</div>
@@ -327,14 +322,13 @@
         </div>
       </div>
       
-      <!-- ADVANCED PAYMENT LINKING SECTION -->
       <div class="prof-card">
         <h4 data-i18n="payment_method">Payment Method</h4>
         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;" data-i18n="payment_desc">Choose how you want to receive your money.</p>
         
         <div id="payment-display-section" style="display: none; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px;">
           <span style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" id="display-pay-type">UPI ID</span>
-          <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px;">Not linked yet</strong>
+          <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px; word-break: break-all;">Not linked yet</strong>
         </div>
         
         <button id="btn-change-pay" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: var(--shadow-sm);" onclick="togglePaymentEdit()" data-i18n="change_payment">Change Payment Method</button>
@@ -365,7 +359,7 @@
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: INFO (How it works) - Detailed -->
+  <!-- FULLSCREEN PAGE: INFO (How it works) -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')">←</div>
@@ -394,7 +388,7 @@
     </div>
   </div>
 
-  <!-- FULLSCREEN PAGE: TERMS - Detailed -->
+  <!-- FULLSCREEN PAGE: TERMS -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')">←</div>
@@ -482,7 +476,7 @@
       <h3 data-i18n="spin_title" style="color: var(--primary);">LUCKY SPIN</h3>
       <p data-i18n="spin_desc">Complete 1 task to get 1 Spin.</p>
       <div style="font-size: 64px; margin: 24px 0; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">🎡</div>
-      <button id="spin-btn" class="btn-primary" onclick="startSpin()" data-i18n="spin_btn">Spin Wheel</button>
+      <button id="spin-btn" class="btn-primary" onclick="requestSpinFromServer()" data-i18n="spin_btn">Spin Wheel</button>
       <button class="btn-secondary" onclick="closeActionModal('spin-modal')" data-i18n="close">Close</button>
     </div>
   </div>
@@ -545,7 +539,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // --- TRANSLATION DICTIONARY (Updated) ---
+  // --- TRANSLATION DICTIONARY ---
   const translations = {
     mizo: {
       success: "Hlawhtling!",
@@ -838,7 +832,6 @@
       }
     });
     
-    // Style active language option
     document.querySelectorAll('.lang-option').forEach(el => {
         el.style.borderColor = 'var(--border-color)';
         el.style.color = 'var(--text-main)';
@@ -886,7 +879,6 @@
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
-  // Store payment info as JSON string in database (upi_id column reused or parsed)
   let userPayInfo = null; 
   let hasCompletedTaskToday = false; 
 
@@ -894,7 +886,6 @@
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'block';
     
-    // Apply translations on load
     setLanguage(currentLang);
 
     if (session && session.user) {
@@ -910,14 +901,13 @@
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      // FETCH FROM DATABASE
       const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id').eq('id', currentUserId).single();
       
       if (data) {
         userCoins = data.coins || 0; 
         lastDailyCheck = data.last_daily_check; 
         lastSpinDate = data.last_spin_date;
-        userPayInfo = data.upi_id; // Using upi_id column to store generic payment string for now
+        userPayInfo = data.upi_id; 
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
@@ -943,7 +933,6 @@
       document.getElementById('payment-edit-section').style.display = 'none';
       document.getElementById('btn-change-pay').style.display = 'block';
       
-      // Basic parsing (Format: TYPE::VALUE) e.g. upi::9876@ybl or bank::AC1234|IFSC001
       let displayType = "UPI ID";
       let displayValue = userPayInfo;
       
@@ -951,10 +940,7 @@
           let parts = userPayInfo.split('::');
           if(parts[0] === 'upi') { displayType = "UPI ID"; displayValue = parts[1]; }
           if(parts[0] === 'paypal') { displayType = "PayPal Email"; displayValue = parts[1]; }
-          if(parts[0] === 'bank') { 
-              displayType = "Bank Transfer"; 
-              displayValue = parts[1].replace('|', '  - IFSC: '); 
-          }
+          if(parts[0] === 'bank') { displayType = "Bank Transfer"; displayValue = parts[1].replace('|', '  - IFSC: '); }
       }
       document.getElementById('display-pay-type').innerText = displayType;
       document.getElementById('prof-pay-id').innerText = displayValue;
@@ -990,23 +976,14 @@
         saveString = `bank::A/C ${acc} | ${ifsc}`;
     }
     
-    // Save to Database (using upi_id column)
     const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
-    if(error) {
-      showToast("Error: " + error.message, true);
-    } else {
-      userPayInfo = saveString;
-      updatePaymentUI();
-      showToast(translations[currentLang].success);
-    }
+    if(error) { showToast("Error: " + error.message, true); } 
+    else { userPayInfo = saveString; updatePaymentUI(); showToast(translations[currentLang].success); }
   }
 
   function checkLockAndRun(action) {
-    if (!hasCompletedTaskToday) {
-      showToast(translations[currentLang].lock_msg, true);
-      return;
-    }
-    if (action === 'daily') claimDaily();
+    if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
+    if (action === 'daily') requestDailyFromServer();
     if (action === 'spin') openActionModal('spin-modal');
     if (action === 'refer') openActionModal('refer-modal');
   }
@@ -1042,20 +1019,32 @@
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   }
 
-  async function claimDaily() {
+  // --- SECURITY: SERVER (EDGE FUNCTION) CALLS ---
+  // Heta atang hian pawisa kan pe tawh dawn lo. Server kan dil tawh ang.
+  async function requestDailyFromServer() {
     if (!currentUserId) return;
     const today = new Date().toDateString();
     let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
     if (lastCheckStr === today) { return; }
 
+    /* SECURITY IMPLEMENTATION:
+       Tunah chuan Demo a nih avangin ka la comment rih ang. Edge function kan peih velah, 
+       a hnuaia code hi kan on anga, HTML ami pawisa inpek hi kan paih ang. */
+       
+    // const { data, error } = await supabaseClient.functions.invoke('claim-daily', { body: { userId: currentUserId } });
+    // if (error) { showToast("Error: " + error.message, true); return; }
+    // if (data.success) {
+    //    userCoins = data.newBalance; lastDailyCheck = data.timestamp;
+    //    updateBalanceUI(); checkClaimedUI(); showToast(`+50 Coins!`);
+    // }
+    
+    // DEMO FALLBACK (Will remove after Edge Function is active)
     userCoins += 50; lastDailyCheck = new Date().toISOString(); 
-    updateBalanceUI();
-    document.getElementById('txt-daily').innerText = translations[currentLang].claimed;
+    updateBalanceUI(); document.getElementById('txt-daily').innerText = translations[currentLang].claimed;
     showToast(`+50 Coins!`);
     await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
   }
 
-  // TOAST FIX - Cleaner UI
   function showToast(message, isError = false) {
     const toast = document.getElementById('toast'); 
     toast.innerHTML = isError ? `<i>⚠️</i> ${message}` : `<i>✅</i> ${message}`;
@@ -1063,17 +1052,22 @@
     toast.style.top = '20px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
 
-  async function startSpin() {
+  async function requestSpinFromServer() {
     if (!currentUserId) return;
     const btn = document.getElementById('spin-btn');
     btn.disabled = true; btn.innerText = "..."; btn.style.opacity = '0.5';
 
+    /* SECURITY IMPLEMENTATION:
+       Edge function kan siam hunah, Server in random in pawisa a rawn pe anga HTML in a lo dawng chauh ang. */
+       
+    // const { data, error } = await supabaseClient.functions.invoke('claim-spin', { body: { userId: currentUserId } });
+    // if (error) { ... }
+    
+    // DEMO FALLBACK
     setTimeout(async () => {
       userCoins += 10; lastSpinDate = new Date().toISOString(); 
-      updateBalanceUI();
-      document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
-      showToast(`+10 Coins!`);
-      btn.innerText = translations[currentLang].spin_today_done;
+      updateBalanceUI(); document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
+      showToast(`+10 Coins!`); btn.innerText = translations[currentLang].spin_today_done;
       await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
     }, 1500);
   }
@@ -1099,12 +1093,9 @@
     if (userCoins >= 5000) {
       document.getElementById('withdraw-error').style.display = 'none'; 
       document.getElementById('withdraw-form').style.display = 'block';
-      
-      // Check if Payment is linked
       if (userPayInfo && userPayInfo !== '') {
         document.getElementById('wd-no-pay').style.display = 'none';
         document.getElementById('wd-has-pay').style.display = 'block';
-        
         let displayValue = userPayInfo;
         if(userPayInfo.includes('::')) displayValue = userPayInfo.split('::')[1];
         document.getElementById('wd-display-pay').innerText = displayValue;
@@ -1123,22 +1114,17 @@
     if (userCoins < 5000) return;
     
     userCoins -= 5000;
-    // saving payment info to upi_id column temporarily
     const { error: insertError } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
     if (insertError) { showToast("Error: " + insertError.message, true); return; }
     
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-    updateBalanceUI(); 
-    closeActionModal('withdraw-modal'); 
-    showToast(translations[currentLang].success);
+    updateBalanceUI(); closeActionModal('withdraw-modal'); showToast(translations[currentLang].success);
   }
   
   async function logout() { await supabaseClient.auth.signOut(); window.history.replaceState(null, null, window.location.pathname); window.location.reload(); }
   
   window.addEventListener('load', async () => {
-    // Translation applies on load
     setLanguage(currentLang);
-    
     const hash = window.location.hash;
     if (hash && hash.includes('access_token=')) {
       const hashParams = new URLSearchParams(hash.substring(1));
@@ -1148,28 +1134,20 @@
       }
     } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
     
-    // Login check box logic
     document.getElementById('agree-check').addEventListener('change', function() {
-        const loginBtns = document.querySelectorAll('.auth-btn.btn-google'); // Enable only google
+        const loginBtns = document.querySelectorAll('.auth-btn.btn-google');
         loginBtns.forEach(btn => {
-            if(this.checked) {
-                btn.style.opacity = '1';
-                btn.style.pointerEvents = 'all';
-            } else {
-                btn.style.opacity = '0.5';
-                btn.style.pointerEvents = 'none';
-            }
+            if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
+            else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
         });
     });
-    // Init state (Google button disabled initially)
     document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
     document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
   });
   
   async function login() {
     if(!document.getElementById('agree-check').checked) {
-        showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true);
-        return;
+        showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return;
     }
     document.getElementById('btn-login-text').innerHTML = '...'; 
     const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/' } });
