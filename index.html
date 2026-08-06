@@ -36,12 +36,12 @@
     
     .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); flex-grow: 1;}
     .terms-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); }
-    .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); }
+    .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); flex-shrink: 0; }
     .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
     
     .auth-btn { display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
     .auth-btn:active { background: #f1f5f9; transform: scale(0.98); }
-    .auth-btn img, .auth-btn i { width: 24px; font-size: 20px; margin-right: 12px; font-style: normal; display: flex; justify-content: center; align-items: center;}
+    .auth-btn img { width: 24px; margin-right: 12px; }
     
     #main-app { display: none; padding-bottom: 90px; }
     
@@ -92,8 +92,8 @@
     
     .menu-user-profile { padding: 30px 24px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); }
     .menu-avatar { width: 56px; height: 56px; background: var(--primary); color: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; margin-bottom: 16px; }
-    .menu-user-profile h3 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-    .menu-user-profile p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .menu-user-profile h3 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; word-break: break-all;}
+    .menu-user-profile p { font-size: 13px; color: var(--text-muted); font-weight: 500; word-break: break-all;}
     
     .menu-group-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 24px 24px 8px; }
     .side-menu-item { padding: 14px 24px; display: flex; align-items: center; gap: 16px; color: var(--text-main); font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
@@ -116,7 +116,7 @@
     .prof-row { margin-bottom: 16px; }
     .prof-row:last-child { margin-bottom: 0; }
     .prof-row span { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 500;}
-    .prof-row strong { font-size: 15px; color: var(--text-main); font-weight: 700; }
+    .prof-row strong { font-size: 15px; color: var(--text-main); font-weight: 700; word-break: break-all; }
     
     select.input-field { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
     
@@ -137,9 +137,9 @@
     .btn-primary:active { transform: scale(0.98); }
     .btn-secondary { background: #f1f5f9; color: var(--text-main); border: none; padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     
-    /* TOAST */
-    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 24px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 1000; box-shadow: var(--shadow-md); transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; display: flex; align-items: center; gap: 8px; }
-    #toast.error { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; } 
+    /* TOAST (SIAM THAT LAAI) */
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; box-shadow: var(--shadow-md); transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-width: 85%; width: max-content; text-align: center; line-height: 1.4; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    #toast.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; } 
     #toast.error i { font-style: normal; }
     
     /* Inputs */
@@ -182,15 +182,7 @@
         <span id="btn-login-text">Continue with Google</span>
       </button>
       
-      <button class="auth-btn btn-apple" onclick="showToast(translations[currentLang].wip_feature, true)">
-        <i style="color: black;">🍎</i>
-        <span>Continue with Apple</span>
-      </button>
-
-      <button class="auth-btn btn-email" onclick="showToast(translations[currentLang].wip_feature, true)">
-        <i style="color: gray;">✉️</i>
-        <span>Continue with Email</span>
-      </button>
+      <!-- Apple leh Email Login thup (hide) rih a ni -->
     </div>
   </div>
 
@@ -335,7 +327,7 @@
         <div id="payment-edit-section" style="margin-top: 16px;">
           <select id="pay-type-select" class="input-field" onchange="changePayTypeUI()">
             <option value="upi">UPI (GPay/PhonePe/Paytm)</option>
-            <option value="bank">Bank Transfer (A/C & IFSC)</option>
+            <option value="bank">Bank Transfer (Account & IFSC)</option>
             <option value="paypal">PayPal Email</option>
           </select>
           
@@ -344,8 +336,8 @@
           </div>
           
           <div id="input-bank-wrap" style="display: none;">
-            <input type="number" id="pay-input-acc" class="input-field" placeholder="Account Number">
-            <input type="text" id="pay-input-ifsc" class="input-field" placeholder="IFSC Code">
+            <input type="number" id="pay-input-acc" class="input-field" placeholder="Account Number (e.g. 30123456789)">
+            <input type="text" id="pay-input-ifsc" class="input-field" placeholder="IFSC Code (e.g. SBIN0001234)">
           </div>
           
           <div id="input-paypal-wrap" style="display: none;">
@@ -860,12 +852,13 @@
   function openActionModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
   function closeActionModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
 
-  // --- PAYMENT METHOD UI LOGIC ---
+  // --- PAYMENT METHOD UI LOGIC (UPDATED) ---
   function changePayTypeUI() {
     const type = document.getElementById('pay-type-select').value;
     document.getElementById('input-upi-wrap').style.display = 'none';
     document.getElementById('input-bank-wrap').style.display = 'none';
     document.getElementById('input-paypal-wrap').style.display = 'none';
+    
     if(type === 'upi') document.getElementById('input-upi-wrap').style.display = 'block';
     if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
     if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
@@ -938,7 +931,7 @@
           let parts = userPayInfo.split('::');
           if(parts[0] === 'upi') { displayType = "UPI ID"; displayValue = parts[1]; }
           if(parts[0] === 'paypal') { displayType = "PayPal Email"; displayValue = parts[1]; }
-          if(parts[0] === 'bank') { displayType = "Bank Transfer"; displayValue = parts[1].replace('|', '  - IFSC: '); }
+          if(parts[0] === 'bank') { displayType = "Bank Account"; displayValue = parts[1].replace('|', '\nIFSC: '); }
       }
       document.getElementById('display-pay-type').innerText = displayType;
       document.getElementById('prof-pay-id').innerText = displayValue;
@@ -970,7 +963,7 @@
     } else if(type === 'bank') {
         const acc = document.getElementById('pay-input-acc').value.trim();
         const ifsc = document.getElementById('pay-input-ifsc').value.trim();
-        if(!acc || !ifsc) { showToast("Account No. leh IFSC chhu lut rawh", true); return; }
+        if(!acc || !ifsc) { showToast("Account Number leh IFSC chhu lut rawh", true); return; }
         saveString = `bank::A/C ${acc} | ${ifsc}`;
     }
     
@@ -1021,30 +1014,23 @@
     const toast = document.getElementById('toast'); 
     toast.innerHTML = isError ? `<i>⚠️</i> ${message}` : `<i>✅</i> ${message}`;
     if(isError) toast.classList.add('error'); else toast.classList.remove('error');
-    toast.style.top = '20px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
+    toast.style.top = '40px'; 
+    setTimeout(() => { toast.style.top = '-100px'; }, 3500);
   }
 
-  // --- SECURITY: SERVER (RPC) CALLS HACK-PROOF ---
+  // --- SECURITY: SERVER (RPC) CALLS ---
   async function requestDailyFromServer() {
     if (!currentUserId) return;
     
-    // Server kan va dil dawn (Frontend/HTML in pawisa a pe tawh lo!)
     const { data, error } = await supabaseClient.rpc('claim_daily_reward');
     
-    if (error) {
-      showToast("Error: " + error.message, true);
-      return;
-    }
+    if (error) { showToast("Error: " + error.message, true); return; }
     
     if (data && data.success) {
-       // Server in a lo phalsak (Approved)
        userCoins = data.new_balance;
        lastDailyCheck = new Date().toISOString(); 
-       updateBalanceUI(); 
-       checkClaimedUI(); 
-       showToast(data.message);
+       updateBalanceUI(); checkClaimedUI(); showToast(data.message);
     } else {
-       // Server in a dang chat (Rejected - Task la ti lo, emaw claim tawh)
        showToast(data.message, true);
     }
   }
@@ -1054,7 +1040,6 @@
     const btn = document.getElementById('spin-btn');
     btn.disabled = true; btn.innerText = "..."; btn.style.opacity = '0.5';
 
-    // Server ah Spin result kan dil dawn
     const { data, error } = await supabaseClient.rpc('claim_spin_reward');
     
     if (error) {
@@ -1064,15 +1049,12 @@
     }
     
     if (data && data.success) {
-       // Server in Spin a pawm a, random coin a rawn pe chhuak
-       userCoins = data.new_balance; 
-       lastSpinDate = new Date().toISOString(); 
+       userCoins = data.new_balance; lastSpinDate = new Date().toISOString(); 
        updateBalanceUI(); 
        document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
        showToast(data.message); 
        btn.innerText = translations[currentLang].spin_today_done;
     } else {
-       // Server in a dang chat
        showToast(data.message, true);
        btn.disabled = false; btn.innerText = translations[currentLang].spin_btn; btn.style.opacity = '1';
     }
@@ -1103,7 +1085,10 @@
         document.getElementById('wd-no-pay').style.display = 'none';
         document.getElementById('wd-has-pay').style.display = 'block';
         let displayValue = userPayInfo;
-        if(userPayInfo.includes('::')) displayValue = userPayInfo.split('::')[1];
+        if(userPayInfo.includes('::')) {
+            let parts = userPayInfo.split('::');
+            displayValue = parts[0] === 'bank' ? parts[1].replace('|', 'IFSC:') : parts[1];
+        }
         document.getElementById('wd-display-pay').innerText = displayValue;
       } else {
         document.getElementById('wd-no-pay').style.display = 'block';
