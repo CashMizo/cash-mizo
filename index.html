@@ -213,7 +213,6 @@
       </div>
 
       <div class="grid-actions">
-        <!-- Buttons are ALWAYS locked visually until server unlocks them -->
         <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
           <div class="icon-box ic-daily">📅</div>
           <div>
@@ -469,7 +468,6 @@
     </div>
   </div>
 
-
   <!-- ACTION MODALS (Popups) -->
   <div id="spin-modal" class="action-modal-overlay">
     <div class="action-modal-content">
@@ -536,10 +534,11 @@
 
 </div>
 
+<!-- SUPABASE LEH JAVASCRIPT THLUAK TANGKAWN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // --- TRANSLATION DICTIONARY ---
+  // TRANSLATION DICTIONARY
   const translations = {
     mizo: {
       success: "Hlawhtling!",
@@ -872,8 +871,6 @@
     if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
   }
 
-  // ------------------------------------
-
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
@@ -901,13 +898,14 @@
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id').eq('id', currentUserId).single();
+      const { data, error } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id, total_tasks_completed').eq('id', currentUserId).single();
       
       if (data) {
         userCoins = data.coins || 0; 
         lastDailyCheck = data.last_daily_check; 
         lastSpinDate = data.last_spin_date;
         userPayInfo = data.upi_id; 
+        hasCompletedTaskToday = (data.total_tasks_completed > 0);
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]);
         userCoins = 0;
@@ -1019,32 +1017,6 @@
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   }
 
-  // --- SECURITY: SERVER (EDGE FUNCTION) CALLS ---
-  // Heta atang hian pawisa kan pe tawh dawn lo. Server kan dil tawh ang.
-  async function requestDailyFromServer() {
-    if (!currentUserId) return;
-    const today = new Date().toDateString();
-    let lastCheckStr = lastDailyCheck ? new Date(lastDailyCheck).toDateString() : "";
-    if (lastCheckStr === today) { return; }
-
-    /* SECURITY IMPLEMENTATION:
-       Tunah chuan Demo a nih avangin ka la comment rih ang. Edge function kan peih velah, 
-       a hnuaia code hi kan on anga, HTML ami pawisa inpek hi kan paih ang. */
-       
-    // const { data, error } = await supabaseClient.functions.invoke('claim-daily', { body: { userId: currentUserId } });
-    // if (error) { showToast("Error: " + error.message, true); return; }
-    // if (data.success) {
-    //    userCoins = data.newBalance; lastDailyCheck = data.timestamp;
-    //    updateBalanceUI(); checkClaimedUI(); showToast(`+50 Coins!`);
-    // }
-    
-    // DEMO FALLBACK (Will remove after Edge Function is active)
-    userCoins += 50; lastDailyCheck = new Date().toISOString(); 
-    updateBalanceUI(); document.getElementById('txt-daily').innerText = translations[currentLang].claimed;
-    showToast(`+50 Coins!`);
-    await supabaseClient.from('user_profiles').update({ coins: userCoins, last_daily_check: lastDailyCheck }).eq('id', currentUserId);
-  }
-
   function showToast(message, isError = false) {
     const toast = document.getElementById('toast'); 
     toast.innerHTML = isError ? `<i>⚠️</i> ${message}` : `<i>✅</i> ${message}`;
@@ -1052,24 +1024,58 @@
     toast.style.top = '20px'; setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
 
+  // --- SECURITY: SERVER (RPC) CALLS HACK-PROOF ---
+  async function requestDailyFromServer() {
+    if (!currentUserId) return;
+    
+    // Server kan va dil dawn (Frontend/HTML in pawisa a pe tawh lo!)
+    const { data, error } = await supabaseClient.rpc('claim_daily_reward');
+    
+    if (error) {
+      showToast("Error: " + error.message, true);
+      return;
+    }
+    
+    if (data && data.success) {
+       // Server in a lo phalsak (Approved)
+       userCoins = data.new_balance;
+       lastDailyCheck = new Date().toISOString(); 
+       updateBalanceUI(); 
+       checkClaimedUI(); 
+       showToast(data.message);
+    } else {
+       // Server in a dang chat (Rejected - Task la ti lo, emaw claim tawh)
+       showToast(data.message, true);
+    }
+  }
+
   async function requestSpinFromServer() {
     if (!currentUserId) return;
     const btn = document.getElementById('spin-btn');
     btn.disabled = true; btn.innerText = "..."; btn.style.opacity = '0.5';
 
-    /* SECURITY IMPLEMENTATION:
-       Edge function kan siam hunah, Server in random in pawisa a rawn pe anga HTML in a lo dawng chauh ang. */
-       
-    // const { data, error } = await supabaseClient.functions.invoke('claim-spin', { body: { userId: currentUserId } });
-    // if (error) { ... }
+    // Server ah Spin result kan dil dawn
+    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
     
-    // DEMO FALLBACK
-    setTimeout(async () => {
-      userCoins += 10; lastSpinDate = new Date().toISOString(); 
-      updateBalanceUI(); document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
-      showToast(`+10 Coins!`); btn.innerText = translations[currentLang].spin_today_done;
-      await supabaseClient.from('user_profiles').update({ coins: userCoins, last_spin_date: lastSpinDate }).eq('id', currentUserId);
-    }, 1500);
+    if (error) {
+      showToast("Error: " + error.message, true);
+      btn.disabled = false; btn.innerText = translations[currentLang].spin_btn; btn.style.opacity = '1';
+      return;
+    }
+    
+    if (data && data.success) {
+       // Server in Spin a pawm a, random coin a rawn pe chhuak
+       userCoins = data.new_balance; 
+       lastSpinDate = new Date().toISOString(); 
+       updateBalanceUI(); 
+       document.getElementById('txt-spin').innerText = translations[currentLang].spinned;
+       showToast(data.message); 
+       btn.innerText = translations[currentLang].spin_today_done;
+    } else {
+       // Server in a dang chat
+       showToast(data.message, true);
+       btn.disabled = false; btn.innerText = translations[currentLang].spin_btn; btn.style.opacity = '1';
+    }
   }
   
   async function openLeaderboard() {
