@@ -268,7 +268,8 @@
     <div class="side-menu-item" onclick="openPage('info-page')">
       <i>💡</i> <span data-i18n="how_it_works">How it works</span>
     </div>
-    <div class="side-menu-item" onclick="openPage('terms-page')">
+    <!-- TERMS LINK THAR (terms.html ah a lut nghal ang) -->
+    <div class="side-menu-item" onclick="window.location.href='terms.html'">
       <i>📜</i> <span data-i18n="terms">Terms & Privacy</span>
     </div>
     
@@ -371,45 +372,6 @@
           <li data-i18n="doc_how_l5">You must link a valid Payment Method (UPI, Bank Account, or PayPal) in your Profile settings before withdrawing.</li>
           <li data-i18n="doc_how_l6">All withdrawal requests are manually reviewed for security purposes and are typically processed within 3 to 7 business days.</li>
         </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- FULLSCREEN PAGE: TERMS -->
-  <div id="terms-page" class="fs-page">
-    <div class="fs-header">
-      <div class="back-btn" onclick="closePage('terms-page')">←</div>
-      <h3 data-i18n="terms">Terms & Privacy</h3>
-      <div style="width: 40px;"></div>
-    </div>
-    <div class="fs-content">
-      <div class="doc-box">
-        <h2 data-i18n="doc_term_title">Terms of Service & Privacy Policy</h2>
-        <p data-i18n="doc_term_desc">By accessing, registering, or using CASH-MIZO, you agree to be bound by these legally binding Terms of Service.</p>
-        
-        <h4 data-i18n="doc_term_h1">1. Account Registration & Eligibility</h4>
-        <ul>
-          <li data-i18n="doc_term_l1">Users must register using a valid, authentic Google Account.</li>
-          <li data-i18n="doc_term_l2"><strong>Strict One Account Rule:</strong> You are strictly permitted to create and maintain only ONE (1) account per person, per household, and per physical device. Creating multiple accounts will result in a permanent ban.</li>
-        </ul>
-        
-        <h4 data-i18n="doc_term_h2">2. Strict Anti-Fraud Policy</h4>
-        <p data-i18n="doc_term_p1">Our platform employs advanced, automated security tracking to ensure fair play. The following activities are strictly prohibited:</p>
-        <ul>
-          <li data-i18n="doc_term_l3">Using Virtual Private Networks (VPNs), Proxies, or Tor nodes to mask or alter your real location.</li>
-          <li data-i18n="doc_term_l4">Using Emulators (e.g., Bluestacks, Nox) or Virtual Machines.</li>
-          <li data-i18n="doc_term_l5">Employing Auto-clickers, macros, bots, or any automation software.</li>
-        </ul>
-        <p data-i18n="doc_term_p2">Violation of these rules will trigger our fraud-detection systems, resulting in immediate account termination and forfeiture of all accumulated earnings.</p>
-        
-        <h4 data-i18n="doc_term_h3">3. Earnings & Third-Party Offerwalls</h4>
-        <ul>
-          <li data-i18n="doc_term_l6">All tasks and surveys are provided by independent third-party partners.</li>
-          <li data-i18n="doc_term_l7">Coins are only credited to your account after the third-party partner successfully verifies and approves the completion. CASH-MIZO is not responsible for rejected or pending tasks.</li>
-        </ul>
-        
-        <h4 data-i18n="doc_term_h4">4. Privacy & Data Security</h4>
-        <p data-i18n="doc_term_p3">Your privacy is our priority. We collect minimal necessary data (Google Name, Email, and internal User ID) solely to maintain your Coin balance and process your payments. We do not sell or rent your personal data to any third parties. All data is highly secured.</p>
       </div>
     </div>
   </div>
@@ -533,7 +495,7 @@
       hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.",
       hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.",
       join_free: "Create Account",
-      agree_terms: "Terms of Service leh Privacy Policy ka pawm e.",
+      agree_terms: "<a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>Terms of Service leh Privacy Policy</a> ka pawm e.",
       wip_feature: "He feature hi siam mek a ni. Google hmang rih rawh.",
       earn_money: "PAWISA HLAWHNA",
       your_balance: "Total Balance",
@@ -572,22 +534,6 @@
       doc_how_l5: "I profile ah Payment Method (UPI, Bank, emaw PayPal) i save hmasak a ngai.",
       doc_how_l6: "Withdraw i dil aṭangin ni 3 aṭanga 7 chhungin i account ah pawisa a rawn lut ang.",
       terms: "Dan Leh Hrai",
-      doc_term_title: "Terms of Service & Privacy Policy",
-      doc_term_desc: "CASH-MIZO app i hman hian heng dan te hi i zawm tur a ni.",
-      doc_term_h1: "1. Account Registration",
-      doc_term_l1: "Google Account dik tak hman tur a ni.",
-      doc_term_l2: "One Account Rule: Phone pakhat leh mi pakhat atan account pakhat chauh siam phal a ni. Account siam teuh chu ban (hnawhchhuah) nghal a ni ang.",
-      doc_term_h2: "2. Anti-Fraud Policy",
-      doc_term_p1: "Kan system hian uluk takin a vil reng a, heng te hi khap tlat a ni:",
-      doc_term_l3: "VPN emaw Proxy hman phal a ni lo.",
-      doc_term_l4: "Emulator (Bluestacks) hman phal a ni lo.",
-      doc_term_l5: "Auto-clicker emaw Bot hman phal a ni lo.",
-      doc_term_p2: "Heng dan bawhchhia te chu an pawisa hlawhsa zawng zawng chhuhsak leh hnawhchhuah nghal an ni ang.",
-      doc_term_h3: "3. Earnings & Offerwalls",
-      doc_term_l6: "Task zawng zawng hi third-party (Partner) te rawn chhawpchhuah a ni.",
-      doc_term_l7: "Partner ten task i ti ṭha tih an pawm (approve) hunah chauh Coins a lut ang.",
-      doc_term_h4: "4. Privacy",
-      doc_term_p3: "I mimal data (Email, Hming) te hi app tihnun nan chauha hman a ni a, tuman an hmu ve thei lo. Uluk taka venhim a ni.",
       contact: "AI Support & Contact",
       ai_title: "CASH-MIZO AI Assistant",
       ai_desc: "App hman dan, pawisa lakchhuah dan leh harsatna i neih chu AI hnenah hian zawt rawh. 24/7 inpeih reng a ni.",
@@ -626,7 +572,7 @@
       hero_title: "Earn real money.\nSecure & Fast.",
       hero_desc: "Join thousands of youths earning from their smartphones everyday.",
       join_free: "Create Account",
-      agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
+      agree_terms: "I have read and agree to the <a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>Terms of Service and Privacy Policy</a>.",
       wip_feature: "This feature is WIP. Please use Google Login.",
       earn_money: "EARN MONEY",
       your_balance: "Total Balance",
@@ -665,22 +611,6 @@
       doc_how_l5: "You must link a valid Payment Method (UPI, Bank Account, or PayPal).",
       doc_how_l6: "Withdrawals are processed within 3 to 7 business days.",
       terms: "Terms & Privacy",
-      doc_term_title: "Terms of Service & Privacy Policy",
-      doc_term_desc: "By accessing CASH-MIZO, you agree to these Terms of Service.",
-      doc_term_h1: "1. Account Registration",
-      doc_term_l1: "Users must register using a valid Google Account.",
-      doc_term_l2: "One Account Rule: Strictly ONE (1) account per person and device.",
-      doc_term_h2: "2. Strict Anti-Fraud Policy",
-      doc_term_p1: "The following activities are strictly prohibited:",
-      doc_term_l3: "Using VPNs or Proxies.",
-      doc_term_l4: "Using Emulators or Virtual Machines.",
-      doc_term_l5: "Using Auto-clickers or bots.",
-      doc_term_p2: "Violation results in immediate account termination.",
-      doc_term_h3: "3. Earnings",
-      doc_term_l6: "Tasks are provided by independent third-party partners.",
-      doc_term_l7: "Coins are credited only after partner verification.",
-      doc_term_h4: "4. Privacy",
-      doc_term_p3: "We collect minimal data (Name, Email) to process payments. All data is highly secured.",
       contact: "AI Support & Contact",
       ai_title: "CASH-MIZO AI Assistant",
       ai_desc: "Get instant answers about tasks, withdrawals, and rules. 24/7.",
@@ -719,7 +649,7 @@
       hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।",
       hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।",
       join_free: "अकाउंट बनाएं",
-      agree_terms: "मैंने नियम व शर्तें और गोपनीयता नीति पढ़ ली है और सहमत हूँ।",
+      agree_terms: "मैंने <a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>नियम व शर्तें और गोपनीयता नीति</a> पढ़ ली है और सहमत हूँ।",
       wip_feature: "यह सुविधा अभी उपलब्ध नहीं है। Google का उपयोग करें।",
       earn_money: "पैसे कमाएं",
       your_balance: "कुल बैलेंस",
@@ -758,22 +688,6 @@
       doc_how_l5: "पहले पेमेंट मेथड (UPI, Bank, PayPal) लिंक करें।",
       doc_how_l6: "पैसे 3 से 7 दिनों में अकाउंट में आ जाएंगे।",
       terms: "नियम और गोपनीयता",
-      doc_term_title: "नियम और शर्तें",
-      doc_term_desc: "CASH-MIZO का उपयोग करने पर आप इन नियमों से सहमत होते हैं।",
-      doc_term_h1: "1. अकाउंट",
-      doc_term_l1: "Google Account होना अनिवार्य है।",
-      doc_term_l2: "सिर्फ एक अकाउंट: एक व्यक्ति एक ही अकाउंट बना सकता है।",
-      doc_term_h2: "2. धोखाधड़ी नीति",
-      doc_term_p1: "ये चीजें सख्त मना हैं:",
-      doc_term_l3: "VPN या Proxy का उपयोग।",
-      doc_term_l4: "एमुलेटर (Emulator) का उपयोग।",
-      doc_term_l5: "ऑटो-क्लिकर (Auto-clicker) का उपयोग।",
-      doc_term_p2: "नियम तोड़ने पर अकाउंट हमेशा के लिए बंद कर दिया जाएगा।",
-      doc_term_h3: "3. कमाई",
-      doc_term_l6: "टास्क थर्ड-पार्टी द्वारा दिए जाते हैं।",
-      doc_term_l7: "उनके अप्रूव करने के बाद ही Coins मिलेंगे।",
-      doc_term_h4: "4. गोपनीयता",
-      doc_term_p3: "आपका डेटा पूरी तरह सुरक्षित है और किसी को बेचा नहीं जाता।",
       contact: "AI सपोर्ट और संपर्क",
       ai_title: "CASH-MIZO AI असिस्टेंट",
       ai_desc: "किसी भी सवाल का तुरंत जवाब पाएं। 24/7 उपलब्ध।",
@@ -817,8 +731,7 @@
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       if (translations[lang][key]) {
-        if(key === 'hero_title') element.innerHTML = translations[lang][key].replace('\n', '<br>');
-        else element.innerText = translations[lang][key];
+        element.innerHTML = translations[lang][key].replace('\n', '<br>');
       }
     });
     
