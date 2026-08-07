@@ -24,12 +24,7 @@
 
     /* DARK MODE VARIABLES */
     body.dark-mode {
-      --bg-main: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-      --primary-light: #312e81;
+      --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border-color: #334155; --primary-light: #312e81;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
@@ -53,7 +48,7 @@
     .auth-btn:active { transform: scale(0.98); }
     .auth-btn img { width: 24px; margin-right: 12px; }
     
-    #main-app { display: none; padding-bottom: 80px; } /* Space for bottom nav */
+    #main-app { display: none; padding-bottom: 80px; }
     
     /* HEADER */
     .header { background: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; box-shadow: var(--shadow-sm);}
@@ -61,7 +56,7 @@
     .header-icons { display: flex; align-items: center; gap: 12px; }
     .h-icon { font-size: 20px; cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative;}
     .h-badge { position: absolute; top: -2px; right: -2px; background: #ef4444; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
-    .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; }
+    .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
     
     /* BOTTOM NAVIGATION */
     .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 420px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
@@ -99,17 +94,17 @@
     .grid-card h4 { font-size: 14px; font-weight: 700; color: var(--text-main); }
     .grid-card p { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-    .promo-box { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 16px; padding: 8px; display: flex; align-items: center; }
-    .promo-box input { flex-grow: 1; border: none; background: transparent; padding: 10px 16px; font-size: 14px; font-weight: 600; outline: none; color: var(--text-main); }
-    .promo-box button { background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+    /* Promo Box Fixes */
+    .section-title { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; margin-top: 8px;}
+    .promo-box { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 16px; padding: 8px; display: flex; align-items: center; gap: 8px; }
+    .promo-box input { flex: 1; min-width: 0; border: none; background: transparent; padding: 10px 12px; font-size: 14px; font-weight: 600; outline: none; color: var(--text-main); }
+    .promo-box button { background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
 
     /* --- EARN TAB (SURVEYS) --- */
-    .section-title { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; margin-top: 8px;}
     .survey-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
     .sv-left h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
     .sv-left p { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 4px;}
     .sv-right button { background: var(--primary-light); color: var(--primary); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
-
     .offer-banner { background: linear-gradient(45deg, #10b981, #059669); border-radius: 16px; padding: 24px; color: white; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
     .offer-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
     
@@ -125,7 +120,7 @@
     .list-menu-item { background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-main); cursor: pointer; }
     .list-menu-item i { color: var(--text-muted); font-size: 18px; }
 
-    /* MODALS & FULLSCREEN PAGES (Re-used) */
+    /* MODALS & FULLSCREEN PAGES */
     .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow-y: auto; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
@@ -137,6 +132,13 @@
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
     .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; }
     .btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
+
+    /* PAYMENT LOGO GRID */
+    .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .pay-logo-card { background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px 8px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .pay-logo-card.active { border-color: var(--primary); background: var(--primary-light); }
+    .pay-logo-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 8px; }
+    .pay-logo-card span { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); }
 
     /* TOAST */
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; transition: 0.4s; }
@@ -190,7 +192,7 @@
         <div class="h-icon" onclick="toggleInbox()" title="Inbox">
           🔔<div class="h-badge"></div>
         </div>
-        <div class="balance-pill"><span id="header-balance">0</span> C</div>
+        <div class="balance-pill">🪙 <span id="header-balance">0</span></div>
       </div>
     </div>
 
@@ -355,7 +357,8 @@
       </div>
 
       <div class="menu-group-title" data-i18n="m_info">Legal</div>
-      <div class="list-menu-item" onclick="window.location.href='terms.html'">
+      <!-- UPDATE: Terms page hi app chhung fullscreen ah ka la let leh ta e -->
+      <div class="list-menu-item" onclick="openPage('terms-page')">
         <span data-i18n="terms">Terms, Privacy & Dos/Don'ts</span> <i>›</i>
       </div>
 
@@ -441,7 +444,7 @@
     </div>
   </div>
 
-  <!-- PROFILE & WITHDRAW PAGE -->
+  <!-- PROFILE & WITHDRAW PAGE (UPDATED PAYMENT LOGOS) -->
   <div id="profile-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('profile-page')">←</div>
@@ -470,27 +473,46 @@
         </div>
       </div>
 
-      <!-- Payment Settings -->
+      <!-- Payment Settings with Logos -->
       <div class="doc-box" style="margin-bottom: 24px;">
         <h4 data-i18n="payment_method" style="margin-bottom: 16px;">Payment Method</h4>
+        
+        <!-- Display Saved Payment -->
         <div id="payment-display-section" style="display: none; background: var(--bg-main); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px;">
           <span style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" id="display-pay-type">UPI ID</span>
           <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px; word-break: break-all;">Not linked</strong>
         </div>
         <button id="btn-change-pay" class="btn-secondary" onclick="togglePaymentEdit()" data-i18n="change_payment">Set Payment Method</button>
 
+        <!-- Edit Payment (Logos + Inputs) -->
         <div id="payment-edit-section" style="display: none; margin-top: 16px;">
-          <select id="pay-type-select" class="input-field" style="appearance: auto;" onchange="changePayTypeUI()">
-            <option value="upi">UPI (GPay/PhonePe/Paytm)</option>
-            <option value="bank">Bank Transfer (Account & IFSC)</option>
-            <option value="paypal">PayPal Email</option>
-          </select>
-          <div id="input-upi-wrap"><input type="text" id="pay-input-upi" class="input-field" placeholder="Enter UPI ID"></div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" data-i18n="select_pay_logo">Select your preferred option:</p>
+          
+          <div class="pay-grid">
+            <div class="pay-logo-card active" id="btn-pay-upi" onclick="selectPayType('upi')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI">
+              <span>UPI</span>
+            </div>
+            <div class="pay-logo-card" id="btn-pay-bank" onclick="selectPayType('bank')">
+              <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Bank" style="filter: grayscale(100%); opacity: 0.7;">
+              <span>Bank</span>
+            </div>
+            <div class="pay-logo-card" id="btn-pay-paypal" onclick="selectPayType('paypal')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+              <span>PayPal</span>
+            </div>
+          </div>
+          
+          <!-- Hidden input to store selected type -->
+          <input type="hidden" id="pay-type-select" value="upi">
+
+          <div id="input-upi-wrap"><input type="text" id="pay-input-upi" class="input-field" placeholder="Enter UPI ID (e.g. 9876543210@ybl)"></div>
           <div id="input-bank-wrap" style="display: none;">
             <input type="number" id="pay-input-acc" class="input-field" placeholder="Account Number">
             <input type="text" id="pay-input-ifsc" class="input-field" placeholder="IFSC Code">
           </div>
           <div id="input-paypal-wrap" style="display: none;"><input type="email" id="pay-input-paypal" class="input-field" placeholder="PayPal Email Address"></div>
+          
           <button class="btn-primary" onclick="savePaymentInfo()" data-i18n="save">Save Details</button>
         </div>
       </div>
@@ -558,6 +580,39 @@
     </div>
   </div>
 
+  <!-- TERMS & PRIVACY PAGE (Translates inside app) -->
+  <div id="terms-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('terms-page')">←</div>
+      <h3 data-i18n="terms">Terms, Privacy & Dos/Don'ts</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <h2 data-i18n="doc_term_title">Terms of Service & Privacy Policy</h2>
+        <p data-i18n="doc_term_desc" style="margin-bottom: 16px;">By accessing CASH-MIZO, you agree to these rules.</p>
+        
+        <h4 data-i18n="doc_term_h1">1. Account Registration</h4>
+        <ul style="padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px;">
+          <li data-i18n="doc_term_l1">Users must register using a valid Google Account.</li>
+          <li data-i18n="doc_term_l2">One Account Rule: Strictly ONE account per person and device.</li>
+        </ul>
+        
+        <h4 data-i18n="doc_term_h2">2. Strict Anti-Fraud Policy</h4>
+        <p data-i18n="doc_term_p1" style="font-size: 14px; color: var(--text-muted);">The following activities are strictly prohibited:</p>
+        <ul style="padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px;">
+          <li data-i18n="doc_term_l3">Using VPNs or Proxies.</li>
+          <li data-i18n="doc_term_l4">Using Emulators or Virtual Machines.</li>
+          <li data-i18n="doc_term_l5">Using Auto-clickers or bots.</li>
+        </ul>
+        <p data-i18n="doc_term_p2" style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Violation results in immediate account termination.</p>
+        
+        <h4 data-i18n="doc_term_h4">3. Privacy</h4>
+        <p data-i18n="doc_term_p3" style="font-size: 14px; color: var(--text-muted);">We collect minimal data (Name, Email) to process payments. All data is highly secured.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- LANGUAGE PAGE -->
   <div id="lang-page" class="fs-page">
     <div class="fs-header">
@@ -574,7 +629,6 @@
     </div>
   </div>
 
-
 </div> <!-- END APP CONTAINER -->
 
 <!-- SUPABASE LEH JAVASCRIPT -->
@@ -588,7 +642,7 @@
       hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.",
       hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.",
       join_free: "Create Account",
-      agree_terms: "<a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>Terms of Service and Privacy Policy</a> ka pawm e.",
+      agree_terms: "Terms of Service leh Privacy Policy ka pawm e.",
       wip_feature: "He feature hi siam mek a ni.",
       nav_home: "Home", nav_earn: "Earn", nav_shop: "Shop", nav_more: "More",
       your_balance: "Total Balance",
@@ -607,16 +661,17 @@
       accessibility: "Accessibility", color_adj: "Rawng Thlakna", dark_mode: "Dark Mode", content_adj: "Hawrawp Thlakna", font_sizing: "Hawrawp Len Zawng",
       customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", care_desc: "Darkar 24-48 chhungin kan rawn chhang ang che.",
       submit_ticket: "Ticket Thehluhna", select_issue: "Harsatna thlang rawh...", issue_missing: "Coin a lut lo", issue_wd: "Withdrawal Harsatna", issue_acc: "Account Harsatna", issue_other: "A dang", explain_issue: "I harsatna chipchiar takin sawi rawh...", send_ticket: "Thawnna",
-      payment_method: "Payment Method", change_payment: "Payment Dahna / Thlakna", save: "Save Details",
-      wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.", wd_no_pay_msg: "Payment Method i la thlang lo!", wd_send_to: "Heta hian pawisa chu thawn a ni ang:",
+      payment_method: "Payment Method", change_payment: "Payment Dahna / Thlakna", select_pay_logo: "I hman duh ber thlang rawh:", save: "Save Details",
+      wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.", wd_no_pay_msg: "Payment Method i la thlang lo! Hnuai ah hian set rawh.", wd_send_to: "Heta hian pawisa chu thawn a ni ang:",
       refer_title: "Refer & Earn", refer_desc: "I ṭhiante sawm lut la, an pawisa hlawh chhuah aṭangin ", refer_desc_2: " hlawh ve zel rawh!", share_wa: "WhatsApp ah Thawn rawh",
       lb_title: "Top 10 Leaderboard", lb_desc: "Coin ngah ber ber te list",
       doc_how_title: "CASH-MIZO ah lo lawm le", doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.", doc_how_h1: "1. Coins Hlawh chhuah dan", doc_how_l1: "Premium Tasks: Survey chhan, App download.", doc_how_l2: "Daily Claim & Lucky Spin: Nitin thlawnin claim rawh.", doc_how_l3: "Referral: 10% commission i hlawh zel ang.", doc_how_h2: "2. Pawisa Lakchhuah", doc_how_l4: "Coins 5,000 i tlin veleh Withdraw thei.", doc_how_l5: "Payment Method (UPI/Bank/PayPal) save hmasa rawh.",
+      doc_term_title: "Terms of Service & Privacy Policy", doc_term_desc: "CASH-MIZO app i hman hian heng dan te hi i zawm tur a ni.", doc_term_h1: "1. Account Registration", doc_term_l1: "Google Account dik tak hman tur a ni.", doc_term_l2: "One Account Rule: Phone pakhat atan account pakhat chauh siam phal a ni.", doc_term_h2: "2. Anti-Fraud Policy", doc_term_p1: "Heng te hi khap tlat a ni:", doc_term_l3: "VPN emaw Proxy hman.", doc_term_l4: "Emulator hman.", doc_term_l5: "Auto-clicker hman.", doc_term_p2: "Heng dan bawhchhia te chu hnawhchhuah nghal an ni ang.", doc_term_h4: "3. Privacy", doc_term_p3: "I mimal data te hi uluk taka venhim a ni.",
       inbox: "Inbox", msg_welcome_title: "CASH-MIZO ah lo lawm le!", msg_welcome_desc: "Task thawk la, pawisa tak tak hlawh chhuak rawh le.",
       claimed: "Lak tawh ✅", spinned: "Spin tawh ✅", lock_msg: "Task 1 tal tih zawh hmasak a ngai! 🔒", spin_today_done: "Vawiin ah i Spin tawh"
     },
     en: {
-      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the <a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>Terms of Service and Privacy Policy</a>.",
+      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
       wip_feature: "This feature is WIP.", nav_home: "Home", nav_earn: "Earn", nav_shop: "Shop", nav_more: "More",
       your_balance: "Total Balance", withdraw: "Withdraw Funds", daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus",
       daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends", rank: "Leaderboard",
@@ -626,14 +681,15 @@
       m_general: "Account", profile: "My Account & Payment", language: "App Language", help_center: "Help Center", missing_sb: "Missing Coins / Customer Care", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms, Privacy & Dos/Don'ts", logout: "Log Out",
       accessibility: "Accessibility", color_adj: "Color Adjustment", dark_mode: "Dark Mode / High Contrast", content_adj: "Content Adjustment", font_sizing: "Font Sizing",
       customer_care: "Customer Care", care_title: "We are here to help", care_desc: "Replies within 24-48 business hours.", submit_ticket: "Submit a Ticket", select_issue: "Select Issue...", issue_missing: "Missing Coins (Task not credited)", issue_wd: "Withdrawal Issue", issue_acc: "Account Settings", issue_other: "Other", explain_issue: "Properly Explain Issue...", send_ticket: "Send Message",
-      payment_method: "Payment Method", change_payment: "Set Payment Method", save: "Save Details", wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "You need at least 5,000 Coins to withdraw.", wd_no_pay_msg: "Payment method not linked! Please set it below.", wd_send_to: "Send to:",
+      payment_method: "Payment Method", change_payment: "Set Payment Method", select_pay_logo: "Select your preferred option:", save: "Save Details", wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "You need at least 5,000 Coins to withdraw.", wd_no_pay_msg: "Payment method not linked! Please set it below.", wd_send_to: "Send to:",
       refer_title: "Refer & Earn", refer_desc: "Invite friends and earn ", refer_desc_2: " of what they earn!", share_wa: "Share to WhatsApp", lb_title: "Top 10 Leaderboard", lb_desc: "List of top earners",
       doc_how_title: "Welcome to CASH-MIZO", doc_how_desc: "Earn real money by completing tasks.", doc_how_h1: "1. Earning Coins", doc_how_l1: "Premium Tasks: Complete surveys & offers.", doc_how_l2: "Daily Claim & Lucky Spin: Free daily rewards.", doc_how_l3: "Referral Program: 10% commission.", doc_how_h2: "2. Withdrawing", doc_how_l4: "Minimum threshold is 5,000 Coins.", doc_how_l5: "Link a valid Payment Method (UPI/Bank/PayPal).",
+      doc_term_title: "Terms of Service & Privacy Policy", doc_term_desc: "By accessing CASH-MIZO, you agree to these rules.", doc_term_h1: "1. Account Registration", doc_term_l1: "Users must register using a valid Google Account.", doc_term_l2: "One Account Rule: Strictly ONE account per person and device.", doc_term_h2: "2. Strict Anti-Fraud Policy", doc_term_p1: "The following activities are strictly prohibited:", doc_term_l3: "Using VPNs or Proxies.", doc_term_l4: "Using Emulators or Virtual Machines.", doc_term_l5: "Using Auto-clickers or bots.", doc_term_p2: "Violation results in immediate account termination.", doc_term_h4: "3. Privacy", doc_term_p3: "We collect minimal data (Name, Email) to process payments. All data is highly secured.",
       inbox: "Inbox", msg_welcome_title: "Welcome to CASH-MIZO!", msg_welcome_desc: "Explore earning opportunities, take surveys, and earn cash back.",
       claimed: "Claimed ✅", spinned: "Spun ✅", lock_msg: "You must complete at least 1 task first! 🔒", spin_today_done: "Spun today already"
     },
     hi: {
-      success: "सफल!", hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।", hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।", join_free: "अकाउंट बनाएं", agree_terms: "मैंने <a href='terms.html' target='_blank' style='color: var(--primary); text-decoration: none;'>नियम व शर्तें</a> पढ़ ली है।",
+      success: "सफल!", hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।", hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।", join_free: "अकाउंट बनाएं", agree_terms: "मैंने नियम व शर्तें पढ़ ली है।",
       wip_feature: "यह सुविधा अभी उपलब्ध नहीं है।", nav_home: "होम", nav_earn: "कमाएं", nav_shop: "शॉप", nav_more: "अधिक",
       your_balance: "कुल बैलेंस", withdraw: "पैसे निकालें", daily_goal: "डेली गोल: 100 Coins", goal_desc: "बोनस पाने के लिए आज कमाएं",
       daily_check: "डेली क्लेम", spin_wheel: "लकी स्पिन", refer: "रेफर करें", rank: "लीडरबोर्ड",
@@ -643,9 +699,10 @@
       m_general: "अकाउंट", profile: "मेरा खाता और पेमेंट", language: "ऐप की भाषा", help_center: "हेल्प सेंटर", missing_sb: "कस्टमर केयर / Missing Coins", how_it_works: "यह कैसे काम करता है", m_info: "नियम", terms: "नियम और गोपनीयता", logout: "लॉग आउट",
       accessibility: "Accessibility", color_adj: "रंग (Color)", dark_mode: "डार्क मोड", content_adj: "कंटेंट (Content)", font_sizing: "फ़ॉन्ट साइज़",
       customer_care: "कस्टमर केयर", care_title: "हम मदद के लिए यहाँ हैं", care_desc: "24-48 घंटों के भीतर जवाब।", submit_ticket: "टिकट सबमिट करें", select_issue: "समस्या चुनें...", issue_missing: "Coins नहीं मिले", issue_wd: "पैसे निकालने में समस्या", issue_acc: "अकाउंट सेटिंग", issue_other: "अन्य", explain_issue: "अपनी समस्या बताएं...", send_ticket: "मैसेज भेजें",
-      payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है!", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
+      payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", select_pay_logo: "अपना पसंदीदा विकल्प चुनें:", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है! नीचे सेट करें।", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
       refer_title: "रेफर करें और कमाएं", refer_desc: "दोस्तों को आमंत्रित करें और ", refer_desc_2: " 10% कमाएं!", share_wa: "WhatsApp पर शेयर करें", lb_title: "टॉप 10 लीडरबोर्ड", lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
       doc_how_title: "CASH-MIZO में स्वागत है", doc_how_desc: "टास्क पूरे करके पैसे कमाएं।", doc_how_h1: "1. पैसे कमाना", doc_how_l1: "प्रीमियम टास्क: सर्वे और ऑफर्स।", doc_how_l2: "डेली क्लेम और स्पिन।", doc_how_l3: "रेफरल: 10% कमीशन।", doc_how_h2: "2. पैसे निकालना", doc_how_l4: "न्यूनतम 5,000 Coins चाहिए।", doc_how_l5: "पेमेंट मेथड लिंक करें।",
+      doc_term_title: "नियम और शर्तें", doc_term_desc: "CASH-MIZO का उपयोग करने पर आप इन नियमों से सहमत होते हैं।", doc_term_h1: "1. अकाउंट", doc_term_l1: "Google Account होना अनिवार्य है।", doc_term_l2: "सिर्फ एक अकाउंट: एक व्यक्ति एक ही अकाउंट बना सकता है।", doc_term_h2: "2. धोखाधड़ी नीति", doc_term_p1: "ये चीजें सख्त मना हैं:", doc_term_l3: "VPN या Proxy का उपयोग।", doc_term_l4: "एमुलेटर का उपयोग।", doc_term_l5: "ऑटो-क्लिकर का उपयोग।", doc_term_p2: "नियम तोड़ने पर अकाउंट बंद कर दिया जाएगा।", doc_term_h4: "3. गोपनीयता", doc_term_p3: "आपका डेटा पूरी तरह सुरक्षित है।",
       inbox: "इनबॉक्स (Inbox)", msg_welcome_title: "CASH-MIZO में स्वागत है!", msg_welcome_desc: "पैसे कमाने के नए तरीके खोजें।",
       claimed: "प्राप्त किया ✅", spinned: "स्पिन किया ✅", lock_msg: "पहले कम से कम 1 टास्क पूरा करें! 🔒", spin_today_done: "आज स्पिन कर चुके हैं"
     }
@@ -712,9 +769,16 @@
     setTimeout(() => closePage('contact-page'), 1500);
   }
 
-  // --- PAYMENT METHOD UI LOGIC ---
-  function changePayTypeUI() {
-    const type = document.getElementById('pay-type-select').value;
+  // --- PAYMENT METHOD UI LOGIC (Logos) ---
+  function selectPayType(type) {
+    // UI Update
+    document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
+    document.getElementById(`btn-pay-${type}`).classList.add('active');
+    
+    // Set hidden value
+    document.getElementById('pay-type-select').value = type;
+
+    // Show correct input form
     document.getElementById('input-upi-wrap').style.display = 'none';
     document.getElementById('input-bank-wrap').style.display = 'none';
     document.getElementById('input-paypal-wrap').style.display = 'none';
@@ -762,10 +826,10 @@
     document.getElementById('current-balance').innerText = formattedCoins;
     document.getElementById('prof-balance').innerText = formattedCoins;
     
-    // Update Daily Goal Progress (Assume goal is 100 coins per day for UI demo)
+    // Update Daily Goal Progress
     let goalPercent = (userCoins / 100) * 100;
     if(goalPercent > 100) goalPercent = 100;
-    if(goalPercent === 0) goalPercent = 5; // tiny sliver visible
+    if(goalPercent === 0) goalPercent = 5; 
     document.getElementById('goal-progress').style.width = goalPercent + '%';
   }
 
@@ -822,7 +886,7 @@
   function checkLockAndRun(action) {
     if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
     if (action === 'daily') requestDailyFromServer();
-    if (action === 'spin') showToast("Spin Wheel Opening..."); // Can add modal back if needed
+    if (action === 'spin') showToast("Spin Wheel Opening..."); 
   }
 
   function checkClaimedUI() {
@@ -905,7 +969,6 @@
     document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
     document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
 
-    // Watch Balance specifically for withdraw UI logic
     const observer = new MutationObserver(() => {
         if(userCoins >= 5000) {
             document.getElementById('withdraw-error').style.display = 'none';
