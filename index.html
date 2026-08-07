@@ -816,6 +816,7 @@
       if (data) {
         userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
         userPayInfo = data.upi_id; hasCompletedTaskToday = (data.total_tasks_completed > 0);
+alert("Supabase a Task i neih zat: " + data.total_tasks_completed);        
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]); userCoins = 0;
       }
