@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CASH-MIZO | Earn Cash Online</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+    
+    :root {
+      --primary: #4f46e5;
+      --secondary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+
+    /* HEADER */
+    header { background: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 24px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-links a { margin-left: 24px; text-decoration: none; color: var(--gray); font-weight: 600; transition: 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
+    .btn-login { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; margin-left: 24px; transition: 0.3s; }
+    .btn-login:hover { background: #4338ca; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+
+    /* HERO SECTION */
+    .hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 5%; background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); }
+    .hero-text { flex: 1; padding-right: 40px; }
+    .hero-text h1 { font-size: 48px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--dark); }
+    .hero-text p { font-size: 18px; color: var(--gray); margin-bottom: 32px; }
+    .hero-img { flex: 1; text-align: right; }
+    .hero-img img { max-width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+    /* FEATURES */
+    .features { padding: 80px 5%; text-align: center; background: white; }
+    .section-title { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .section-desc { color: var(--gray); margin-bottom: 48px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .card { background: var(--light); padding: 40px 24px; border-radius: 16px; border: 1px solid #e2e8f0; transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--primary); }
+    .card img { width: 80px; height: 80px; margin-bottom: 20px; border-radius: 50%; object-fit: cover; }
+    .card h3 { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .card p { color: var(--gray); font-size: 15px; }
+
+    /* RULES & FAQ (DROPDOWN / ACCORDION) */
+    .faq-section { padding: 80px 5%; max-width: 800px; margin: 0 auto; }
+    details { background: white; margin-bottom: 16px; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+    summary { padding: 20px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--dark); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 20px; color: var(--primary); }
+    details[open] summary::after { content: '-'; }
+    details[open] summary { border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+    .details-content { padding: 20px; color: var(--gray); font-size: 15px; }
+    .details-content ul { padding-left: 20px; margin-top: 12px; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: white; padding: 40px 5%; text-align: center; }
+    footer p { color: #94a3b8; font-size: 14px; }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
+      .hero-text { padding-right: 0; margin-bottom: 40px; }
+      .hero-text h1 { font-size: 36px; }
+      .nav-links { display: none; } /* Hide links on mobile for simplicity */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">⚡ CASH-MIZO</a>
+    <div>
+      <span class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#rules">Rules & FAQ</a>
+      </span>
+      <!-- App tak tak (index.html) a luhna tur -->
+      <a href="index.html" class="btn-login">Open App</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Turn your free time into <span style="color: var(--secondary);">Real Cash</span>.</h1>
+      <p>Join CASH-MIZO today. Answer surveys, complete simple tasks, and get paid directly to your Bank, UPI, or PayPal account.</p>
+      <a href="index.html" class="btn-login" style="margin-left: 0; font-size: 18px; padding: 14px 32px;">Start Earning Now</a>
+    </div>
+    <div class="hero-img">
+      <!-- High Quality Unsplash Image representing mobile earning -->
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Earning on phone">
+    </div>
+  </section>
+
+  <!-- FEATURES (How it works) -->
+  <section class="features" id="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-desc">Earning money has never been this easy and transparent.</p>
+    
+    <div class="grid-3">
+      <div class="card">
+        <!-- Placeholder for icon/image -->
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Surveys">
+        <h3>1. Do Simple Tasks</h3>
+        <p>Take daily surveys, play games, or complete premium offers from our trusted partners like TimeWall.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616077168079-7e090ce3439c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Earn Coins">
+        <h3>2. Earn Coins</h3>
+        <p>Watch your balance grow instantly. Get a daily bonus, spin the lucky wheel, and invite friends for a 10% commission.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cash Out">
+        <h3>3. Cash Out</h3>
+        <p>Once you reach 5,000 Coins, withdraw your earnings directly to your UPI, Bank Account, or PayPal safely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES & FAQ (DROPDOWN) -->
+  <section class="faq-section" id="rules">
+    <h2 class="section-title" style="text-align: center;">Rules & FAQ</h2>
+    <p class="section-desc" style="text-align: center;">Everything you need to know about our policies.</p>
+
+    <!-- Dropdown 1 -->
+    <details>
+      <summary>Website Terms & Conditions</summary>
+      <div class="details-content">
+        By accessing the CASH-MIZO website, you agree to our general terms of service. The content provided on this website is for informational purposes. We reserve the right to modify these terms at any time.
+      </div>
+    </details>
+
+    <!-- Dropdown 2 -->
+    <details>
+      <summary>App Rules (Anti-Fraud Policy)</summary>
+      <div class="details-content">
+        To maintain a fair environment for all users and advertisers, the following rules apply inside the App:
+        <ul>
+          <li><strong>One Account:</strong> Strictly one account per user/device.</li>
+          <li><strong>No VPN/Proxy:</strong> Using VPNs to change your location will result in a permanent ban.</li>
+          <li><strong>No Bots:</strong> Automated clicking tools, scripts, or emulators are prohibited.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Dropdown 3 -->
+    <details>
+      <summary>How long does a withdrawal take?</summary>
+      <div class="details-content">
+        Once you request a withdrawal (minimum 5,000 Coins), our team verifies your tasks. The payment is usually processed and sent to your UPI or Bank within 24 to 48 business hours.
+      </div>
+    </details>
+
+    <!-- Dropdown 4 -->
+    <details>
+      <summary>How does the Referral Program work?</summary>
+      <div class="details-content">
+        When a friend joins using your referral link, you will earn a 10% commission on all their completed tasks for life! (This does not reduce your friend's earnings).
+      </div>
+    </details>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2 style="margin-bottom: 12px;">⚡ CASH-MIZO</h2>
+    <p>&copy; 2026 CASH-MIZO. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
