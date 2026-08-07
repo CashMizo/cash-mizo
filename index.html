@@ -85,7 +85,10 @@
 
     .grid-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
     .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
-    .grid-card.locked { opacity: 0.8; background: var(--bg-main); }
+    
+    /* Locked Style */
+    .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
+    
     .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
     .ic-daily { background: #fef3c7; color: #d97706; }
     .ic-spin { background: #e0e7ff; color: #4338ca; }
@@ -224,10 +227,12 @@
       </div>
 
       <div class="grid-actions">
+        <!-- Daily Claim (Default: Locked) -->
         <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
           <div class="icon-box ic-daily">📅</div>
           <div><h4 data-i18n="daily_check" id="txt-daily">Daily Claim</h4><p>+50 Coins</p></div>
         </div>
+        <!-- Lucky Spin (Default: Locked) -->
         <div class="grid-card locked" id="btn-spin" onclick="checkLockAndRun('spin')">
           <div class="icon-box ic-spin">🎡</div>
           <div><h4 data-i18n="spin_wheel" id="txt-spin">Lucky Spin</h4><p>Win up to 100</p></div>
@@ -357,7 +362,6 @@
       </div>
 
       <div class="menu-group-title" data-i18n="m_info">Legal</div>
-      <!-- UPDATE: Terms page hi app chhung fullscreen ah ka la let leh ta e -->
       <div class="list-menu-item" onclick="openPage('terms-page')">
         <span data-i18n="terms">Terms, Privacy & Dos/Don'ts</span> <i>›</i>
       </div>
@@ -816,6 +820,15 @@
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]); userCoins = 0;
       }
       
+      // USER-IN TASK A ZAWH TAWH CHUAN LOCK 🔒 UI A BO NGHAL ANG (NEW CODE ADDED HERE)
+      if (hasCompletedTaskToday) {
+        document.getElementById('btn-daily').classList.remove('locked');
+        document.getElementById('btn-spin').classList.remove('locked');
+      } else {
+        document.getElementById('btn-daily').classList.add('locked');
+        document.getElementById('btn-spin').classList.add('locked');
+      }
+
       updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
     }
   }
