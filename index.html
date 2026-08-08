@@ -894,7 +894,6 @@
   }
 
   function checkLockAndRun(action) {
-    if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
     if (action === 'daily') requestDailyFromServer();
     if (action === 'spin') showToast("Spin Wheel Opening..."); 
   }
