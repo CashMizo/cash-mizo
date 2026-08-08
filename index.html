@@ -816,18 +816,14 @@
       if (data) {
         userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
         userPayInfo = data.upi_id; hasCompletedTaskToday = (data.total_tasks_completed > 0);
-alert("Supabase a Task i neih zat: " + data.total_tasks_completed);        
+        
+        // HETA TANG HIAN LOCK A BO ANG (A TAWP NAN TAK TAK)
+        if (hasCompletedTaskToday) {
+            document.getElementById('btn-daily').classList.remove('locked');
+            document.getElementById('btn-spin').classList.remove('locked');
+        }
       } else {
         await supabaseClient.from('user_profiles').insert([{ id: currentUserId, name: fullName, coins: 0 }]); userCoins = 0;
-      }
-      
-      // USER-IN TASK A ZAWH TAWH CHUAN LOCK 🔒 UI A BO NGHAL ANG (NEW CODE ADDED HERE)
-      if (hasCompletedTaskToday) {
-        document.getElementById('btn-daily').classList.remove('locked');
-        document.getElementById('btn-spin').classList.remove('locked');
-      } else {
-        document.getElementById('btn-daily').classList.add('locked');
-        document.getElementById('btn-spin').classList.add('locked');
       }
 
       updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
