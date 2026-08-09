@@ -837,11 +837,19 @@
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      const { data } = await supabaseClient.from('user_profiles').select('coins, last_daily_check, last_spin_date, upi_id, total_tasks_completed').eq('id', currentUserId).single();
+      // HETAH HIAN KA THLAK DANG LAM E (Error awm theihna lai ka paih fai vek a, Error a awm chuan a rawn hrilh nghal ang che)
+      const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
       
+      if (error && error.code !== 'PGRST116') {
+          alert("BUAINA: " + error.message);
+      }
+
       if (data) {
-        userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
-        userPayInfo = data.upi_id; hasCompletedTaskToday = (data.total_tasks_completed > 0);
+        userCoins = data.coins || 0; 
+        lastDailyCheck = data.last_daily_check || null; 
+        lastSpinDate = data.last_spin_date || null;
+        userPayInfo = data.upi_id || ''; 
+        hasCompletedTaskToday = (data.total_tasks_completed && data.total_tasks_completed > 0) ? true : false;
         
         if (hasCompletedTaskToday) {
             document.getElementById('btn-daily').classList.remove('locked');
