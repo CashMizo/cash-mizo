@@ -22,7 +22,6 @@
       --radius-lg: 20px;
     }
 
-    /* DARK MODE VARIABLES */
     body.dark-mode {
       --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border-color: #334155; --primary-light: #312e81;
     }
@@ -32,7 +31,6 @@
     body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; }
     .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto; box-shadow: var(--shadow-lg);}
     
-    /* LOGIN SCREEN */
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
     .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: 40px; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
@@ -50,7 +48,6 @@
     
     #main-app { display: none; padding-bottom: 80px; }
     
-    /* HEADER */
     .header { background: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; box-shadow: var(--shadow-sm);}
     .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
     .header-icons { display: flex; align-items: center; gap: 12px; }
@@ -58,19 +55,16 @@
     .h-badge { position: absolute; top: -2px; right: -2px; background: #ef4444; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
     .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
     
-    /* BOTTOM NAVIGATION */
     .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 420px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;}
     .nav-item i { font-size: 22px; font-style: normal; }
     .nav-item.active { color: var(--primary); }
     .nav-item.active i { transform: scale(1.1); }
 
-    /* TAB CONTENT */
     .tab-content { display: none; padding: 24px; animation: fadeIn 0.3s ease; }
     .tab-content.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* --- HOME TAB --- */
     .balance-card-main { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 24px; border-radius: var(--radius-lg); color: white; margin-bottom: 24px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
     .balance-card-main p { font-size: 14px; color: #94a3b8; font-weight: 500; margin-bottom: 8px; }
     .balance-card-main h2 { font-size: 36px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
@@ -86,7 +80,6 @@
     .grid-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
     .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
     
-    /* Locked Style */
     .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
     
     .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
@@ -97,13 +90,11 @@
     .grid-card h4 { font-size: 14px; font-weight: 700; color: var(--text-main); }
     .grid-card p { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-    /* Promo Box Fixes */
     .section-title { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; margin-top: 8px;}
     .promo-box { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 16px; padding: 8px; display: flex; align-items: center; gap: 8px; }
     .promo-box input { flex: 1; min-width: 0; border: none; background: transparent; padding: 10px 12px; font-size: 14px; font-weight: 600; outline: none; color: var(--text-main); }
     .promo-box button { background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
 
-    /* --- EARN TAB (SURVEYS) --- */
     .survey-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
     .sv-left h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
     .sv-left p { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 4px;}
@@ -111,43 +102,36 @@
     .offer-banner { background: linear-gradient(45deg, #10b981, #059669); border-radius: 16px; padding: 24px; color: white; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
     .offer-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
     
-    /* --- SHOP TAB --- */
     .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .shop-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; }
     .shop-item img { width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; object-fit: contain; background: #f8fafc;}
     .shop-item h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
     .shop-item p { font-size: 12px; color: var(--secondary); font-weight: 700; }
 
-    /* --- SUPPORT / MORE TAB --- */
     .menu-group-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 16px 0 8px; }
     .list-menu-item { background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-main); cursor: pointer; }
     .list-menu-item i { color: var(--text-muted); font-size: 18px; }
 
-    /* MODALS & FULLSCREEN PAGES */
     .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow-y: auto; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; cursor: pointer; font-weight: bold; color: var(--text-main);}
     .fs-content { padding: 24px; padding-bottom: 40px; }
 
-    /* DOC BOXES & INPUTS */
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
-    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; }
+    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; transition: 0.2s; }
     .btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
 
-    /* PAYMENT LOGO GRID */
     .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
     .pay-logo-card { background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px 8px; text-align: center; cursor: pointer; transition: 0.2s; }
     .pay-logo-card.active { border-color: var(--primary); background: var(--primary-light); }
     .pay-logo-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 8px; }
     .pay-logo-card span { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); }
 
-    /* TOAST */
     #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; transition: 0.4s; }
     #toast.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; } 
     
-    /* INBOX DROPDOWN */
     #inbox-dropdown { display: none; position: absolute; top: 60px; right: 24px; width: 280px; background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); z-index: 100; padding: 16px; }
     #inbox-dropdown::before { content: ''; position: absolute; top: -6px; right: 20px; width: 12px; height: 12px; background: var(--bg-card); transform: rotate(45deg); border-left: 1px solid var(--border-color); border-top: 1px solid var(--border-color); }
     .inbox-msg { padding: 12px; border-bottom: 1px solid var(--border-color); }
@@ -155,6 +139,10 @@
     .inbox-msg h5 { font-size: 14px; color: var(--text-main); margin-bottom: 4px;}
     .inbox-msg p { font-size: 12px; color: var(--text-muted); line-height: 1.4;}
 
+    /* SPIN WHEEL CSS */
+    .wheel-container { position: relative; width: 260px; height: 260px; margin: 0 auto; }
+    .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--text-main); background: conic-gradient( #ef4444 0deg 60deg, #f59e0b 60deg 120deg, #10b981 120deg 180deg, #3b82f6 180deg 240deg, #8b5cf6 240deg 300deg, #ec4899 300deg 360deg ); transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1); box-shadow: var(--shadow-md);}
+    .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 40px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
   </style>
 </head>
 <body>
@@ -232,8 +220,8 @@
           <div class="icon-box ic-daily">📅</div>
           <div><h4 data-i18n="daily_check" id="txt-daily">Daily Claim</h4><p>+50 Coins</p></div>
         </div>
-        <!-- Lucky Spin (Default: Locked) -->
-        <div class="grid-card locked" id="btn-spin" onclick="checkLockAndRun('spin')">
+        <!-- Lucky Spin (Tuna chu a hmeh ah a in-hawng tawh ang) -->
+        <div class="grid-card locked" id="btn-spin" onclick="openSpinWheel()">
           <div class="icon-box ic-spin">🎡</div>
           <div><h4 data-i18n="spin_wheel" id="txt-spin">Lucky Spin</h4><p>Win up to 100</p></div>
         </div>
@@ -390,6 +378,37 @@
 
   <!-- ================= FULLSCREEN PAGES ================= -->
 
+  <!-- SPIN WHEEL PAGE -->
+  <div id="spin-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('spin-page')">←</div>
+      <h3 data-i18n="spin_wheel">Lucky Spin</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content" style="text-align: center;">
+      <h2 style="margin-bottom: 32px; font-weight: 800; font-size: 24px;">Spin & Win!</h2>
+      
+      <div class="wheel-container">
+        <div class="pointer">📍</div>
+        <div id="wheel" class="wheel"></div>
+      </div>
+
+      <button id="btn-do-spin" class="btn-primary" style="margin-top: 40px; font-size: 18px; padding: 18px 32px; border-radius: 30px; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);" onclick="startSpin()">SPIN NOW</button>
+      
+      <div style="margin-top: 32px; text-align: left; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border-color);">
+        <h4 style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Prizes (Color Guide):</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; font-weight: 700;">
+          <span>🔴 Red: <span style="color:var(--text-muted)">5 C</span></span>
+          <span>🟠 Orange: <span style="color:var(--text-muted)">10 C</span></span>
+          <span>🟢 Green: <span style="color:var(--text-muted)">50 C</span></span>
+          <span>🔵 Blue: <span style="color:var(--text-muted)">0 C</span></span>
+          <span>🟣 Purple: <span style="color:var(--text-muted)">100 C</span></span>
+          <span>💖 Pink: <span style="color:var(--text-muted)">20 C</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ACCESSIBILITY PAGE -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
@@ -456,7 +475,6 @@
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
-      <!-- Withdraw Section -->
       <div class="doc-box" style="margin-bottom: 24px; text-align: center; border-color: var(--secondary);">
         <h4 data-i18n="your_balance" style="color: var(--text-muted);">Total Balance</h4>
         <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;"><span id="prof-balance">0</span> C</h2>
@@ -477,18 +495,15 @@
         </div>
       </div>
 
-      <!-- Payment Settings with Logos -->
       <div class="doc-box" style="margin-bottom: 24px;">
         <h4 data-i18n="payment_method" style="margin-bottom: 16px;">Payment Method</h4>
         
-        <!-- Display Saved Payment -->
         <div id="payment-display-section" style="display: none; background: var(--bg-main); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px;">
           <span style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" id="display-pay-type">UPI ID</span>
           <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px; word-break: break-all;">Not linked</strong>
         </div>
         <button id="btn-change-pay" class="btn-secondary" onclick="togglePaymentEdit()" data-i18n="change_payment">Set Payment Method</button>
 
-        <!-- Edit Payment (Logos + Inputs) -->
         <div id="payment-edit-section" style="display: none; margin-top: 16px;">
           <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" data-i18n="select_pay_logo">Select your preferred option:</p>
           
@@ -507,7 +522,6 @@
             </div>
           </div>
           
-          <!-- Hidden input to store selected type -->
           <input type="hidden" id="pay-type-select" value="upi">
 
           <div id="input-upi-wrap"><input type="text" id="pay-input-upi" class="input-field" placeholder="Enter UPI ID (e.g. 9876543210@ybl)"></div>
@@ -584,7 +598,7 @@
     </div>
   </div>
 
-  <!-- TERMS & PRIVACY PAGE (Translates inside app) -->
+  <!-- TERMS & PRIVACY PAGE -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')">←</div>
@@ -702,7 +716,7 @@
       shop_cashback: "शॉप और कैशबैक", shop_desc: "ऑनलाइन शॉपिंग पर कैशबैक पाएं।",
       m_general: "अकाउंट", profile: "मेरा खाता और पेमेंट", language: "ऐप की भाषा", help_center: "हेल्प सेंटर", missing_sb: "कस्टमर केयर / Missing Coins", how_it_works: "यह कैसे काम करता है", m_info: "नियम", terms: "नियम और गोपनीयता", logout: "लॉग आउट",
       accessibility: "Accessibility", color_adj: "रंग (Color)", dark_mode: "डार्क मोड", content_adj: "कंटेंट (Content)", font_sizing: "फ़ॉन्ट साइज़",
-      customer_care: "कस्टमर केयर", care_title: "हम मदद के लिए यहाँ हैं", care_desc: "24-48 घंटों के भीतर जवाब।", submit_ticket: "टिकट सबमिट करें", select_issue: "समस्या चुनें...", issue_missing: "Coins नहीं मिले", issue_wd: "पैसे निकालने में समस्या", issue_acc: "अकाउंट सेटिंग", issue_other: "अन्य", explain_issue: "अपनी समस्या बताएं...", send_ticket: "मैसेज भेजें",
+      customer_care: "Customer Care", care_title: "हम मदद के लिए यहाँ हैं", care_desc: "24-48 घंटों के भीतर जवाब।", submit_ticket: "टिकट सबमिट करें", select_issue: "समस्या चुनें...", issue_missing: "Coins नहीं मिले", issue_wd: "पैसे निकालने में समस्या", issue_acc: "अकाउंट सेटिंग", issue_other: "अन्य", explain_issue: "अपनी समस्या बताएं...", send_ticket: "मैसेज भेजें",
       payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", select_pay_logo: "अपना पसंदीदा विकल्प चुनें:", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है! नीचे सेट करें।", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
       refer_title: "रेफर करें और कमाएं", refer_desc: "दोस्तों को आमंत्रित करें और ", refer_desc_2: " 10% कमाएं!", share_wa: "WhatsApp पर शेयर करें", lb_title: "टॉप 10 लीडरबोर्ड", lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
       doc_how_title: "CASH-MIZO में स्वागत है", doc_how_desc: "टास्क पूरे करके पैसे कमाएं।", doc_how_h1: "1. पैसे कमाना", doc_how_l1: "प्रीमियम टास्क: सर्वे और ऑफर्स।", doc_how_l2: "डेली क्लेम और स्पिन।", doc_how_l3: "रेफरल: 10% कमीशन।", doc_how_h2: "2. पैसे निकालना", doc_how_l4: "न्यूनतम 5,000 Coins चाहिए।", doc_how_l5: "पेमेंट मेथड लिंक करें।",
@@ -728,7 +742,6 @@
     checkClaimedUI(); 
   }
 
-  // --- NAVIGATION (TABS & PAGES) ---
   function switchTab(tabId, element) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.getElementById('tab-' + tabId).classList.add('active');
@@ -739,7 +752,6 @@
   function openPage(pageId) { document.getElementById(pageId).classList.add('active'); }
   function closePage(pageId) { document.getElementById(pageId).classList.remove('active'); }
 
-  // --- UI TOGGLES (Inbox, Dark Mode, Font Size) ---
   function toggleInbox() {
     const box = document.getElementById('inbox-dropdown');
     box.style.display = box.style.display === 'block' ? 'none' : 'block';
@@ -773,16 +785,10 @@
     setTimeout(() => closePage('contact-page'), 1500);
   }
 
-  // --- PAYMENT METHOD UI LOGIC (Logos) ---
   function selectPayType(type) {
-    // UI Update
     document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
     document.getElementById(`btn-pay-${type}`).classList.add('active');
-    
-    // Set hidden value
     document.getElementById('pay-type-select').value = type;
-
-    // Show correct input form
     document.getElementById('input-upi-wrap').style.display = 'none';
     document.getElementById('input-bank-wrap').style.display = 'none';
     document.getElementById('input-paypal-wrap').style.display = 'none';
@@ -817,7 +823,6 @@
         userCoins = data.coins || 0; lastDailyCheck = data.last_daily_check; lastSpinDate = data.last_spin_date;
         userPayInfo = data.upi_id; hasCompletedTaskToday = (data.total_tasks_completed > 0);
         
-        // HETA TANG HIAN LOCK A BO ANG (A TAWP NAN TAK TAK)
         if (hasCompletedTaskToday) {
             document.getElementById('btn-daily').classList.remove('locked');
             document.getElementById('btn-spin').classList.remove('locked');
@@ -836,14 +841,12 @@
     document.getElementById('current-balance').innerText = formattedCoins;
     document.getElementById('prof-balance').innerText = formattedCoins;
     
-    // Update Daily Goal Progress
     let goalPercent = (userCoins / 100) * 100;
     if(goalPercent > 100) goalPercent = 100;
     if(goalPercent === 0) goalPercent = 5; 
     document.getElementById('goal-progress').style.width = goalPercent + '%';
   }
 
-  // PAYMENT LOGIC
   function updatePaymentUI() {
     if (userPayInfo && userPayInfo !== '') {
       document.getElementById('payment-display-section').style.display = 'block';
@@ -895,7 +898,74 @@
 
   function checkLockAndRun(action) {
     if (action === 'daily') requestDailyFromServer();
-    if (action === 'spin') showToast("Spin Wheel Opening..."); 
+  }
+
+  /* --- SPIN WHEEL LOGIC --- */
+  let isSpinning = false;
+  
+  function openSpinWheel() {
+    if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
+    
+    const today = new Date().toDateString();
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
+       showToast("Vawiinah i Spin tawh! Naktukah try leh rawh.", true);
+       return;
+    }
+    openPage('spin-page');
+  }
+
+  async function startSpin() {
+    if(isSpinning) return;
+    isSpinning = true;
+    document.getElementById('btn-do-spin').innerText = "Spinning...";
+    document.getElementById('btn-do-spin').style.opacity = '0.5';
+
+    // Vir kual tir na code
+    let randomDegree = Math.floor(Math.random() * 2000) + 1800; 
+    let wheel = document.getElementById('wheel');
+    wheel.style.transform = `rotate(${randomDegree}deg)`;
+
+    // Seconds 4 hnua result rawn lang tur
+    setTimeout(async () => {
+      let actualDegree = randomDegree % 360;
+      let pointerDegree = (360 - actualDegree) % 360;
+      let prize = 0; let prizeName = "";
+      
+      if (pointerDegree >= 0 && pointerDegree < 60) { prize = 5; prizeName = "🔴 5 Coins"; }
+      else if (pointerDegree >= 60 && pointerDegree < 120) { prize = 10; prizeName = "🟠 10 Coins"; }
+      else if (pointerDegree >= 120 && pointerDegree < 180) { prize = 50; prizeName = "🟢 50 Coins"; }
+      else if (pointerDegree >= 180 && pointerDegree < 240) { prize = 0; prizeName = "🔵 0 Coins"; }
+      else if (pointerDegree >= 240 && pointerDegree < 300) { prize = 100; prizeName = "🟣 100 Coins"; }
+      else if (pointerDegree >= 300 && pointerDegree < 360) { prize = 20; prizeName = "💖 20 Coins"; }
+
+      if(prize > 0) {
+         showToast(`🎉 I vannei! ${prizeName} i hmu e!`);
+      } else {
+         showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true);
+      }
+
+      // Supabase-a send luhna
+      const { data, error } = await supabaseClient.rpc('claim_spin_reward', { spin_amount: prize });
+      if(data && data.success) {
+         userCoins = data.new_balance;
+         lastSpinDate = new Date().toISOString();
+         updateBalanceUI();
+         checkClaimedUI();
+      } else if (error) {
+         showToast(error.message, true);
+      } else if (data && !data.success) {
+         showToast(data.message, true);
+      }
+
+      setTimeout(() => { 
+          closePage('spin-page'); 
+          isSpinning = false; 
+          document.getElementById('btn-do-spin').innerText = "SPIN NOW"; 
+          document.getElementById('btn-do-spin').style.opacity = '1'; 
+          wheel.style.transform = `rotate(0deg)`; 
+      }, 2500);
+      
+    }, 4000); 
   }
 
   function checkClaimedUI() {
