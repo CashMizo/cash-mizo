@@ -27,48 +27,48 @@
     .nav-links a { text-decoration: none; color: var(--gray); font-weight: 600; font-size: 14px; transition: 0.3s; }
     .nav-links a:hover { color: var(--primary); }
     .btn-login { background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; transition: 0.3s; white-space: nowrap; }
-    .btn-login:hover { background: #4338ca; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+    .btn-login:hover { background: #4338ca; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); transform: translateY(-2px); }
 
     /* HERO SECTION */
     .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 5%; background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); gap: 30px; }
     .hero-text { flex: 1; }
-    .hero-text h1 { font-size: 40px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--dark); }
-    .hero-text p { font-size: 16px; color: var(--gray); margin-bottom: 28px; }
+    .hero-text h1 { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--dark); }
+    .hero-text p { font-size: 16px; color: var(--gray); margin-bottom: 28px; max-width: 90%; }
     .hero-img { flex: 1; text-align: right; }
-    .hero-img img { max-width: 100%; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+    .hero-img img { max-width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 4px solid white; }
+
+    /* TRUST BADGES */
+    .trust-banner { display: flex; justify-content: center; gap: 40px; background: white; padding: 24px 5%; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--dark); font-size: 14px; }
+    .trust-item span { font-size: 20px; }
 
     /* FEATURES */
-    .features { padding: 60px 5%; text-align: center; background: white; }
-    .section-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
-    .section-desc { color: var(--gray); margin-bottom: 40px; font-size: 15px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .card { background: var(--light); padding: 32px 20px; border-radius: 16px; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--primary); }
-    .card-icon { font-size: 36px; margin-bottom: 16px; }
+    .features { padding: 60px 5%; text-align: center; background: var(--light); }
+    .section-title { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .section-desc { color: var(--gray); margin-bottom: 40px; font-size: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .card { background: white; padding: 32px 24px; border-radius: 16px; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: var(--primary); }
+    .card-icon { font-size: 40px; margin-bottom: 16px; background: var(--primary-light); display: inline-block; padding: 12px; border-radius: 12px; }
     .card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-    .card p { color: var(--gray); font-size: 14px; }
+    .card p { color: var(--gray); font-size: 14px; line-height: 1.6; }
 
-    /* RULES & FAQ (DROPDOWN) */
-    .faq-section { padding: 60px 5%; max-width: 800px; margin: 0 auto; }
-    details { background: white; margin-bottom: 12px; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
-    summary { padding: 18px 20px; font-weight: 700; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--dark); }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: '+'; font-size: 20px; color: var(--primary); }
-    details[open] summary::after { content: '-'; }
-    details[open] summary { border-bottom: 1px solid var(--border-color); background: #f8fafc; }
-    .details-content { padding: 20px; color: var(--gray); font-size: 14px; }
-    .details-content ul { padding-left: 20px; margin-top: 8px; }
-
-    /* FOOTER */
-    footer { background: var(--dark); color: white; padding: 40px 5%; text-align: center; }
-    footer p { color: #94a3b8; font-size: 13px; margin-top: 8px; }
+    /* PROFESSIONAL FOOTER */
+    footer { background: var(--dark); color: white; padding: 60px 5% 30px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid #334155; padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h3 { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: white; }
+    .footer-col a { display: block; color: #94a3b8; text-decoration: none; margin-bottom: 12px; font-size: 14px; font-weight: 500; transition: 0.2s; }
+    .footer-col a:hover { color: var(--primary-light); }
+    .footer-bottom { text-align: center; color: #64748b; font-size: 13px; font-weight: 500; }
 
     /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
       .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
       .hero-text { padding-right: 0; }
       .hero-text h1 { font-size: 32px; }
-      .nav-links { display: none; } /* Hide extra links on tiny screens to prevent break */
+      .hero-text p { max-width: 100%; }
+      .nav-links { display: none; }
+      .trust-banner { gap: 20px; justify-content: center; }
     }
   </style>
 </head>
@@ -80,7 +80,7 @@
     <div class="nav-right">
       <span class="nav-links">
         <a href="#how-it-works">How it works</a>
-        <a href="#rules">Rules & FAQ</a>
+        <a href="terms.html">Terms & Policy</a>
       </span>
       <a href="index.html" class="btn-login">Open App</a>
     </div>
@@ -90,13 +90,20 @@
   <section class="hero">
     <div class="hero-text">
       <h1>Turn your free time into <span style="color: var(--secondary);">Real Cash</span>.</h1>
-      <p>Join CASH-MIZO today. Answer surveys, complete simple tasks, and get paid directly to your Bank, UPI, or PayPal account.</p>
-      <a href="index.html" class="btn-login" style="display: inline-block; font-size: 16px; padding: 12px 28px;">Start Earning Now</a>
+      <p>Join CASH-MIZO today. Answer surveys, complete simple tasks, and get paid directly to your Bank, UPI, or PayPal account securely.</p>
+      <a href="index.html" class="btn-login" style="display: inline-block; font-size: 16px; padding: 14px 32px;">Start Earning Now — It's Free</a>
     </div>
     <div class="hero-img">
       <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Earning on phone">
     </div>
   </section>
+
+  <!-- TRUST BANNER FOR OFFERWALLS -->
+  <div class="trust-banner">
+    <div class="trust-item"><span>🔒</span> 256-bit SSL Secure</div>
+    <div class="trust-item"><span>⚡</span> Fast Payouts</div>
+    <div class="trust-item"><span>✅</span> 100% Verified Tasks</div>
+  </div>
 
   <!-- FEATURES (How it works) -->
   <section class="features" id="how-it-works">
@@ -107,64 +114,43 @@
       <div class="card">
         <div class="card-icon">📋</div>
         <h3>1. Do Simple Tasks</h3>
-        <p>Take daily surveys, play games, or complete premium offers from our trusted partners like TimeWall.</p>
+        <p>Take daily surveys, play games, or complete premium offers from our trusted partners like TimeWall. New tasks added daily.</p>
       </div>
       <div class="card">
         <div class="card-icon">🪙</div>
         <h3>2. Earn Coins</h3>
-        <p>Watch your balance grow instantly. Get a daily bonus, spin the lucky wheel, and invite friends for a 10% commission.</p>
+        <p>Watch your balance grow instantly. Get a daily bonus, spin the lucky wheel, and invite friends for a 10% lifetime commission.</p>
       </div>
       <div class="card">
         <div class="card-icon">💸</div>
-        <h3>3. Cash Out</h3>
-        <p>Once you reach 5,000 Coins, withdraw your earnings directly to your UPI, Bank Account, or PayPal safely.</p>
+        <h3>3. Cash Out Safely</h3>
+        <p>Once you reach 5,000 Coins, withdraw your earnings directly to your UPI, Bank Account, or PayPal securely within 48 hours.</p>
       </div>
     </div>
   </section>
 
-  <!-- RULES & FAQ (DROPDOWN) -->
-  <section class="faq-section" id="rules">
-    <h2 class="section-title" style="text-align: center;">Rules & FAQ</h2>
-    <p class="section-desc" style="text-align: center;">Everything you need to know about our policies.</p>
-
-    <details>
-      <summary>Website Terms & Conditions</summary>
-      <div class="details-content">
-        By accessing the CASH-MIZO website, you agree to our general terms of service. The content provided on this website is for informational purposes.
-      </div>
-    </details>
-
-    <details>
-      <summary>App Rules (Anti-Fraud Policy)</summary>
-      <div class="details-content">
-        To maintain a fair environment for all users and advertisers, the following rules apply inside the App:
-        <ul>
-          <li><strong>One Account:</strong> Strictly one account per user/device.</li>
-          <li><strong>No VPN/Proxy:</strong> Using VPNs to change your location will result in a permanent ban.</li>
-          <li><strong>No Bots:</strong> Automated clicking tools, scripts, or emulators are prohibited.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>How long does a withdrawal take?</summary>
-      <div class="details-content">
-        Once you request a withdrawal (minimum 5,000 Coins), our team verifies your tasks. Payments are processed within 24 to 48 business hours.
-      </div>
-    </details>
-
-    <details>
-      <summary>How does the Referral Program work?</summary>
-      <div class="details-content">
-        When a friend joins using your referral link, you will earn a 10% commission on all their completed tasks for life!
-      </div>
-    </details>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- PROFESSIONAL FOOTER -->
   <footer>
-    <h2 style="font-size: 18px; margin-bottom: 6px;">⚡ CASH-MIZO</h2>
-    <p>&copy; 2026 CASH-MIZO. All rights reserved.</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>⚡ CASH-MIZO</h3>
+        <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="#how-it-works">How it works</a>
+        <a href="index.html">Open Web App</a>
+      </div>
+      <div class="footer-col">
+        <h3>Legal & Support</h3>
+        <a href="terms.html">Terms of Service</a>
+        <a href="terms.html">Privacy Policy</a>
+        <a href="mailto:support@cashmizo.com">Contact Support</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CASH-MIZO. All rights reserved. Registered Rewards Platform.</p>
+    </div>
   </footer>
 
 </body>
