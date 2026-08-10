@@ -3,117 +3,1124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service & Privacy Policy | CASH-MIZO</title>
+  <title>CASH-MIZO | Original Rewards</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
     :root {
-      --bg-main: #f8fafc;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --primary: #4f46e5;
+      --bg-main: #f8fafc; 
+      --bg-card: #ffffff; 
+      --text-main: #0f172a; 
+      --text-muted: #64748b;
+      --primary: #4f46e5; 
+      --primary-light: #e0e7ff;
+      --secondary: #10b981; 
       --border-color: #e2e8f0;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius-lg: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.7; padding: 20px; display: flex; justify-content: center; }
-    
-    .legal-container { max-width: 800px; background: var(--bg-card); padding: 40px; border-radius: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 40px;}
-    
-    .back-nav { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-weight: 700; margin-bottom: 30px; font-size: 15px; }
-    .back-nav:hover { text-decoration: underline; }
-    
-    h1 { font-size: 28px; font-weight: 800; margin-bottom: 10px; line-height: 1.3; color: #0f172a; }
-    .last-updated { font-size: 14px; color: var(--text-muted); font-weight: 600; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
-    
-    h2 { font-size: 20px; font-weight: 800; margin-top: 40px; margin-bottom: 16px; color: #1e293b; }
-    p { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; font-weight: 500; }
-    
-    ul { margin-left: 24px; margin-bottom: 20px; }
-    li { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; font-weight: 500; }
-    strong { color: #0f172a; font-weight: 700; }
-    
-    .highlight-box { background: #fef2f2; border: 1px solid #fecaca; padding: 16px; border-radius: 12px; margin-top: 20px; margin-bottom: 20px; }
-    .highlight-box p { color: #991b1b; margin-bottom: 0; font-weight: 600; }
-
-    @media (max-width: 600px) {
-        .legal-container { padding: 24px; }
-        h1 { font-size: 24px; }
+    body.dark-mode {
+      --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border-color: #334155; --primary-light: #312e81;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
+    
+    body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; }
+    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); min-height: 100vh; position: relative; overflow-x: hidden; overflow-y: auto; box-shadow: var(--shadow-lg);}
+    
+    #login-screen { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
+    .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
+    .login-logo-text { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: 40px; display: flex; align-items: center; gap: 8px; color: #a5b4fc; }
+    .login-hero h1 { font-size: 40px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .login-hero p { font-size: 16px; color: #c7d2fe; line-height: 1.6; }
+    
+    .login-bottom-card { background: var(--bg-card); padding: 32px 24px 40px; border-radius: 32px 32px 0 0; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); flex-grow: 1;}
+    .terms-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; background: var(--bg-main); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); }
+    .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); flex-shrink: 0; }
+    .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
+    
+    .auth-btn { display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
+    .auth-btn:active { transform: scale(0.98); }
+    .auth-btn img { width: 24px; margin-right: 12px; }
+    
+    #main-app { display: none; padding-bottom: 80px; }
+    
+    .header { background: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; box-shadow: var(--shadow-sm);}
+    .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .header-icons { display: flex; align-items: center; gap: 12px; }
+    .h-icon { font-size: 20px; cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative;}
+    .h-badge { position: absolute; top: -2px; right: -2px; background: #ef4444; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
+    .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+    
+    .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 420px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;}
+    .nav-item i { font-size: 22px; font-style: normal; }
+    .nav-item.active { color: var(--primary); }
+    .nav-item.active i { transform: scale(1.1); }
+
+    .tab-content { display: none; padding: 24px; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .balance-card-main { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 24px; border-radius: var(--radius-lg); color: white; margin-bottom: 24px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+    .balance-card-main p { font-size: 14px; color: #94a3b8; font-weight: 500; margin-bottom: 8px; }
+    .balance-card-main h2 { font-size: 36px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .withdraw-btn-main { background: var(--secondary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; border: none; margin-top: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    
+    .daily-goal-box { background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+    .dg-icon { font-size: 32px; }
+    .dg-info { flex-grow: 1; }
+    .dg-info h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+    .progress-bar { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+    .progress-fill { width: 30%; height: 100%; background: var(--primary); border-radius: 4px; }
+
+    .grid-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+    .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
+    
+    .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
+    .grid-card.locked::after { 
+        content: '🔒'; 
+        position: absolute; 
+        top: 16px; 
+        right: 16px; 
+        font-size: 20px; 
+    }
+    
+    .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .ic-daily { background: #fef3c7; color: #d97706; }
+    .ic-spin { background: #e0e7ff; color: #4338ca; }
+    .ic-refer { background: #dcfce7; color: #15803d; }
+    .ic-rank { background: #fae8ff; color: #a21caf; }
+    .grid-card h4 { font-size: 14px; font-weight: 700; color: var(--text-main); }
+    .grid-card p { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+    .section-title { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; margin-top: 8px;}
+    .promo-box { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 16px; padding: 8px; display: flex; align-items: center; gap: 8px; }
+    .promo-box input { flex: 1; min-width: 0; border: none; background: transparent; padding: 10px 12px; font-size: 14px; font-weight: 600; outline: none; color: var(--text-main); }
+    .promo-box button { background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
+
+    .survey-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
+    .sv-left h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+    .sv-left p { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 4px;}
+    .sv-right button { background: var(--primary-light); color: var(--primary); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
+    .offer-banner { background: linear-gradient(45deg, #10b981, #059669); border-radius: 16px; padding: 24px; color: white; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
+    .offer-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    
+    .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .shop-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; }
+    .shop-item img { width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; object-fit: contain; background: #f8fafc;}
+    .shop-item h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
+    .shop-item p { font-size: 12px; color: var(--secondary); font-weight: 700; }
+
+    .menu-group-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 16px 0 8px; }
+    .list-menu-item { background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-main); cursor: pointer; }
+    .list-menu-item i { color: var(--text-muted); font-size: 18px; }
+
+    .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow-y: auto; }
+    .fs-page.active { left: 0; }
+    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
+    .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; cursor: pointer; font-weight: bold; color: var(--text-main);}
+    .fs-content { padding: 24px; padding-bottom: 40px; }
+
+    .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+    .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
+    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; transition: 0.2s; }
+    .btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
+
+    .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .pay-logo-card { background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px 8px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .pay-logo-card.active { border-color: var(--primary); background: var(--primary-light); }
+    .pay-logo-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 8px; }
+    .pay-logo-card span { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); }
+
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; transition: 0.4s; }
+    #toast.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; } 
+    
+    #inbox-dropdown { display: none; position: absolute; top: 60px; right: 24px; width: 280px; background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); z-index: 100; padding: 16px; }
+    #inbox-dropdown::before { content: ''; position: absolute; top: -6px; right: 20px; width: 12px; height: 12px; background: var(--bg-card); transform: rotate(45deg); border-left: 1px solid var(--border-color); border-top: 1px solid var(--border-color); }
+    .inbox-msg { padding: 12px; border-bottom: 1px solid var(--border-color); }
+    .inbox-msg:last-child { border-bottom: none; }
+    .inbox-msg h5 { font-size: 14px; color: var(--text-main); margin-bottom: 4px;}
+    .inbox-msg p { font-size: 12px; color: var(--text-muted); line-height: 1.4;}
+
+    /* SPIN WHEEL CSS */
+    .wheel-container { position: relative; width: 260px; height: 260px; margin: 0 auto; }
+    .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--text-main); background: conic-gradient( #ef4444 0deg 60deg, #f59e0b 60deg 120deg, #10b981 120deg 180deg, #3b82f6 180deg 240deg, #8b5cf6 240deg 300deg, #ec4899 300deg 360deg ); transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1); box-shadow: var(--shadow-md);}
+    .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 40px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    
+    /* REFERRAL LIST CSS */
+    .ref-list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+    .ref-list-item:last-child { border-bottom: none; }
+    .ref-name { font-weight: 700; color: var(--text-main); font-size: 14px; }
+    .ref-status { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 12px; }
+    .ref-status.done { background: #dcfce7; color: #15803d; }
+    .ref-status.pending { background: #fee2e2; color: #991b1b; }
   </style>
 </head>
 <body>
 
-  <div class="legal-container">
-    <a href="index.html" class="back-nav">← Return to CASH-MIZO App</a>
-    
-    <h1>Terms of Service & Privacy Policy</h1>
-    <div class="last-updated">Last Updated & Effective: August 2026</div>
+<div class="app-container">
+  
+  <div id="toast" data-i18n="success">✅ Hlawhtling!</div>
 
-    <p>Welcome to CASH-MIZO ("we", "us", "our", or "the Platform"). By accessing, registering an account, or using our services at <strong>hrangluroa-lab.github.io/cash-mizo</strong>, you agree to be bound by these Terms of Service. If you do not agree to all the terms and conditions of this agreement, you must not use our services.</p>
-
-    <h2>1. User Eligibility & Account Registration</h2>
-    <p>To use our Platform, you must be at least 13 years of age. Users under the age of 18 must have permission from a parent or legal guardian.</p>
-    <ul>
-      <li><strong>Authentic Information:</strong> You must register using a valid Google Account. The information provided must be accurate, current, and complete.</li>
-      <li><strong>One Account Policy:</strong> You are strictly limited to ONE (1) account per person, per household, per IP address, and per physical device. Creating multiple accounts to exploit the system is considered fraud.</li>
-    </ul>
-
-    <h2>2. Virtual Currency (Coins)</h2>
-    <p>CASH-MIZO offers a virtual currency commonly referred to as "Coins".</p>
-    <ul>
-      <li>Coins are entirely virtual and have no real-world monetary value until they are successfully exchanged or redeemed through our authorized withdrawal system.</li>
-      <li>Coins cannot be purchased, traded, or sold to other users.</li>
-      <li>We reserve the right to adjust the exchange rate, task values, or minimum withdrawal threshold at our sole discretion, with or without prior notice.</li>
-    </ul>
-
-    <h2>3. Prohibited Conduct & Anti-Fraud Policy</h2>
-    <p>To maintain a fair ecosystem for our advertisers and users, we employ strict fraud-detection software. Engaging in any of the following activities will result in the immediate and permanent termination of your account, and forfeiture of all accumulated Coins:</p>
-    <div class="highlight-box">
-      <p>⚠️ ZERO TOLERANCE POLICY:</p>
-      <ul>
-        <li>Using Virtual Private Networks (VPNs), Proxies, VPS, or Tor nodes to mask your actual location.</li>
-        <li>Using Emulators (e.g., Bluestacks, Nox), Virtual Machines, or automated scripting environments.</li>
-        <li>Using auto-clickers, macros, or any botting software to bypass manual interaction.</li>
-        <li>Completing offers using fraudulent information, stolen credit cards, or fake identities.</li>
-      </ul>
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen">
+    <div class="login-hero">
+      <div class="login-logo-text">⚡ CASH-MIZO</div>
+      <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
+      <p data-i18n="hero_desc">Join thousands of youths earning from their smartphones everyday.</p>
     </div>
-
-    <h2>4. Third-Party Offers & Offerwalls</h2>
-    <p>CASH-MIZO partners with third-party advertising networks (Offerwalls). When you participate in surveys, app downloads, or tasks, you are interacting directly with these third parties.</p>
-    <p>We do not guarantee that all tasks will credit successfully. Coins are only deposited into your CASH-MIZO account once the third-party advertiser verifies the completion and releases the payment to us. We cannot manually credit accounts for tasks that our partners have rejected or flagged as suspicious.</p>
-
-    <h2>5. Redemptions and Withdrawals</h2>
-    <p>Users who reach the minimum withdrawal threshold (e.g., 5,000 Coins) may request a payout via supported payment methods (UPI, Bank Transfer, or PayPal).</p>
-    <ul>
-      <li>All withdrawal requests are subject to manual review by our administration team.</li>
-      <li>Processing times typically range from 3 to 7 business days.</li>
-      <li>We reserve the right to request additional Identity Verification (KYC) if suspicious activity is detected on your account prior to releasing funds.</li>
-    </ul>
-
-    <h2>6. Privacy Policy & Data Collection</h2>
-    <p>Your privacy is critically important to us. We collect the bare minimum data required to operate the platform securely.</p>
-    <ul>
-      <li><strong>What we collect:</strong> Your Google profile name, email address, unique User ID, IP address (for fraud prevention), and linked payment details (UPI/PayPal) provided by you.</li>
-      <li><strong>Data Security:</strong> All user data is encrypted and securely stored using Supabase's advanced Row Level Security (RLS) infrastructure.</li>
-      <li><strong>No Data Selling:</strong> We do not sell, rent, or trade your personal identifiable information to any external third parties for marketing purposes.</li>
-    </ul>
-
-    <h2>7. Limitation of Liability</h2>
-    <p>CASH-MIZO is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, regarding the continuous availability of the platform. We shall not be held liable for any loss of profits, data, or virtual currency resulting from server downtimes, account bans, or third-party offerwall rejections.</p>
-
-    <h2>8. Changes to Terms</h2>
-    <p>We reserve the right to modify these Terms of Service at any time. Significant changes will be communicated via announcements within the App. Continued use of the platform after changes implies your acceptance of the new terms.</p>
-
-    <h2>9. Contact Us</h2>
-    <p>If you have any questions regarding these Terms or our Privacy Policy, please contact our support team at <strong>support@cashmizo.com</strong>.</p>
-    
-    <div style="margin-top: 40px; text-align: center;">
-      <a href="index.html" style="background: var(--primary); color: white; padding: 12px 24px; text-decoration: none; border-radius: 12px; font-weight: 700; display: inline-block;">I Agree, Return to App</a>
+    <div class="login-bottom-card">
+      <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-main);" data-i18n="join_free">Create Account</h2>
+      <label class="terms-checkbox">
+        <input type="checkbox" id="agree-check">
+        <span data-i18n="agree_terms">I have read and agree to the Terms of Service and Privacy Policy.</span>
+      </label>
+      <button class="auth-btn btn-google" onclick="login()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+        <span id="btn-login-text">Continue with Google</span>
+      </button>
     </div>
   </div>
 
+  <!-- MAIN APP WRAPPER -->
+  <div id="main-app">
+    
+    <div class="header">
+      <div class="brand-logo">⚡ CASH-MIZO</div>
+      <div class="header-icons">
+        <div class="h-icon" onclick="openPage('access-page')" title="Accessibility">👁️</div>
+        <div class="h-icon" onclick="toggleInbox()" title="Inbox">
+          🔔<div class="h-badge"></div>
+        </div>
+        <div class="balance-pill">🪙 <span id="header-balance">0</span></div>
+      </div>
+    </div>
+
+    <div id="inbox-dropdown">
+      <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--text-main);" data-i18n="inbox">Inbox</h4>
+      <div class="inbox-msg">
+        <h5 data-i18n="msg_welcome_title">Welcome to CASH-MIZO!</h5>
+        <p data-i18n="msg_welcome_desc">Explore earning opportunities, take surveys, and earn cash back.</p>
+      </div>
+    </div>
+
+    <!-- TAB 1: HOME -->
+    <div id="tab-home" class="tab-content active">
+      <div class="balance-card-main">
+        <p data-i18n="your_balance">Total Balance</p>
+        <h2><span id="current-balance">0</span> Coins</h2>
+        <button class="withdraw-btn-main" onclick="openPage('profile-page')" data-i18n="withdraw">Withdraw Funds</button>
+      </div>
+
+      <div class="daily-goal-box">
+        <div class="dg-icon">🚀</div>
+        <div class="dg-info">
+          <h4 data-i18n="daily_goal">Daily Goal: 100 Coins</h4>
+          <p style="font-size: 11px; color: var(--text-muted);" data-i18n="goal_desc">Earn today to get bonus</p>
+          <div class="progress-bar"><div class="progress-fill" id="goal-progress"></div></div>
+        </div>
+      </div>
+
+      <div class="grid-actions">
+        <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
+          <div class="icon-box ic-daily">📅</div>
+          <div><h4 data-i18n="daily_check" id="txt-daily">Daily Claim</h4><p>+50 Coins</p></div>
+        </div>
+        <div class="grid-card locked" id="btn-spin" onclick="openSpinWheel()">
+          <div class="icon-box ic-spin">🎡</div>
+          <div><h4 data-i18n="spin_wheel" id="txt-spin">Lucky Spin</h4><p>Win up to 100</p></div>
+        </div>
+        <div class="grid-card" id="btn-refer" onclick="openReferPage()">
+          <div class="icon-box ic-refer">🤝</div>
+          <div><h4 data-i18n="refer">Refer Friends</h4><p>10% Commission</p></div>
+        </div>
+        <div class="grid-card" onclick="openLeaderboard()">
+          <div class="icon-box ic-rank">🏆</div>
+          <div><h4 data-i18n="rank">Leaderboard</h4><p>Top earners</p></div>
+        </div>
+      </div>
+
+      <div class="section-title" data-i18n="swag_codes">Redeem Promo Code</div>
+      <div class="promo-box">
+        <input type="text" id="promo-input" placeholder="Enter Code Here">
+        <button onclick="redeemPromo()" data-i18n="redeem">Redeem</button>
+      </div>
+    </div>
+
+
+    <!-- TAB 2: EARN (SURVEYS & TASKS) -->
+    <div id="tab-earn" class="tab-content">
+      <div class="offer-banner" onclick="openTimeWall()">
+        <div>
+          <h3 data-i18n="premium_tasks">Premium Tasks</h3>
+          <p style="font-size: 13px; font-weight: 500; opacity: 0.9;" data-i18n="timewall_desc">Complete tasks & surveys</p>
+        </div>
+        <div style="font-size: 32px;">⏱️</div>
+      </div>
+
+      <div class="section-title" data-i18n="answer_surveys">Answer Surveys</div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;" data-i18n="survey_tip">Take these quick surveys to unlock rewards.</p>
+
+      <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <div class="sv-left">
+          <h4 data-i18n="short_survey">Short Survey</h4>
+          <p>⏳ 3 min • <span style="color: var(--secondary);">⭐ Best Match</span></p>
+        </div>
+        <div class="sv-right"><button>5 C</button></div>
+      </div>
+
+      <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <div class="sv-left">
+          <h4 data-i18n="gold_survey">Gold Survey</h4>
+          <p>⏳ 15 min • <span style="color: var(--secondary);">⭐ High Paying</span></p>
+        </div>
+        <div class="sv-right"><button>85 C</button></div>
+      </div>
+
+      <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <div class="sv-left">
+          <h4 data-i18n="profile_survey">Profile Survey</h4>
+          <p>⏳ 10 min</p>
+        </div>
+        <div class="sv-right"><button>50 C</button></div>
+      </div>
+
+      <div class="section-title" style="margin-top: 32px;" data-i18n="play_games">Play Games</div>
+      <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
+        <div class="sv-left">
+          <h4 data-i18n="play_trivia">Daily Trivia</h4>
+          <p>🎮 Answer 10 questions</p>
+        </div>
+        <div class="sv-right"><button>20 C</button></div>
+      </div>
+    </div>
+
+
+    <!-- TAB 3: SHOP (CASHBACK) -->
+    <div id="tab-shop" class="tab-content">
+      <div class="section-title" data-i18n="shop_cashback">Shop & Cash Back</div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;" data-i18n="shop_desc">Earn points for every dollar you spend at your favorite retailers.</p>
+      
+      <div class="shop-grid">
+        <div class="shop-item" onclick="showToast(translations[currentLang].wip_feature, true)">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+          <h4>Amazon</h4>
+          <p>Up to 5% CB</p>
+        </div>
+        <div class="shop-item" onclick="showToast(translations[currentLang].wip_feature, true)">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Myntra_logo.png" alt="Myntra">
+          <h4>Myntra</h4>
+          <p>Up to 8% CB</p>
+        </div>
+        <div class="shop-item" onclick="showToast(translations[currentLang].wip_feature, true)">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+          <h4>Netflix</h4>
+          <p>Flat 100 C</p>
+        </div>
+        <div class="shop-item" onclick="showToast(translations[currentLang].wip_feature, true)">
+          <div style="width:60px;height:60px;background:#f1f5f9;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;">🍔</div>
+          <h4>Food Delivery</h4>
+          <p>Up to 2% CB</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- TAB 4: SUPPORT / MORE -->
+    <div id="tab-support" class="tab-content">
+      
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 16px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color);">
+        <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800;" id="more-initial">U</div>
+        <div>
+          <h3 id="more-name" style="font-size: 16px; font-weight: 800;">User</h3>
+          <p id="more-email" style="font-size: 12px; color: var(--text-muted);">email</p>
+        </div>
+      </div>
+
+      <div class="menu-group-title" data-i18n="m_general">Account</div>
+      <div class="list-menu-item" onclick="openPage('profile-page')">
+        <span data-i18n="profile">My Account & Payment</span> <i>›</i>
+      </div>
+      <div class="list-menu-item" onclick="openPage('lang-page')">
+        <span data-i18n="language">App Language</span> <i>›</i>
+      </div>
+
+      <div class="menu-group-title" data-i18n="help_center">Help Center</div>
+      <div class="list-menu-item" onclick="openPage('contact-page')">
+        <span data-i18n="missing_sb">Missing Coins / Contact Us</span> <i>›</i>
+      </div>
+      <div class="list-menu-item" onclick="openPage('info-page')">
+        <span data-i18n="how_it_works">How it works / FAQ</span> <i>›</i>
+      </div>
+
+      <div class="menu-group-title" data-i18n="m_info">Legal</div>
+      <div class="list-menu-item" onclick="window.location.href='terms.html'">
+        <span data-i18n="terms">Terms, Privacy & Dos/Don'ts</span> <i>›</i>
+      </div>
+
+      <button class="btn-secondary" style="margin-top: 24px; color: #ef4444; border-color: #fecaca; background: #fef2f2;" onclick="logout()" data-i18n="logout">Log Out</button>
+    </div>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="switchTab('home', this)">
+        <i>🏠</i> <span data-i18n="nav_home">Home</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('earn', this)">
+        <i>📋</i> <span data-i18n="nav_earn">Earn</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('shop', this)">
+        <i>🛍️</i> <span data-i18n="nav_shop">Shop</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('support', this)">
+        <i>⚙️</i> <span data-i18n="nav_more">More</span>
+      </div>
+    </div>
+
+  </div> <!-- END MAIN APP -->
+
+
+  <!-- ================= FULLSCREEN PAGES ================= -->
+
+  <!-- SPIN WHEEL PAGE -->
+  <div id="spin-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('spin-page')">←</div>
+      <h3 data-i18n="spin_wheel">Lucky Spin</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content" style="text-align: center;">
+      <h2 style="margin-bottom: 32px; font-weight: 800; font-size: 24px;">Spin & Win!</h2>
+      
+      <div class="wheel-container">
+        <div class="pointer">📍</div>
+        <div id="wheel" class="wheel"></div>
+      </div>
+
+      <button id="btn-do-spin" class="btn-primary" style="margin-top: 40px; font-size: 18px; padding: 18px 32px; border-radius: 30px; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);" onclick="startSpin()">SPIN NOW</button>
+      
+      <div style="margin-top: 32px; text-align: left; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border-color);">
+        <h4 style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Prizes (Color Guide):</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; font-weight: 700;">
+          <span>🔴 Red: <span style="color:var(--text-muted)">5 C</span></span>
+          <span>🟠 Orange: <span style="color:var(--text-muted)">10 C</span></span>
+          <span>🟢 Green: <span style="color:var(--text-muted)">50 C</span></span>
+          <span>🔵 Blue: <span style="color:var(--text-muted)">0 C</span></span>
+          <span>🟣 Purple: <span style="color:var(--text-muted)">100 C</span></span>
+          <span>💖 Pink: <span style="color:var(--text-muted)">20 C</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFER & EARN PAGE (Thian sawmte list telin) -->
+  <div id="refer-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('refer-page')">←</div>
+      <h3 data-i18n="refer_title">Refer & Earn</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box" style="text-align: center; margin-bottom: 24px;">
+        <div style="font-size: 64px; margin-bottom: 16px;">🤝</div>
+        <p style="font-size: 18px; line-height: 1.5;"><span data-i18n="refer_desc">Invite friends and earn </span> <strong style="color: var(--secondary);">10%</strong> <span data-i18n="refer_desc_2"> of what they earn!</span></p>
+        <div style="display: flex; align-items: center; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px 8px 8px 16px; margin: 24px 0;">
+          <input type="text" id="refer-link-input" value="https://hrangluroa-lab.github.io/cash-mizo/" readonly style="flex:1; border:none; background:transparent; color:var(--text-main); font-size:13px; outline:none;">
+          <button style="background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="copyReferLink()">Copy</button>
+        </div>
+        <button class="btn-primary" style="background: #25D366;" onclick="shareToWhatsApp()" data-i18n="share_wa">Share to WhatsApp</button>
+      </div>
+
+      <!-- Thiante Sawm List (My Referrals) -->
+      <div class="doc-box">
+        <h4 style="margin-bottom: 16px; font-size: 16px; font-weight: 800;">My Referrals (I ṭhian sawmte)</h4>
+        <div id="my-referrals-list">
+          <p style="font-size: 13px; color: var(--text-muted); text-align: center;">Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ACCESSIBILITY PAGE -->
+  <div id="access-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('access-page')">✕</div>
+      <h3 data-i18n="accessibility">Accessibility</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <h4 data-i18n="color_adj" style="margin-bottom: 16px;">Color Adjustment</h4>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bg-main); border-radius: 12px; margin-bottom: 24px;">
+          <strong data-i18n="dark_mode">Dark Mode / High Contrast</strong>
+          <input type="checkbox" id="dark-toggle" style="width: 24px; height: 24px; accent-color: var(--primary);" onchange="toggleDarkMode(this.checked)">
+        </div>
+
+        <h4 data-i18n="content_adj" style="margin-bottom: 16px;">Content Adjustment</h4>
+        <div style="background: var(--bg-main); padding: 16px; border-radius: 12px;">
+          <strong data-i18n="font_sizing" style="display: block; margin-bottom: 12px;">Font Sizing</strong>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn-secondary" style="margin-top: 0; font-size: 18px;" onclick="changeFontSize(-1)">A-</button>
+            <button class="btn-secondary" style="margin-top: 0; font-size: 18px;" onclick="changeFontSize(1)">A+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT US / MISSING SB PAGE -->
+  <div id="contact-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('contact-page')">←</div>
+      <h3 data-i18n="customer_care">Customer Care</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box" style="text-align: center; margin-bottom: 24px; background: linear-gradient(135deg, #1e293b, #0f172a); color: white; border: none;">
+        <div style="font-size: 40px; margin-bottom: 8px;">🎧</div>
+        <h3 data-i18n="care_title">We are here to help</h3>
+        <p style="font-size: 13px; color: #94a3b8;" data-i18n="care_desc">Replies within 24-48 business hours.</p>
+      </div>
+
+      <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
+      <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
+      <select id="ticket-subject" class="input-field" style="appearance: auto;">
+        <option value="" disabled selected data-i18n="select_issue">Select Issue...</option>
+        <option value="missing" data-i18n="issue_missing">Missing Coins (Task not credited)</option>
+        <option value="withdraw" data-i18n="issue_wd">Withdrawal / Payment Issue</option>
+        <option value="account" data-i18n="issue_acc">Account Settings</option>
+        <option value="other" data-i18n="issue_other">Other</option>
+      </select>
+      <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="Properly Explain Issue - Minimum 10 characters required." data-i18n="explain_issue"></textarea>
+      
+      <button class="btn-secondary" style="margin-top: 0; margin-bottom: 16px; border: 1px dashed var(--primary); color: var(--primary);" onclick="showToast('Image attached', false)">+ Attach Image / Screenshot</button>
+      
+      <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Send Message</button>
+    </div>
+  </div>
+
+  <!-- PROFILE & WITHDRAW PAGE -->
+  <div id="profile-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('profile-page')">←</div>
+      <h3 data-i18n="profile">My Account</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box" style="margin-bottom: 24px; text-align: center; border-color: var(--secondary);">
+        <h4 data-i18n="your_balance" style="color: var(--text-muted);">Total Balance</h4>
+        <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;"><span id="prof-balance">0</span> C</h2>
+        
+        <div id="withdraw-error" style="display:none; margin-top: 16px; padding: 12px; background: #fee2e2; color: #991b1b; border-radius: 12px; font-size: 13px;">
+          <span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span>
+        </div>
+        
+        <div id="withdraw-form" style="display:none; margin-top: 16px;">
+          <div id="wd-no-pay" style="display: block; padding: 12px; background: #fef3c7; color: #92400e; border-radius: 12px; font-size: 13px; margin-bottom: 12px;">
+            <span data-i18n="wd_no_pay_msg">Payment method not linked! Please set it below.</span>
+          </div>
+          <div id="wd-has-pay" style="display: none; padding: 12px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px;">
+            <span data-i18n="wd_send_to" style="font-size: 12px; color: var(--text-muted);">Send to:</span><br>
+            <strong style="color: var(--primary); font-size: 14px; word-break: break-all;" id="wd-display-pay">user@upi</strong>
+          </div>
+          <button class="btn-primary" onclick="submitWithdraw()" data-i18n="wd_btn">Withdraw 5,000 Coins</button>
+        </div>
+      </div>
+
+      <div class="doc-box" style="margin-bottom: 24px;">
+        <h4 data-i18n="payment_method" style="margin-bottom: 16px;">Payment Method</h4>
+        
+        <div id="payment-display-section" style="display: none; background: var(--bg-main); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px;">
+          <span style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" id="display-pay-type">UPI ID</span>
+          <strong id="prof-pay-id" style="color: var(--primary); display: block; margin-top: 4px; font-size: 16px; word-break: break-all;">Not linked</strong>
+        </div>
+        <button id="btn-change-pay" class="btn-secondary" onclick="togglePaymentEdit()" data-i18n="change_payment">Set Payment Method</button>
+
+        <div id="payment-edit-section" style="display: none; margin-top: 16px;">
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" data-i18n="select_pay_logo">Select your preferred option:</p>
+          
+          <div class="pay-grid">
+            <div class="pay-logo-card active" id="btn-pay-upi" onclick="selectPayType('upi')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI">
+              <span>UPI</span>
+            </div>
+            <div class="pay-logo-card" id="btn-pay-bank" onclick="selectPayType('bank')">
+              <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Bank" style="filter: grayscale(100%); opacity: 0.7;">
+              <span>Bank</span>
+            </div>
+            <div class="pay-logo-card" id="btn-pay-paypal" onclick="selectPayType('paypal')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+              <span>PayPal</span>
+            </div>
+          </div>
+          
+          <input type="hidden" id="pay-type-select" value="upi">
+
+          <div id="input-upi-wrap"><input type="text" id="pay-input-upi" class="input-field" placeholder="Enter UPI ID (e.g. 9876543210@ybl)"></div>
+          <div id="input-bank-wrap" style="display: none;">
+            <input type="number" id="pay-input-acc" class="input-field" placeholder="Account Number">
+            <input type="text" id="pay-input-ifsc" class="input-field" placeholder="IFSC Code">
+          </div>
+          <div id="input-paypal-wrap" style="display: none;"><input type="email" id="pay-input-paypal" class="input-field" placeholder="PayPal Email Address"></div>
+          
+          <button class="btn-primary" onclick="savePaymentInfo()" data-i18n="save">Save Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD PAGE -->
+  <div id="lb-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('lb-page')">←</div>
+      <h3 data-i18n="lb_title">Leaderboard</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <p data-i18n="lb_desc" style="color: var(--text-muted); margin-bottom: 16px; text-align: center;">List of top earners</p>
+        <div id="leaderboard-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO PAGE (FAQ) -->
+  <div id="info-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('info-page')">←</div>
+      <h3 data-i18n="how_it_works">How it works</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <h2 data-i18n="doc_how_title">Welcome to CASH-MIZO</h2>
+        <p data-i18n="doc_how_desc">Earn real money by completing tasks.</p>
+        <h4 data-i18n="doc_how_h1" style="margin-top:20px;">1. Earning Coins</h4>
+        <ul style="padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+          <li data-i18n="doc_how_l1">Premium Tasks: Complete surveys & offers.</li>
+          <li data-i18n="doc_how_l2">Daily Claim & Lucky Spin: Free daily rewards.</li>
+          <li data-i18n="doc_how_l3">Referral Program: 10% commission.</li>
+        </ul>
+        <h4 data-i18n="doc_how_h2" style="margin-top:20px;">2. Withdrawing</h4>
+        <ul style="padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+          <li data-i18n="doc_how_l4">Minimum threshold is 5,000 Coins.</li>
+          <li data-i18n="doc_how_l5">Link a valid Payment Method (UPI/Bank/PayPal).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGE PAGE -->
+  <div id="lang-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('lang-page')">←</div>
+      <h3 data-i18n="language">App Language</h3>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="fs-content">
+      <div class="doc-box">
+        <div class="list-menu-item lang-option" id="btn-lang-mizo" onclick="setLanguage('mizo'); closePage('lang-page')">Mizo (Default)</div>
+        <div class="list-menu-item lang-option" id="btn-lang-en" onclick="setLanguage('en'); closePage('lang-page')">English (US)</div>
+        <div class="list-menu-item lang-option" id="btn-lang-hi" onclick="setLanguage('hi'); closePage('lang-page')">हिन्दी (Hindi)</div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- END APP CONTAINER -->
+
+<!-- SUPABASE LEH JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // TRANSLATION DICTIONARY
+  const translations = {
+    mizo: {
+      success: "Hlawhtling!",
+      hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.",
+      hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.",
+      join_free: "Create Account",
+      agree_terms: "Terms of Service leh Privacy Policy ka pawm e.",
+      wip_feature: "He feature hi siam mek a ni.",
+      nav_home: "Home", nav_earn: "Earn", nav_shop: "Shop", nav_more: "More",
+      your_balance: "Total Balance",
+      withdraw: "Lakchhuahna",
+      daily_goal: "Daily Goal: 100 Coins",
+      goal_desc: "Bonus hmu turin vawiin atan thawk rawh",
+      daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna", rank: "Leaderboard",
+      swag_codes: "Promo Code Chhutna", redeem: "Redeem",
+      premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh",
+      answer_surveys: "Survey Chhanna", survey_tip: "Heng survey te hi chhang la coin hlawh rawh.",
+      short_survey: "Survey Tawi", gold_survey: "Survey Man To", profile_survey: "Profile Survey", play_games: "Game Khelhna", play_trivia: "Daily Trivia",
+      shop_cashback: "Shop & Cash Back", shop_desc: "Online a thil i leiin Cashback hmu rawh.",
+      m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
+      help_center: "Help Center", missing_sb: "Missing Coins / Customer Care", how_it_works: "Hman Dan Tur / FAQ",
+      m_info: "Dan Leh Hrai", terms: "Terms, Privacy & Dos/Don'ts", logout: "Log Out (Chhuak)",
+      accessibility: "Accessibility", color_adj: "Rawng Thlakna", dark_mode: "Dark Mode", content_adj: "Hawrawp Thlakna", font_sizing: "Hawrawp Len Zawng",
+      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", care_desc: "Darkar 24-48 chhungin kan rawn chhang ang che.",
+      submit_ticket: "Ticket Thehluhna", select_issue: "Harsatna thlang rawh...", issue_missing: "Coin a lut lo", issue_wd: "Withdrawal Harsatna", issue_acc: "Account Harsatna", issue_other: "A dang", explain_issue: "I harsatna chipchiar takin sawi rawh...", send_ticket: "Thawnna",
+      payment_method: "Payment Method", change_payment: "Payment Dahna / Thlakna", select_pay_logo: "I hman duh ber thlang rawh:", save: "Save Details",
+      wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "Withdraw turin Coins 5,000 tal i neih a ngai.", wd_no_pay_msg: "Payment Method i la thlang lo! Hnuai ah hian set rawh.", wd_send_to: "Heta hian pawisa chu thawn a ni ang:",
+      refer_title: "Refer & Earn", refer_desc: "I ṭhiante sawm lut la, an pawisa hlawh chhuah aṭangin ", refer_desc_2: " hlawh ve zel rawh!", share_wa: "WhatsApp ah Thawn rawh",
+      lb_title: "Top 10 Leaderboard", lb_desc: "Coin ngah ber ber te list",
+      doc_how_title: "CASH-MIZO ah lo lawm le", doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.", doc_how_h1: "1. Coins Hlawh chhuah dan", doc_how_l1: "Premium Tasks: Survey chhan, App download.", doc_how_l2: "Daily Claim & Lucky Spin: Nitin thlawnin claim rawh.", doc_how_l3: "Referral: 10% commission i hlawh zel ang.", doc_how_h2: "2. Pawisa Lakchhuah", doc_how_l4: "Coins 5,000 i tlin veleh Withdraw thei.", doc_how_l5: "Payment Method (UPI/Bank/PayPal) save hmasa rawh.",
+      inbox: "Inbox", msg_welcome_title: "CASH-MIZO ah lo lawm le!", msg_welcome_desc: "Task thawk la, pawisa tak tak hlawh chhuak rawh le.",
+      claimed: "Lak tawh ✅", spinned: "Spin tawh ✅", lock_msg: "Task 1 tal tih zawh hmasak a ngai! 🔒", spin_today_done: "Vawiin ah i Spin tawh"
+    },
+    en: {
+      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
+      wip_feature: "This feature is WIP.", nav_home: "Home", nav_earn: "Earn", nav_shop: "Shop", nav_more: "More",
+      your_balance: "Total Balance", withdraw: "Withdraw Funds", daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus",
+      daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends", rank: "Leaderboard",
+      swag_codes: "Redeem Promo Code", redeem: "Redeem", premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys",
+      answer_surveys: "Answer Surveys", survey_tip: "Take these quick surveys to unlock rewards.", short_survey: "Short Survey", gold_survey: "Gold Survey", profile_survey: "Profile Survey", play_games: "Play Games", play_trivia: "Daily Trivia",
+      shop_cashback: "Shop & Cash Back", shop_desc: "Earn points for every dollar you spend at your favorite retailers.",
+      m_general: "Account", profile: "My Account & Payment", language: "App Language", help_center: "Help Center", missing_sb: "Missing Coins / Customer Care", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms, Privacy & Dos/Don'ts", logout: "Log Out",
+      accessibility: "Accessibility", color_adj: "Color Adjustment", dark_mode: "Dark Mode / High Contrast", content_adj: "Content Adjustment", font_sizing: "Font Sizing",
+      customer_care: "Customer Care", care_title: "We are here to help", care_desc: "Replies within 24-48 business hours.", submit_ticket: "Submit a Ticket", select_issue: "Select Issue...", issue_missing: "Missing Coins (Task not credited)", issue_wd: "Withdrawal Issue", issue_acc: "Account Settings", issue_other: "Other", explain_issue: "Properly Explain Issue...", send_ticket: "Send Message",
+      payment_method: "Payment Method", change_payment: "Set Payment Method", select_pay_logo: "Select your preferred option:", save: "Save Details", wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "You need at least 5,000 Coins to withdraw.", wd_no_pay_msg: "Payment method not linked! Please set it below.", wd_send_to: "Send to:",
+      refer_title: "Refer & Earn", refer_desc: "Invite friends and earn ", refer_desc_2: " of what they earn!", share_wa: "Share to WhatsApp", lb_title: "Top 10 Leaderboard", lb_desc: "List of top earners",
+      doc_how_title: "Welcome to CASH-MIZO", doc_how_desc: "Earn real money by completing tasks.", doc_how_h1: "1. Earning Coins", doc_how_l1: "Premium Tasks: Complete surveys & offers.", doc_how_l2: "Daily Claim & Lucky Spin: Free daily rewards.", doc_how_l3: "Referral Program: 10% commission.", doc_how_h2: "2. Withdrawing", doc_how_l4: "Minimum threshold is 5,000 Coins.", doc_how_l5: "Link a valid Payment Method (UPI/Bank/PayPal).",
+      inbox: "Inbox", msg_welcome_title: "Welcome to CASH-MIZO!", msg_welcome_desc: "Explore earning opportunities, take surveys, and earn cash back.",
+      claimed: "Claimed ✅", spinned: "Spun ✅", lock_msg: "You must complete at least 1 task first! 🔒", spin_today_done: "Spun today already"
+    },
+    hi: {
+      success: "सफल!", hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।", hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।", join_free: "अकाउंट बनाएं", agree_terms: "मैंने नियम व शर्तें पढ़ ली है।",
+      wip_feature: "यह सुविधा अभी उपलब्ध नहीं है।", nav_home: "होम", nav_earn: "कमाएं", nav_shop: "शॉप", nav_more: "अधिक",
+      your_balance: "कुल बैलेंस", withdraw: "पैसे निकालें", daily_goal: "डेली गोल: 100 Coins", goal_desc: "बोनस पाने के लिए आज कमाएं",
+      daily_check: "डेली क्लेम", spin_wheel: "लकी स्पिन", refer: "रेफर करें", rank: "लीडरबोर्ड",
+      swag_codes: "प्रोमो कोड", redeem: "रिडीम", premium_tasks: "प्रीमियम टास्क", timewall_desc: "टास्क और सर्वे पूरे करें",
+      answer_surveys: "सर्वे के जवाब दें", survey_tip: "इन सर्वे को पूरा करके रिवॉर्ड पाएं।", short_survey: "छोटा सर्वे", gold_survey: "गोल्ड सर्वे", profile_survey: "प्रोफ़ाइल सर्वे", play_games: "गेम खेलें", play_trivia: "डेली ट्रिविया",
+      shop_cashback: "शॉप और कैशबैक", shop_desc: "ऑनलाइन शॉपिंग पर कैशबैक पाएं।",
+      m_general: "अकाउंट", profile: "मेरा खाता और पेमेंट", language: "ऐप की भाषा", help_center: "हेल्प सेंटर", missing_sb: "कस्टमर केयर / Missing Coins", how_it_works: "यह कैसे काम करता है", m_info: "नियम", terms: "नियम और गोपनीयता", logout: "लॉग आउट",
+      accessibility: "Accessibility", color_adj: "रंग (Color)", dark_mode: "डार्क मोड", content_adj: "कंटेंट (Content)", font_sizing: "फ़ॉन्ट साइज़",
+      customer_care: "Customer Care", care_title: "हम मदद के लिए यहाँ हैं", care_desc: "24-48 घंटों के भीतर जवाब।", submit_ticket: "टिकट सबमिट करें", select_issue: "समस्या चुनें...", issue_missing: "Coins नहीं मिले", issue_wd: "पैसे निकालने में समस्या", issue_acc: "अकाउंट सेटिंग", issue_other: "अन्य", explain_issue: "अपनी समस्या बताएं...", send_ticket: "मैसेज भेजें",
+      payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", select_pay_logo: "अपना पसंदीदा विकल्प चुनें:", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है! नीचे सेट करें।", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
+      refer_title: "रेफर करें और कमाएं", refer_desc: "दोस्तों को आमंत्रित करें और ", refer_desc_2: " 10% कमाएं!", share_wa: "WhatsApp पर शेयर करें", lb_title: "टॉप 10 लीडरबोर्ड", lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
+      doc_how_title: "CASH-MIZO में स्वागत है", doc_how_desc: "टास्क पूरे करके पैसे कमाएं।", doc_how_h1: "1. पैसे कमाना", doc_how_l1: "प्रीमियम टास्क: सर्वे और ऑफर्स।", doc_how_l2: "डेली क्लेम और स्पिन।", doc_how_l3: "रेफरल: 10% कमीशन।", doc_how_h2: "2. पैसे निकालना", doc_how_l4: "न्यूनतम 5,000 Coins चाहिए।", doc_how_l5: "पेमेंट मेथड लिंक करें।",
+      inbox: "इनबॉक्स (Inbox)", msg_welcome_title: "CASH-MIZO में स्वागत है!", msg_welcome_desc: "पैसे कमाने के नए तरीके खोजें।",
+      claimed: "प्राप्त किया ✅", spinned: "स्पिन किया ✅", lock_msg: "पहले कम से कम 1 टास्क पूरा करें! 🔒", spin_today_done: "आज स्पिन कर चुके हैं"
+    }
+  };
+
+  let currentLang = localStorage.getItem('cashmizo_lang') || 'mizo';
+  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
+  let userPayInfo = null; let hasCompletedTaskToday = false; 
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('cashmizo_lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key].replace('\n', '<br>');
+    });
+    document.querySelectorAll('.lang-option').forEach(el => { el.style.borderColor = 'var(--border-color)'; el.style.color = 'var(--text-main)'; });
+    if(document.getElementById(`btn-lang-${lang}`)) { document.getElementById(`btn-lang-${lang}`).style.borderColor = 'var(--primary)'; document.getElementById(`btn-lang-${lang}`).style.color = 'var(--primary)'; }
+    checkClaimedUI(); 
+  }
+
+  function switchTab(tabId, element) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+    element.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function openPage(pageId) { document.getElementById(pageId).classList.add('active'); }
+  function closePage(pageId) { document.getElementById(pageId).classList.remove('active'); }
+
+  function toggleInbox() {
+    const box = document.getElementById('inbox-dropdown');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+  
+  function toggleDarkMode(isDark) {
+    if(isDark) document.body.classList.add('dark-mode');
+    else document.body.classList.remove('dark-mode');
+  }
+
+  let currentFontSize = 16;
+  function changeFontSize(step) {
+    currentFontSize += (step * 2);
+    if(currentFontSize < 12) currentFontSize = 12;
+    if(currentFontSize > 22) currentFontSize = 22;
+    document.body.style.fontSize = currentFontSize + 'px';
+  }
+
+  function redeemPromo() {
+    const val = document.getElementById('promo-input').value;
+    if(val.length < 4) showToast("Invalid Promo Code", true);
+    else showToast("Code Expired or Invalid", true);
+    document.getElementById('promo-input').value = '';
+  }
+
+  function submitTicket() {
+    const sub = document.getElementById('ticket-subject').value;
+    const desc = document.getElementById('ticket-desc').value;
+    if(!sub || desc.length < 10) { showToast("Please fill all fields properly.", true); return; }
+    showToast("Ticket submitted! We will email you.");
+    setTimeout(() => closePage('contact-page'), 1500);
+  }
+
+  function selectPayType(type) {
+    document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
+    document.getElementById(`btn-pay-${type}`).classList.add('active');
+    document.getElementById('pay-type-select').value = type;
+    document.getElementById('input-upi-wrap').style.display = 'none';
+    document.getElementById('input-bank-wrap').style.display = 'none';
+    document.getElementById('input-paypal-wrap').style.display = 'none';
+    if(type === 'upi') document.getElementById('input-upi-wrap').style.display = 'block';
+    if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
+    if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
+  }
+
+  const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
+
+  function getReferrerFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refId = urlParams.get('ref');
+      if (refId) {
+          localStorage.setItem('cashmizo_referrer', refId); 
+      }
+  }
+  getReferrerFromUrl();
+
+  async function showMainApp(session) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'block';
+    setLanguage(currentLang);
+
+    if (session && session.user) {
+      currentUserId = session.user.id;
+      let fullName = session.user.user_metadata.full_name || 'User';
+      let email = session.user.email || '';
+      
+      document.getElementById('more-name').innerText = fullName;
+      document.getElementById('more-email').innerText = email;
+      document.getElementById('ticket-email').value = email;
+      document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
+      
+      document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
+
+      const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
+      
+      if (error && error.code !== 'PGRST116') {
+          alert("BUAINA: " + error.message);
+      }
+
+      if (data) {
+        userCoins = data.coins || 0; 
+        lastDailyCheck = data.last_daily_check || null; 
+        lastSpinDate = data.last_spin_date || null;
+        userPayInfo = data.upi_id || ''; 
+        hasCompletedTaskToday = (data.total_tasks_completed && data.total_tasks_completed > 0) ? true : false;
+        
+        if (hasCompletedTaskToday) {
+            document.getElementById('btn-daily').classList.remove('locked');
+            document.getElementById('btn-spin').classList.remove('locked');
+        }
+      } else {
+        let storedReferrer = localStorage.getItem('cashmizo_referrer');
+        
+        await supabaseClient.from('user_profiles').insert([{ 
+            id: currentUserId, 
+            name: fullName, 
+            coins: 0,
+            referred_by: storedReferrer 
+        }]); 
+        userCoins = 0;
+        localStorage.removeItem('cashmizo_referrer');
+      }
+
+      updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
+    }
+  }
+
+  function updateBalanceUI() {
+    let formattedCoins = userCoins.toLocaleString('en-US');
+    document.getElementById('header-balance').innerText = formattedCoins;
+    document.getElementById('current-balance').innerText = formattedCoins;
+    document.getElementById('prof-balance').innerText = formattedCoins;
+    
+    let goalPercent = (userCoins / 100) * 100;
+    if(goalPercent > 100) goalPercent = 100;
+    if(goalPercent === 0) goalPercent = 5; 
+    document.getElementById('goal-progress').style.width = goalPercent + '%';
+  }
+
+  function updatePaymentUI() {
+    if (userPayInfo && userPayInfo !== '') {
+      document.getElementById('payment-display-section').style.display = 'block';
+      document.getElementById('payment-edit-section').style.display = 'none';
+      document.getElementById('btn-change-pay').style.display = 'block';
+      
+      let displayValue = userPayInfo;
+      if(userPayInfo.includes('::')) {
+          let parts = userPayInfo.split('::');
+          displayValue = parts[0] === 'bank' ? parts[1].replace('|', '\nIFSC: ') : parts[1];
+          document.getElementById('display-pay-type').innerText = parts[0].toUpperCase();
+      }
+      document.getElementById('prof-pay-id').innerText = displayValue;
+    } else {
+      document.getElementById('payment-display-section').style.display = 'none';
+      document.getElementById('payment-edit-section').style.display = 'block';
+      document.getElementById('btn-change-pay').style.display = 'none';
+    }
+  }
+  
+  function togglePaymentEdit() {
+    document.getElementById('payment-display-section').style.display = 'none';
+    document.getElementById('payment-edit-section').style.display = 'block';
+    document.getElementById('btn-change-pay').style.display = 'none';
+  }
+
+  async function savePaymentInfo() {
+    const type = document.getElementById('pay-type-select').value;
+    let saveString = "";
+    if(type === 'upi') {
+        const val = document.getElementById('pay-input-upi').value.trim();
+        if(!val) { showToast("Enter UPI ID", true); return; }
+        saveString = `upi::${val}`;
+    } else if(type === 'paypal') {
+        const val = document.getElementById('pay-input-paypal').value.trim();
+        if(!val) { showToast("Enter PayPal Email", true); return; }
+        saveString = `paypal::${val}`;
+    } else if(type === 'bank') {
+        const acc = document.getElementById('pay-input-acc').value.trim();
+        const ifsc = document.getElementById('pay-input-ifsc').value.trim();
+        if(!acc || !ifsc) { showToast("Enter Account & IFSC", true); return; }
+        saveString = `bank::A/C ${acc} | ${ifsc}`;
+    }
+    
+    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
+    if(error) { showToast("Error: " + error.message, true); } 
+    else { userPayInfo = saveString; updatePaymentUI(); showToast(translations[currentLang].success); }
+  }
+
+  function checkLockAndRun(action) {
+    if (action === 'daily') requestDailyFromServer();
+  }
+
+  // ============== LUCKY SPIN (SECURITY FIXED) ==============
+  let isSpinning = false;
+  
+  function openSpinWheel() {
+    if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
+    
+    const today = new Date().toDateString();
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
+       showToast(translations[currentLang].spin_today_done, true);
+       return;
+    }
+    openPage('spin-page');
+  }
+
+  async function startSpin() {
+    if(isSpinning) return;
+    isSpinning = true;
+    document.getElementById('btn-do-spin').innerText = "Spinning...";
+    document.getElementById('btn-do-spin').style.opacity = '0.5';
+
+    // 1. BACKEND AṬANGIN PRIZE KAN DIL HMASA (Hacker in a thunun thei lo)
+    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
+
+    if (error) {
+       showToast("Error: " + error.message, true);
+       resetSpinBtn(); return;
+    }
+    if (data && !data.success) {
+       showToast(data.message, true);
+       resetSpinBtn(); return;
+    }
+
+    // 2. BACKEND IN PRIZE A RAWN THLAN CHU KAN LA ANG (Entirnan: 50 a rawn thlang)
+    let prize = data.prize;
+    let pointerDegree = 0;
+
+    // 3. PRIZE AZIRIN WHEEL TAWPNA TUR DEGREE KAN SET ANG
+    if (prize === 5) pointerDegree = 30;       // 🔴 Red
+    else if (prize === 10) pointerDegree = 90; // 🟠 Orange
+    else if (prize === 50) pointerDegree = 150;// 🟢 Green
+    else if (prize === 0) pointerDegree = 210; // 🔵 Blue
+    else if (prize === 100) pointerDegree = 270;// 🟣 Purple
+    else if (prize === 20) pointerDegree = 330; // 💖 Pink
+
+    // Wheel vir kual vel tur zat (Spin 5 rounds + degree dik tak)
+    let actualDegree = (360 - pointerDegree) % 360;
+    let totalRotation = 1800 + actualDegree; // 1800 chu round 5 a ni
+
+    let wheel = document.getElementById('wheel');
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+    // 4. ANIMATION ZAWHAH HRIATTIRNA PEK
+    setTimeout(() => {
+       if(prize > 0) {
+           showToast(`🎉 I vannei! ${prize} Coins i hmu e!`);
+       } else {
+           showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true);
+       }
+
+       userCoins = data.new_balance;
+       lastSpinDate = new Date().toISOString();
+       updateBalanceUI();
+       checkClaimedUI();
+
+       setTimeout(() => {
+           closePage('spin-page');
+           resetSpinBtn();
+           wheel.style.transform = `rotate(0deg)`;
+       }, 2500);
+
+    }, 4000); // 4 seconds (wheel vir chhung)
+  }
+
+  function resetSpinBtn() {
+      isSpinning = false;
+      document.getElementById('btn-do-spin').innerText = "SPIN NOW";
+      document.getElementById('btn-do-spin').style.opacity = '1';
+  }
+  // ============== LUCKY SPIN END ==============
+
+  function checkClaimedUI() {
+    const today = new Date().toDateString();
+    if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = translations[currentLang].claimed; }
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = translations[currentLang].spinned; }
+  }
+
+  function openTimeWall() {
+    if (!currentUserId) return;
+    window.open(`https://timewall.io/offers?uid=${currentUserId}`, '_blank');
+  }
+
+  function copyReferLink() {
+    const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
+    showToast(translations[currentLang].success);
+  }
+  function shareToWhatsApp() {
+    const link = document.getElementById('refer-link-input').value;
+    window.open(`https://wa.me/?text=${encodeURIComponent("Join CASH-MIZO! " + link)}`, '_blank');
+  }
+
+  function showToast(message, isError = false) {
+    const toast = document.getElementById('toast'); 
+    toast.innerHTML = isError ? `⚠️ ${message}` : `✅ ${message}`;
+    if(isError) toast.classList.add('error'); else toast.classList.remove('error');
+    toast.style.top = '40px'; 
+    setTimeout(() => { toast.style.top = '-100px'; }, 3000);
+  }
+
+  async function requestDailyFromServer() {
+    if (!currentUserId) return;
+    const { data, error } = await supabaseClient.rpc('claim_daily_reward');
+    if (error) { showToast(error.message, true); return; }
+    if (data && data.success) { userCoins = data.new_balance; lastDailyCheck = new Date().toISOString(); updateBalanceUI(); checkClaimedUI(); showToast(data.message); } 
+    else { showToast(data.message, true); }
+  }
+  
+  async function openReferPage() {
+      openPage('refer-page');
+      
+      if (!currentUserId) return;
+      const listDiv = document.getElementById('my-referrals-list');
+      listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center;">Loading...</p>';
+      
+      const { data, error } = await supabaseClient.rpc('get_my_referrals');
+      
+      if (error) {
+          listDiv.innerHTML = `<p style="color: #ef4444; font-size: 13px;">Error: ${error.message}</p>`;
+          return;
+      }
+
+      if (data && data.length > 0) {
+          let htmlString = '';
+          data.forEach(ref => {
+              let statusHtml = ref.task_done 
+                  ? `<span class="ref-status done">Task ti tawh ✅</span>` 
+                  : `<span class="ref-status pending">Task a la ti lo ❌</span>`;
+                  
+              htmlString += `
+                  <div class="ref-list-item">
+                      <span class="ref-name">👤 ${ref.name || 'User'}</span>
+                      ${statusHtml}
+                  </div>
+              `;
+          });
+          listDiv.innerHTML = htmlString;
+      } else {
+          listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px;">Ṭhian sawm i la nei lo.</p>';
+      }
+  }
+  
+  async function openLeaderboard() {
+    openPage('lb-page');
+    document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
+    const { data } = await supabaseClient.from('user_profiles').select('name, coins').order('coins', { ascending: false }).limit(10);
+    if (data) {
+      let htmlString = '';
+      data.forEach((user, i) => {
+        let medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `<span style="color:var(--text-muted); font-size:12px;">${i+1}</span>`;
+        htmlString += `<div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--border-color);"><span style="font-weight:700; color:var(--text-main);">${medal} ${user.name}</span><span style="font-weight:800; color:var(--secondary);">${user.coins.toLocaleString()} C</span></div>`;
+      });
+      document.getElementById('leaderboard-list').innerHTML = htmlString;
+    }
+  }
+
+  async function submitWithdraw() {
+    if (!userPayInfo || userCoins < 5000) return;
+    userCoins -= 5000;
+    const { error } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
+    if (error) { showToast(error.message, true); return; }
+    await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
+    updateBalanceUI(); closePage('profile-page'); showToast(translations[currentLang].success);
+  }
+  
+  async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
+  
+  window.addEventListener('load', async () => {
+    setLanguage(currentLang);
+    const hash = window.location.hash;
+    if (hash && hash.includes('access_token=')) {
+      const params = new URLSearchParams(hash.substring(1));
+      if (params.get('access_token')) {
+        const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
+        if (!error && data.session) { window.history.replaceState(null, null, window.location.pathname); showMainApp(data.session); }
+      }
+    } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
+    
+    document.getElementById('agree-check').addEventListener('change', function() {
+        const btn = document.querySelector('.auth-btn.btn-google');
+        if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
+        else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
+    });
+    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
+    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
+
+    const observer = new MutationObserver(() => {
+        if(userCoins >= 5000) {
+            document.getElementById('withdraw-error').style.display = 'none';
+            document.getElementById('withdraw-form').style.display = 'block';
+            if(userPayInfo) { document.getElementById('wd-no-pay').style.display = 'none'; document.getElementById('wd-has-pay').style.display = 'block'; let v=userPayInfo; if(v.includes('::')){ let p=v.split('::'); v=p[0]==='bank'?p[1].replace('|','IFSC:'):p[1]; } document.getElementById('wd-display-pay').innerText = v; }
+            else { document.getElementById('wd-no-pay').style.display = 'block'; document.getElementById('wd-has-pay').style.display = 'none'; }
+        } else {
+            document.getElementById('withdraw-error').style.display = 'block';
+            document.getElementById('withdraw-form').style.display = 'none';
+        }
+    });
+    observer.observe(document.getElementById('prof-balance'), { childList: true });
+  });
+  
+  async function login() {
+    if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
+    document.getElementById('btn-login-text').innerHTML = '...'; 
+    const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/' } });
+    if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
+  }
+</script>
 </body>
 </html>
