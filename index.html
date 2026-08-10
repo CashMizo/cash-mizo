@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CASH-MIZO | Original Rewards</title>
+  
+  <!-- FONT AWESOME ICONS (App changkang hman chi) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
@@ -48,16 +52,19 @@
     
     #main-app { display: none; padding-bottom: 80px; }
     
-    .header { background: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; box-shadow: var(--shadow-sm);}
-    .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .header { background: var(--bg-card); padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; box-shadow: var(--shadow-sm);}
+    .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; letter-spacing: -0.5px; }
+    .brand-logo i { color: #f59e0b; font-size: 20px; }
     .header-icons { display: flex; align-items: center; gap: 12px; }
-    .h-icon { font-size: 20px; cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative;}
+    .h-icon { font-size: 18px; color: var(--text-muted); cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; transition: 0.2s;}
+    .h-icon:hover { color: var(--primary); }
     .h-badge { position: absolute; top: -2px; right: -2px; background: #ef4444; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
     .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+    .balance-pill i { color: #f59e0b; }
     
     .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 420px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
-    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;}
-    .nav-item i { font-size: 22px; font-style: normal; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;}
+    .nav-item i { font-size: 20px; }
     .nav-item.active { color: var(--primary); }
     .nav-item.active i { transform: scale(1.1); }
 
@@ -71,7 +78,7 @@
     .withdraw-btn-main { background: var(--secondary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; border: none; margin-top: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
     
     .daily-goal-box { background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
-    .dg-icon { font-size: 32px; }
+    .dg-icon { font-size: 28px; color: #ef4444; display: flex; align-items: center; justify-content: center; background: #fef2f2; width: 50px; height: 50px; border-radius: 12px;}
     .dg-info { flex-grow: 1; }
     .dg-info h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
     .progress-bar { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; margin-top: 8px; }
@@ -81,15 +88,9 @@
     .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
     
     .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
-    .grid-card.locked::after { 
-        content: '🔒'; 
-        position: absolute; 
-        top: 16px; 
-        right: 16px; 
-        font-size: 20px; 
-    }
+    .grid-card.locked::after { content: '\f023'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 16px; right: 16px; font-size: 16px; color: var(--text-muted); }
     
-    .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
     .ic-daily { background: #fef3c7; color: #d97706; }
     .ic-spin { background: #e0e7ff; color: #4338ca; }
     .ic-refer { background: #dcfce7; color: #15803d; }
@@ -104,7 +105,8 @@
 
     .survey-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
     .sv-left h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-    .sv-left p { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 4px;}
+    .sv-left p { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 6px;}
+    .sv-left p i { font-size: 12px; }
     .sv-right button { background: var(--primary-light); color: var(--primary); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
     .offer-banner { background: linear-gradient(45deg, #10b981, #059669); border-radius: 16px; padding: 24px; color: white; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
     .offer-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
@@ -114,15 +116,18 @@
     .shop-item img { width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; object-fit: contain; background: #f8fafc;}
     .shop-item h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
     .shop-item p { font-size: 12px; color: var(--secondary); font-weight: 700; }
+    .shop-icon { width: 60px; height: 60px; background: #f1f5f9; border-radius: 12px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--text-muted); }
 
     .menu-group-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding: 16px 0 8px; }
     .list-menu-item { background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-main); cursor: pointer; }
-    .list-menu-item i { color: var(--text-muted); font-size: 18px; }
+    .list-menu-item i { color: var(--text-muted); font-size: 16px; }
+    .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
 
     .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow-y: auto; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
-    .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; cursor: pointer; font-weight: bold; color: var(--text-main);}
+    .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
+    .back-btn:hover { background: var(--border-color); }
     .fs-content { padding: 24px; padding-bottom: 40px; }
 
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
@@ -136,10 +141,10 @@
     .pay-logo-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 8px; }
     .pay-logo-card span { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); }
 
-    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; transition: 0.4s; }
+    #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 1000; transition: 0.4s; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 8px;}
     #toast.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; } 
     
-    #inbox-dropdown { display: none; position: absolute; top: 60px; right: 24px; width: 280px; background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); z-index: 100; padding: 16px; }
+    #inbox-dropdown { display: none; position: absolute; top: 65px; right: 24px; width: 280px; background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); z-index: 100; padding: 16px; }
     #inbox-dropdown::before { content: ''; position: absolute; top: -6px; right: 20px; width: 12px; height: 12px; background: var(--bg-card); transform: rotate(45deg); border-left: 1px solid var(--border-color); border-top: 1px solid var(--border-color); }
     .inbox-msg { padding: 12px; border-bottom: 1px solid var(--border-color); }
     .inbox-msg:last-child { border-bottom: none; }
@@ -149,7 +154,7 @@
     /* SPIN WHEEL CSS */
     .wheel-container { position: relative; width: 260px; height: 260px; margin: 0 auto; }
     .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--text-main); background: conic-gradient( #ef4444 0deg 60deg, #f59e0b 60deg 120deg, #10b981 120deg 180deg, #3b82f6 180deg 240deg, #8b5cf6 240deg 300deg, #ec4899 300deg 360deg ); transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1); box-shadow: var(--shadow-md);}
-    .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 40px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 32px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); color: var(--text-main); }
     
     /* REFERRAL LIST CSS */
     .ref-list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
@@ -159,32 +164,34 @@
     .ref-status.done { background: #dcfce7; color: #15803d; }
     .ref-status.pending { background: #fee2e2; color: #991b1b; }
 
-    /* AI BOT UI CSS */
-    .chatbot-fab { position: fixed; bottom: 95px; right: 20px; width: 55px; height: 55px; background: var(--primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4); z-index: 1000; transition: 0.3s; }
-    .chatbot-fab:hover { transform: scale(1.1); }
-    .chatbot-window { position: fixed; bottom: 160px; right: 20px; width: 320px; height: 420px; background: var(--bg-card); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); display: none; flex-direction: column; overflow: hidden; z-index: 999; animation: slideUp 0.3s ease; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .chatbot-header { background: var(--primary); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 14px; }
-    .chatbot-header i { cursor: pointer; font-size: 18px; font-style: normal; }
-    .chatbot-messages { flex: 1; padding: 15px; overflow-y: auto; background: var(--bg-main); display: flex; flex-direction: column; gap: 10px; }
-    .bubble { max-width: 85%; padding: 10px 14px; border-radius: 15px; font-size: 13px; line-height: 1.4; }
-    .bot-bubble { background: #e2e8f0; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 2px; }
-    .user-bubble { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-    .chatbot-input { display: flex; padding: 10px; background: var(--bg-card); border-top: 1px solid var(--border-color); gap: 8px;}
-    .chatbot-input input { flex: 1; border: 1px solid var(--border-color); outline: none; padding: 10px; background: var(--bg-main); border-radius: 20px; color: var(--text-main); font-size: 13px;}
-    .chatbot-input button { background: var(--primary); color: white; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    /* AI CHAT CSS (Modern Full Page UI) */
+    .chat-container { display: flex; flex-direction: column; height: calc(100vh - 72px); background: #F9FAFB; }
+    .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; box-shadow: var(--shadow-sm); }
+    .bot-bubble { background: #FFFFFF; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
+    .user-bubble { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .chat-input-area { padding: 16px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; }
+    .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
+    .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: 0.2s; }
+    .chat-input-area button:active { transform: scale(0.95); }
+    
+    /* Hide native Google Translate toolbar */
+    .goog-te-banner-frame { display: none !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; }
+    body { top: 0 !important; }
   </style>
 </head>
 <body>
 
 <div class="app-container">
   
-  <div id="toast" data-i18n="success">✅ Hlawhtling!</div>
+  <div id="toast" data-i18n="success"><i class="fa-solid fa-circle-check"></i> Hlawhtling!</div>
 
   <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-hero">
-      <div class="login-logo-text">⚡ CASH-MIZO</div>
+      <div class="login-logo-text"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
       <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
       <p data-i18n="hero_desc">Join thousands of youths earning from their smartphones everyday.</p>
     </div>
@@ -205,15 +212,14 @@
   <div id="main-app">
     
     <div class="header">
-      <div class="brand-logo">⚡ CASH-MIZO</div>
+      <div class="brand-logo"><i class="fa-solid fa-bolt"></i> CASH-MIZO</div>
       <div class="header-icons">
-        <!-- Translate Icon added to open Language Page -->
-        <div class="h-icon" onclick="openPage('lang-page')" title="Language">🌐</div>
-        <div class="h-icon" onclick="openPage('access-page')" title="Accessibility">👁️</div>
+        <div class="h-icon" onclick="openPage('lang-page')" title="Language"><i class="fa-solid fa-globe"></i></div>
+        <div class="h-icon" onclick="openPage('access-page')" title="Accessibility"><i class="fa-solid fa-eye"></i></div>
         <div class="h-icon" onclick="toggleInbox()" title="Inbox">
-          🔔<div class="h-badge"></div>
+          <i class="fa-solid fa-bell"></i><div class="h-badge"></div>
         </div>
-        <div class="balance-pill">🪙 <span id="header-balance">0</span></div>
+        <div class="balance-pill"><i class="fa-solid fa-coins"></i> <span id="header-balance">0</span></div>
       </div>
     </div>
 
@@ -234,7 +240,7 @@
       </div>
 
       <div class="daily-goal-box">
-        <div class="dg-icon">🚀</div>
+        <div class="dg-icon"><i class="fa-solid fa-rocket"></i></div>
         <div class="dg-info">
           <h4 data-i18n="daily_goal">Daily Goal: 100 Coins</h4>
           <p style="font-size: 11px; color: var(--text-muted);" data-i18n="goal_desc">Earn today to get bonus</p>
@@ -244,19 +250,19 @@
 
       <div class="grid-actions">
         <div class="grid-card locked" id="btn-daily" onclick="checkLockAndRun('daily')">
-          <div class="icon-box ic-daily">📅</div>
+          <div class="icon-box ic-daily"><i class="fa-solid fa-calendar-check"></i></div>
           <div><h4 data-i18n="daily_check" id="txt-daily">Daily Claim</h4><p>+50 Coins</p></div>
         </div>
         <div class="grid-card locked" id="btn-spin" onclick="openSpinWheel()">
-          <div class="icon-box ic-spin">🎡</div>
+          <div class="icon-box ic-spin"><i class="fa-solid fa-dharmachakra"></i></div>
           <div><h4 data-i18n="spin_wheel" id="txt-spin">Lucky Spin</h4><p>Win up to 100</p></div>
         </div>
         <div class="grid-card" id="btn-refer" onclick="openReferPage()">
-          <div class="icon-box ic-refer">🤝</div>
+          <div class="icon-box ic-refer"><i class="fa-solid fa-handshake-angle"></i></div>
           <div><h4 data-i18n="refer">Refer Friends</h4><p>10% Commission</p></div>
         </div>
         <div class="grid-card" onclick="openLeaderboard()">
-          <div class="icon-box ic-rank">🏆</div>
+          <div class="icon-box ic-rank"><i class="fa-solid fa-trophy"></i></div>
           <div><h4 data-i18n="rank">Leaderboard</h4><p>Top earners</p></div>
         </div>
       </div>
@@ -276,7 +282,7 @@
           <h3 data-i18n="premium_tasks">Premium Tasks</h3>
           <p style="font-size: 13px; font-weight: 500; opacity: 0.9;" data-i18n="timewall_desc">Complete tasks & surveys</p>
         </div>
-        <div style="font-size: 32px;">⏱️</div>
+        <div style="font-size: 32px;"><i class="fa-solid fa-stopwatch"></i></div>
       </div>
 
       <div class="section-title" data-i18n="answer_surveys">Answer Surveys</div>
@@ -285,7 +291,7 @@
       <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
         <div class="sv-left">
           <h4 data-i18n="short_survey">Short Survey</h4>
-          <p>⏳ 3 min • <span style="color: var(--secondary);">⭐ Best Match</span></p>
+          <p><i class="fa-regular fa-clock"></i> 3 min • <span style="color: var(--secondary);"><i class="fa-solid fa-star"></i> Best Match</span></p>
         </div>
         <div class="sv-right"><button>5 C</button></div>
       </div>
@@ -293,7 +299,7 @@
       <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
         <div class="sv-left">
           <h4 data-i18n="gold_survey">Gold Survey</h4>
-          <p>⏳ 15 min • <span style="color: var(--secondary);">⭐ High Paying</span></p>
+          <p><i class="fa-regular fa-clock"></i> 15 min • <span style="color: var(--secondary);"><i class="fa-solid fa-star"></i> High Paying</span></p>
         </div>
         <div class="sv-right"><button>85 C</button></div>
       </div>
@@ -301,7 +307,7 @@
       <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
         <div class="sv-left">
           <h4 data-i18n="profile_survey">Profile Survey</h4>
-          <p>⏳ 10 min</p>
+          <p><i class="fa-regular fa-clock"></i> 10 min</p>
         </div>
         <div class="sv-right"><button>50 C</button></div>
       </div>
@@ -310,7 +316,7 @@
       <div class="survey-card" onclick="showToast(translations[currentLang].wip_feature, true)">
         <div class="sv-left">
           <h4 data-i18n="play_trivia">Daily Trivia</h4>
-          <p>🎮 Answer 10 questions</p>
+          <p><i class="fa-solid fa-gamepad"></i> Answer 10 questions</p>
         </div>
         <div class="sv-right"><button>20 C</button></div>
       </div>
@@ -339,7 +345,7 @@
           <p>Flat 100 C</p>
         </div>
         <div class="shop-item" onclick="showToast(translations[currentLang].wip_feature, true)">
-          <div style="width:60px;height:60px;background:#f1f5f9;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;">🍔</div>
+          <div class="shop-icon"><i class="fa-solid fa-burger"></i></div>
           <h4>Food Delivery</h4>
           <p>Up to 2% CB</p>
         </div>
@@ -358,43 +364,51 @@
         </div>
       </div>
 
+      <!-- AI ASSISTANT MENU ITEM (NEW) -->
+      <div class="menu-group-title">AI Support</div>
+      <div class="list-menu-item" onclick="openPage('ai-chat-page')" style="border: 1px solid var(--primary); background: var(--primary-light);">
+        <span><i class="fa-solid fa-robot" style="color: var(--primary);"></i> <strong style="color: var(--primary);">Smart AI Assistant</strong></span> <i class="fa-solid fa-chevron-right" style="color: var(--primary);"></i>
+      </div>
+
       <div class="menu-group-title" data-i18n="m_general">Account</div>
       <div class="list-menu-item" onclick="openPage('profile-page')">
-        <span data-i18n="profile">My Account & Payment</span> <i>›</i>
+        <span><i class="fa-solid fa-user"></i> <span data-i18n="profile">My Account & Payment</span></span> <i class="fa-solid fa-chevron-right"></i>
       </div>
       <div class="list-menu-item" onclick="openPage('lang-page')">
-        <span data-i18n="language">App Language</span> <i>›</i>
+        <span><i class="fa-solid fa-language"></i> <span data-i18n="language">App Language</span></span> <i class="fa-solid fa-chevron-right"></i>
       </div>
 
       <div class="menu-group-title" data-i18n="help_center">Help Center</div>
       <div class="list-menu-item" onclick="openPage('contact-page')">
-        <span data-i18n="missing_sb">Missing Coins / Contact Us</span> <i>›</i>
+        <span><i class="fa-solid fa-headset"></i> <span data-i18n="missing_sb">Contact Us / Support</span></span> <i class="fa-solid fa-chevron-right"></i>
       </div>
       <div class="list-menu-item" onclick="openPage('info-page')">
-        <span data-i18n="how_it_works">How it works / FAQ</span> <i>›</i>
+        <span><i class="fa-solid fa-circle-question"></i> <span data-i18n="how_it_works">How it works / FAQ</span></span> <i class="fa-solid fa-chevron-right"></i>
       </div>
 
       <div class="menu-group-title" data-i18n="m_info">Legal</div>
       <div class="list-menu-item" onclick="window.location.href='terms.html'">
-        <span data-i18n="terms">Terms, Privacy & Dos/Don'ts</span> <i>›</i>
+        <span><i class="fa-solid fa-shield-halved"></i> <span data-i18n="terms">Terms & Privacy</span></span> <i class="fa-solid fa-chevron-right"></i>
       </div>
 
-      <button class="btn-secondary" style="margin-top: 24px; color: #ef4444; border-color: #fecaca; background: #fef2f2;" onclick="logout()" data-i18n="logout">Log Out</button>
+      <button class="btn-secondary" style="margin-top: 24px; color: #ef4444; border-color: #fecaca; background: #fef2f2;" onclick="logout()" data-i18n="logout">
+        <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 8px;"></i> Log Out
+      </button>
     </div>
 
     <!-- BOTTOM NAVIGATION BAR -->
     <div class="bottom-nav">
       <div class="nav-item active" onclick="switchTab('home', this)">
-        <i>🏠</i> <span data-i18n="nav_home">Home</span>
+        <i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span>
       </div>
       <div class="nav-item" onclick="switchTab('earn', this)">
-        <i>📋</i> <span data-i18n="nav_earn">Earn</span>
+        <i class="fa-solid fa-list-check"></i> <span data-i18n="nav_earn">Earn</span>
       </div>
       <div class="nav-item" onclick="switchTab('shop', this)">
-        <i>🛍️</i> <span data-i18n="nav_shop">Shop</span>
+        <i class="fa-solid fa-bag-shopping"></i> <span data-i18n="nav_shop">Shop</span>
       </div>
       <div class="nav-item" onclick="switchTab('support', this)">
-        <i>⚙️</i> <span data-i18n="nav_more">More</span>
+        <i class="fa-solid fa-gear"></i> <span data-i18n="nav_more">More</span>
       </div>
     </div>
 
@@ -403,10 +417,28 @@
 
   <!-- ================= FULLSCREEN PAGES ================= -->
 
+  <!-- SMART AI ASSISTANT CHAT PAGE (NEW) -->
+  <div id="ai-chat-page" class="fs-page">
+    <div class="fs-header">
+      <div class="back-btn" onclick="closePage('ai-chat-page')"><i class="fa-solid fa-arrow-left"></i></div>
+      <h3 style="font-size: 16px; font-weight: 700;">Smart Assistant</h3>
+      <div style="width: 40px; text-align: right;"><i class="fa-solid fa-robot" style="color: var(--primary); font-size: 20px;"></i></div>
+    </div>
+    <div class="chat-container">
+      <div class="chat-messages" id="chat-box">
+        <div class="chat-bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+        <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
   <!-- SPIN WHEEL PAGE -->
   <div id="spin-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('spin-page')">←</div>
+      <div class="back-btn" onclick="closePage('spin-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="spin_wheel">Lucky Spin</h3>
       <div style="width: 40px;"></div>
     </div>
@@ -414,7 +446,7 @@
       <h2 style="margin-bottom: 32px; font-weight: 800; font-size: 24px;">Spin & Win!</h2>
       
       <div class="wheel-container">
-        <div class="pointer">📍</div>
+        <div class="pointer"><i class="fa-solid fa-location-dot"></i></div>
         <div id="wheel" class="wheel"></div>
       </div>
 
@@ -434,25 +466,24 @@
     </div>
   </div>
 
-  <!-- REFER & EARN PAGE (Thian sawmte list telin) -->
+  <!-- REFER & EARN PAGE -->
   <div id="refer-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('refer-page')">←</div>
+      <div class="back-btn" onclick="closePage('refer-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="refer_title">Refer & Earn</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
       <div class="doc-box" style="text-align: center; margin-bottom: 24px;">
-        <div style="font-size: 64px; margin-bottom: 16px;">🤝</div>
+        <div style="font-size: 48px; margin-bottom: 16px; color: var(--secondary);"><i class="fa-solid fa-users"></i></div>
         <p style="font-size: 18px; line-height: 1.5;"><span data-i18n="refer_desc">Invite friends and earn </span> <strong style="color: var(--secondary);">10%</strong> <span data-i18n="refer_desc_2"> of what they earn!</span></p>
         <div style="display: flex; align-items: center; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px 8px 8px 16px; margin: 24px 0;">
-          <input type="text" id="refer-link-input" value="https://hrangluroa-lab.github.io/cash-mizo/" readonly style="flex:1; border:none; background:transparent; color:var(--text-main); font-size:13px; outline:none;">
+          <input type="text" id="refer-link-input" value="https://cashmizo.github.io/" readonly style="flex:1; border:none; background:transparent; color:var(--text-main); font-size:13px; outline:none;">
           <button style="background: var(--text-main); color: var(--bg-card); border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="copyReferLink()">Copy</button>
         </div>
-        <button class="btn-primary" style="background: #25D366;" onclick="shareToWhatsApp()" data-i18n="share_wa">Share to WhatsApp</button>
+        <button class="btn-primary" style="background: #25D366;" onclick="shareToWhatsApp()"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; font-size: 18px;"></i> <span data-i18n="share_wa">Share to WhatsApp</span></button>
       </div>
 
-      <!-- Thiante Sawm List (My Referrals) -->
       <div class="doc-box">
         <h4 style="margin-bottom: 16px; font-size: 16px; font-weight: 800;">My Referrals (I ṭhian sawmte)</h4>
         <div id="my-referrals-list">
@@ -466,7 +497,7 @@
   <!-- ACCESSIBILITY PAGE -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('access-page')">✕</div>
+      <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
       <h3 data-i18n="accessibility">Accessibility</h3>
       <div style="width: 40px;"></div>
     </div>
@@ -490,16 +521,16 @@
     </div>
   </div>
 
-  <!-- CONTACT US / MISSING SB PAGE -->
+  <!-- CONTACT US PAGE -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('contact-page')">←</div>
+      <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="customer_care">Customer Care</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
       <div class="doc-box" style="text-align: center; margin-bottom: 24px; background: linear-gradient(135deg, #1e293b, #0f172a); color: white; border: none;">
-        <div style="font-size: 40px; margin-bottom: 8px;">🎧</div>
+        <div style="font-size: 40px; margin-bottom: 8px;"><i class="fa-solid fa-headset"></i></div>
         <h3 data-i18n="care_title">We are here to help</h3>
         <p style="font-size: 13px; color: #94a3b8;" data-i18n="care_desc">Replies within 24-48 business hours.</p>
       </div>
@@ -515,7 +546,7 @@
       </select>
       <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="Properly Explain Issue - Minimum 10 characters required." data-i18n="explain_issue"></textarea>
       
-      <button class="btn-secondary" style="margin-top: 0; margin-bottom: 16px; border: 1px dashed var(--primary); color: var(--primary);" onclick="showToast('Image attached', false)">+ Attach Image / Screenshot</button>
+      <button class="btn-secondary" style="margin-top: 0; margin-bottom: 16px; border: 1px dashed var(--primary); color: var(--primary);" onclick="showToast('Image attached', false)"><i class="fa-solid fa-paperclip"></i> Attach Image / Screenshot</button>
       
       <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Send Message</button>
     </div>
@@ -524,7 +555,7 @@
   <!-- PROFILE & WITHDRAW PAGE -->
   <div id="profile-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('profile-page')">←</div>
+      <div class="back-btn" onclick="closePage('profile-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="profile">My Account</h3>
       <div style="width: 40px;"></div>
     </div>
@@ -534,12 +565,12 @@
         <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;"><span id="prof-balance">0</span> C</h2>
         
         <div id="withdraw-error" style="display:none; margin-top: 16px; padding: 12px; background: #fee2e2; color: #991b1b; border-radius: 12px; font-size: 13px;">
-          <span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span>
+          <i class="fa-solid fa-circle-exclamation"></i> <span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span>
         </div>
         
         <div id="withdraw-form" style="display:none; margin-top: 16px;">
           <div id="wd-no-pay" style="display: block; padding: 12px; background: #fef3c7; color: #92400e; border-radius: 12px; font-size: 13px; margin-bottom: 12px;">
-            <span data-i18n="wd_no_pay_msg">Payment method not linked! Please set it below.</span>
+            <i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="wd_no_pay_msg">Payment method not linked! Please set it below.</span>
           </div>
           <div id="wd-has-pay" style="display: none; padding: 12px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px;">
             <span data-i18n="wd_send_to" style="font-size: 12px; color: var(--text-muted);">Send to:</span><br>
@@ -594,7 +625,7 @@
   <!-- LEADERBOARD PAGE -->
   <div id="lb-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('lb-page')">←</div>
+      <div class="back-btn" onclick="closePage('lb-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="lb_title">Leaderboard</h3>
       <div style="width: 40px;"></div>
     </div>
@@ -609,7 +640,7 @@
   <!-- INFO PAGE (FAQ) -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('info-page')">←</div>
+      <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="how_it_works">How it works</h3>
       <div style="width: 40px;"></div>
     </div>
@@ -632,35 +663,22 @@
     </div>
   </div>
 
-  <!-- LANGUAGE PAGE -->
+  <!-- LANGUAGE PAGE (ALL LANGUAGES WITH GOOGLE TRANSLATE) -->
   <div id="lang-page" class="fs-page">
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('lang-page')">←</div>
+      <div class="back-btn" onclick="closePage('lang-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 data-i18n="language">App Language</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
-      <div class="doc-box">
-        <div class="list-menu-item lang-option" id="btn-lang-en" onclick="setLanguage('en'); closePage('lang-page')">English (US)</div>
-        <div class="list-menu-item lang-option" id="btn-lang-mizo" onclick="setLanguage('mizo'); closePage('lang-page')">Mizo (Mizoram)</div>
-        <div class="list-menu-item lang-option" id="btn-lang-hi" onclick="setLanguage('hi'); closePage('lang-page')">हिन्दी (Hindi)</div>
+      <div class="doc-box" style="text-align: center;">
+        <i class="fa-solid fa-language" style="font-size: 48px; color: var(--primary); margin-bottom: 16px;"></i>
+        <h4 style="margin-bottom: 8px;">Translate to any language</h4>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">Select your preferred language below. It will translate the entire app.</p>
+        
+        <!-- Native Google Translate Element -->
+        <div id="google_translate_element" style="margin: 0 auto;"></div>
       </div>
-    </div>
-  </div>
-
-  <!-- FLOATING AI BOT HTML -->
-  <div class="chatbot-fab" onclick="toggleChat()">🤖</div>
-  <div class="chatbot-window" id="chat-window">
-    <div class="chatbot-header">
-      <span>🤖 Smart Assistant</span>
-      <i onclick="toggleChat()">✕</i>
-    </div>
-    <div class="chatbot-messages" id="chat-box">
-      <div class="bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>
-    </div>
-    <div class="chatbot-input">
-      <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
-      <button onclick="sendChatMessage()">➤</button>
     </div>
   </div>
 
@@ -668,9 +686,11 @@
 
 <!-- SUPABASE LEH JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Google Translate API -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-  // TRANSLATION DICTIONARY
+  // TRANSLATION DICTIONARY FOR BASE UI
   const translations = {
     mizo: {
       success: "Hlawhtling!",
@@ -702,7 +722,7 @@
       lb_title: "Top 10 Leaderboard", lb_desc: "Coin ngah ber ber te list",
       doc_how_title: "CASH-MIZO ah lo lawm le", doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.", doc_how_h1: "1. Coins Hlawh chhuah dan", doc_how_l1: "Premium Tasks: Survey chhan, App download.", doc_how_l2: "Daily Claim & Lucky Spin: Nitin thlawnin claim rawh.", doc_how_l3: "Referral: 10% commission i hlawh zel ang.", doc_how_h2: "2. Pawisa Lakchhuah", doc_how_l4: "Coins 5,000 i tlin veleh Withdraw thei.", doc_how_l5: "Payment Method (UPI/Bank/PayPal) save hmasa rawh.",
       inbox: "Inbox", msg_welcome_title: "CASH-MIZO ah lo lawm le!", msg_welcome_desc: "Task thawk la, pawisa tak tak hlawh chhuak rawh le.",
-      claimed: "Lak tawh ✅", spinned: "Spin tawh ✅", lock_msg: "Task 1 tal tih zawh hmasak a ngai! 🔒", spin_today_done: "Vawiin ah i Spin tawh"
+      claimed: "Lak tawh", spinned: "Spin tawh", lock_msg: "Task 1 tal tih zawh hmasak a ngai!", spin_today_done: "Vawiin ah i Spin tawh"
     },
     en: {
       success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms of Service and Privacy Policy.",
@@ -712,48 +732,33 @@
       swag_codes: "Redeem Promo Code", redeem: "Redeem", premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys",
       answer_surveys: "Answer Surveys", survey_tip: "Take these quick surveys to unlock rewards.", short_survey: "Short Survey", gold_survey: "Gold Survey", profile_survey: "Profile Survey", play_games: "Play Games", play_trivia: "Daily Trivia",
       shop_cashback: "Shop & Cash Back", shop_desc: "Earn points for every dollar you spend at your favorite retailers.",
-      m_general: "Account", profile: "My Account & Payment", language: "App Language", help_center: "Help Center", missing_sb: "Missing Coins / Customer Care", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms, Privacy & Dos/Don'ts", logout: "Log Out",
+      m_general: "Account", profile: "My Account & Payment", language: "App Language", help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
       accessibility: "Accessibility", color_adj: "Color Adjustment", dark_mode: "Dark Mode / High Contrast", content_adj: "Content Adjustment", font_sizing: "Font Sizing",
       customer_care: "Customer Care", care_title: "We are here to help", care_desc: "Replies within 24-48 business hours.", submit_ticket: "Submit a Ticket", select_issue: "Select Issue...", issue_missing: "Missing Coins (Task not credited)", issue_wd: "Withdrawal Issue", issue_acc: "Account Settings", issue_other: "Other", explain_issue: "Properly Explain Issue...", send_ticket: "Send Message",
       payment_method: "Payment Method", change_payment: "Set Payment Method", select_pay_logo: "Select your preferred option:", save: "Save Details", wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "You need at least 5,000 Coins to withdraw.", wd_no_pay_msg: "Payment method not linked! Please set it below.", wd_send_to: "Send to:",
       refer_title: "Refer & Earn", refer_desc: "Invite friends and earn ", refer_desc_2: " of what they earn!", share_wa: "Share to WhatsApp", lb_title: "Top 10 Leaderboard", lb_desc: "List of top earners",
       doc_how_title: "Welcome to CASH-MIZO", doc_how_desc: "Earn real money by completing tasks.", doc_how_h1: "1. Earning Coins", doc_how_l1: "Premium Tasks: Complete surveys & offers.", doc_how_l2: "Daily Claim & Lucky Spin: Free daily rewards.", doc_how_l3: "Referral Program: 10% commission.", doc_how_h2: "2. Withdrawing", doc_how_l4: "Minimum threshold is 5,000 Coins.", doc_how_l5: "Link a valid Payment Method (UPI/Bank/PayPal).",
       inbox: "Inbox", msg_welcome_title: "Welcome to CASH-MIZO!", msg_welcome_desc: "Explore earning opportunities, take surveys, and earn cash back.",
-      claimed: "Claimed ✅", spinned: "Spun ✅", lock_msg: "You must complete at least 1 task first! 🔒", spin_today_done: "Spun today already"
-    },
-    hi: {
-      success: "सफल!", hero_title: "असली पैसे कमाएं।\nसुरक्षित और तेज।", hero_desc: "हजारों युवाओं से जुड़ें जो रोज अपने स्मार्टफोन से कमा रहे हैं।", join_free: "अकाउंट बनाएं", agree_terms: "मैंने नियम व शर्तें पढ़ ली है।",
-      wip_feature: "यह सुविधा अभी उपलब्ध नहीं है।", nav_home: "होम", nav_earn: "कमाएं", nav_shop: "शॉप", nav_more: "अधिक",
-      your_balance: "कुल बैलेंस", withdraw: "पैसे निकालें", daily_goal: "डेली गोल: 100 Coins", goal_desc: "बोनस पाने के लिए आज कमाएं",
-      daily_check: "डेली क्लेम", spin_wheel: "लकी स्पिन", refer: "रेफर करें", rank: "लीडरबोर्ड",
-      swag_codes: "प्रोमो कोड", redeem: "रिडीम", premium_tasks: "प्रीमियम टास्क", timewall_desc: "टास्क और सर्वे पूरे करें",
-      answer_surveys: "सर्वे के जवाब दें", survey_tip: "इन सर्वे को पूरा करके रिवॉर्ड पाएं।", short_survey: "छोटा सर्वे", gold_survey: "गोल्ड सर्वे", profile_survey: "प्रोफ़ाइल सर्वे", play_games: "गेम खेलें", play_trivia: "डेली ट्रिविया",
-      shop_cashback: "शॉप और कैशबैक", shop_desc: "ऑनलाइन शॉपिंग पर कैशबैक पाएं।",
-      m_general: "अकाउंट", profile: "मेरा खाता और पेमेंट", language: "ऐप की भाषा", help_center: "हेल्प सेंटर", missing_sb: "कस्टमर केयर / Missing Coins", how_it_works: "यह कैसे काम करता है", m_info: "नियम", terms: "नियम और गोपनीयता", logout: "लॉग आउट",
-      accessibility: "Accessibility", color_adj: "रंग (Color)", dark_mode: "डार्क मोड", content_adj: "कंटेंट (Content)", font_sizing: "फ़ॉन्ट साइज़",
-      customer_care: "Customer Care", care_title: "हम मदद के लिए यहाँ हैं", care_desc: "24-48 घंटों के भीतर जवाब।", submit_ticket: "टिकट सबमिट करें", select_issue: "समस्या चुनें...", issue_missing: "Coins नहीं मिले", issue_wd: "पैसे निकालने में समस्या", issue_acc: "अकाउंट सेटिंग", issue_other: "अन्य", explain_issue: "अपनी समस्या बताएं...", send_ticket: "मैसेज भेजें",
-      payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", select_pay_logo: "अपना पसंदीदा विकल्प चुनें:", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है! नीचे सेट करें।", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
-      refer_title: "रेफर करें और कमाएं", refer_desc: "दोस्तों को आमंत्रित करें और ", refer_desc_2: " 10% कमाएं!", share_wa: "WhatsApp पर शेयर करें", lb_title: "टॉप 10 लीडरबोर्ड", lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
-      doc_how_title: "CASH-MIZO में स्वागत है", doc_how_desc: "टास्क पूरे करके पैसे कमाएं।", doc_how_h1: "1. पैसे कमाना", doc_how_l1: "प्रीमियम टास्क: सर्वे और ऑफर्स।", doc_how_l2: "डेली क्लेम और स्पिन।", doc_how_l3: "रेफरल: 10% कमीशन।", doc_how_h2: "2. पैसे निकालना", doc_how_l4: "न्यूनतम 5,000 Coins चाहिए।", doc_how_l5: "पेमेंट मेथड लिंक करें।",
-      inbox: "इनबॉक्स (Inbox)", msg_welcome_title: "CASH-MIZO में स्वागत है!", msg_welcome_desc: "पैसे कमाने के नए तरीके खोजें।",
-      claimed: "प्राप्त किया ✅", spinned: "स्पिन किया ✅", lock_msg: "पहले कम से कम 1 टास्क पूरा करें! 🔒", spin_today_done: "आज स्पिन कर चुके हैं"
+      claimed: "Claimed", spinned: "Spun", lock_msg: "You must complete at least 1 task first!", spin_today_done: "Spun today already"
     }
   };
 
-  // DEFAULT AH ENGLISH HMANGIN KAN ON ANG (Review pass nan)
-  let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
+  // Google Translate Init Function
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+
+  // APP INITIALIZATION
+  let currentLang = 'en'; // App defaults to English for safety/review
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
   let userPayInfo = null; let hasCompletedTaskToday = false; 
 
   function setLanguage(lang) {
     currentLang = lang;
-    localStorage.setItem('cashmizo_lang', lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (translations[lang][key]) el.innerHTML = translations[lang][key].replace('\n', '<br>');
+      if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key].replace('\n', '<br>');
     });
-    document.querySelectorAll('.lang-option').forEach(el => { el.style.borderColor = 'var(--border-color)'; el.style.color = 'var(--text-main)'; });
-    if(document.getElementById(`btn-lang-${lang}`)) { document.getElementById(`btn-lang-${lang}`).style.borderColor = 'var(--primary)'; document.getElementById(`btn-lang-${lang}`).style.color = 'var(--primary)'; }
     checkClaimedUI(); 
   }
 
@@ -764,6 +769,7 @@
     element.classList.add('active');
     window.scrollTo(0,0);
   }
+  
   function openPage(pageId) { document.getElementById(pageId).classList.add('active'); }
   function closePage(pageId) { document.getElementById(pageId).classList.remove('active'); }
 
@@ -840,13 +846,11 @@
       document.getElementById('ticket-email').value = email;
       document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
       
-      document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
+      document.getElementById('refer-link-input').value = `https://cashmizo.github.io/?ref=${currentUserId}`;
 
       const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
       
-      if (error && error.code !== 'PGRST116') {
-          alert("BUAINA: " + error.message);
-      }
+      if (error && error.code !== 'PGRST116') { console.error(error); }
 
       if (data) {
         userCoins = data.coins || 0; 
@@ -861,17 +865,12 @@
         }
       } else {
         let storedReferrer = localStorage.getItem('cashmizo_referrer');
-        
         await supabaseClient.from('user_profiles').insert([{ 
-            id: currentUserId, 
-            name: fullName, 
-            coins: 0,
-            referred_by: storedReferrer 
+            id: currentUserId, name: fullName, coins: 0, referred_by: storedReferrer 
         }]); 
         userCoins = 0;
         localStorage.removeItem('cashmizo_referrer');
       }
-
       updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
     }
   }
@@ -934,19 +933,18 @@
     
     const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
     if(error) { showToast("Error: " + error.message, true); } 
-    else { userPayInfo = saveString; updatePaymentUI(); showToast(translations[currentLang].success); }
+    else { userPayInfo = saveString; updatePaymentUI(); showToast("Saved Successfully"); }
   }
 
   function checkLockAndRun(action) {
     if (action === 'daily') requestDailyFromServer();
   }
 
-  // ============== LUCKY SPIN (SECURITY FIXED) ==============
+  // ============== LUCKY SPIN ==============
   let isSpinning = false;
   
   function openSpinWheel() {
     if (!hasCompletedTaskToday) { showToast(translations[currentLang].lock_msg, true); return; }
-    
     const today = new Date().toDateString();
     if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
        showToast(translations[currentLang].spin_today_done, true);
@@ -961,57 +959,36 @@
     document.getElementById('btn-do-spin').innerText = "Spinning...";
     document.getElementById('btn-do-spin').style.opacity = '0.5';
 
-    // 1. BACKEND AṬANGIN PRIZE KAN DIL HMASA (Hacker in a thunun thei lo)
     const { data, error } = await supabaseClient.rpc('claim_spin_reward');
+    if (error) { showToast("Error: " + error.message, true); resetSpinBtn(); return; }
+    if (data && !data.success) { showToast(data.message, true); resetSpinBtn(); return; }
 
-    if (error) {
-       showToast("Error: " + error.message, true);
-       resetSpinBtn(); return;
-    }
-    if (data && !data.success) {
-       showToast(data.message, true);
-       resetSpinBtn(); return;
-    }
-
-    // 2. BACKEND IN PRIZE A RAWN THLAN CHU KAN LA ANG (Entirnan: 50 a rawn thlang)
     let prize = data.prize;
     let pointerDegree = 0;
+    if (prize === 5) pointerDegree = 30;       
+    else if (prize === 10) pointerDegree = 90; 
+    else if (prize === 50) pointerDegree = 150;
+    else if (prize === 0) pointerDegree = 210; 
+    else if (prize === 100) pointerDegree = 270;
+    else if (prize === 20) pointerDegree = 330; 
 
-    // 3. PRIZE AZIRIN WHEEL TAWPNA TUR DEGREE KAN SET ANG
-    if (prize === 5) pointerDegree = 30;       // 🔴 Red
-    else if (prize === 10) pointerDegree = 90; // 🟠 Orange
-    else if (prize === 50) pointerDegree = 150;// 🟢 Green
-    else if (prize === 0) pointerDegree = 210; // 🔵 Blue
-    else if (prize === 100) pointerDegree = 270;// 🟣 Purple
-    else if (prize === 20) pointerDegree = 330; // 💖 Pink
-
-    // Wheel vir kual vel tur zat (Spin 5 rounds + degree dik tak)
     let actualDegree = (360 - pointerDegree) % 360;
-    let totalRotation = 1800 + actualDegree; // 1800 chu round 5 a ni
+    let totalRotation = 1800 + actualDegree; 
 
     let wheel = document.getElementById('wheel');
     wheel.style.transform = `rotate(${totalRotation}deg)`;
 
-    // 4. ANIMATION ZAWHAH HRIATTIRNA PEK
     setTimeout(() => {
-       if(prize > 0) {
-           showToast(`🎉 I vannei! ${prize} Coins i hmu e!`);
-       } else {
-           showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true);
-       }
-
-       userCoins = data.new_balance;
-       lastSpinDate = new Date().toISOString();
-       updateBalanceUI();
-       checkClaimedUI();
+       if(prize > 0) { showToast(`🎉 I vannei! ${prize} Coins i hmu e!`); } 
+       else { showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true); }
+       userCoins = data.new_balance; lastSpinDate = new Date().toISOString();
+       updateBalanceUI(); checkClaimedUI();
 
        setTimeout(() => {
-           closePage('spin-page');
-           resetSpinBtn();
+           closePage('spin-page'); resetSpinBtn();
            wheel.style.transform = `rotate(0deg)`;
        }, 2500);
-
-    }, 4000); // 4 seconds (wheel vir chhung)
+    }, 4000); 
   }
 
   function resetSpinBtn() {
@@ -1019,12 +996,11 @@
       document.getElementById('btn-do-spin').innerText = "SPIN NOW";
       document.getElementById('btn-do-spin').style.opacity = '1';
   }
-  // ============== LUCKY SPIN END ==============
 
   function checkClaimedUI() {
     const today = new Date().toDateString();
-    if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = translations[currentLang].claimed; }
-    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = translations[currentLang].spinned; }
+    if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = translations[currentLang].claimed + " \u2714"; }
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = translations[currentLang].spinned + " \u2714"; }
   }
 
   function openTimeWall() {
@@ -1034,8 +1010,9 @@
 
   function copyReferLink() {
     const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
-    showToast(translations[currentLang].success);
+    showToast("Copied to clipboard");
   }
+  
   function shareToWhatsApp() {
     const link = document.getElementById('refer-link-input').value;
     window.open(`https://wa.me/?text=${encodeURIComponent("Join CASH-MIZO! " + link)}`, '_blank');
@@ -1043,7 +1020,7 @@
 
   function showToast(message, isError = false) {
     const toast = document.getElementById('toast'); 
-    toast.innerHTML = isError ? `⚠️ ${message}` : `✅ ${message}`;
+    toast.innerHTML = isError ? `<i class="fa-solid fa-circle-exclamation"></i> ${message}` : `<i class="fa-solid fa-circle-check"></i> ${message}`;
     if(isError) toast.classList.add('error'); else toast.classList.remove('error');
     toast.style.top = '40px'; 
     setTimeout(() => { toast.style.top = '-100px'; }, 3000);
@@ -1059,31 +1036,20 @@
   
   async function openReferPage() {
       openPage('refer-page');
-      
       if (!currentUserId) return;
       const listDiv = document.getElementById('my-referrals-list');
       listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center;">Loading...</p>';
       
       const { data, error } = await supabaseClient.rpc('get_my_referrals');
-      
-      if (error) {
-          listDiv.innerHTML = `<p style="color: #ef4444; font-size: 13px;">Error: ${error.message}</p>`;
-          return;
-      }
+      if (error) { listDiv.innerHTML = `<p style="color: #ef4444; font-size: 13px;">Error: ${error.message}</p>`; return; }
 
       if (data && data.length > 0) {
           let htmlString = '';
           data.forEach(ref => {
               let statusHtml = ref.task_done 
-                  ? `<span class="ref-status done">Task ti tawh ✅</span>` 
-                  : `<span class="ref-status pending">Task a la ti lo ❌</span>`;
-                  
-              htmlString += `
-                  <div class="ref-list-item">
-                      <span class="ref-name">👤 ${ref.name || 'User'}</span>
-                      ${statusHtml}
-                  </div>
-              `;
+                  ? `<span class="ref-status done">Task ti tawh <i class="fa-solid fa-check"></i></span>` 
+                  : `<span class="ref-status pending">Task a la ti lo <i class="fa-solid fa-xmark"></i></span>`;
+              htmlString += `<div class="ref-list-item"><span class="ref-name"><i class="fa-solid fa-user"></i> ${ref.name || 'User'}</span>${statusHtml}</div>`;
           });
           listDiv.innerHTML = htmlString;
       } else {
@@ -1111,7 +1077,7 @@
     const { error } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
     if (error) { showToast(error.message, true); return; }
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-    updateBalanceUI(); closePage('profile-page'); showToast(translations[currentLang].success);
+    updateBalanceUI(); closePage('profile-page'); showToast("Withdrawal Requested");
   }
   
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
@@ -1152,21 +1118,14 @@
   async function login() {
     if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
     document.getElementById('btn-login-text').innerHTML = '...'; 
-    const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/' } });
+    const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://cashmizo.github.io/' } });
     if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
   }
 
   /* =========================================
      SMART AI BOT LOGIC (API KEY OBFUSCATED)
      ========================================= */
-  function toggleChat() {
-    const chatWindow = document.getElementById('chat-window');
-    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-  }
-
-  function handleChatEnter(e) {
-    if(e.key === 'Enter') sendChatMessage();
-  }
+  function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
 
   async function sendChatMessage() {
     const input = document.getElementById('chat-input');
@@ -1174,12 +1133,12 @@
     if(!msg) return;
 
     const chatBox = document.getElementById('chat-box');
-    chatBox.innerHTML += `<div class="bubble user-bubble">${msg}</div>`;
+    chatBox.innerHTML += `<div class="chat-bubble user-bubble">${msg}</div>`;
     input.value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
 
     const typingId = "typing-" + Date.now();
-    chatBox.innerHTML += `<div class="bubble bot-bubble" id="${typingId}">Thinking...</div>`;
+    chatBox.innerHTML += `<div class="chat-bubble bot-bubble" id="${typingId}">Thinking...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
