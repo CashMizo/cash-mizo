@@ -82,6 +82,15 @@
     
     .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
     
+    /* TALA LEM DAHNA CHU HEI HI A NI */
+    .grid-card.locked::after { 
+        content: '🔒'; 
+        position: absolute; 
+        top: 16px; 
+        right: 16px; 
+        font-size: 20px; 
+    }
+    
     .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
     .ic-daily { background: #fef3c7; color: #d97706; }
     .ic-spin { background: #e0e7ff; color: #4338ca; }
@@ -837,7 +846,6 @@
       
       document.getElementById('refer-link-input').value = `https://hrangluroa-lab.github.io/cash-mizo/?ref=${currentUserId}`;
 
-      // HETAH HIAN KA THLAK DANG LAM E (Error awm theihna lai ka paih fai vek a, Error a awm chuan a rawn hrilh nghal ang che)
       const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
       
       if (error && error.code !== 'PGRST116') {
