@@ -81,8 +81,6 @@
     .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
     
     .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
-    
-    /* TALA LEM DAHNA CHU HEI HI A NI */
     .grid-card.locked::after { 
         content: '🔒'; 
         position: absolute; 
@@ -163,6 +161,9 @@
   </style>
 </head>
 <body>
+
+<!-- HACKER TEST BUTTON (Test zawhah i paih dawn nia) -->
+<button onclick="hackSpin()" style="position:fixed; top:10px; left:10px; z-index:9999; background:red; color:white; padding:15px; border:none; border-radius:8px; font-weight:bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">HACK SPIN 🚨</button>
 
 <div class="app-container">
   
@@ -360,7 +361,7 @@
       </div>
 
       <div class="menu-group-title" data-i18n="m_info">Legal</div>
-      <div class="list-menu-item" onclick="openPage('terms-page')">
+      <div class="list-menu-item" onclick="window.location.href='terms.html'">
         <span data-i18n="terms">Terms, Privacy & Dos/Don'ts</span> <i>›</i>
       </div>
 
@@ -617,39 +618,6 @@
     </div>
   </div>
 
-  <!-- TERMS & PRIVACY PAGE -->
-  <div id="terms-page" class="fs-page">
-    <div class="fs-header">
-      <div class="back-btn" onclick="closePage('terms-page')">←</div>
-      <h3 data-i18n="terms">Terms, Privacy & Dos/Don'ts</h3>
-      <div style="width: 40px;"></div>
-    </div>
-    <div class="fs-content">
-      <div class="doc-box">
-        <h2 data-i18n="doc_term_title">Terms of Service & Privacy Policy</h2>
-        <p data-i18n="doc_term_desc" style="margin-bottom: 16px;">By accessing CASH-MIZO, you agree to these rules.</p>
-        
-        <h4 data-i18n="doc_term_h1">1. Account Registration</h4>
-        <ul style="padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px;">
-          <li data-i18n="doc_term_l1">Users must register using a valid Google Account.</li>
-          <li data-i18n="doc_term_l2">One Account Rule: Strictly ONE account per person and device.</li>
-        </ul>
-        
-        <h4 data-i18n="doc_term_h2">2. Strict Anti-Fraud Policy</h4>
-        <p data-i18n="doc_term_p1" style="font-size: 14px; color: var(--text-muted);">The following activities are strictly prohibited:</p>
-        <ul style="padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 14px;">
-          <li data-i18n="doc_term_l3">Using VPNs or Proxies.</li>
-          <li data-i18n="doc_term_l4">Using Emulators or Virtual Machines.</li>
-          <li data-i18n="doc_term_l5">Using Auto-clickers or bots.</li>
-        </ul>
-        <p data-i18n="doc_term_p2" style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Violation results in immediate account termination.</p>
-        
-        <h4 data-i18n="doc_term_h4">3. Privacy</h4>
-        <p data-i18n="doc_term_p3" style="font-size: 14px; color: var(--text-muted);">We collect minimal data (Name, Email) to process payments. All data is highly secured.</p>
-      </div>
-    </div>
-  </div>
-
   <!-- LANGUAGE PAGE -->
   <div id="lang-page" class="fs-page">
     <div class="fs-header">
@@ -703,7 +671,6 @@
       refer_title: "Refer & Earn", refer_desc: "I ṭhiante sawm lut la, an pawisa hlawh chhuah aṭangin ", refer_desc_2: " hlawh ve zel rawh!", share_wa: "WhatsApp ah Thawn rawh",
       lb_title: "Top 10 Leaderboard", lb_desc: "Coin ngah ber ber te list",
       doc_how_title: "CASH-MIZO ah lo lawm le", doc_how_desc: "CASH-MIZO chu him tak leh awlsam taka pawisa thawk chhuah theihna app a ni.", doc_how_h1: "1. Coins Hlawh chhuah dan", doc_how_l1: "Premium Tasks: Survey chhan, App download.", doc_how_l2: "Daily Claim & Lucky Spin: Nitin thlawnin claim rawh.", doc_how_l3: "Referral: 10% commission i hlawh zel ang.", doc_how_h2: "2. Pawisa Lakchhuah", doc_how_l4: "Coins 5,000 i tlin veleh Withdraw thei.", doc_how_l5: "Payment Method (UPI/Bank/PayPal) save hmasa rawh.",
-      doc_term_title: "Terms of Service & Privacy Policy", doc_term_desc: "CASH-MIZO app i hman hian heng dan te hi i zawm tur a ni.", doc_term_h1: "1. Account Registration", doc_term_l1: "Google Account dik tak hman tur a ni.", doc_term_l2: "One Account Rule: Phone pakhat atan account pakhat chauh siam phal a ni.", doc_term_h2: "2. Anti-Fraud Policy", doc_term_p1: "Heng te hi khap tlat a ni:", doc_term_l3: "VPN emaw Proxy hman.", doc_term_l4: "Emulator hman.", doc_term_l5: "Auto-clicker hman.", doc_term_p2: "Heng dan bawhchhia te chu hnawhchhuah nghal an ni ang.", doc_term_h4: "3. Privacy", doc_term_p3: "I mimal data te hi uluk taka venhim a ni.",
       inbox: "Inbox", msg_welcome_title: "CASH-MIZO ah lo lawm le!", msg_welcome_desc: "Task thawk la, pawisa tak tak hlawh chhuak rawh le.",
       claimed: "Lak tawh ✅", spinned: "Spin tawh ✅", lock_msg: "Task 1 tal tih zawh hmasak a ngai! 🔒", spin_today_done: "Vawiin ah i Spin tawh"
     },
@@ -721,7 +688,6 @@
       payment_method: "Payment Method", change_payment: "Set Payment Method", select_pay_logo: "Select your preferred option:", save: "Save Details", wd_btn: "Withdraw 5,000 Coins", wd_error_desc: "You need at least 5,000 Coins to withdraw.", wd_no_pay_msg: "Payment method not linked! Please set it below.", wd_send_to: "Send to:",
       refer_title: "Refer & Earn", refer_desc: "Invite friends and earn ", refer_desc_2: " of what they earn!", share_wa: "Share to WhatsApp", lb_title: "Top 10 Leaderboard", lb_desc: "List of top earners",
       doc_how_title: "Welcome to CASH-MIZO", doc_how_desc: "Earn real money by completing tasks.", doc_how_h1: "1. Earning Coins", doc_how_l1: "Premium Tasks: Complete surveys & offers.", doc_how_l2: "Daily Claim & Lucky Spin: Free daily rewards.", doc_how_l3: "Referral Program: 10% commission.", doc_how_h2: "2. Withdrawing", doc_how_l4: "Minimum threshold is 5,000 Coins.", doc_how_l5: "Link a valid Payment Method (UPI/Bank/PayPal).",
-      doc_term_title: "Terms of Service & Privacy Policy", doc_term_desc: "By accessing CASH-MIZO, you agree to these rules.", doc_term_h1: "1. Account Registration", doc_term_l1: "Users must register using a valid Google Account.", doc_term_l2: "One Account Rule: Strictly ONE account per person and device.", doc_term_h2: "2. Strict Anti-Fraud Policy", doc_term_p1: "The following activities are strictly prohibited:", doc_term_l3: "Using VPNs or Proxies.", doc_term_l4: "Using Emulators or Virtual Machines.", doc_term_l5: "Using Auto-clickers or bots.", doc_term_p2: "Violation results in immediate account termination.", doc_term_h4: "3. Privacy", doc_term_p3: "We collect minimal data (Name, Email) to process payments. All data is highly secured.",
       inbox: "Inbox", msg_welcome_title: "Welcome to CASH-MIZO!", msg_welcome_desc: "Explore earning opportunities, take surveys, and earn cash back.",
       claimed: "Claimed ✅", spinned: "Spun ✅", lock_msg: "You must complete at least 1 task first! 🔒", spin_today_done: "Spun today already"
     },
@@ -739,7 +705,6 @@
       payment_method: "पेमेंट का तरीका", change_payment: "पेमेंट तरीका सेट करें", select_pay_logo: "अपना पसंदीदा विकल्प चुनें:", save: "सेव करें", wd_btn: "5,000 Coins निकालें", wd_error_desc: "आपके पास कम से कम 5,000 Coins होने चाहिए।", wd_no_pay_msg: "पेमेंट मेथड लिंक नहीं है! नीचे सेट करें।", wd_send_to: "पैसे यहाँ भेजे जाएंगे:",
       refer_title: "रेफर करें और कमाएं", refer_desc: "दोस्तों को आमंत्रित करें और ", refer_desc_2: " 10% कमाएं!", share_wa: "WhatsApp पर शेयर करें", lb_title: "टॉप 10 लीडरबोर्ड", lb_desc: "सबसे ज्यादा कमाने वालों की सूची",
       doc_how_title: "CASH-MIZO में स्वागत है", doc_how_desc: "टास्क पूरे करके पैसे कमाएं।", doc_how_h1: "1. पैसे कमाना", doc_how_l1: "प्रीमियम टास्क: सर्वे और ऑफर्स।", doc_how_l2: "डेली क्लेम और स्पिन।", doc_how_l3: "रेफरल: 10% कमीशन।", doc_how_h2: "2. पैसे निकालना", doc_how_l4: "न्यूनतम 5,000 Coins चाहिए।", doc_how_l5: "पेमेंट मेथड लिंक करें।",
-      doc_term_title: "नियम और शर्तें", doc_term_desc: "CASH-MIZO का उपयोग करने पर आप इन नियमों से सहमत होते हैं।", doc_term_h1: "1. अकाउंट", doc_term_l1: "Google Account होना अनिवार्य है।", doc_term_l2: "सिर्फ एक अकाउंट: एक व्यक्ति एक ही अकाउंट बना सकता है।", doc_term_h2: "2. धोखाधड़ी नीति", doc_term_p1: "ये चीजें सख्त मना हैं:", doc_term_l3: "VPN या Proxy का उपयोग।", doc_term_l4: "एमुलेटर का उपयोग।", doc_term_l5: "ऑटो-क्लिकर का उपयोग।", doc_term_p2: "नियम तोड़ने पर अकाउंट बंद कर दिया जाएगा।", doc_term_h4: "3. गोपनीयता", doc_term_p3: "आपका डेटा पूरी तरह सुरक्षित है।",
       inbox: "इनबॉक्स (Inbox)", msg_welcome_title: "CASH-MIZO में स्वागत है!", msg_welcome_desc: "पैसे कमाने के नए तरीके खोजें।",
       claimed: "प्राप्त किया ✅", spinned: "स्पिन किया ✅", lock_msg: "पहले कम से कम 1 टास्क पूरा करें! 🔒", spin_today_done: "आज स्पिन कर चुके हैं"
     }
@@ -945,6 +910,7 @@
     if (action === 'daily') requestDailyFromServer();
   }
 
+  // ============== LUCKY SPIN (SECURITY FIXED) ==============
   let isSpinning = false;
   
   function openSpinWheel() {
@@ -952,7 +918,7 @@
     
     const today = new Date().toDateString();
     if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
-       showToast("Vawiinah i Spin tawh! Naktukah try leh rawh.", true);
+       showToast(translations[currentLang].spin_today_done, true);
        return;
     }
     openPage('spin-page');
@@ -964,50 +930,65 @@
     document.getElementById('btn-do-spin').innerText = "Spinning...";
     document.getElementById('btn-do-spin').style.opacity = '0.5';
 
-    let randomDegree = Math.floor(Math.random() * 2000) + 1800; 
+    // 1. BACKEND AṬANGIN PRIZE KAN DIL HMASA (Hacker in a thunun thei lo)
+    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
+
+    if (error) {
+       showToast("Error: " + error.message, true);
+       resetSpinBtn(); return;
+    }
+    if (data && !data.success) {
+       showToast(data.message, true);
+       resetSpinBtn(); return;
+    }
+
+    // 2. BACKEND IN PRIZE A RAWN THLAN CHU KAN LA ANG (Entirnan: 50 a rawn thlang)
+    let prize = data.prize;
+    let pointerDegree = 0;
+
+    // 3. PRIZE AZIRIN WHEEL TAWPNA TUR DEGREE KAN SET ANG
+    if (prize === 5) pointerDegree = 30;       // 🔴 Red
+    else if (prize === 10) pointerDegree = 90; // 🟠 Orange
+    else if (prize === 50) pointerDegree = 150;// 🟢 Green
+    else if (prize === 0) pointerDegree = 210; // 🔵 Blue
+    else if (prize === 100) pointerDegree = 270;// 🟣 Purple
+    else if (prize === 20) pointerDegree = 330; // 💖 Pink
+
+    // Wheel vir kual vel tur zat (Spin 5 rounds + degree dik tak)
+    let actualDegree = (360 - pointerDegree) % 360;
+    let totalRotation = 1800 + actualDegree; // 1800 chu round 5 a ni
+
     let wheel = document.getElementById('wheel');
-    wheel.style.transform = `rotate(${randomDegree}deg)`;
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
 
-    setTimeout(async () => {
-      let actualDegree = randomDegree % 360;
-      let pointerDegree = (360 - actualDegree) % 360;
-      let prize = 0; let prizeName = "";
-      
-      if (pointerDegree >= 0 && pointerDegree < 60) { prize = 5; prizeName = "🔴 5 Coins"; }
-      else if (pointerDegree >= 60 && pointerDegree < 120) { prize = 10; prizeName = "🟠 10 Coins"; }
-      else if (pointerDegree >= 120 && pointerDegree < 180) { prize = 50; prizeName = "🟢 50 Coins"; }
-      else if (pointerDegree >= 180 && pointerDegree < 240) { prize = 0; prizeName = "🔵 0 Coins"; }
-      else if (pointerDegree >= 240 && pointerDegree < 300) { prize = 100; prizeName = "🟣 100 Coins"; }
-      else if (pointerDegree >= 300 && pointerDegree < 360) { prize = 20; prizeName = "💖 20 Coins"; }
+    // 4. ANIMATION ZAWHAH HRIATTIRNA PEK
+    setTimeout(() => {
+       if(prize > 0) {
+           showToast(`🎉 I vannei! ${prize} Coins i hmu e!`);
+       } else {
+           showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true);
+       }
 
-      if(prize > 0) {
-         showToast(`🎉 I vannei! ${prizeName} i hmu e!`);
-      } else {
-         showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true);
-      }
+       userCoins = data.new_balance;
+       lastSpinDate = new Date().toISOString();
+       updateBalanceUI();
+       checkClaimedUI();
 
-      const { data, error } = await supabaseClient.rpc('claim_spin_reward', { spin_amount: prize });
-      if(data && data.success) {
-         userCoins = data.new_balance;
-         lastSpinDate = new Date().toISOString();
-         updateBalanceUI();
-         checkClaimedUI();
-      } else if (error) {
-         showToast(error.message, true);
-      } else if (data && !data.success) {
-         showToast(data.message, true);
-      }
+       setTimeout(() => {
+           closePage('spin-page');
+           resetSpinBtn();
+           wheel.style.transform = `rotate(0deg)`;
+       }, 2500);
 
-      setTimeout(() => { 
-          closePage('spin-page'); 
-          isSpinning = false; 
-          document.getElementById('btn-do-spin').innerText = "SPIN NOW"; 
-          document.getElementById('btn-do-spin').style.opacity = '1'; 
-          wheel.style.transform = `rotate(0deg)`; 
-      }, 2500);
-      
-    }, 4000); 
+    }, 4000); // 4 seconds (wheel vir chhung)
   }
+
+  function resetSpinBtn() {
+      isSpinning = false;
+      document.getElementById('btn-do-spin').innerText = "SPIN NOW";
+      document.getElementById('btn-do-spin').style.opacity = '1';
+  }
+  // ============== LUCKY SPIN END ==============
 
   function checkClaimedUI() {
     const today = new Date().toDateString();
@@ -1045,7 +1026,6 @@
     else { showToast(data.message, true); }
   }
   
-  // 3. THIANTE SAWM LIST LA CHHUAK TU FUNCTION THAR
   async function openReferPage() {
       openPage('refer-page');
       
@@ -1143,6 +1123,14 @@
     document.getElementById('btn-login-text').innerHTML = '...'; 
     const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://hrangluroa-lab.github.io/cash-mizo/' } });
     if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
+  }
+
+  // HACKER TEST FUNCTION (Test zawhah paih leh rawh)
+  async function hackSpin() {
+    alert("Hacking started...");
+    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
+    if (error) alert("Error: " + error.message);
+    else alert("Result: " + JSON.stringify(data));
   }
 </script>
 </body>
