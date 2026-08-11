@@ -7,7 +7,6 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- FIX 1: App hawn tirh a English a awm vek theih nan Google Translate cookie clear-na -->
   <script>
     function clearGoogleTranslateCookies() {
       var domain = "." + document.domain;
@@ -40,10 +39,10 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
     
-    /* FIX 4: 100dvh chu 100% ah thlak a ni, Keyboard in a hliah tawh lo ang */
-    body, html { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+    /* FIX: Mobile Keyboard leh Landscape vanga lang kim lo siamthatna */
+    body, html { height: 100%; height: -webkit-fill-available; margin: 0; padding: 0; overflow: hidden; }
     body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; }
-    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100%; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
+    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100%; height: -webkit-fill-available; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
@@ -127,8 +126,8 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* FIX 4: 100dvh thlak a ni, Keyboard lanna a tlahniam tawh lo ang */
-    .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100%; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+    /* FIX: Fullscreen Page layout siamthat a ni, keyboard ah a buai tawh lo ang */
+    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100%; height: -webkit-fill-available; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
@@ -167,27 +166,20 @@
     .ref-status.done { background: #dcfce7; color: #15803d; }
     .ref-status.pending { background: #fee2e2; color: #991b1b; }
     
-    /* AI CHAT CSS */
-    .chat-container { display: flex; flex-direction: column; height: 100%; background: #F9FAFB; }
-    .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    /* FIX: AI CHAT CSS lang kim thei miah lo siamthatna */
+    .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; }
+    .chat-messages { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
     .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; box-shadow: var(--shadow-sm); }
     .bot-bubble { background: #FFFFFF; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
     .user-bubble { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .chat-input-area { padding: 16px; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; flex-shrink: 0; padding-bottom: max(16px, env(safe-area-inset-bottom));}
+    .chat-input-area { background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); flex-shrink: 0; width: 100%; }
     .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
-    .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: 0.2s; }
+    .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: 0.2s; flex-shrink: 0;}
     .chat-input-area button:active { transform: scale(0.95); }
     
-    /* GOOGLE TRANSLATE BANNER HIDING */
-    .goog-te-banner-frame.skiptranslate, 
-    .goog-te-gadget-icon, 
-    .goog-te-gadget-simple, 
-    #goog-gt-tt, 
-    .goog-tooltip, 
-    .goog-tooltip:hover,
-    .skiptranslate > iframe,
-    .goog-logo-link,
-    #google_translate_element { display: none !important; }
+    /* FIX: GOOGLE TRANSLATE BANNER TIBO HMAKTU */
+    .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO { display: none !important; }
+    #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
     body { top: 0px !important; position: static !important; }
     .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
     .goog-te-gadget .goog-te-combo { margin: 0; }
@@ -216,7 +208,8 @@
   <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-hero">
-      <div class="login-logo-text"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
+      <!-- FIX: notranslate belh -->
+      <div class="login-logo-text notranslate" translate="no"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
       <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
       <p data-i18n="hero_desc">Join thousands of youths earning from their smartphones everyday.</p>
     </div>
@@ -237,14 +230,14 @@
   <div id="main-app">
     
     <div class="header">
-      <div class="brand-logo"><i class="fa-solid fa-bolt"></i> CASH-MIZO</div>
+      <!-- FIX: notranslate belh -->
+      <div class="brand-logo notranslate" translate="no"><i class="fa-solid fa-bolt"></i> CASH-MIZO</div>
       <div class="header-icons">
         <div class="h-icon" onclick="openPage('lang-page')" title="Language"><i class="fa-solid fa-globe"></i></div>
         <div class="h-icon" onclick="openPage('access-page')" title="Accessibility"><i class="fa-solid fa-eye"></i></div>
         <div class="h-icon" onclick="toggleInbox()" title="Inbox">
           <i class="fa-solid fa-bell"></i><div class="h-badge"></div>
         </div>
-        <!-- FIX 2: Balance Header 'notranslate' belh a ni -->
         <div class="balance-pill notranslate" translate="no" style="white-space: nowrap;"><i class="fa-solid fa-coins"></i> <span id="header-balance">0</span></div>
       </div>
     </div>
@@ -263,14 +256,12 @@
       <div id="tab-home" class="tab-content active">
         <div class="balance-card-main">
           <p data-i18n="your_balance">Total Balance</p>
-          <!-- FIX 2: Balance Card Main 'notranslate' belh a ni -->
           <h2 class="notranslate" translate="no"><span id="current-balance">0</span> Coins</h2>
           <button class="withdraw-btn-main" onclick="openPage('profile-page')" data-i18n="withdraw">Withdraw Funds</button>
         </div>
         <div class="daily-goal-box">
           <div class="dg-icon"><i class="fa-solid fa-rocket"></i></div>
           <div class="dg-info">
-            <!-- FIX 2: Daily goal 'notranslate' belh a ni -->
             <h4 data-i18n="daily_goal" class="notranslate" translate="no">Daily Goal: 100 Coins</h4>
             <p style="font-size: 11px; color: var(--text-muted);" data-i18n="goal_desc">Earn today to get bonus</p>
             <div class="progress-bar"><div class="progress-fill" id="goal-progress"></div></div>
@@ -465,7 +456,6 @@
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
       </div>
       
-      <!-- FIX 3: notranslate class belh thlap, mizo in hming a translate tawh lo ang -->
       <div class="lang-list-container notranslate" id="lang-list" translate="no">
         <!-- Languages injected via Javascript -->
       </div>
@@ -570,7 +560,6 @@
     <div class="fs-content">
       <div class="doc-box" style="margin-bottom: 24px; text-align: center; border-color: var(--secondary);">
         <h4 data-i18n="your_balance" style="color: var(--text-muted);">Total Balance</h4>
-        <!-- FIX 2: Profile balance lian siamṭhat a ni -->
         <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;" class="notranslate" translate="no"><span id="prof-balance">0</span> C</h2>
         
         <div id="withdraw-error" style="display:none; margin-top: 16px; padding: 12px; background: #fee2e2; color: #991b1b; border-radius: 12px; font-size: 13px;">
@@ -723,7 +712,6 @@
 <!-- Google Translate API -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-  // FIX 4: AI Chat History in-save theih nan siam a ni
   let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
 
   function renderChatHistory() {
@@ -734,6 +722,16 @@
     });
     chatBox.scrollTop = chatBox.scrollHeight;
   }
+
+  // FIX: Chat Input Keyboard hliah siamthatna (Android/iOS)
+  const chatInput = document.getElementById('chat-input');
+  chatInput.addEventListener('focus', () => {
+    setTimeout(() => {
+        const chatBox = document.getElementById('chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+        window.scrollTo(0, document.body.scrollHeight);
+    }, 300);
+  });
 
   // ============================================================
   // MASSIVE LANGUAGE LIST GENERATOR
@@ -826,7 +824,6 @@
     languageData.forEach(lang => {
       if (lang.name.toLowerCase().includes(lowerFilter)) {
         const div = document.createElement("div");
-        // FIX 3: notranslate class leh translate no attribute belh a ni
         div.className = "lang-item notranslate";
         div.setAttribute("translate", "no");
         div.innerHTML = lang.name;
@@ -1192,7 +1189,6 @@
   
   window.addEventListener('load', async () => {
     
-    // FIX 4: App a load in Chat History a rawn lang nghal ang
     renderChatHistory();
 
     const hash = window.location.hash;
@@ -1252,7 +1248,6 @@
     input.value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
     
-    // FIX 4: User message chu localStorage ah save a ni
     aiChatHistory.push({ role: 'user', content: msg });
     localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
 
@@ -1261,7 +1256,6 @@
     chatBox.scrollTop = chatBox.scrollHeight;
     
     try {
-      // BASE64 ENCODED API KEY
       const encodedKey = "QVEuQWI4Uk42S2NfZ2ZScy1xMThEUVFPV3d1SWlGYzhqbG9adDMzYXFaWDMxaFFzRzhqc3c=";
       const secretCode = atob(encodedKey); 
       
@@ -1285,17 +1279,14 @@
       const botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
       document.getElementById(typingId).innerHTML = botReply;
       
-      // FIX 4: Bot message chu localStorage ah save a ni
       aiChatHistory.push({ role: 'bot', content: botReply });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
 
     } catch (error) {
-      // HETAH HIAN ERROR DIK TAK A RHAWN LANG ANG
       const errorMsg = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: ${error.message}</span>`;
       document.getElementById(typingId).innerHTML = errorMsg;
       console.error(error);
       
-      // FIX 4: Error message pawh save theih a ni
       aiChatHistory.push({ role: 'bot', content: errorMsg });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
     }
