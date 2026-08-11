@@ -7,6 +7,12 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- FIX 1: App hawn tirh a English a awm vek theih nan Google Translate cookie clear-na -->
+  <script>
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + location.hostname + "; path=/;";
+  </script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
@@ -422,7 +428,7 @@
     </div>
     <div class="chat-container">
       <div class="chat-messages" id="chat-box">
-        <div class="chat-bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>
+        <!-- Chat History injected here -->
       </div>
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
@@ -448,7 +454,9 @@
         <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
       </div>
-      <div class="lang-list-container" id="lang-list">
+
+      <!-- FIX 2: notranslate class belh, tawng hming mizo in a translate tawh lo ang -->
+      <div class="lang-list-container notranslate" id="lang-list">
         <!-- Languages injected via Javascript -->
       </div>
     </div>
@@ -704,6 +712,18 @@
 <!-- Google Translate API -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
+  // FIX 3: Chat history bo ṭhin siamṭhatna - localStorage ah save zel a ni ang
+  let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
+
+  function renderChatHistory() {
+    const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML = '<div class="chat-bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>';
+    aiChatHistory.forEach(msg => {
+      chatBox.innerHTML += `<div class="chat-bubble ${msg.role}-bubble">${msg.content}</div>`;
+    });
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
   // ============================================================
   // MASSIVE LANGUAGE LIST GENERATOR
   // ============================================================
@@ -1158,6 +1178,10 @@
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
   
   window.addEventListener('load', async () => {
+    
+    // FIX 3: App load rual a chat history hman theih nghal turin call a ni
+    renderChatHistory();
+
     const hash = window.location.hash;
     if (hash && hash.includes('access_token=')) {
       const params = new URLSearchParams(hash.substring(1));
@@ -1215,6 +1239,10 @@
     input.value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
     
+    // FIX 3: Save user message to localStorage
+    aiChatHistory.push({ role: 'user', content: msg });
+    localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
+
     const typingId = "typing-" + Date.now();
     chatBox.innerHTML += `<div class="chat-bubble bot-bubble" id="${typingId}">Thinking...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -1244,10 +1272,19 @@
       const botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
       document.getElementById(typingId).innerHTML = botReply;
       
+      // FIX 3: Save bot message to localStorage
+      aiChatHistory.push({ role: 'bot', content: botReply });
+      localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
+
     } catch (error) {
       // HETAH HIAN ERROR DIK TAK A RHAWN LANG ANG
-      document.getElementById(typingId).innerHTML = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: ${error.message}</span>`;
+      const errorMsg = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: ${error.message}</span>`;
+      document.getElementById(typingId).innerHTML = errorMsg;
       console.error(error);
+      
+      // FIX 3: Save error message to localStorage
+      aiChatHistory.push({ role: 'bot', content: errorMsg });
+      localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
     }
     chatBox.scrollTop = chatBox.scrollHeight;
   }
