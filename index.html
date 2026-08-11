@@ -9,8 +9,13 @@
   
   <!-- FIX 1: App hawn tirh a English a awm vek theih nan Google Translate cookie clear-na -->
   <script>
-    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + location.hostname + "; path=/;";
+    function clearGoogleTranslateCookies() {
+      var domain = "." + document.domain;
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + document.domain + ";";
+    }
+    clearGoogleTranslateCookies();
   </script>
 
   <style>
@@ -35,8 +40,10 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
     
-    body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; overflow: hidden; height: 100dvh; }
-    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100dvh; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
+    /* FIX 4: 100dvh chu 100% ah thlak a ni, Keyboard in a hliah tawh lo ang */
+    body, html { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+    body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; }
+    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100%; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
@@ -120,8 +127,8 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* FULLSCREEN PAGES */
-    .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100%; height: 100dvh; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+    /* FIX 4: 100dvh thlak a ni, Keyboard lanna a tlahniam tawh lo ang */
+    .fs-page { position: fixed; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100%; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
@@ -171,7 +178,7 @@
     .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: 0.2s; }
     .chat-input-area button:active { transform: scale(0.95); }
     
-    /* GOOGLE TRANSLATE BANNER HIDING (A chunga lang lo tura siamṭhat) */
+    /* GOOGLE TRANSLATE BANNER HIDING */
     .goog-te-banner-frame.skiptranslate, 
     .goog-te-gadget-icon, 
     .goog-te-gadget-simple, 
@@ -237,7 +244,8 @@
         <div class="h-icon" onclick="toggleInbox()" title="Inbox">
           <i class="fa-solid fa-bell"></i><div class="h-badge"></div>
         </div>
-        <div class="balance-pill"><i class="fa-solid fa-coins"></i> <span id="header-balance">0</span></div>
+        <!-- FIX 2: Balance Header 'notranslate' belh a ni -->
+        <div class="balance-pill notranslate" translate="no" style="white-space: nowrap;"><i class="fa-solid fa-coins"></i> <span id="header-balance">0</span></div>
       </div>
     </div>
     <div id="inbox-dropdown">
@@ -255,13 +263,15 @@
       <div id="tab-home" class="tab-content active">
         <div class="balance-card-main">
           <p data-i18n="your_balance">Total Balance</p>
-          <h2><span id="current-balance">0</span> Coins</h2>
+          <!-- FIX 2: Balance Card Main 'notranslate' belh a ni -->
+          <h2 class="notranslate" translate="no"><span id="current-balance">0</span> Coins</h2>
           <button class="withdraw-btn-main" onclick="openPage('profile-page')" data-i18n="withdraw">Withdraw Funds</button>
         </div>
         <div class="daily-goal-box">
           <div class="dg-icon"><i class="fa-solid fa-rocket"></i></div>
           <div class="dg-info">
-            <h4 data-i18n="daily_goal">Daily Goal: 100 Coins</h4>
+            <!-- FIX 2: Daily goal 'notranslate' belh a ni -->
+            <h4 data-i18n="daily_goal" class="notranslate" translate="no">Daily Goal: 100 Coins</h4>
             <p style="font-size: 11px; color: var(--text-muted);" data-i18n="goal_desc">Earn today to get bonus</p>
             <div class="progress-bar"><div class="progress-fill" id="goal-progress"></div></div>
           </div>
@@ -428,7 +438,7 @@
     </div>
     <div class="chat-container">
       <div class="chat-messages" id="chat-box">
-        <!-- Chat History injected here -->
+        <!-- Chat history a rawn lang ang -->
       </div>
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
@@ -454,9 +464,9 @@
         <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
       </div>
-
-      <!-- FIX 2: notranslate class belh, tawng hming mizo in a translate tawh lo ang -->
-      <div class="lang-list-container notranslate" id="lang-list">
+      
+      <!-- FIX 3: notranslate class belh thlap, mizo in hming a translate tawh lo ang -->
+      <div class="lang-list-container notranslate" id="lang-list" translate="no">
         <!-- Languages injected via Javascript -->
       </div>
     </div>
@@ -560,7 +570,8 @@
     <div class="fs-content">
       <div class="doc-box" style="margin-bottom: 24px; text-align: center; border-color: var(--secondary);">
         <h4 data-i18n="your_balance" style="color: var(--text-muted);">Total Balance</h4>
-        <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;"><span id="prof-balance">0</span> C</h2>
+        <!-- FIX 2: Profile balance lian siamṭhat a ni -->
+        <h2 style="font-size: 32px; color: var(--text-main); margin: 8px 0;" class="notranslate" translate="no"><span id="prof-balance">0</span> C</h2>
         
         <div id="withdraw-error" style="display:none; margin-top: 16px; padding: 12px; background: #fee2e2; color: #991b1b; border-radius: 12px; font-size: 13px;">
           <i class="fa-solid fa-circle-exclamation"></i> <span data-i18n="wd_error_desc">You need at least 5,000 Coins to withdraw.</span>
@@ -712,7 +723,7 @@
 <!-- Google Translate API -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-  // FIX 3: Chat history bo ṭhin siamṭhatna - localStorage ah save zel a ni ang
+  // FIX 4: AI Chat History in-save theih nan siam a ni
   let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
 
   function renderChatHistory() {
@@ -815,7 +826,9 @@
     languageData.forEach(lang => {
       if (lang.name.toLowerCase().includes(lowerFilter)) {
         const div = document.createElement("div");
-        div.className = "lang-item";
+        // FIX 3: notranslate class leh translate no attribute belh a ni
+        div.className = "lang-item notranslate";
+        div.setAttribute("translate", "no");
         div.innerHTML = lang.name;
         div.onclick = () => triggerTranslate(lang.code);
         container.appendChild(div);
@@ -1179,7 +1192,7 @@
   
   window.addEventListener('load', async () => {
     
-    // FIX 3: App load rual a chat history hman theih nghal turin call a ni
+    // FIX 4: App a load in Chat History a rawn lang nghal ang
     renderChatHistory();
 
     const hash = window.location.hash;
@@ -1239,7 +1252,7 @@
     input.value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
     
-    // FIX 3: Save user message to localStorage
+    // FIX 4: User message chu localStorage ah save a ni
     aiChatHistory.push({ role: 'user', content: msg });
     localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
 
@@ -1272,7 +1285,7 @@
       const botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
       document.getElementById(typingId).innerHTML = botReply;
       
-      // FIX 3: Save bot message to localStorage
+      // FIX 4: Bot message chu localStorage ah save a ni
       aiChatHistory.push({ role: 'bot', content: botReply });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
 
@@ -1282,7 +1295,7 @@
       document.getElementById(typingId).innerHTML = errorMsg;
       console.error(error);
       
-      // FIX 3: Save error message to localStorage
+      // FIX 4: Error message pawh save theih a ni
       aiChatHistory.push({ role: 'bot', content: errorMsg });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
     }
