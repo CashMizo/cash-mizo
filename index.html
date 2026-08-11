@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CASH-MIZO | Original Rewards</title>
+  <title>CASHMIZO | Original Rewards</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -56,11 +56,12 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
-    /* FIX: Desktop/Landscape & Viewport fix */
+    /* FIX: Desktop/Landscape & Viewport fix (Fullscreen fit thlap) */
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
     body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; }
     
-    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
+    /* Removed max-width: 420px to allow fullscreen desktop/landscape fit */
+    .app-container { width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
@@ -145,8 +146,8 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* Fullscreen Page layout */
-    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+    /* Fullscreen Page layout fix */
+    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
@@ -184,18 +185,25 @@
     .ref-status.done { background: #dcfce7; color: #15803d; }
     .ref-status.pending { background: #fee2e2; color: #991b1b; }
     
-    /* AI CHAT CSS (FIXED VIEWPORT HEIGHT) */
+    /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; }
     .chat-messages { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
     .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; box-shadow: var(--shadow-sm); }
     .bot-bubble { background: #FFFFFF; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
     .user-bubble { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
     
-    /* FIXED CHAT INPUT - Bottom Tied */
     .chat-input-area { background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); width: 100%; flex-shrink: 0; position: sticky; bottom: 0; z-index: 10;}
     .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
     .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); flex-shrink: 0;}
     
+    /* THEME WIDGET TILES */
+    .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .theme-tile { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 20px 12px; text-align: center; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 12px;}
+    .theme-tile i { font-size: 28px; color: var(--text-muted); }
+    .theme-tile span { font-size: 13px; font-weight: 700; color: var(--text-main); }
+    .theme-tile.active { background: var(--primary); border-color: var(--primary); }
+    .theme-tile.active i, .theme-tile.active span { color: white; }
+
     /* GOOGLE TRANSLATE BANNER TIBO HMAKTU */
     .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO { display: none !important; }
     #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
@@ -380,12 +388,11 @@
       
       <!-- TAB 4: MORE -->
       <div id="tab-support" class="tab-content">
-        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 16px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color);">
-          <!-- FIX: Profile notranslate belh chilh -->
-          <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800;" id="more-initial" class="notranslate" translate="no">U</div>
+        <div class="notranslate" translate="no" style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 16px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color);">
+          <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800;" id="more-initial">U</div>
           <div>
-            <h3 id="more-name" class="notranslate" translate="no" style="font-size: 16px; font-weight: 800;">User</h3>
-            <p id="more-email" class="notranslate" translate="no" style="font-size: 12px; color: var(--text-muted);">email</p>
+            <h3 id="more-name" style="font-size: 16px; font-weight: 800;">User</h3>
+            <p id="more-email" style="font-size: 12px; color: var(--text-muted);">email</p>
           </div>
         </div>
         <div class="menu-group-title">AI Support</div>
@@ -517,7 +524,7 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY PAGE (FIXED & IMPROVED) -->
+  <!-- ACCESSIBILITY / THEME SETTINGS PAGE -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
@@ -528,13 +535,20 @@
       <div class="doc-box">
         <h4 data-i18n="color_adj" style="margin-bottom: 16px;">App En Dan (Color Theme)</h4>
         
-        <div style="background: var(--bg-main); padding: 16px; border-radius: 12px; margin-bottom: 24px;">
-           <select id="theme-select" class="input-field notranslate" translate="no" onchange="changeTheme(this.value)" style="margin-bottom: 0; cursor: pointer;">
-              <option value="default">Default Mode</option>
-              <option value="dark">Night Mode</option>
-              <option value="eye-comfort">Eye Comfort</option>
-              <option value="ultra">Ultra Vision Engine</option>
-           </select>
+        <!-- NEW WIDGET TILES (Android Quick Settings Ang) -->
+        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 24px;">
+           <div class="theme-tile" id="tile-default" onclick="changeTheme('default')">
+              <i class="fa-solid fa-sun"></i><span>Default Mode</span>
+           </div>
+           <div class="theme-tile" id="tile-dark" onclick="changeTheme('dark')">
+              <i class="fa-solid fa-moon"></i><span>Night Mode</span>
+           </div>
+           <div class="theme-tile" id="tile-eye-comfort" onclick="changeTheme('eye-comfort')">
+              <i class="fa-solid fa-eye-low-vision"></i><span>Eye Comfort</span>
+           </div>
+           <div class="theme-tile" id="tile-ultra" onclick="changeTheme('ultra')">
+              <i class="fa-solid fa-bolt"></i><span>Ultra Vision</span>
+           </div>
         </div>
 
         <h4 data-i18n="content_adj" style="margin-bottom: 16px;">Hawrawp Tihlen/Tihtet</h4>
@@ -687,7 +701,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: TERMS & PRIVACY -->
+  <!-- PREMIUM: TERMS & PRIVACY (UPGRADED) -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -702,6 +716,7 @@
         </div>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">We value your privacy. Cash-Mizo only collects essential data (Name, Email) via Google Login to manage your coin balance and payment details securely.</p>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">We never share or sell your personal data to third parties.</p>
+        
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
           <i class="fa-solid fa-file-contract" style="font-size: 24px; color: var(--primary);"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Terms & Rules</h3>
@@ -711,13 +726,22 @@
           <li style="margin-bottom: 8px;"><strong>One Account Per User:</strong> Multiple accounts on the same device are strictly prohibited.</li>
           <li style="margin-bottom: 8px;"><strong>Fair Play:</strong> Any attempt to hack, modify, or exploit the App's code will result in forfeiture of all coins.</li>
         </ul>
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        
+        <!-- NEW WIDGETS -->
+        <div class="list-menu-item" onclick="window.open('terms.html', '_blank')" style="background: var(--bg-card); border-color: var(--primary);">
+            <span><i class="fa-solid fa-file-contract" style="color: var(--primary);"></i> <strong style="color: var(--primary);">Kimchang zawk chhiarna (Full Terms)</strong></span>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--primary);"></i>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; margin: 24px 0 16px 0;">
           <i class="fa-solid fa-envelope" style="font-size: 24px; color: #f59e0b;"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Contact Us</h3>
         </div>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">For legal inquiries or account support, please email us directly at:</p>
-        <div style="background: var(--bg-main); padding: 12px; border-radius: 8px; margin-top: 12px; text-align: center; font-weight: 700; color: var(--primary);">
-          cashmizoofficial@gmail.com
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Legal inquiry emaw account support duh tan, hetah hian min rawn be thei reng e:</p>
+        
+        <div class="list-menu-item" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'" style="background: var(--primary-light); border-color: var(--primary);">
+            <span><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> <strong style="color: var(--primary);">Email Us (cashmizoofficial@gmail.com)</strong></span>
+            <i class="fa-solid fa-paper-plane" style="color: var(--primary);"></i>
         </div>
       </div>
     </div>
@@ -750,19 +774,23 @@
     }, 300);
   });
 
-  // THEME SCRIPT
+  // THEME WIDGET SCRIPT
   function changeTheme(theme) {
     document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
     if (theme === 'dark') document.body.classList.add('dark-mode');
     if (theme === 'eye-comfort') document.body.classList.add('theme-eye-comfort');
     if (theme === 'ultra') document.body.classList.add('theme-ultra');
     localStorage.setItem('cashmizo_theme', theme);
+    
+    // Update Tile Highlights
+    document.querySelectorAll('.theme-tile').forEach(t => t.classList.remove('active'));
+    const activeTile = document.getElementById('tile-' + theme);
+    if(activeTile) activeTile.classList.add('active');
   }
+  
   let savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
-  changeTheme(savedTheme);
   document.addEventListener("DOMContentLoaded", () => {
-     let themeSelect = document.getElementById('theme-select');
-     if(themeSelect) themeSelect.value = savedTheme;
+     changeTheme(savedTheme);
   });
 
   let currentFontSize = 16;
@@ -1259,7 +1287,7 @@
   }
   
   /* =========================================
-     SMART AI BOT LOGIC (BASE64 ENCODING)
+     SMART AI BOT LOGIC
      ========================================= */
   function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
   
@@ -1288,7 +1316,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           system_instruction: {
-            parts: { text: "Nang chu CASH-MIZO app-a Customer Support ai awhtu (Smart Assistant) i ni. Mizo ṭawng hlirin hawihhawm takin chhang ang che. User ten task leh spin hmangin coin an hlawh thei a. Coin 5000 = UPI emaw Bank ah lakchhuah theih a ni. Ṭhian sawm in 10% commission an hmu ang. A tawi zawng leh fiah deuhin chhang ṭhin ang che." }
+            parts: { text: "Nang chu CASH-MIZO app-a Customer Support ai awhtu (Smart Assistant) i ni. Mizo ṭawng hlirin hawihhawm takin chhang ang che. User ten task leh spin hmangin coin an hlawh thei a. Coin 5000 = UPI emaw Bank ah lakchhuah theih a ni. Ṭhian sawm in 10% commission an hmu ang. A tawi zawng leh fiah deuhin chhang ṭhin ang che. I chin fel theih loh harsatna a awm chuan, he code '[ADMIN_REPORT]' hi i chhanna ah zep tel ang che. Hemi hmang hian system in Admin hnenah a thawn dawn a ni." }
           },
           contents: [{ parts: [{ text: msg }] }]
         })
@@ -1300,7 +1328,14 @@
         throw new Error(`${data.error.message}`); 
       }
       
-      const botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+      let botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+      
+      // ADMIN REPORT GATEWAY INTERCEPTION
+      if (botReply.includes('[ADMIN_REPORT]')) {
+         botReply = botReply.replace(/\[ADMIN_REPORT\]/g, '');
+         botReply += `<br><br><button class="btn-primary" style="padding: 12px; font-size: 14px;" onclick="openPage('contact-page')"><i class="fa-solid fa-headset"></i> Admin hnenah thlenna (Report Issue)</button>`;
+      }
+      
       document.getElementById(typingId).innerHTML = botReply;
       
       aiChatHistory.push({ role: 'bot', content: botReply });
