@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CASHMIZO | Original Rewards</title>
+  <title>CASH-MIZO | Original Rewards</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -56,12 +56,12 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
-    /* FIX: Desktop/Landscape & Viewport fix (Fullscreen fit thlap) */
+    /* FIX: Desktop/Landscape Fullscreen Fit */
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
     body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; }
     
-    /* Removed max-width: 420px to allow fullscreen desktop/landscape fit */
-    .app-container { width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
+    /* Max-width paih a ni, fullscreen in a fit thlap tawh ang */
+    .app-container { width: 100%; max-width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
@@ -74,7 +74,7 @@
     .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); flex-shrink: 0; }
     .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
     
-    .auth-btn { display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
+    .auth-btn { display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; max-width: 400px; margin: 0 auto 12px; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; box-shadow: var(--shadow-sm); }
     .auth-btn:active { transform: scale(0.98); }
     .auth-btn img { width: 24px; margin-right: 12px; }
     
@@ -90,7 +90,7 @@
     .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
     .balance-pill i { color: #f59e0b; }
     
-    .app-body { flex: 1; overflow-y: auto; padding-bottom: 80px; }
+    .app-body { flex: 1; overflow-y: auto; padding-bottom: 80px; max-width: 800px; margin: 0 auto; width: 100%; }
     .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; }
     .nav-item i { font-size: 20px; }
@@ -112,6 +112,7 @@
     .progress-bar { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; margin-top: 8px; }
     .progress-fill { width: 30%; height: 100%; background: var(--primary); border-radius: 4px; }
     .grid-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+    @media (min-width: 600px) { .grid-actions { grid-template-columns: repeat(4, 1fr); } }
     .grid-card { background: var(--bg-card); padding: 20px 16px; border-radius: 16px; text-align: left; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 12px; }
     .grid-card.locked { opacity: 0.6; background: var(--bg-main); filter: grayscale(50%); cursor: not-allowed; }
     .grid-card.locked::after { content: '\f023'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 16px; right: 16px; font-size: 16px; color: var(--text-muted); }
@@ -136,6 +137,7 @@
     .offer-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
     
     .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (min-width: 600px) { .shop-grid { grid-template-columns: repeat(4, 1fr); } }
     .shop-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; }
     .shop-item img { width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; object-fit: contain; background: #f8fafc;}
     .shop-item h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
@@ -146,13 +148,13 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* Fullscreen Page layout fix */
-    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+    /* Fullscreen Page layout Fixes */
+    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
     .back-btn:hover { background: var(--border-color); }
-    .fs-content { padding: 24px; flex: 1; overflow-y: auto; }
+    .fs-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; }
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 24px;}
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
     .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; }
@@ -185,8 +187,16 @@
     .ref-status.done { background: #dcfce7; color: #15803d; }
     .ref-status.pending { background: #fee2e2; color: #991b1b; }
     
+    /* WIDGET TILES CSS */
+    .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .theme-tile { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 20px 12px; text-align: center; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 12px;}
+    .theme-tile i { font-size: 28px; color: var(--text-muted); }
+    .theme-tile span { font-size: 13px; font-weight: 700; color: var(--text-main); }
+    .theme-tile.active { background: var(--primary); border-color: var(--primary); }
+    .theme-tile.active i, .theme-tile.active span { color: white; }
+
     /* AI CHAT CSS */
-    .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; }
+    .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
     .chat-messages { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
     .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; box-shadow: var(--shadow-sm); }
     .bot-bubble { background: #FFFFFF; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
@@ -196,14 +206,6 @@
     .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
     .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); flex-shrink: 0;}
     
-    /* THEME WIDGET TILES */
-    .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .theme-tile { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 20px 12px; text-align: center; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 12px;}
-    .theme-tile i { font-size: 28px; color: var(--text-muted); }
-    .theme-tile span { font-size: 13px; font-weight: 700; color: var(--text-main); }
-    .theme-tile.active { background: var(--primary); border-color: var(--primary); }
-    .theme-tile.active i, .theme-tile.active span { color: white; }
-
     /* GOOGLE TRANSLATE BANNER TIBO HMAKTU */
     .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO { display: none !important; }
     #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
@@ -447,7 +449,7 @@
   <div id="ai-chat-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('ai-chat-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 style="font-size: 16px; font-weight: 700;">Smart Assistant</h3>
+      <h3 class="notranslate" translate="no" style="font-size: 16px; font-weight: 700;">Smart Assistant</h3>
       <div style="width: 40px; text-align: right;"><i class="fa-solid fa-robot" style="color: var(--primary); font-size: 20px;"></i></div>
     </div>
     <div class="chat-container">
@@ -465,7 +467,7 @@
   <div id="lang-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('lang-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="language">App Language</h3>
+      <h3 class="notranslate" translate="no" data-i18n="language">App Language</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content" style="padding: 24px;">
@@ -486,7 +488,7 @@
   <div id="spin-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('spin-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="spin_wheel">Lucky Spin</h3>
+      <h3 class="notranslate" translate="no" data-i18n="spin_wheel">Lucky Spin</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content" style="text-align: center;">
@@ -503,7 +505,7 @@
   <div id="refer-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('refer-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="refer_title">Refer & Earn</h3>
+      <h3 class="notranslate" translate="no" data-i18n="refer_title">Refer & Earn</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -524,19 +526,19 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY / THEME SETTINGS PAGE -->
+  <!-- ACCESSIBILITY PAGE / QUICK SETTINGS WIDGET -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
-      <h3 data-i18n="accessibility">Accessibility</h3>
+      <h3 class="notranslate" translate="no" data-i18n="accessibility">Accessibility</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
       <div class="doc-box">
         <h4 data-i18n="color_adj" style="margin-bottom: 16px;">App En Dan (Color Theme)</h4>
         
-        <!-- NEW WIDGET TILES (Android Quick Settings Ang) -->
-        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 24px;">
+        <!-- WIDGET TILES (Android Quick Settings) -->
+        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 32px;">
            <div class="theme-tile" id="tile-default" onclick="changeTheme('default')">
               <i class="fa-solid fa-sun"></i><span>Default Mode</span>
            </div>
@@ -566,19 +568,26 @@
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="customer_care">Customer Care</h3>
+      <h3 class="notranslate" translate="no" data-i18n="customer_care">Customer Care</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
       <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
       <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
-      <select id="ticket-subject" class="input-field" style="appearance: auto;">
-        <option value="" disabled selected data-i18n="select_issue">Select Issue...</option>
-        <option value="missing" data-i18n="issue_missing">Missing Coins (Task not credited)</option>
-        <option value="withdraw" data-i18n="issue_wd">Withdrawal / Payment Issue</option>
+      
+      <!-- DROPDOWN FELFAI TAKIN SIAM A NI E -->
+      <select id="ticket-subject" class="input-field" style="appearance: auto; padding: 16px 12px; cursor: pointer;">
+        <option value="" disabled selected data-i18n="select_issue">Issue/Harsatna thlang rawh...</option>
+        <option value="missing">Missing Coins (Task hlawh lak luh loh)</option>
+        <option value="withdraw">Withdrawal / Pawisa lachhuak thei lo</option>
+        <option value="account">Account Block / Login theih loh</option>
+        <option value="payment_info">Payment details thlak danglam chungchang</option>
+        <option value="bug">App hman a buaithlak / Bug Report</option>
+        <option value="other">Thil dang (Others)</option>
       </select>
-      <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="Properly Explain Issue..."></textarea>
-      <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Send Message</button>
+      
+      <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="I harsatna kimchang takin han ziak rawh..."></textarea>
+      <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Message Thawn Rawh</button>
     </div>
   </div>
   
@@ -586,7 +595,7 @@
   <div id="profile-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('profile-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="profile">My Account</h3>
+      <h3 class="notranslate" translate="no" data-i18n="profile">My Account</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -653,7 +662,7 @@
   <div id="lb-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('lb-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="lb_title">Leaderboard</h3>
+      <h3 class="notranslate" translate="no" data-i18n="lb_title">Leaderboard</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -668,7 +677,7 @@
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="how_it_works">How it works</h3>
+      <h3 class="notranslate" translate="no" data-i18n="how_it_works">How it works</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -701,11 +710,11 @@
     </div>
   </div>
   
-  <!-- PREMIUM: TERMS & PRIVACY (UPGRADED) -->
+  <!-- PREMIUM: TERMS & PRIVACY (BUTTON FELFAI LUK) -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 data-i18n="terms">Terms & Privacy</h3>
+      <h3 class="notranslate" translate="no" data-i18n="terms">Terms & Privacy</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -727,22 +736,20 @@
           <li style="margin-bottom: 8px;"><strong>Fair Play:</strong> Any attempt to hack, modify, or exploit the App's code will result in forfeiture of all coins.</li>
         </ul>
         
-        <!-- NEW WIDGETS -->
-        <div class="list-menu-item" onclick="window.open('terms.html', '_blank')" style="background: var(--bg-card); border-color: var(--primary);">
-            <span><i class="fa-solid fa-file-contract" style="color: var(--primary);"></i> <strong style="color: var(--primary);">Kimchang zawk chhiarna (Full Terms)</strong></span>
-            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--primary);"></i>
-        </div>
+        <!-- BUTTON FELFAI LEH SIMPLE TAK -->
+        <button class="btn-secondary notranslate" translate="no" onclick="window.open('terms.html', '_blank')" style="margin-top:0; border:none; background:var(--primary-light); color:var(--primary);">
+           <i class="fa-solid fa-file-contract"></i> Kimchang Zawk Chhiarna (Full Terms)
+        </button>
 
-        <div style="display: flex; align-items: center; gap: 12px; margin: 24px 0 16px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin: 32px 0 16px 0;">
           <i class="fa-solid fa-envelope" style="font-size: 24px; color: #f59e0b;"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Contact Us</h3>
         </div>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Legal inquiry emaw account support duh tan, hetah hian min rawn be thei reng e:</p>
         
-        <div class="list-menu-item" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'" style="background: var(--primary-light); border-color: var(--primary);">
-            <span><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> <strong style="color: var(--primary);">Email Us (cashmizoofficial@gmail.com)</strong></span>
-            <i class="fa-solid fa-paper-plane" style="color: var(--primary);"></i>
-        </div>
+        <button class="btn-primary notranslate" translate="no" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'" style="margin-top:8px;">
+           <i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> cashmizoofficial@gmail.com
+        </button>
       </div>
     </div>
   </div>
@@ -765,7 +772,6 @@
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // Chat Input Keyboard scroll fix
   const chatInput = document.getElementById('chat-input');
   chatInput.addEventListener('focus', () => {
     setTimeout(() => {
@@ -928,7 +934,6 @@
     }
   }
   
-  // TRANSLATION DICTIONARY FOR BASE UI
   const translations = {
     mizo: {
       success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
@@ -1109,7 +1114,6 @@
     if (action === 'daily') requestDailyFromServer();
   }
   
-  // ============== LUCKY SPIN ==============
   let isSpinning = false;
   
   function openSpinWheel() {
@@ -1287,7 +1291,7 @@
   }
   
   /* =========================================
-     SMART AI BOT LOGIC
+     SMART AI BOT LOGIC (ADMIN AUTO-FORWARD)
      ========================================= */
   function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
   
@@ -1330,10 +1334,21 @@
       
       let botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
       
-      // ADMIN REPORT GATEWAY INTERCEPTION
+      // AUTO FORWARD TO ADMIN (NO BUTTON)
       if (botReply.includes('[ADMIN_REPORT]')) {
          botReply = botReply.replace(/\[ADMIN_REPORT\]/g, '');
-         botReply += `<br><br><button class="btn-primary" style="padding: 12px; font-size: 14px;" onclick="openPage('contact-page')"><i class="fa-solid fa-headset"></i> Admin hnenah thlenna (Report Issue)</button>`;
+         
+         // User hriattirna (UI)
+         botReply += `<br><br><div style="background: #dcfce7; color: #15803d; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 12px; text-align: center;"><i class="fa-solid fa-circle-check"></i> I harsatna hi Admin hnenah forward (thawn) a ni e. Kan lo endik thuai ang.</div>`;
+         
+         // Supabase a thun luhna (Backend)
+         if(currentUserId) {
+            supabaseClient.from('admin_reports').insert([{ 
+                user_id: currentUserId, 
+                message: msg, 
+                status: 'pending' 
+            }]).then(); // Silent insert
+         }
       }
       
       document.getElementById(typingId).innerHTML = botReply;
