@@ -16,7 +16,6 @@
     }
     clearGoogleTranslateCookies();
 
-    // FIX: Mobile Viewport Height Customization (Chat Input bo zel siamthatna)
     function setDocHeight() {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
     }
@@ -43,24 +42,43 @@
       --radius-lg: 20px;
     }
     
-    /* THEMES */
+    /* ACCESSIBILITY & THEMES */
     body.dark-mode {
       --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border-color: #334155; --primary-light: #312e81;
     }
     body.theme-eye-comfort {
-      --bg-main: #fdf6e3; --bg-card: #fffbeb; --text-main: #5c4033; --text-muted: #8b7355; --primary: #d97706; --primary-light: #fef3c7; --border-color: #fde68a; --secondary: #16a34a;
+      --bg-main: #fdf6e3; --bg-card: #fffbeb; --text-main: #5c4033; --text-muted: #8b7355; --border-color: #fde68a; --secondary: #16a34a;
     }
     body.theme-ultra {
-      --bg-main: #000000; --bg-card: #111111; --text-main: #ffff00; --text-muted: #cccccc; --primary: #00ff00; --primary-light: #222222; --border-color: #444444; --secondary: #00ffff;
+      --bg-main: #000000; --bg-card: #111111; --text-main: #ffffff; --text-muted: #aaaaaa; --border-color: #333333;
+    }
+    body.high-contrast {
+      --bg-main: #ffffff; --bg-card: #000000; --text-main: #ffff00; --text-muted: #ffffff; --border-color: #ffff00;
+    }
+    body.grayscale-mode {
+      filter: grayscale(100%);
+    }
+    body.large-text-mode {
+      font-size: 19px !important;
+    }
+
+    /* NEON RAINBOW ANIMATION */
+    @keyframes neonGlow {
+      0% { --primary: #ff0055; --primary-light: #ffe6ec; }
+      25% { --primary: #00e5ff; --primary-light: #e6fcff; }
+      50% { --primary: #00ff66; --primary-light: #e6ffe6; }
+      75% { --primary: #ffb700; --primary-light: #fff8e6; }
+      100% { --primary: #9d00ff; --primary-light: #f5e6ff; }
+    }
+    body.neon-active {
+      animation: neonGlow 6s infinite alternate linear;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
-    /* FIX: Desktop/Landscape Fullscreen Fit */
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
     body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; }
     
-    /* Max-width paih a ni, fullscreen in a fit thlap tawh ang */
     .app-container { width: 100%; max-width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
@@ -148,7 +166,6 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* Fullscreen Page layout Fixes */
     .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
@@ -175,25 +192,33 @@
     .inbox-msg h5 { font-size: 14px; color: var(--text-main); margin-bottom: 4px;}
     .inbox-msg p { font-size: 12px; color: var(--text-muted); line-height: 1.4;}
     
-    /* SPIN WHEEL CSS */
-    .wheel-container { position: relative; width: 260px; height: 260px; margin: 0 auto; }
-    .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--text-main); background: conic-gradient( #ef4444 0deg 60deg, #f59e0b 60deg 120deg, #10b981 120deg 180deg, #3b82f6 180deg 240deg, #8b5cf6 240deg 300deg, #ec4899 300deg 360deg ); transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1); box-shadow: var(--shadow-md);}
-    .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 32px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); color: var(--text-main); }
-    
-    .ref-list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
-    .ref-list-item:last-child { border-bottom: none; }
-    .ref-name { font-weight: 700; color: var(--text-main); font-size: 14px; }
-    .ref-status { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 12px; }
-    .ref-status.done { background: #dcfce7; color: #15803d; }
-    .ref-status.pending { background: #fee2e2; color: #991b1b; }
-    
-    /* WIDGET TILES CSS */
+    /* WIDGET TILES & PALETTE CSS */
     .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .theme-tile { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 20px 12px; text-align: center; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 12px;}
-    .theme-tile i { font-size: 28px; color: var(--text-muted); }
-    .theme-tile span { font-size: 13px; font-weight: 700; color: var(--text-main); }
-    .theme-tile.active { background: var(--primary); border-color: var(--primary); }
-    .theme-tile.active i, .theme-tile.active span { color: white; }
+    .theme-tile { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 8px;}
+    .theme-tile i { font-size: 24px; color: var(--text-muted); }
+    .theme-tile span { font-size: 12px; font-weight: 700; color: var(--text-main); }
+    .theme-tile.active { background: var(--primary-light); border-color: var(--primary); }
+    .theme-tile.active i, .theme-tile.active span { color: var(--primary); }
+
+    .color-swatch-box { display: flex; gap: 12px; align-items: center; overflow-x: auto; padding: 8px 0; margin-bottom: 16px; }
+    .color-swatch { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid var(--bg-card); box-shadow: var(--shadow-sm); flex-shrink: 0; transition: transform 0.2s; }
+    .color-swatch:hover { transform: scale(1.15); }
+    
+    /* CUSTOM DROPDOWN CONTAINER */
+    .custom-dropdown-container { position: relative; margin-bottom: 16px; }
+    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .custom-dropdown-menu { position: absolute; top: 105%; left: 0; width: 100%; max-height: 220px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 100; display: none; }
+    .custom-dropdown-menu.show { display: block; }
+    .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
+    .dropdown-opt:hover { background: var(--primary-light); color: var(--primary); }
+    .dropdown-opt:last-child { border-bottom: none; }
+
+    /* FOOTER STYLING */
+    .app-footer-clean { background: #0f172a; color: #f8fafc; padding: 32px 24px; border-radius: 24px; margin-top: 24px; }
+    .app-footer-clean h4 { font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+    .app-footer-clean p { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 20px; }
+    .footer-link-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .footer-link-item { color: #a5b4fc; text-decoration: none; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -454,7 +479,6 @@
     </div>
     <div class="chat-container">
       <div class="chat-messages" id="chat-box">
-        <!-- Chat history a rawn lang ang -->
       </div>
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
@@ -471,16 +495,12 @@
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content" style="padding: 24px;">
-      
       <div id="google_translate_element"></div>
-      
       <div class="lang-search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
       </div>
-      
-      <div class="lang-list-container notranslate" id="lang-list" translate="no">
-      </div>
+      <div class="lang-list-container notranslate" id="lang-list" translate="no"></div>
     </div>
   </div>
   
@@ -526,19 +546,17 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY PAGE / QUICK SETTINGS WIDGET -->
+  <!-- ACCESSIBILITY PAGE / ADVANCED ACCESSIBILITY & COLOR PICKER -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="accessibility">Accessibility</h3>
+      <h3 class="notranslate" translate="no" data-i18n="accessibility">Accessibility & Visuals</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
       <div class="doc-box">
-        <h4 data-i18n="color_adj" style="margin-bottom: 16px;">App En Dan (Color Theme)</h4>
-        
-        <!-- WIDGET TILES (Android Quick Settings) -->
-        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 32px;">
+        <h4 style="margin-bottom: 16px;">Visual Theme Presets</h4>
+        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 24px;">
            <div class="theme-tile" id="tile-default" onclick="changeTheme('default')">
               <i class="fa-solid fa-sun"></i><span>Default Mode</span>
            </div>
@@ -553,7 +571,38 @@
            </div>
         </div>
 
-        <h4 data-i18n="content_adj" style="margin-bottom: 16px;">Hawrawp Tihlen/Tihtet</h4>
+        <h4 style="margin-bottom: 12px;">Custom Color Palette</h4>
+        <div class="color-swatch-box notranslate" translate="no">
+           <div class="color-swatch" style="background:#4f46e5;" onclick="setCustomPrimary('#4f46e5','#e0e7ff')"></div>
+           <div class="color-swatch" style="background:#10b981;" onclick="setCustomPrimary('#10b981','#dcfce7')"></div>
+           <div class="color-swatch" style="background:#ef4444;" onclick="setCustomPrimary('#ef4444','#fee2e2')"></div>
+           <div class="color-swatch" style="background:#f59e0b;" onclick="setCustomPrimary('#f59e0b','#fef3c7')"></div>
+           <div class="color-swatch" style="background:#2563eb;" onclick="setCustomPrimary('#2563eb','#dbeafe')"></div>
+           <div class="color-swatch" style="background:#8b5cf6;" onclick="setCustomPrimary('#8b5cf6','#f3e8ff')"></div>
+        </div>
+        
+        <div style="display:flex; align-items:center; justify-style:space-between; gap:12px; margin-bottom:24px; background:var(--bg-main); padding:12px; border-radius:12px;">
+           <span style="font-size:14px; font-weight:700;">Custom Picker:</span>
+           <input type="color" id="primary-color-picker" onchange="setCustomPrimary(this.value)" style="border:none; width:40px; height:40px; cursor:pointer; background:transparent;">
+        </div>
+
+        <h4 style="margin-bottom: 12px;">Special Modes</h4>
+        <div class="theme-grid notranslate" translate="no" style="margin-bottom: 24px;">
+           <div class="theme-tile" id="tile-neon" onclick="toggleNeonMode()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i><span>Neon Rainbow</span>
+           </div>
+           <div class="theme-tile" id="tile-contrast" onclick="toggleHighContrast()">
+              <i class="fa-solid fa-circle-half-stroke"></i><span>High Contrast</span>
+           </div>
+           <div class="theme-tile" id="tile-grayscale" onclick="toggleGrayscale()">
+              <i class="fa-solid fa-eye-slash"></i><span>Monochrome</span>
+           </div>
+           <div class="theme-tile" id="tile-large-text" onclick="toggleLargeText()">
+              <i class="fa-solid fa-text-height"></i><span>Large Text</span>
+           </div>
+        </div>
+
+        <h4 style="margin-bottom: 12px;">Hawrawp Adjust</h4>
         <div style="background: var(--bg-main); padding: 16px; border-radius: 12px;">
           <div style="display: flex; gap: 12px;">
             <button class="btn-secondary notranslate" translate="no" style="margin-top: 0; font-size: 15px; padding: 12px;" onclick="changeFontSize(-1)">CashMizo -</button>
@@ -564,7 +613,7 @@
     </div>
   </div>
   
-  <!-- CONTACT US PAGE -->
+  <!-- CONTACT US PAGE / CUSTOM DROPDOWN -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -575,16 +624,22 @@
       <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
       <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
       
-      <!-- DROPDOWN FELFAI TAKIN SIAM A NI E -->
-      <select id="ticket-subject" class="input-field" style="appearance: auto; padding: 16px 12px; cursor: pointer;">
-        <option value="" disabled selected data-i18n="select_issue">Issue/Harsatna thlang rawh...</option>
-        <option value="missing">Missing Coins (Task hlawh lak luh loh)</option>
-        <option value="withdraw">Withdrawal / Pawisa lachhuak thei lo</option>
-        <option value="account">Account Block / Login theih loh</option>
-        <option value="payment_info">Payment details thlak danglam chungchang</option>
-        <option value="bug">App hman a buaithlak / Bug Report</option>
-        <option value="other">Thil dang (Others)</option>
-      </select>
+      <!-- CUSTOM SCROLLABLE DROPDOWN SYSTEM -->
+      <div class="custom-dropdown-container">
+         <div class="custom-dropdown-trigger" onclick="toggleCustomDropdown()">
+            <span id="selected-issue-text">Issue/Harsatna thlang rawh...</span>
+            <i class="fa-solid fa-chevron-down"></i>
+         </div>
+         <div class="custom-dropdown-menu" id="custom-dropdown-list">
+            <div class="dropdown-opt" onclick="selectIssue('Missing Coins (Task hlawh lak luh loh)', 'missing')">Missing Coins (Task hlawh lak luh loh)</div>
+            <div class="dropdown-opt" onclick="selectIssue('Withdrawal / Pawisa lachhuak thei lo', 'withdraw')">Withdrawal / Pawisa lachhuak thei lo</div>
+            <div class="dropdown-opt" onclick="selectIssue('Account Block / Login theih loh', 'account')">Account Block / Login theih loh</div>
+            <div class="dropdown-opt" onclick="selectIssue('Payment details thlak danglam chungchang', 'payment_info')">Payment details thlak danglam chungchang</div>
+            <div class="dropdown-opt" onclick="selectIssue('App hman a buaithlak / Bug Report', 'bug')">App hman a buaithlak / Bug Report</div>
+            <div class="dropdown-opt" onclick="selectIssue('Thil dang (Others)', 'other')">Thil dang (Others)</div>
+         </div>
+      </div>
+      <input type="hidden" id="ticket-subject" value="">
       
       <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="I harsatna kimchang takin han ziak rawh..."></textarea>
       <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Message Thawn Rawh</button>
@@ -673,7 +728,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: HOW IT WORKS / FAQ -->
+  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT) -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -683,38 +738,49 @@
     <div class="fs-content">
       <div class="doc-box" style="text-align: center; border: none; background: transparent; padding: 0 0 20px 0;">
         <div style="font-size: 48px; color: var(--primary); margin-bottom: 16px;"><i class="fa-solid fa-book-open-reader"></i></div>
-        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">CASH-MIZO Guide</h2>
-        <p style="color: var(--text-muted); font-size: 14px;">Learn how to earn and withdraw your rewards safely.</p>
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">CASH-MIZO Guide & Rules</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Master the art of earning coins and withdrawing funds efficiently.</p>
       </div>
+      
       <div class="info-card">
         <div class="info-icon"><i class="fa-solid fa-coins"></i></div>
         <div class="info-text">
-          <h4>1. Earning Coins</h4>
-          <p>Complete Premium Tasks, Daily Check-ins, and Lucky Spins to accumulate coins in your wallet.</p>
+          <h4>1. Earning Coins & Offers</h4>
+          <p>Complete survey tasks, daily check-ins, app installations, and lucky wheel spins. Coins are instantly credited to your wallet upon task verification.</p>
         </div>
       </div>
+      
       <div class="info-card">
         <div class="info-icon"><i class="fa-solid fa-users"></i></div>
         <div class="info-text">
-          <h4>2. Refer Friends</h4>
-          <p>Share your link with friends. When they join and earn, you receive a 10% commission automatically.</p>
+          <h4>2. 10% Referral Commission</h4>
+          <p>Share your exclusive referral link with friends. Whenever your invited friend completes tasks and earns coins, you automatically receive a lifetime 10% commission bonus!</p>
         </div>
       </div>
+      
       <div class="info-card">
         <div class="info-icon"><i class="fa-solid fa-building-columns"></i></div>
         <div class="info-text">
-          <h4>3. Withdraw Money</h4>
-          <p>Once you reach 5,000 Coins, link your UPI, Bank, or PayPal in Profile settings and request a withdrawal.</p>
+          <h4>3. Payouts & Thresholds</h4>
+          <p>Once your wallet reaches the minimum threshold of 5,000 Coins, navigate to Profile settings, link your preferred payout method (UPI, Bank Account, or PayPal), and submit a withdrawal request.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-shield-cat"></i></div>
+        <div class="info-text">
+          <h4>4. Anti-Fraud & Fair Play</h4>
+          <p>Strictly avoid using VPNs, Proxies, or multiple accounts on the same device. Automated security algorithms actively detect suspicious activities to maintain system integrity.</p>
         </div>
       </div>
     </div>
   </div>
   
-  <!-- PREMIUM: TERMS & PRIVACY (BUTTON FELFAI LUK) -->
+  <!-- PREMIUM: TERMS & PRIVACY (CLEAN FOOTER SYSTEM) -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="terms">Terms & Privacy</h3>
+      <h3 class="notranslate" translate="no" data-i18n="terms">Terms & Privacy Policy</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
@@ -723,42 +789,37 @@
           <i class="fa-solid fa-shield-halved" style="font-size: 24px; color: var(--secondary);"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Privacy Policy</h3>
         </div>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">We value your privacy. Cash-Mizo only collects essential data (Name, Email) via Google Login to manage your coin balance and payment details securely.</p>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">We never share or sell your personal data to third parties.</p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">We respect your privacy. Cash-Mizo only gathers essential credentials (Name, Email) securely processed via Google OAuth to identify your unique account balance and execute payment transactions.</p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">Your sensitive information is never leased, sold, or shared with unauthorized third-party platforms.</p>
         
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
           <i class="fa-solid fa-file-contract" style="font-size: 24px; color: var(--primary);"></i>
-          <h3 style="font-size: 18px; font-weight: 800;">Terms & Rules</h3>
+          <h3 style="font-size: 18px; font-weight: 800;">Terms & Operating Rules</h3>
         </div>
         <ul style="font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 16px; margin-bottom: 24px;">
-          <li style="margin-bottom: 8px;"><strong>Do Not Use VPN:</strong> Using VPN/Proxies to complete tasks will result in instant account ban.</li>
-          <li style="margin-bottom: 8px;"><strong>One Account Per User:</strong> Multiple accounts on the same device are strictly prohibited.</li>
-          <li style="margin-bottom: 8px;"><strong>Fair Play:</strong> Any attempt to hack, modify, or exploit the App's code will result in forfeiture of all coins.</li>
+          <li style="margin-bottom: 8px;"><strong>Zero VPN Tolerance:</strong> Utilizing Virtual Private Networks (VPNs) or Proxies to fake geolocations results in immediate, permanent account suspension.</li>
+          <li style="margin-bottom: 8px;"><strong>One Device, One Account:</strong> Operating multiple user profiles on a single device is strictly prohibited.</li>
+          <li style="margin-bottom: 8px;"><strong>System Exploits:</strong> Attempts to manipulate, alter, or exploit application client code will void all accumulated coin balances.</li>
         </ul>
-        
-        <!-- BUTTON FELFAI LEH SIMPLE TAK -->
-        <button class="btn-secondary notranslate" translate="no" onclick="window.open('terms.html', '_blank')" style="margin-top:0; border:none; background:var(--primary-light); color:var(--primary);">
-           <i class="fa-solid fa-file-contract"></i> Kimchang Zawk Chhiarna (Full Terms)
-        </button>
+      </div>
 
-        <div style="display: flex; align-items: center; gap: 12px; margin: 32px 0 16px 0;">
-          <i class="fa-solid fa-envelope" style="font-size: 24px; color: #f59e0b;"></i>
-          <h3 style="font-size: 18px; font-weight: 800;">Contact Us</h3>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">Legal inquiry emaw account support duh tan, hetah hian min rawn be thei reng e:</p>
-        
-        <button class="btn-primary notranslate" translate="no" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'" style="margin-top:8px;">
-           <i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> cashmizoofficial@gmail.com
-        </button>
+      <!-- CLEAN LANDING-PAGE STYLE FOOTER -->
+      <div class="app-footer-clean notranslate" translate="no">
+         <h4><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</h4>
+         <p>The premier rewards platform for users to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         
+         <div class="footer-link-group">
+            <a class="footer-link-item" onclick="window.open('terms.html', '_blank')"><i class="fa-solid fa-external-link"></i> Full Legal Terms (terms.html)</a>
+            <a class="footer-link-item" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'"><i class="fa-solid fa-envelope"></i> Contact Support (cashmizoofficial@gmail.com)</a>
+         </div>
+         <p style="font-size:11px; color:#64748b; margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
       </div>
     </div>
   </div>
   
 </div> <!-- END APP CONTAINER -->
 
-<!-- SUPABASE LEH JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Google Translate API -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
   let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
@@ -780,7 +841,7 @@
     }, 300);
   });
 
-  // THEME WIDGET SCRIPT
+  // ADVANCED VISUAL & ACCESSIBILITY SYSTEM
   function changeTheme(theme) {
     document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
     if (theme === 'dark') document.body.classList.add('dark-mode');
@@ -788,15 +849,54 @@
     if (theme === 'ultra') document.body.classList.add('theme-ultra');
     localStorage.setItem('cashmizo_theme', theme);
     
-    // Update Tile Highlights
     document.querySelectorAll('.theme-tile').forEach(t => t.classList.remove('active'));
     const activeTile = document.getElementById('tile-' + theme);
     if(activeTile) activeTile.classList.add('active');
   }
-  
+
+  function setCustomPrimary(colorHex, lightHex) {
+     document.documentElement.style.setProperty('--primary', colorHex);
+     if(lightHex) document.documentElement.style.setProperty('--primary-light', lightHex);
+     localStorage.setItem('cashmizo_custom_primary', colorHex);
+     if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
+     showToast("Custom primary color applied!");
+  }
+
+  function toggleNeonMode() {
+     document.body.classList.toggle('neon-active');
+     const isActive = document.body.classList.contains('neon-active');
+     document.getElementById('tile-neon').classList.toggle('active', isActive);
+     showToast(isActive ? "Neon Rainbow Activated!" : "Neon Mode Disabled");
+  }
+
+  function toggleHighContrast() {
+     document.body.classList.toggle('high-contrast');
+     const isActive = document.body.classList.contains('high-contrast');
+     document.getElementById('tile-contrast').classList.toggle('active', isActive);
+  }
+
+  function toggleGrayscale() {
+     document.body.classList.toggle('grayscale-mode');
+     const isActive = document.body.classList.contains('grayscale-mode');
+     document.getElementById('tile-grayscale').classList.toggle('active', isActive);
+  }
+
+  function toggleLargeText() {
+     document.body.classList.toggle('large-text-mode');
+     const isActive = document.body.classList.contains('large-text-mode');
+     document.getElementById('tile-large-text').classList.toggle('active', isActive);
+  }
+
   let savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
+  let savedCustomColor = localStorage.getItem('cashmizo_custom_primary');
+  let savedCustomLight = localStorage.getItem('cashmizo_custom_primary_light');
+
   document.addEventListener("DOMContentLoaded", () => {
      changeTheme(savedTheme);
+     if(savedCustomColor) {
+        document.documentElement.style.setProperty('--primary', savedCustomColor);
+        if(savedCustomLight) document.documentElement.style.setProperty('--primary-light', savedCustomLight);
+     }
   });
 
   let currentFontSize = 16;
@@ -807,9 +907,23 @@
     document.body.style.fontSize = currentFontSize + 'px';
   }
 
-  // ============================================================
+  // CUSTOM DROPDOWN CONTROL LOGIC
+  function toggleCustomDropdown() {
+     document.getElementById('custom-dropdown-list').classList.toggle('show');
+  }
+  function selectIssue(label, val) {
+     document.getElementById('selected-issue-text').innerText = label;
+     document.getElementById('ticket-subject').value = val;
+     document.getElementById('custom-dropdown-list').classList.remove('show');
+  }
+  window.addEventListener('click', function(e) {
+     if (!e.target.closest('.custom-dropdown-container')) {
+        const dd = document.getElementById('custom-dropdown-list');
+        if(dd) dd.classList.remove('show');
+     }
+  });
+
   // MASSIVE LANGUAGE LIST GENERATOR
-  // ============================================================
   const languageData = [
     { code: 'lus', name: 'Mizo (Mizoram)' },
     { code: 'en', name: 'English' },
@@ -868,7 +982,7 @@
     { code: 'fa', name: 'Persian (فارسی)' },
     { code: 'pl', name: 'Polish (Polski)' },
     { code: 'pt', name: 'Portuguese (Português)' },
-    { code: 'pa', name: 'Punjabi (ਪੰਜਾਬી)' },
+    { code: 'pa', name: 'Punjabi (ਪੰਜਾਬੀ)' },
     { code: 'ro', name: 'Romanian (Română)' },
     { code: 'ru', name: 'Russian (Русский)' },
     { code: 'sr', name: 'Serbian (Српски)' },
@@ -917,7 +1031,6 @@
   
   window.addEventListener('DOMContentLoaded', () => { renderLanguageList(); });
   
-  // GOOGLE TRANSLATE INIT & TRIGGER FUNCTION
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
   }
@@ -1244,7 +1357,6 @@
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
   
   window.addEventListener('load', async () => {
-    
     renderChatHistory();
 
     const hash = window.location.hash;
@@ -1291,7 +1403,7 @@
   }
   
   /* =========================================
-     SMART AI BOT LOGIC (ADMIN AUTO-FORWARD)
+     SMART AI BOT LOGIC (AUTO-FORWARDING)
      ========================================= */
   function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
   
@@ -1327,32 +1439,24 @@
       });
       
       const data = await response.json();
-      
-      if(data.error) { 
-        throw new Error(`${data.error.message}`); 
-      }
+      if(data.error) { throw new Error(`${data.error.message}`); }
       
       let botReply = data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
       
-      // AUTO FORWARD TO ADMIN (NO BUTTON)
       if (botReply.includes('[ADMIN_REPORT]')) {
          botReply = botReply.replace(/\[ADMIN_REPORT\]/g, '');
-         
-         // User hriattirna (UI)
          botReply += `<br><br><div style="background: #dcfce7; color: #15803d; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 12px; text-align: center;"><i class="fa-solid fa-circle-check"></i> I harsatna hi Admin hnenah forward (thawn) a ni e. Kan lo endik thuai ang.</div>`;
          
-         // Supabase a thun luhna (Backend)
          if(currentUserId) {
             supabaseClient.from('admin_reports').insert([{ 
                 user_id: currentUserId, 
                 message: msg, 
                 status: 'pending' 
-            }]).then(); // Silent insert
+            }]).then();
          }
       }
       
       document.getElementById(typingId).innerHTML = botReply;
-      
       aiChatHistory.push({ role: 'bot', content: botReply });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
 
