@@ -15,6 +15,14 @@
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + document.domain + ";";
     }
     clearGoogleTranslateCookies();
+
+    // FIX: Mobile Viewport Height Customization (Chat Input bo zel siamthatna)
+    function setDocHeight() {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
+    }
+    window.addEventListener('resize', setDocHeight);
+    window.addEventListener('orientationchange', setDocHeight);
+    setDocHeight();
   </script>
 
   <style>
@@ -34,15 +42,25 @@
       --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
       --radius-lg: 20px;
     }
+    
+    /* THEMES */
     body.dark-mode {
       --bg-main: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border-color: #334155; --primary-light: #312e81;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
+    body.theme-eye-comfort {
+      --bg-main: #fdf6e3; --bg-card: #fffbeb; --text-main: #5c4033; --text-muted: #8b7355; --primary: #d97706; --primary-light: #fef3c7; --border-color: #fde68a; --secondary: #16a34a;
+    }
+    body.theme-ultra {
+      --bg-main: #000000; --bg-card: #111111; --text-main: #ffff00; --text-muted: #cccccc; --primary: #00ff00; --primary-light: #222222; --border-color: #444444; --secondary: #00ffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
-    /* FIX: Mobile Keyboard leh Landscape vanga lang kim lo siamthatna */
-    body, html { height: 100%; height: -webkit-fill-available; margin: 0; padding: 0; overflow: hidden; }
-    body { background-color: #cbd5e1; display: flex; justify-content: center; color: var(--text-main); font-size: 16px; }
-    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100%; height: -webkit-fill-available; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
+    /* FIX: Desktop/Landscape & Viewport fix */
+    body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
+    body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; }
+    
+    .app-container { width: 100%; max-width: 420px; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
     #login-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
     .login-hero { padding: 40px 30px; color: white; text-align: left; margin-bottom: 20px;}
@@ -55,7 +73,7 @@
     .terms-checkbox input { margin-top: 2px; width: 20px; height: 20px; accent-color: var(--primary); flex-shrink: 0; }
     .terms-checkbox span { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
     
-    .auth-btn { display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
+    .auth-btn { display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px 24px; border-radius: 16px; width: 100%; font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; box-shadow: var(--shadow-sm); margin-bottom: 12px;}
     .auth-btn:active { transform: scale(0.98); }
     .auth-btn img { width: 24px; margin-right: 12px; }
     
@@ -65,7 +83,7 @@
     .brand-logo { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; letter-spacing: -0.5px; }
     .brand-logo i { color: #f59e0b; font-size: 20px; }
     .header-icons { display: flex; align-items: center; gap: 12px; }
-    .h-icon { font-size: 18px; color: var(--text-muted); cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; transition: 0.2s;}
+    .h-icon { font-size: 18px; color: var(--text-muted); cursor: pointer; background: var(--bg-main); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative;}
     .h-icon:hover { color: var(--primary); background: var(--primary-light); }
     .h-badge { position: absolute; top: -2px; right: -2px; background: #ef4444; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
     .balance-pill { background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 14px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
@@ -73,13 +91,14 @@
     
     .app-body { flex: 1; overflow-y: auto; padding-bottom: 80px; }
     .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 12px 0 20px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
-    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;}
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; flex: 1; }
     .nav-item i { font-size: 20px; }
     .nav-item.active { color: var(--primary); }
     .nav-item.active i { transform: scale(1.1); }
     .tab-content { display: none; padding: 24px; animation: fadeIn 0.3s ease; }
     .tab-content.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
     .balance-card-main { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 24px; border-radius: var(--radius-lg); color: white; margin-bottom: 24px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
     .balance-card-main p { font-size: 14px; color: #94a3b8; font-weight: 500; margin-bottom: 8px; }
     .balance-card-main h2 { font-size: 36px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
@@ -126,8 +145,8 @@
     .list-menu-item i { color: var(--text-muted); font-size: 16px; }
     .list-menu-item span i { margin-right: 12px; width: 20px; text-align: center; color: var(--text-muted); }
     
-    /* FIX: Fullscreen Page layout siamthat a ni, keyboard ah a buai tawh lo ang */
-    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100%; height: -webkit-fill-available; background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+    /* Fullscreen Page layout */
+    .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 420px; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
@@ -135,10 +154,10 @@
     .fs-content { padding: 24px; flex: 1; overflow-y: auto; }
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 24px;}
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
-    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; transition: 0.2s; }
+    .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; }
     .btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 16px; font-weight: 700; width: 100%; font-size: 16px; cursor: pointer; margin-top: 12px; }
     .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-    .pay-logo-card { background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px 8px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .pay-logo-card { background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px 8px; text-align: center; cursor: pointer; }
     .pay-logo-card.active { border-color: var(--primary); background: var(--primary-light); }
     .pay-logo-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 8px; }
     .pay-logo-card span { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); }
@@ -158,7 +177,6 @@
     .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--text-main); background: conic-gradient( #ef4444 0deg 60deg, #f59e0b 60deg 120deg, #10b981 120deg 180deg, #3b82f6 180deg 240deg, #8b5cf6 240deg 300deg, #ec4899 300deg 360deg ); transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1); box-shadow: var(--shadow-md);}
     .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 32px; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); color: var(--text-main); }
     
-    /* REFERRAL LIST CSS */
     .ref-list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
     .ref-list-item:last-child { border-bottom: none; }
     .ref-name { font-weight: 700; color: var(--text-main); font-size: 14px; }
@@ -166,25 +184,25 @@
     .ref-status.done { background: #dcfce7; color: #15803d; }
     .ref-status.pending { background: #fee2e2; color: #991b1b; }
     
-    /* FIX: AI CHAT CSS lang kim thei miah lo siamthatna */
+    /* AI CHAT CSS (FIXED VIEWPORT HEIGHT) */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; }
     .chat-messages { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
     .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; box-shadow: var(--shadow-sm); }
     .bot-bubble { background: #FFFFFF; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
     .user-bubble { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .chat-input-area { background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); flex-shrink: 0; width: 100%; }
-    .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
-    .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: 0.2s; flex-shrink: 0;}
-    .chat-input-area button:active { transform: scale(0.95); }
     
-    /* FIX: GOOGLE TRANSLATE BANNER TIBO HMAKTU */
+    /* FIXED CHAT INPUT - Bottom Tied */
+    .chat-input-area { background: var(--bg-card); border-top: 1px solid var(--border-color); display: flex; gap: 12px; align-items: center; padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); width: 100%; flex-shrink: 0; position: sticky; bottom: 0; z-index: 10;}
+    .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
+    .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); flex-shrink: 0;}
+    
+    /* GOOGLE TRANSLATE BANNER TIBO HMAKTU */
     .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO { display: none !important; }
     #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
     body { top: 0px !important; position: static !important; }
     .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
     .goog-te-gadget .goog-te-combo { margin: 0; }
     
-    /* SCROLLABLE LANGUAGE LIST */
     .lang-search-box { display: flex; align-items: center; gap: 12px; background: var(--bg-main); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 16px; }
     .lang-search-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: var(--text-main); }
     .lang-list-container { max-height: 500px; overflow-y: auto; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); }
@@ -192,7 +210,6 @@
     .lang-item:hover { background: var(--bg-main); color: var(--primary); }
     .lang-item:last-child { border-bottom: none; }
     
-    /* INFO & TERMS CARDS */
     .info-card { display: flex; gap: 16px; margin-bottom: 20px; background: var(--bg-main); padding: 16px; border-radius: 16px; align-items: flex-start;}
     .info-icon { background: var(--primary-light); color: var(--primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;}
     .info-text h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
@@ -208,7 +225,6 @@
   <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-hero">
-      <!-- FIX: notranslate belh -->
       <div class="login-logo-text notranslate" translate="no"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
       <h1 data-i18n="hero_title">Earn real money.<br>Secure & Fast.</h1>
       <p data-i18n="hero_desc">Join thousands of youths earning from their smartphones everyday.</p>
@@ -230,7 +246,6 @@
   <div id="main-app">
     
     <div class="header">
-      <!-- FIX: notranslate belh -->
       <div class="brand-logo notranslate" translate="no"><i class="fa-solid fa-bolt"></i> CASH-MIZO</div>
       <div class="header-icons">
         <div class="h-icon" onclick="openPage('lang-page')" title="Language"><i class="fa-solid fa-globe"></i></div>
@@ -366,10 +381,11 @@
       <!-- TAB 4: MORE -->
       <div id="tab-support" class="tab-content">
         <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 16px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color);">
-          <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800;" id="more-initial">U</div>
+          <!-- FIX: Profile notranslate belh chilh -->
+          <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800;" id="more-initial" class="notranslate" translate="no">U</div>
           <div>
-            <h3 id="more-name" style="font-size: 16px; font-weight: 800;">User</h3>
-            <p id="more-email" style="font-size: 12px; color: var(--text-muted);">email</p>
+            <h3 id="more-name" class="notranslate" translate="no" style="font-size: 16px; font-weight: 800;">User</h3>
+            <p id="more-email" class="notranslate" translate="no" style="font-size: 12px; color: var(--text-muted);">email</p>
           </div>
         </div>
         <div class="menu-group-title">AI Support</div>
@@ -447,17 +463,14 @@
     </div>
     <div class="fs-content" style="padding: 24px;">
       
-      <!-- Native Google Translate Element (Hidden) -->
       <div id="google_translate_element"></div>
       
-      <!-- Modern Search Bar -->
       <div class="lang-search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
       </div>
       
       <div class="lang-list-container notranslate" id="lang-list" translate="no">
-        <!-- Languages injected via Javascript -->
       </div>
     </div>
   </div>
@@ -504,7 +517,7 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY PAGE -->
+  <!-- ACCESSIBILITY PAGE (FIXED & IMPROVED) -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
@@ -513,17 +526,22 @@
     </div>
     <div class="fs-content">
       <div class="doc-box">
-        <h4 data-i18n="color_adj" style="margin-bottom: 16px;">Color Adjustment</h4>
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bg-main); border-radius: 12px; margin-bottom: 24px;">
-          <strong data-i18n="dark_mode">Dark Mode</strong>
-          <input type="checkbox" id="dark-toggle" style="width: 24px; height: 24px; accent-color: var(--primary);" onchange="toggleDarkMode(this.checked)">
+        <h4 data-i18n="color_adj" style="margin-bottom: 16px;">App En Dan (Color Theme)</h4>
+        
+        <div style="background: var(--bg-main); padding: 16px; border-radius: 12px; margin-bottom: 24px;">
+           <select id="theme-select" class="input-field notranslate" translate="no" onchange="changeTheme(this.value)" style="margin-bottom: 0; cursor: pointer;">
+              <option value="default">Default Mode</option>
+              <option value="dark">Night Mode</option>
+              <option value="eye-comfort">Eye Comfort</option>
+              <option value="ultra">Ultra Vision Engine</option>
+           </select>
         </div>
-        <h4 data-i18n="content_adj" style="margin-bottom: 16px;">Content Adjustment</h4>
+
+        <h4 data-i18n="content_adj" style="margin-bottom: 16px;">Hawrawp Tihlen/Tihtet</h4>
         <div style="background: var(--bg-main); padding: 16px; border-radius: 12px;">
-          <strong data-i18n="font_sizing" style="display: block; margin-bottom: 12px;">Font Sizing</strong>
           <div style="display: flex; gap: 12px;">
-            <button class="btn-secondary" style="margin-top: 0; font-size: 18px;" onclick="changeFontSize(-1)">A-</button>
-            <button class="btn-secondary" style="margin-top: 0; font-size: 18px;" onclick="changeFontSize(1)">A+</button>
+            <button class="btn-secondary notranslate" translate="no" style="margin-top: 0; font-size: 15px; padding: 12px;" onclick="changeFontSize(-1)">CashMizo -</button>
+            <button class="btn-secondary notranslate" translate="no" style="margin-top: 0; font-size: 15px; padding: 12px;" onclick="changeFontSize(1)">CashMizo +</button>
           </div>
         </div>
       </div>
@@ -642,7 +660,7 @@
     <div class="fs-content">
       <div class="doc-box" style="text-align: center; border: none; background: transparent; padding: 0 0 20px 0;">
         <div style="font-size: 48px; color: var(--primary); margin-bottom: 16px;"><i class="fa-solid fa-book-open-reader"></i></div>
-        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">CASH-MIZO Guide</h2>
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">CASH-MIZO Guide</h2>
         <p style="color: var(--text-muted); font-size: 14px;">Learn how to earn and withdraw your rewards safely.</p>
       </div>
       <div class="info-card">
@@ -723,15 +741,37 @@
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // FIX: Chat Input Keyboard hliah siamthatna (Android/iOS)
+  // Chat Input Keyboard scroll fix
   const chatInput = document.getElementById('chat-input');
   chatInput.addEventListener('focus', () => {
     setTimeout(() => {
         const chatBox = document.getElementById('chat-box');
         chatBox.scrollTop = chatBox.scrollHeight;
-        window.scrollTo(0, document.body.scrollHeight);
     }, 300);
   });
+
+  // THEME SCRIPT
+  function changeTheme(theme) {
+    document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
+    if (theme === 'dark') document.body.classList.add('dark-mode');
+    if (theme === 'eye-comfort') document.body.classList.add('theme-eye-comfort');
+    if (theme === 'ultra') document.body.classList.add('theme-ultra');
+    localStorage.setItem('cashmizo_theme', theme);
+  }
+  let savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
+  changeTheme(savedTheme);
+  document.addEventListener("DOMContentLoaded", () => {
+     let themeSelect = document.getElementById('theme-select');
+     if(themeSelect) themeSelect.value = savedTheme;
+  });
+
+  let currentFontSize = 16;
+  function changeFontSize(step) {
+    currentFontSize += (step * 2);
+    if(currentFontSize < 12) currentFontSize = 12;
+    if(currentFontSize > 22) currentFontSize = 22;
+    document.body.style.fontSize = currentFontSize + 'px';
+  }
 
   // ============================================================
   // MASSIVE LANGUAGE LIST GENERATOR
@@ -898,17 +938,6 @@
     box.style.display = box.style.display === 'block' ? 'none' : 'block';
   }
   
-  function toggleDarkMode(isDark) {
-    if(isDark) document.body.classList.add('dark-mode');
-    else document.body.classList.remove('dark-mode');
-  }
-  let currentFontSize = 16;
-  function changeFontSize(step) {
-    currentFontSize += (step * 2);
-    if(currentFontSize < 12) currentFontSize = 12;
-    if(currentFontSize > 22) currentFontSize = 22;
-    document.body.style.fontSize = currentFontSize + 'px';
-  }
   function redeemPromo() {
     const val = document.getElementById('promo-input').value;
     if(val.length < 4) showToast("Invalid Promo Code", true);
@@ -1117,11 +1146,6 @@
   function copyReferLink() {
     const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
     showToast("Copied to clipboard");
-  }
-  
-  function shareToWhatsApp() {
-    const link = document.getElementById('refer-link-input').value;
-    window.open(`https://wa.me/?text=${encodeURIComponent("Join CASH-MIZO! " + link)}`, '_blank');
   }
   
   function showToast(message, isError = false) {
