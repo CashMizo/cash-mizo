@@ -168,7 +168,7 @@
     
     .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
-    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+    .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; z-index: 9999; position: relative;}
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
     .back-btn:hover { background: var(--border-color); }
     .fs-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; }
@@ -204,21 +204,15 @@
     .color-swatch { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid var(--bg-card); box-shadow: var(--shadow-sm); flex-shrink: 0; transition: transform 0.2s; }
     .color-swatch:hover { transform: scale(1.15); }
     
-    /* CUSTOM DROPDOWN CONTAINER */
-    .custom-dropdown-container { position: relative; margin-bottom: 16px; }
-    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-    .custom-dropdown-menu { position: absolute; top: 105%; left: 0; width: 100%; max-height: 220px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 100; display: none; }
-    .custom-dropdown-menu.show { display: block; }
-    .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
-    .dropdown-opt:hover { background: var(--primary-light); color: var(--primary); }
-    .dropdown-opt:last-child { border-bottom: none; }
+    .btn-reset { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 10px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; width: 100%; justify-content: center; margin-top: 16px;}
+    .btn-reset:hover { background: #fca5a5; }
 
-    /* FOOTER STYLING */
-    .app-footer-clean { background: #0f172a; color: #f8fafc; padding: 32px 24px; border-radius: 24px; margin-top: 24px; }
-    .app-footer-clean h4 { font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
-    .app-footer-clean p { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 20px; }
-    .footer-link-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-    .footer-link-item { color: #a5b4fc; text-decoration: none; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    /* FOOTER STYLING (CLEAN EXPLORE / LEGAL) */
+    .clean-footer { margin-top: 40px; padding-top: 32px; background: #0b1120; margin-left: -24px; margin-right: -24px; margin-bottom: -24px; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; color: #f8fafc; }
+    .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: #ffffff; margin-top: 32px;}
+    .clean-footer h3:first-child { margin-top: 0; }
+    .clean-footer a { display: block; color: #94a3b8; font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .clean-footer a:hover { color: #ffffff; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -231,9 +225,10 @@
     .chat-input-area input { flex: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 14px; outline: none; background: var(--bg-main); color: var(--text-main); }
     .chat-input-area button { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); flex-shrink: 0;}
     
-    /* GOOGLE TRANSLATE BANNER TIBO HMAKTU */
-    .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO { display: none !important; }
-    #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
+    /* GOOGLE TRANSLATE BLOCKER (HIDE SPINNER & FRAMES) */
+    .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO, .goog-te-spinner-pos, .goog-te-spinner-animation, .goog-te-spinner-bg, .goog-te-spinner, .VIpgJd-Zvi9od-ORHb-OEVmcd { display: none !important; }
+    iframe.skiptranslate { display: none !important; pointer-events: none !important; }
+    #google_translate_element { display: none !important; }
     body { top: 0px !important; position: static !important; }
     .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
     .goog-te-gadget .goog-te-combo { margin: 0; }
@@ -546,7 +541,7 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY PAGE / ADVANCED ACCESSIBILITY & COLOR PICKER -->
+  <!-- ACCESSIBILITY PAGE / WIDGETS LEH SAVES -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
@@ -581,9 +576,11 @@
            <div class="color-swatch" style="background:#8b5cf6;" onclick="setCustomPrimary('#8b5cf6','#f3e8ff')"></div>
         </div>
         
-        <div style="display:flex; align-items:center; justify-style:space-between; gap:12px; margin-bottom:24px; background:var(--bg-main); padding:12px; border-radius:12px;">
-           <span style="font-size:14px; font-weight:700;">Custom Picker:</span>
-           <input type="color" id="primary-color-picker" onchange="setCustomPrimary(this.value)" style="border:none; width:40px; height:40px; cursor:pointer; background:transparent;">
+        <div class="notranslate" translate="no" style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:24px; background:var(--bg-main); padding:12px 16px; border-radius:12px;">
+           <div style="display:flex; align-items:center; gap:8px;">
+               <span style="font-size:14px; font-weight:700;">Custom Picker:</span>
+               <input type="color" id="primary-color-picker" onchange="setCustomPrimary(this.value)" style="border:none; width:36px; height:36px; cursor:pointer; background:transparent;">
+           </div>
         </div>
 
         <h4 style="margin-bottom: 12px;">Special Modes</h4>
@@ -609,6 +606,8 @@
             <button class="btn-secondary notranslate" translate="no" style="margin-top: 0; font-size: 15px; padding: 12px;" onclick="changeFontSize(1)">CashMizo +</button>
           </div>
         </div>
+        
+        <button class="btn-reset notranslate" translate="no" onclick="resetAllSettings()"><i class="fa-solid fa-rotate-left"></i> Reset All Settings</button>
       </div>
     </div>
   </div>
@@ -624,22 +623,16 @@
       <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
       <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
       
-      <!-- CUSTOM SCROLLABLE DROPDOWN SYSTEM -->
-      <div class="custom-dropdown-container">
-         <div class="custom-dropdown-trigger" onclick="toggleCustomDropdown()">
-            <span id="selected-issue-text">Issue/Harsatna thlang rawh...</span>
-            <i class="fa-solid fa-chevron-down"></i>
-         </div>
-         <div class="custom-dropdown-menu" id="custom-dropdown-list">
-            <div class="dropdown-opt" onclick="selectIssue('Missing Coins (Task hlawh lak luh loh)', 'missing')">Missing Coins (Task hlawh lak luh loh)</div>
-            <div class="dropdown-opt" onclick="selectIssue('Withdrawal / Pawisa lachhuak thei lo', 'withdraw')">Withdrawal / Pawisa lachhuak thei lo</div>
-            <div class="dropdown-opt" onclick="selectIssue('Account Block / Login theih loh', 'account')">Account Block / Login theih loh</div>
-            <div class="dropdown-opt" onclick="selectIssue('Payment details thlak danglam chungchang', 'payment_info')">Payment details thlak danglam chungchang</div>
-            <div class="dropdown-opt" onclick="selectIssue('App hman a buaithlak / Bug Report', 'bug')">App hman a buaithlak / Bug Report</div>
-            <div class="dropdown-opt" onclick="selectIssue('Thil dang (Others)', 'other')">Thil dang (Others)</div>
-         </div>
-      </div>
-      <input type="hidden" id="ticket-subject" value="">
+      <!-- Native Dropdown - A scroll theih a fel fai bawk -->
+      <select id="ticket-subject" class="input-field" style="appearance: auto; padding: 16px; cursor: pointer; background: var(--bg-main); color: var(--text-main);">
+        <option value="" disabled selected data-i18n="select_issue">Issue / Harsatna thlang rawh...</option>
+        <option value="missing">Missing Coins (Task hlawh lak luh loh)</option>
+        <option value="withdraw">Withdrawal / Pawisa lachhuak thei lo</option>
+        <option value="account">Account Block / Login theih loh</option>
+        <option value="payment_info">Payment details thlak danglam chungchang</option>
+        <option value="bug">App hman a buaithlak / Bug Report</option>
+        <option value="other">Thil dang (Others)</option>
+      </select>
       
       <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="I harsatna kimchang takin han ziak rawh..."></textarea>
       <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Message Thawn Rawh</button>
@@ -728,7 +721,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT) -->
+  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT & CLEAN FOOTER) -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -773,6 +766,28 @@
           <p>Strictly avoid using VPNs, Proxies, or multiple accounts on the same device. Automated security algorithms actively detect suspicious activities to maintain system integrity.</p>
         </div>
       </div>
+
+      <!-- CLEAN FOOTER -->
+      <div class="clean-footer notranslate" translate="no">
+         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
+            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
+         </div>
+         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         
+         <h3>Explore</h3>
+         <a onclick="openPage('info-page')">How it works</a>
+         <a href="home.html">Home</a>
+         
+         <h3 style="margin-top: 32px;">Legal & Support</h3>
+         <a onclick="window.open('terms.html', '_blank')">Terms of Service</a>
+         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="openPage('contact-page')">Contact Support</a>
+         
+         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         </div>
+      </div>
     </div>
   </div>
   
@@ -803,16 +818,26 @@
         </ul>
       </div>
 
-      <!-- CLEAN LANDING-PAGE STYLE FOOTER -->
-      <div class="app-footer-clean notranslate" translate="no">
-         <h4><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</h4>
-         <p>The premier rewards platform for users to earn real cash by completing simple, everyday tasks on their smartphones.</p>
-         
-         <div class="footer-link-group">
-            <a class="footer-link-item" onclick="window.open('terms.html', '_blank')"><i class="fa-solid fa-external-link"></i> Full Legal Terms (terms.html)</a>
-            <a class="footer-link-item" onclick="window.location.href='mailto:cashmizoofficial@gmail.com'"><i class="fa-solid fa-envelope"></i> Contact Support (cashmizoofficial@gmail.com)</a>
+      <!-- CLEAN FOOTER -->
+      <div class="clean-footer notranslate" translate="no">
+         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
+            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
          </div>
-         <p style="font-size:11px; color:#64748b; margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         
+         <h3>Explore</h3>
+         <a onclick="openPage('info-page')">How it works</a>
+         <a href="home.html">Home</a>
+         
+         <h3 style="margin-top: 32px;">Legal & Support</h3>
+         <a onclick="window.open('terms.html', '_blank')">Terms of Service</a>
+         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="openPage('contact-page')">Contact Support</a>
+         
+         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         </div>
       </div>
     </div>
   </div>
@@ -841,7 +866,25 @@
     }, 300);
   });
 
-  // ADVANCED VISUAL & ACCESSIBILITY SYSTEM
+  // HARDWARE BACK BUTTON LOGIC (History API)
+  function openPage(pageId) { 
+    document.getElementById(pageId).classList.add('active'); 
+    history.pushState({fsPage: pageId}, null, "#" + pageId);
+  }
+  function closePage(pageId) { 
+    document.getElementById(pageId).classList.remove('active'); 
+    if(history.state && history.state.fsPage === pageId) {
+        history.back();
+    }
+  }
+  window.addEventListener('popstate', function(event) {
+    document.querySelectorAll('.fs-page').forEach(page => page.classList.remove('active'));
+    if (event.state && event.state.fsPage) {
+        document.getElementById(event.state.fsPage).classList.add('active');
+    }
+  });
+
+  // ADVANCED VISUAL & ACCESSIBILITY SYSTEM (SAVE THEI)
   function changeTheme(theme) {
     document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
     if (theme === 'dark') document.body.classList.add('dark-mode');
@@ -859,12 +902,13 @@
      if(lightHex) document.documentElement.style.setProperty('--primary-light', lightHex);
      localStorage.setItem('cashmizo_custom_primary', colorHex);
      if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
-     showToast("Custom primary color applied!");
+     showToast("Color Saved!");
   }
 
   function toggleNeonMode() {
      document.body.classList.toggle('neon-active');
      const isActive = document.body.classList.contains('neon-active');
+     localStorage.setItem('cashmizo_neon', isActive);
      document.getElementById('tile-neon').classList.toggle('active', isActive);
      showToast(isActive ? "Neon Rainbow Activated!" : "Neon Mode Disabled");
   }
@@ -872,21 +916,45 @@
   function toggleHighContrast() {
      document.body.classList.toggle('high-contrast');
      const isActive = document.body.classList.contains('high-contrast');
+     localStorage.setItem('cashmizo_contrast', isActive);
      document.getElementById('tile-contrast').classList.toggle('active', isActive);
   }
 
   function toggleGrayscale() {
      document.body.classList.toggle('grayscale-mode');
      const isActive = document.body.classList.contains('grayscale-mode');
+     localStorage.setItem('cashmizo_grayscale', isActive);
      document.getElementById('tile-grayscale').classList.toggle('active', isActive);
   }
 
   function toggleLargeText() {
      document.body.classList.toggle('large-text-mode');
      const isActive = document.body.classList.contains('large-text-mode');
+     localStorage.setItem('cashmizo_largetext', isActive);
      document.getElementById('tile-large-text').classList.toggle('active', isActive);
   }
 
+  // RESET ALL ACCESSIBILITY SETTINGS
+  function resetAllSettings() {
+     changeTheme('default');
+     
+     document.documentElement.style.removeProperty('--primary');
+     document.documentElement.style.removeProperty('--primary-light');
+     localStorage.removeItem('cashmizo_custom_primary');
+     localStorage.removeItem('cashmizo_custom_primary_light');
+     
+     if(document.body.classList.contains('neon-active')) toggleNeonMode();
+     if(document.body.classList.contains('high-contrast')) toggleHighContrast();
+     if(document.body.classList.contains('grayscale-mode')) toggleGrayscale();
+     if(document.body.classList.contains('large-text-mode')) toggleLargeText();
+     
+     currentFontSize = 16;
+     document.body.style.fontSize = currentFontSize + 'px';
+     
+     showToast("All Settings Reset Successfully!");
+  }
+
+  // LOAD ALL SAVED ACCESSIBILITY SETTINGS
   let savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
   let savedCustomColor = localStorage.getItem('cashmizo_custom_primary');
   let savedCustomLight = localStorage.getItem('cashmizo_custom_primary_light');
@@ -897,6 +965,10 @@
         document.documentElement.style.setProperty('--primary', savedCustomColor);
         if(savedCustomLight) document.documentElement.style.setProperty('--primary-light', savedCustomLight);
      }
+     if(localStorage.getItem('cashmizo_neon') === 'true') toggleNeonMode();
+     if(localStorage.getItem('cashmizo_contrast') === 'true') toggleHighContrast();
+     if(localStorage.getItem('cashmizo_grayscale') === 'true') toggleGrayscale();
+     if(localStorage.getItem('cashmizo_largetext') === 'true') toggleLargeText();
   });
 
   let currentFontSize = 16;
@@ -906,22 +978,6 @@
     if(currentFontSize > 22) currentFontSize = 22;
     document.body.style.fontSize = currentFontSize + 'px';
   }
-
-  // CUSTOM DROPDOWN CONTROL LOGIC
-  function toggleCustomDropdown() {
-     document.getElementById('custom-dropdown-list').classList.toggle('show');
-  }
-  function selectIssue(label, val) {
-     document.getElementById('selected-issue-text').innerText = label;
-     document.getElementById('ticket-subject').value = val;
-     document.getElementById('custom-dropdown-list').classList.remove('show');
-  }
-  window.addEventListener('click', function(e) {
-     if (!e.target.closest('.custom-dropdown-container')) {
-        const dd = document.getElementById('custom-dropdown-list');
-        if(dd) dd.classList.remove('show');
-     }
-  });
 
   // MASSIVE LANGUAGE LIST GENERATOR
   const languageData = [
@@ -982,7 +1038,7 @@
     { code: 'fa', name: 'Persian (فارسی)' },
     { code: 'pl', name: 'Polish (Polski)' },
     { code: 'pt', name: 'Portuguese (Português)' },
-    { code: 'pa', name: 'Punjabi (ਪੰਜਾਬੀ)' },
+    { code: 'pa', name: 'Punjabi (ਪੰਜਾਬી)' },
     { code: 'ro', name: 'Romanian (Română)' },
     { code: 'ru', name: 'Russian (Русский)' },
     { code: 'sr', name: 'Serbian (Српски)' },
@@ -1047,25 +1103,6 @@
     }
   }
   
-  const translations = {
-    mizo: {
-      success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
-      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Lakchhuahna",
-      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Bonus hmu turin vawiin atan thawk rawh", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna",
-      premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh", m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
-      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "Hman Dan Tur / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out (Chhuak)",
-      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
-    },
-    en: {
-      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms and Privacy Policy.",
-      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Withdraw Funds",
-      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends",
-      premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys", m_general: "Account", profile: "My Account & Payment", language: "App Language",
-      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
-      customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
-    }
-  };
-  
   let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
   let userPayInfo = null; let hasCompletedTaskToday = false; 
@@ -1077,8 +1114,6 @@
     element.classList.add('active');
   }
   
-  function openPage(pageId) { document.getElementById(pageId).classList.add('active'); }
-  function closePage(pageId) { document.getElementById(pageId).classList.remove('active'); }
   function toggleInbox() {
     const box = document.getElementById('inbox-dropdown');
     box.style.display = box.style.display === 'block' ? 'none' : 'block';
@@ -1357,6 +1392,7 @@
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
   
   window.addEventListener('load', async () => {
+    
     renderChatHistory();
 
     const hash = window.location.hash;
