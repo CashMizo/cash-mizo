@@ -744,7 +744,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT) -->
+  <!-- PREMIUM: HOW IT WORKS / FAQ -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -887,14 +887,9 @@
     }, 300);
   });
 
-  // INITIALIZE APP BASE STATE FOR HARDWARE BACK BUTTON
+  // INITIALIZE APP BASE STATE
   window.addEventListener('load', async () => {
     renderChatHistory();
-
-    // SAFE HISTORY STATE INIT - does not modify URL params
-    if (!history.state || history.state.fsPage === undefined) {
-       history.replaceState({fsPage: null}, null, window.location.href);
-    }
 
     const hash = window.location.hash;
     
@@ -903,7 +898,7 @@
       if (params.get('access_token')) {
         const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
         if (!error && data.session) { 
-            window.history.replaceState({fsPage: null}, null, window.location.pathname); 
+            window.history.replaceState(null, null, window.location.pathname); 
             showMainApp(data.session); 
         }
       }
@@ -936,13 +931,14 @@
     observer.observe(document.getElementById('prof-balance'), { childList: true });
   });
 
-  // HARDWARE BACK BUTTON LOGIC (History API)
+  // HARDWARE BACK BUTTON LOGIC (Safe Method)
   function openPage(pageId) { 
     document.getElementById(pageId).classList.add('active'); 
     history.pushState({fsPage: pageId}, null, "#" + pageId);
   }
   function closePage(pageId) { 
-    document.getElementById(pageId).classList.remove('active'); 
+    document.getElementById(pageId).classList.remove('active');
+    // Check if the current state matches the page we are closing
     if(history.state && history.state.fsPage === pageId) {
         history.back();
     }
