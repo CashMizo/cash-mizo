@@ -207,18 +207,29 @@
     .btn-reset { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 10px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; width: 100%; justify-content: center; margin-top: 16px;}
     .btn-reset:hover { background: #fca5a5; }
 
-    /* PAGE FOOTER (PHEK HNUAI LAM) */
-    .page-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-color); text-align: left; padding-bottom: 40px;}
-    .page-footer .brand-title { font-size: 20px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-    .page-footer .brand-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; }
-    .page-footer .footer-heading { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; }
-    .page-footer .footer-link { display: block; color: var(--text-muted); font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 600; transition: color 0.2s; }
-    .page-footer .footer-link:hover { color: var(--primary); }
+    /* CUSTOM DROPDOWN CONTAINER */
+    .custom-dropdown-container { position: relative; margin-bottom: 16px; }
+    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .custom-dropdown-menu { position: absolute; top: 105%; left: 0; width: 100%; max-height: 220px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 100; display: none; }
+    .custom-dropdown-menu.show { display: block; }
+    .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
+    .dropdown-opt:hover { background: var(--primary-light); color: var(--primary); }
+    .dropdown-opt:last-child { border-bottom: none; }
+
+    /* PAGE FOOTER (CLEAN EXPLORE / LEGAL) */
+    .clean-footer { margin-top: 40px; padding-top: 32px; background: #0b1120; margin-left: -24px; margin-right: -24px; margin-bottom: -24px; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; color: #f8fafc; }
+    .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: #ffffff; margin-top: 32px;}
+    .clean-footer h3:first-child { margin-top: 0; }
+    .clean-footer a { display: block; color: #94a3b8; font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .clean-footer a:hover { color: #ffffff; }
     
-    /* CONTACT SUPPORT WIDGET */
-    .contact-options-box { display: none; flex-direction: column; gap: 16px; margin-top: 12px; margin-bottom: 16px; padding: 16px; background: var(--bg-main); border-radius: 12px; border: 1px solid var(--border-color); }
-    .contact-item { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-weight: 700; font-size: 14px; }
-    .contact-item i { font-size: 24px; }
+    /* SOCIAL ICONS ROW */
+    .social-icons-row { display: flex; gap: 16px; margin-top: 12px; }
+    .social-icon-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; transition: transform 0.2s; text-decoration: none;}
+    .social-icon-btn:hover { transform: translateY(-3px); }
+    .ic-email { background: #fee2e2; color: #ef4444; }
+    .ic-wa { background: #dcfce7; color: #16a34a; }
+    .ic-tg { background: #e0f2fe; color: #0284c7; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -618,7 +629,7 @@
     </div>
   </div>
   
-  <!-- CONTACT US PAGE / CUSTOM DROPDOWN -->
+  <!-- CONTACT US PAGE / CUSTOM SCROLLABLE DROPDOWN -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -629,16 +640,22 @@
       <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
       <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
       
-      <!-- Native Dropdown - A scroll theih a fel fai bawk -->
-      <select id="ticket-subject" class="input-field" style="appearance: auto; padding: 16px; cursor: pointer; background: var(--bg-main); color: var(--text-main);">
-        <option value="" disabled selected data-i18n="select_issue">Issue / Harsatna thlang rawh...</option>
-        <option value="missing">Missing Coins (Task hlawh lak luh loh)</option>
-        <option value="withdraw">Withdrawal / Pawisa lachhuak thei lo</option>
-        <option value="account">Account Block / Login theih loh</option>
-        <option value="payment_info">Payment details thlak danglam chungchang</option>
-        <option value="bug">App hman a buaithlak / Bug Report</option>
-        <option value="other">Thil dang (Others)</option>
-      </select>
+      <!-- CUSTOM SCROLLABLE DROPDOWN -->
+      <div class="custom-dropdown-container">
+         <div class="custom-dropdown-trigger" onclick="toggleCustomDropdown()">
+            <span id="selected-issue-text" style="font-size: 14px;">Issue/Harsatna thlang rawh...</span>
+            <i class="fa-solid fa-chevron-down"></i>
+         </div>
+         <div class="custom-dropdown-menu" id="custom-dropdown-list">
+            <div class="dropdown-opt" onclick="selectIssue('Missing Coins (Task hlawh lak luh loh)', 'missing')">Missing Coins (Task hlawh lak luh loh)</div>
+            <div class="dropdown-opt" onclick="selectIssue('Withdrawal / Pawisa lachhuak thei lo', 'withdraw')">Withdrawal / Pawisa lachhuak thei lo</div>
+            <div class="dropdown-opt" onclick="selectIssue('Account Block / Login theih loh', 'account')">Account Block / Login theih loh</div>
+            <div class="dropdown-opt" onclick="selectIssue('Payment details thlak danglam chungchang', 'payment_info')">Payment details thlak danglam chungchang</div>
+            <div class="dropdown-opt" onclick="selectIssue('App hman a buaithlak / Bug Report', 'bug')">App hman a buaithlak / Bug Report</div>
+            <div class="dropdown-opt" onclick="selectIssue('Thil dang (Others)', 'other')">Thil dang (Others)</div>
+         </div>
+      </div>
+      <input type="hidden" id="ticket-subject" value="">
       
       <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="I harsatna kimchang takin han ziak rawh..."></textarea>
       <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Message Thawn Rawh</button>
@@ -727,7 +744,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: HOW IT WORKS / FAQ -->
+  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT) -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -773,14 +790,21 @@
         </div>
       </div>
 
-      <!-- CLEAN FOOTER -->
-      <div class="page-footer notranslate" translate="no">
-         <div class="brand-title"><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</div>
-         <p class="brand-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      <!-- CLEAN FOOTER: EXPLORE -->
+      <div class="clean-footer notranslate" translate="no">
+         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
+            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
+         </div>
+         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
-         <h4 class="footer-heading">Explore</h4>
-         <a onclick="openPage('info-page')" class="footer-link">How it works</a>
-         <a href="home.html" class="footer-link">Home</a>
+         <h3>Explore</h3>
+         <a onclick="openPage('info-page')">How it works</a>
+         <a onclick="window.location.href='home.html'">Home</a>
+         
+         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         </div>
       </div>
     </div>
   </div>
@@ -812,27 +836,28 @@
         </ul>
       </div>
 
-      <!-- CLEAN FOOTER -->
-      <div class="page-footer notranslate" translate="no">
-         <div class="brand-title"><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</div>
-         <p class="brand-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      <!-- CLEAN FOOTER: LEGAL & SUPPORT -->
+      <div class="clean-footer notranslate" translate="no">
+         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
+            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
+         </div>
+         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
-         <h4 class="footer-heading">Legal & Support</h4>
-         <a href="terms.html" target="_blank" class="footer-link">Terms of Service</a>
-         <a onclick="openPage('terms-page')" class="footer-link">Privacy Policy</a>
-         <a onclick="toggleContactOptions()" class="footer-link">Contact Support</a>
+         <h3>Legal & Support</h3>
+         <a onclick="window.location.href='terms.html'">Terms of Service</a>
+         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="toggleContactOptions()">Contact Support</a>
          
-         <!-- EXPANDING CONTACT OPTIONS -->
-         <div id="contact-options-box" class="contact-options-box">
-            <a href="mailto:cashmizoofficial@gmail.com" class="contact-item">
-               <i class="fa-solid fa-envelope" style="color:#ef4444;"></i> Email Us
-            </a>
-            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="contact-item">
-               <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp
-            </a>
-            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="contact-item">
-               <i class="fa-brands fa-telegram" style="color:#0088cc;"></i> Telegram
-            </a>
+         <!-- SOCIAL CONTACT LOGOS -->
+         <div id="contact-options-box" class="social-icons-row" style="display:none;">
+            <a href="mailto:cashmizoofficial@gmail.com" class="social-icon-btn ic-email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="social-icon-btn ic-wa"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="social-icon-btn ic-tg"><i class="fa-brands fa-telegram"></i></a>
+         </div>
+         
+         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
          </div>
       </div>
     </div>
@@ -862,16 +887,48 @@
     }, 300);
   });
 
+  // INITIALIZE APP BASE STATE FOR HARDWARE BACK BUTTON
+  window.addEventListener('load', async () => {
+    history.replaceState({fsPage: null}, null, window.location.pathname);
+    renderChatHistory();
+
+    const hash = window.location.hash;
+    if (hash && hash.includes('access_token=')) {
+      const params = new URLSearchParams(hash.substring(1));
+      if (params.get('access_token')) {
+        const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
+        if (!error && data.session) { window.history.replaceState({fsPage: null}, null, window.location.pathname); showMainApp(data.session); }
+      }
+    } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
+    
+    document.getElementById('agree-check').addEventListener('change', function() {
+        const btn = document.querySelector('.auth-btn.btn-google');
+        if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
+        else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
+    });
+    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
+    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
+    const observer = new MutationObserver(() => {
+        if(userCoins >= 5000) {
+            document.getElementById('withdraw-error').style.display = 'none';
+            document.getElementById('withdraw-form').style.display = 'block';
+            if(userPayInfo) { document.getElementById('wd-no-pay').style.display = 'none'; document.getElementById('wd-has-pay').style.display = 'block'; let v=userPayInfo; if(v.includes('::')){ let p=v.split('::'); v=p[0]==='bank'?p[1].replace('|','IFSC:'):p[1]; } document.getElementById('wd-display-pay').innerText = v; }
+            else { document.getElementById('wd-no-pay').style.display = 'block'; document.getElementById('wd-has-pay').style.display = 'none'; }
+        } else {
+            document.getElementById('withdraw-error').style.display = 'block';
+            document.getElementById('withdraw-form').style.display = 'none';
+        }
+    });
+    observer.observe(document.getElementById('prof-balance'), { childList: true });
+  });
+
   // HARDWARE BACK BUTTON LOGIC (History API)
   function openPage(pageId) { 
     document.getElementById(pageId).classList.add('active'); 
     history.pushState({fsPage: pageId}, null, "#" + pageId);
   }
   function closePage(pageId) { 
-    document.getElementById(pageId).classList.remove('active'); 
-    if(history.state && history.state.fsPage === pageId) {
-        history.back();
-    }
+    history.back(); // Hei hian phone back button ang chiahin Popstate a ko ang
   }
   window.addEventListener('popstate', function(event) {
     document.querySelectorAll('.fs-page').forEach(page => page.classList.remove('active'));
@@ -880,6 +937,7 @@
     }
   });
 
+  // CONTACT OPTIONS (SOCIAL LOGOS)
   function toggleContactOptions() {
      const box = document.getElementById('contact-options-box');
      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -904,15 +962,6 @@
      localStorage.setItem('cashmizo_custom_primary', colorHex);
      if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
      showToast("Color Saved!");
-  }
-
-  // RESET COLOR TO ORIGINAL
-  function resetCustomColor() {
-     document.documentElement.style.removeProperty('--primary');
-     document.documentElement.style.removeProperty('--primary-light');
-     localStorage.removeItem('cashmizo_custom_primary');
-     localStorage.removeItem('cashmizo_custom_primary_light');
-     showToast("Reset to Default Color");
   }
 
   function toggleNeonMode() {
@@ -989,470 +1038,22 @@
     document.body.style.fontSize = currentFontSize + 'px';
   }
 
-  // MASSIVE LANGUAGE LIST GENERATOR
-  const languageData = [
-    { code: 'lus', name: 'Mizo (Mizoram)' },
-    { code: 'en', name: 'English' },
-    { code: 'hi', name: 'Hindi (हिन्दी)' },
-    { code: 'bn', name: 'Bengali (বাংলা)' },
-    { code: 'af', name: 'Afrikaans' },
-    { code: 'sq', name: 'Albanian (Shqip)' },
-    { code: 'am', name: 'Amharic (አማርኛ)' },
-    { code: 'ar', name: 'Arabic (العربية)' },
-    { code: 'hy', name: 'Armenian (Հայերեն)' },
-    { code: 'az', name: 'Azerbaijani (Azərbaycan)' },
-    { code: 'eu', name: 'Basque (Euskara)' },
-    { code: 'be', name: 'Belarusian (Беларуская)' },
-    { code: 'bs', name: 'Bosnian (Bosanski)' },
-    { code: 'bg', name: 'Bulgarian (Български)' },
-    { code: 'my', name: 'Burmese (မြန်မာ)' },
-    { code: 'ca', name: 'Catalan (Català)' },
-    { code: 'zh-CN', name: 'Chinese (Simplified)' },
-    { code: 'zh-TW', name: 'Chinese (Traditional)' },
-    { code: 'hr', name: 'Croatian (Hrvatski)' },
-    { code: 'cs', name: 'Czech (Čeština)' },
-    { code: 'da', name: 'Danish (Dansk)' },
-    { code: 'nl', name: 'Dutch (Nederlands)' },
-    { code: 'eo', name: 'Esperanto' },
-    { code: 'et', name: 'Estonian (Eesti)' },
-    { code: 'fil', name: 'Filipino' },
-    { code: 'fi', name: 'Finnish (Suomi)' },
-    { code: 'fr', name: 'French (Français)' },
-    { code: 'ka', name: 'Georgian (ქართული)' },
-    { code: 'de', name: 'German (Deutsch)' },
-    { code: 'el', name: 'Greek (Ελληνικά)' },
-    { code: 'gu', name: 'Gujarati (ગુજરાતી)' },
-    { code: 'ht', name: 'Haitian Creole' },
-    { code: 'he', name: 'Hebrew (עברית)' },
-    { code: 'hu', name: 'Hungarian (Magyar)' },
-    { code: 'is', name: 'Icelandic (Íslenska)' },
-    { code: 'id', name: 'Indonesian (Indonesia)' },
-    { code: 'it', name: 'Italian (Italiano)' },
-    { code: 'ja', name: 'Japanese (日本語)' },
-    { code: 'kn', name: 'Kannada (ಕನ್ನಡ)' },
-    { code: 'kk', name: 'Kazakh (Қазақ)' },
-    { code: 'km', name: 'Khmer (ខ្មែរ)' },
-    { code: 'ko', name: 'Korean (한국어)' },
-    { code: 'lo', name: 'Lao (ລາວ)' },
-    { code: 'la', name: 'Latin' },
-    { code: 'lv', name: 'Latvian (Latviešu)' },
-    { code: 'lt', name: 'Lithuanian (Lietuvių)' },
-    { code: 'mk', name: 'Macedonian (Македонски)' },
-    { code: 'ms', name: 'Malay (Melayu)' },
-    { code: 'ml', name: 'Malayalam (മലയാളം)' },
-    { code: 'mr', name: 'Marathi (मराठी)' },
-    { code: 'mn', name: 'Mongolian (Монгол)' },
-    { code: 'ne', name: 'Nepali (नेपाली)' },
-    { code: 'no', name: 'Norwegian (Norsk)' },
-    { code: 'ps', name: 'Pashto (پښتو)' },
-    { code: 'fa', name: 'Persian (فارسی)' },
-    { code: 'pl', name: 'Polish (Polski)' },
-    { code: 'pt', name: 'Portuguese (Português)' },
-    { code: 'pa', name: 'Punjabi (ਪੰਜਾਬી)' },
-    { code: 'ro', name: 'Romanian (Română)' },
-    { code: 'ru', name: 'Russian (Русский)' },
-    { code: 'sr', name: 'Serbian (Српски)' },
-    { code: 'si', name: 'Sinhala (සිංහල)' },
-    { code: 'sk', name: 'Slovak (Slovenčina)' },
-    { code: 'sl', name: 'Slovenian (Slovenščina)' },
-    { code: 'es', name: 'Spanish (Español)' },
-    { code: 'sw', name: 'Swahili (Kiswahili)' },
-    { code: 'sv', name: 'Swedish (Svenska)' },
-    { code: 'ta', name: 'Tamil (தமிழ்)' },
-    { code: 'te', name: 'Telugu (తెలుగు)' },
-    { code: 'th', name: 'Thai (ไทย)' },
-    { code: 'tr', name: 'Turkish (Türkçe)' },
-    { code: 'uk', name: 'Ukrainian (Українська)' },
-    { code: 'ur', name: 'Urdu (اردو)' },
-    { code: 'uz', name: 'Uzbek (Oʻzbek)' },
-    { code: 'vi', name: 'Vietnamese (Tiếng Việt)' },
-    { code: 'cy', name: 'Welsh (Cymraeg)' },
-    { code: 'yi', name: 'Yiddish (יידיש)' },
-    { code: 'zu', name: 'Zulu (isiZulu)' }
-  ];
-  
-  function renderLanguageList(filterText = "") {
-    const container = document.getElementById("lang-list");
-    container.innerHTML = ""; 
-    const lowerFilter = filterText.toLowerCase();
-    languageData.forEach(lang => {
-      if (lang.name.toLowerCase().includes(lowerFilter)) {
-        const div = document.createElement("div");
-        div.className = "lang-item notranslate";
-        div.setAttribute("translate", "no");
-        div.innerHTML = lang.name;
-        div.onclick = () => triggerTranslate(lang.code);
-        container.appendChild(div);
-      }
-    });
-    if(container.innerHTML === "") {
-        container.innerHTML = "<div class='lang-item' style='color:#ef4444; text-align:center;'>Language not found</div>";
-    }
+  // CUSTOM DROPDOWN CONTROL LOGIC
+  function toggleCustomDropdown() {
+     document.getElementById('custom-dropdown-list').classList.toggle('show');
   }
-  
-  function filterLanguages() {
-    const text = document.getElementById("lang-search").value;
-    renderLanguageList(text);
+  function selectIssue(label, val) {
+     document.getElementById('selected-issue-text').innerText = label;
+     document.getElementById('ticket-subject').value = val;
+     document.getElementById('custom-dropdown-list').classList.remove('show');
   }
-  
-  window.addEventListener('DOMContentLoaded', () => { renderLanguageList(); });
-  
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
-  }
-  
-  function triggerTranslate(langCode) {
-    var selectField = document.querySelector(".goog-te-combo");
-    if (selectField) {
-      selectField.value = langCode;
-      selectField.dispatchEvent(new Event("change"));
-      closePage('lang-page');
-      showToast("Language changed");
-    } else {
-      showToast("Loading languages, please wait...", true);
-    }
-  }
-  
-  const translations = {
-    mizo: {
-      success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
-      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Lakchhuahna",
-      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Bonus hmu turin vawiin atan thawk rawh", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna",
-      premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh", m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
-      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "Hman Dan Tur / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out (Chhuak)",
-      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
-    },
-    en: {
-      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms and Privacy Policy.",
-      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Withdraw Funds",
-      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends",
-      premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys", m_general: "Account", profile: "My Account & Payment", language: "App Language",
-      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
-      customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
-    }
-  };
-  
-  let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
-  let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
-  let userPayInfo = null; let hasCompletedTaskToday = false; 
-  
-  function switchTab(tabId, element) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.getElementById('tab-' + tabId).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-    element.classList.add('active');
-  }
-  
-  function toggleInbox() {
-    const box = document.getElementById('inbox-dropdown');
-    box.style.display = box.style.display === 'block' ? 'none' : 'block';
-  }
-  
-  function redeemPromo() {
-    const val = document.getElementById('promo-input').value;
-    if(val.length < 4) showToast("Invalid Promo Code", true);
-    else showToast("Code Expired or Invalid", true);
-    document.getElementById('promo-input').value = '';
-  }
-  function submitTicket() {
-    const sub = document.getElementById('ticket-subject').value;
-    const desc = document.getElementById('ticket-desc').value;
-    if(!sub || desc.length < 10) { showToast("Please fill all fields properly.", true); return; }
-    showToast("Ticket submitted! We will email you.");
-    setTimeout(() => closePage('contact-page'), 1500);
-  }
-  function selectPayType(type) {
-    document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
-    document.getElementById(`btn-pay-${type}`).classList.add('active');
-    document.getElementById('pay-type-select').value = type;
-    document.getElementById('input-upi-wrap').style.display = 'none';
-    document.getElementById('input-bank-wrap').style.display = 'none';
-    document.getElementById('input-paypal-wrap').style.display = 'none';
-    if(type === 'upi') document.getElementById('input-upi-wrap').style.display = 'block';
-    if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
-    if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
-  }
-  
-  const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
-  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
-  
-  function getReferrerFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const refId = urlParams.get('ref');
-      if (refId) {
-          localStorage.setItem('cashmizo_referrer', refId); 
-      }
-  }
-  getReferrerFromUrl();
-  
-  async function showMainApp(session) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('main-app').style.display = 'flex';
-    if (session && session.user) {
-      currentUserId = session.user.id;
-      let fullName = session.user.user_metadata.full_name || 'User';
-      let email = session.user.email || '';
-      
-      document.getElementById('more-name').innerText = fullName;
-      document.getElementById('more-email').innerText = email;
-      document.getElementById('ticket-email').value = email;
-      document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
-      
-      const baseUrl = window.location.origin + window.location.pathname;
-      document.getElementById('refer-link-input').value = `${baseUrl}?ref=${currentUserId}`;
-      const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
-      
-      if (data) {
-        userCoins = data.coins || 0; 
-        lastDailyCheck = data.last_daily_check || null; 
-        lastSpinDate = data.last_spin_date || null;
-        userPayInfo = data.upi_id || ''; 
-        hasCompletedTaskToday = (data.total_tasks_completed && data.total_tasks_completed > 0) ? true : false;
-        
-        if (hasCompletedTaskToday) {
-            document.getElementById('btn-daily').classList.remove('locked');
-            document.getElementById('btn-spin').classList.remove('locked');
-        }
-      } else {
-        let storedReferrer = localStorage.getItem('cashmizo_referrer');
-        await supabaseClient.from('user_profiles').insert([{ 
-            id: currentUserId, name: fullName, coins: 0, referred_by: storedReferrer 
-        }]); 
-        userCoins = 0;
-        localStorage.removeItem('cashmizo_referrer');
-      }
-      updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
-    }
-  }
-  
-  function updateBalanceUI() {
-    let formattedCoins = userCoins.toLocaleString('en-US');
-    document.getElementById('header-balance').innerText = formattedCoins;
-    document.getElementById('current-balance').innerText = formattedCoins;
-    document.getElementById('prof-balance').innerText = formattedCoins;
-    
-    let goalPercent = (userCoins / 100) * 100;
-    if(goalPercent > 100) goalPercent = 100;
-    if(goalPercent === 0) goalPercent = 5; 
-    document.getElementById('goal-progress').style.width = goalPercent + '%';
-  }
-  
-  function updatePaymentUI() {
-    if (userPayInfo && userPayInfo !== '') {
-      document.getElementById('payment-display-section').style.display = 'block';
-      document.getElementById('payment-edit-section').style.display = 'none';
-      document.getElementById('btn-change-pay').style.display = 'block';
-      
-      let displayValue = userPayInfo;
-      if(userPayInfo.includes('::')) {
-          let parts = userPayInfo.split('::');
-          displayValue = parts[0] === 'bank' ? parts[1].replace('|', '\nIFSC: ') : parts[1];
-          document.getElementById('display-pay-type').innerText = parts[0].toUpperCase();
-      }
-      document.getElementById('prof-pay-id').innerText = displayValue;
-    } else {
-      document.getElementById('payment-display-section').style.display = 'none';
-      document.getElementById('payment-edit-section').style.display = 'block';
-      document.getElementById('btn-change-pay').style.display = 'none';
-    }
-  }
-  
-  function togglePaymentEdit() {
-    document.getElementById('payment-display-section').style.display = 'none';
-    document.getElementById('payment-edit-section').style.display = 'block';
-    document.getElementById('btn-change-pay').style.display = 'none';
-  }
-  
-  async function savePaymentInfo() {
-    const type = document.getElementById('pay-type-select').value;
-    let saveString = "";
-    if(type === 'upi') {
-        const val = document.getElementById('pay-input-upi').value.trim();
-        if(!val) { showToast("Enter UPI ID", true); return; }
-        saveString = `upi::${val}`;
-    } else if(type === 'paypal') {
-        const val = document.getElementById('pay-input-paypal').value.trim();
-        if(!val) { showToast("Enter PayPal Email", true); return; }
-        saveString = `paypal::${val}`;
-    } else if(type === 'bank') {
-        const acc = document.getElementById('pay-input-acc').value.trim();
-        const ifsc = document.getElementById('pay-input-ifsc').value.trim();
-        if(!acc || !ifsc) { showToast("Enter Account & IFSC", true); return; }
-        saveString = `bank::A/C ${acc} | ${ifsc}`;
-    }
-    
-    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
-    if(error) { showToast("Error: " + error.message, true); } 
-    else { userPayInfo = saveString; updatePaymentUI(); showToast("Saved Successfully"); }
-  }
-  
-  function checkLockAndRun(action) {
-    if (action === 'daily') requestDailyFromServer();
-  }
-  
-  let isSpinning = false;
-  
-  function openSpinWheel() {
-    if (!hasCompletedTaskToday) { showToast("Task 1 tal tih zawh hmasak a ngai!", true); return; }
-    const today = new Date().toDateString();
-    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
-       showToast("Vawiin ah i Spin tawh", true);
-       return;
-    }
-    openPage('spin-page');
-  }
-  
-  async function startSpin() {
-    if(isSpinning) return;
-    isSpinning = true;
-    document.getElementById('btn-do-spin').innerText = "Spinning...";
-    document.getElementById('btn-do-spin').style.opacity = '0.5';
-    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
-    if (error) { showToast("Error: " + error.message, true); resetSpinBtn(); return; }
-    if (data && !data.success) { showToast(data.message, true); resetSpinBtn(); return; }
-    let prize = data.prize;
-    let pointerDegree = 0;
-    if (prize === 5) pointerDegree = 30;       
-    else if (prize === 10) pointerDegree = 90; 
-    else if (prize === 50) pointerDegree = 150;
-    else if (prize === 0) pointerDegree = 210; 
-    else if (prize === 100) pointerDegree = 270;
-    else if (prize === 20) pointerDegree = 330; 
-    let actualDegree = (360 - pointerDegree) % 360;
-    let totalRotation = 1800 + actualDegree; 
-    let wheel = document.getElementById('wheel');
-    wheel.style.transform = `rotate(${totalRotation}deg)`;
-    setTimeout(() => {
-       if(prize > 0) { showToast(`🎉 I vannei! ${prize} Coins i hmu e!`); } 
-       else { showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true); }
-       userCoins = data.new_balance; lastSpinDate = new Date().toISOString();
-       updateBalanceUI(); checkClaimedUI();
-       setTimeout(() => {
-           closePage('spin-page'); resetSpinBtn();
-           wheel.style.transform = `rotate(0deg)`;
-       }, 2500);
-    }, 4000); 
-  }
-  
-  function resetSpinBtn() {
-      isSpinning = false;
-      document.getElementById('btn-do-spin').innerText = "SPIN NOW";
-      document.getElementById('btn-do-spin').style.opacity = '1';
-  }
-  
-  function checkClaimedUI() {
-    const today = new Date().toDateString();
-    if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = "Claimed \u2714"; }
-    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = "Spun \u2714"; }
-  }
-  
-  function openTimeWall() {
-    if (!currentUserId) return;
-    window.open(`https://timewall.io/offers?uid=${currentUserId}`, '_blank');
-  }
-  
-  function copyReferLink() {
-    const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
-    showToast("Copied to clipboard");
-  }
-  
-  function showToast(message, isError = false) {
-    const toast = document.getElementById('toast'); 
-    toast.innerHTML = isError ? `<i class="fa-solid fa-circle-exclamation"></i> ${message}` : `<i class="fa-solid fa-circle-check"></i> ${message}`;
-    if(isError) toast.classList.add('error'); else toast.classList.remove('error');
-    toast.style.top = '40px'; 
-    setTimeout(() => { toast.style.top = '-100px'; }, 3000);
-  }
-  
-  async function requestDailyFromServer() {
-    if (!currentUserId) return;
-    const { data, error } = await supabaseClient.rpc('claim_daily_reward');
-    if (error) { showToast(error.message, true); return; }
-    if (data && data.success) { userCoins = data.new_balance; lastDailyCheck = new Date().toISOString(); updateBalanceUI(); checkClaimedUI(); showToast(data.message); } 
-    else { showToast(data.message, true); }
-  }
-  
-  async function openReferPage() {
-      openPage('refer-page');
-      if (!currentUserId) return;
-      const listDiv = document.getElementById('my-referrals-list');
-      listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center;">Loading...</p>';
-      
-      const { data, error } = await supabaseClient.rpc('get_my_referrals');
-      if (error) { listDiv.innerHTML = `<p style="color: #ef4444; font-size: 13px;">Error: ${error.message}</p>`; return; }
-      if (data && data.length > 0) {
-          let htmlString = '';
-          data.forEach(ref => {
-              let statusHtml = ref.task_done 
-                  ? `<span class="ref-status done">Task ti tawh <i class="fa-solid fa-check"></i></span>` 
-                  : `<span class="ref-status pending">Task a la ti lo <i class="fa-solid fa-xmark"></i></span>`;
-              htmlString += `<div class="ref-list-item"><span class="ref-name"><i class="fa-solid fa-user"></i> ${ref.name || 'User'}</span>${statusHtml}</div>`;
-          });
-          listDiv.innerHTML = htmlString;
-      } else {
-          listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px;">Ṭhian sawm i la nei lo.</p>';
-      }
-  }
-  
-  async function openLeaderboard() {
-    openPage('lb-page');
-    document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
-    const { data } = await supabaseClient.from('user_profiles').select('name, coins').order('coins', { ascending: false }).limit(10);
-    if (data) {
-      let htmlString = '';
-      data.forEach((user, i) => {
-        let medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `<span style="color:var(--text-muted); font-size:12px;">${i+1}</span>`;
-        htmlString += `<div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--border-color);"><span style="font-weight:700; color:var(--text-main);">${medal} ${user.name}</span><span style="font-weight:800; color:var(--secondary);">${user.coins.toLocaleString()} C</span></div>`;
-      });
-      document.getElementById('leaderboard-list').innerHTML = htmlString;
-    }
-  }
-  
-  async function submitWithdraw() {
-    if (!userPayInfo || userCoins < 5000) return;
-    userCoins -= 5000;
-    const { error } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
-    if (error) { showToast(error.message, true); return; }
-    await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
-    updateBalanceUI(); closePage('profile-page'); showToast("Withdrawal Requested");
-  }
-  
-  async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
-  
-  window.addEventListener('load', async () => {
-    renderChatHistory();
-
-    const hash = window.location.hash;
-    if (hash && hash.includes('access_token=')) {
-      const params = new URLSearchParams(hash.substring(1));
-      if (params.get('access_token')) {
-        const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
-        if (!error && data.session) { window.history.replaceState(null, null, window.location.pathname); showMainApp(data.session); }
-      }
-    } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
-    
-    document.getElementById('agree-check').addEventListener('change', function() {
-        const btn = document.querySelector('.auth-btn.btn-google');
-        if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
-        else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
-    });
-    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
-    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
-    const observer = new MutationObserver(() => {
-        if(userCoins >= 5000) {
-            document.getElementById('withdraw-error').style.display = 'none';
-            document.getElementById('withdraw-form').style.display = 'block';
-            if(userPayInfo) { document.getElementById('wd-no-pay').style.display = 'none'; document.getElementById('wd-has-pay').style.display = 'block'; let v=userPayInfo; if(v.includes('::')){ let p=v.split('::'); v=p[0]==='bank'?p[1].replace('|','IFSC:'):p[1]; } document.getElementById('wd-display-pay').innerText = v; }
-            else { document.getElementById('wd-no-pay').style.display = 'block'; document.getElementById('wd-has-pay').style.display = 'none'; }
-        } else {
-            document.getElementById('withdraw-error').style.display = 'block';
-            document.getElementById('withdraw-form').style.display = 'none';
-        }
-    });
-    observer.observe(document.getElementById('prof-balance'), { childList: true });
+  window.addEventListener('click', function(e) {
+     if (!e.target.closest('.custom-dropdown-container')) {
+        const dd = document.getElementById('custom-dropdown-list');
+        if(dd) dd.classList.remove('show');
+     }
   });
-  
+
   async function login() {
     if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
     document.getElementById('btn-login-text').innerHTML = '...'; 
