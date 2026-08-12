@@ -889,17 +889,26 @@
 
   // INITIALIZE APP BASE STATE FOR HARDWARE BACK BUTTON
   window.addEventListener('load', async () => {
-    history.replaceState({fsPage: null}, null, window.location.pathname);
+    
     renderChatHistory();
 
     const hash = window.location.hash;
+    
     if (hash && hash.includes('access_token=')) {
       const params = new URLSearchParams(hash.substring(1));
       if (params.get('access_token')) {
         const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
-        if (!error && data.session) { window.history.replaceState({fsPage: null}, null, window.location.pathname); showMainApp(data.session); }
+        if (!error && data.session) { 
+            window.history.replaceState({fsPage: null}, null, window.location.pathname); 
+            showMainApp(data.session); 
+        }
       }
-    } else { supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) showMainApp(session); }); }
+    } else { 
+        history.replaceState({fsPage: null}, null, window.location.pathname);
+        supabaseClient.auth.getSession().then(({ data: { session } }) => { 
+            if (session) showMainApp(session); 
+        }); 
+    }
     
     document.getElementById('agree-check').addEventListener('change', function() {
         const btn = document.querySelector('.auth-btn.btn-google');
