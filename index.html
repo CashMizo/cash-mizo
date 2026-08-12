@@ -889,8 +889,12 @@
 
   // INITIALIZE APP BASE STATE FOR HARDWARE BACK BUTTON
   window.addEventListener('load', async () => {
-    
     renderChatHistory();
+
+    // SAFE HISTORY STATE INIT - does not modify URL params
+    if (!history.state || history.state.fsPage === undefined) {
+       history.replaceState({fsPage: null}, null, window.location.href);
+    }
 
     const hash = window.location.hash;
     
@@ -904,9 +908,10 @@
         }
       }
     } else { 
-        history.replaceState({fsPage: null}, null, window.location.pathname);
         supabaseClient.auth.getSession().then(({ data: { session } }) => { 
-            if (session) showMainApp(session); 
+            if (session) {
+                showMainApp(session); 
+            }
         }); 
     }
     
@@ -937,7 +942,10 @@
     history.pushState({fsPage: pageId}, null, "#" + pageId);
   }
   function closePage(pageId) { 
-    history.back(); // Hei hian phone back button ang chiahin Popstate a ko ang
+    document.getElementById(pageId).classList.remove('active'); 
+    if(history.state && history.state.fsPage === pageId) {
+        history.back();
+    }
   }
   window.addEventListener('popstate', function(event) {
     document.querySelectorAll('.fs-page').forEach(page => page.classList.remove('active'));
