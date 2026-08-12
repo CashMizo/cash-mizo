@@ -868,8 +868,86 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-  let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
+  // 1. SUPABASE INITIALIZATION
+  const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
 
+  // 2. STATE VARIABLES
+  let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
+  let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
+  let userCoins = 0; 
+  let currentUserId = null; 
+  let lastDailyCheck = null; 
+  let lastSpinDate = null;
+  let userPayInfo = null; 
+  let hasCompletedTaskToday = false; 
+  let isSpinning = false;
+  let currentFontSize = 16;
+
+  // 3. TRANSLATIONS & LANGUAGES
+  const languageData = [
+    { code: 'lus', name: 'Mizo (Mizoram)' }, { code: 'en', name: 'English' },
+    { code: 'hi', name: 'Hindi (हिन्दी)' }, { code: 'bn', name: 'Bengali (বাংলা)' },
+    { code: 'af', name: 'Afrikaans' }, { code: 'sq', name: 'Albanian (Shqip)' },
+    { code: 'am', name: 'Amharic (አማርኛ)' }, { code: 'ar', name: 'Arabic (العربية)' },
+    { code: 'hy', name: 'Armenian (Հայերեն)' }, { code: 'az', name: 'Azerbaijani (Azərbaycan)' },
+    { code: 'eu', name: 'Basque (Euskara)' }, { code: 'be', name: 'Belarusian (Беларуская)' },
+    { code: 'bs', name: 'Bosnian (Bosanski)' }, { code: 'bg', name: 'Bulgarian (Български)' },
+    { code: 'my', name: 'Burmese (မြန်မာ)' }, { code: 'ca', name: 'Catalan (Català)' },
+    { code: 'zh-CN', name: 'Chinese (Simplified)' }, { code: 'zh-TW', name: 'Chinese (Traditional)' },
+    { code: 'hr', name: 'Croatian (Hrvatski)' }, { code: 'cs', name: 'Czech (Čeština)' },
+    { code: 'da', name: 'Danish (Dansk)' }, { code: 'nl', name: 'Dutch (Nederlands)' },
+    { code: 'eo', name: 'Esperanto' }, { code: 'et', name: 'Estonian (Eesti)' },
+    { code: 'fil', name: 'Filipino' }, { code: 'fi', name: 'Finnish (Suomi)' },
+    { code: 'fr', name: 'French (Français)' }, { code: 'ka', name: 'Georgian (ქართული)' },
+    { code: 'de', name: 'German (Deutsch)' }, { code: 'el', name: 'Greek (Ελληνικά)' },
+    { code: 'gu', name: 'Gujarati (ગુજરાતી)' }, { code: 'ht', name: 'Haitian Creole' },
+    { code: 'he', name: 'Hebrew (עברית)' }, { code: 'hu', name: 'Hungarian (Magyar)' },
+    { code: 'is', name: 'Icelandic (Íslenska)' }, { code: 'id', name: 'Indonesian (Indonesia)' },
+    { code: 'it', name: 'Italian (Italiano)' }, { code: 'ja', name: 'Japanese (日本語)' },
+    { code: 'kn', name: 'Kannada (ಕನ್ನಡ)' }, { code: 'kk', name: 'Kazakh (Қазақ)' },
+    { code: 'km', name: 'Khmer (ខ្មែរ)' }, { code: 'ko', name: 'Korean (한국어)' },
+    { code: 'lo', name: 'Lao (ລາວ)' }, { code: 'la', name: 'Latin' },
+    { code: 'lv', name: 'Latvian (Latviešu)' }, { code: 'lt', name: 'Lithuanian (Lietuvių)' },
+    { code: 'mk', name: 'Macedonian (Македонски)' }, { code: 'ms', name: 'Malay (Melayu)' },
+    { code: 'ml', name: 'Malayalam (മലയാളം)' }, { code: 'mr', name: 'Marathi (मराठी)' },
+    { code: 'mn', name: 'Mongolian (Монгол)' }, { code: 'ne', name: 'Nepali (नेपाली)' },
+    { code: 'no', name: 'Norwegian (Norsk)' }, { code: 'ps', name: 'Pashto (پښتو)' },
+    { code: 'fa', name: 'Persian (فارسی)' }, { code: 'pl', name: 'Polish (Polski)' },
+    { code: 'pt', name: 'Portuguese (Português)' }, { code: 'pa', name: 'Punjabi (ਪੰਜਾਬੀ)' },
+    { code: 'ro', name: 'Romanian (Română)' }, { code: 'ru', name: 'Russian (Русский)' },
+    { code: 'sr', name: 'Serbian (Српски)' }, { code: 'si', name: 'Sinhala (සිංහල)' },
+    { code: 'sk', name: 'Slovak (Slovenčina)' }, { code: 'sl', name: 'Slovenian (Slovenščina)' },
+    { code: 'es', name: 'Spanish (Español)' }, { code: 'sw', name: 'Swahili (Kiswahili)' },
+    { code: 'sv', name: 'Swedish (Svenska)' }, { code: 'ta', name: 'Tamil (தமிழ்)' },
+    { code: 'te', name: 'Telugu (తెలుగు)' }, { code: 'th', name: 'Thai (ไทย)' },
+    { code: 'tr', name: 'Turkish (Türkçe)' }, { code: 'uk', name: 'Ukrainian (Українська)' },
+    { code: 'ur', name: 'Urdu (اردو)' }, { code: 'uz', name: 'Uzbek (Oʻzbek)' },
+    { code: 'vi', name: 'Vietnamese (Tiếng Việt)' }, { code: 'cy', name: 'Welsh (Cymraeg)' },
+    { code: 'yi', name: 'Yiddish (יידיש)' }, { code: 'zu', name: 'Zulu (isiZulu)' }
+  ];
+
+  const translations = {
+    mizo: {
+      success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
+      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Lakchhuahna",
+      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Bonus hmu turin vawiin atan thawk rawh", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna",
+      premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh", m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
+      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "Hman Dan Tur / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out (Chhuak)",
+      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
+    },
+    en: {
+      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms and Privacy Policy.",
+      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Withdraw Funds",
+      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends",
+      premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys", m_general: "Account", profile: "My Account & Payment", language: "App Language",
+      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
+      customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
+    }
+  };
+
+  // 4. CHAT BOT LOGIC
   function renderChatHistory() {
     const chatBox = document.getElementById('chat-box');
     chatBox.innerHTML = '<div class="chat-bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>';
@@ -878,7 +956,6 @@
     });
     chatBox.scrollTop = chatBox.scrollHeight;
   }
-
   const chatInput = document.getElementById('chat-input');
   chatInput.addEventListener('focus', () => {
     setTimeout(() => {
@@ -886,205 +963,7 @@
         chatBox.scrollTop = chatBox.scrollHeight;
     }, 300);
   });
-
-  // INITIALIZE APP BASE STATE
-  window.addEventListener('load', async () => {
-    renderChatHistory();
-
-    const hash = window.location.hash;
-    
-    if (hash && hash.includes('access_token=')) {
-      const params = new URLSearchParams(hash.substring(1));
-      if (params.get('access_token')) {
-        const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
-        if (!error && data.session) { 
-            window.history.replaceState(null, null, window.location.pathname); 
-            showMainApp(data.session); 
-        }
-      }
-    } else { 
-        supabaseClient.auth.getSession().then(({ data: { session } }) => { 
-            if (session) {
-                showMainApp(session); 
-            }
-        }); 
-    }
-    
-    document.getElementById('agree-check').addEventListener('change', function() {
-        const btn = document.querySelector('.auth-btn.btn-google');
-        if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
-        else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
-    });
-    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
-    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
-    const observer = new MutationObserver(() => {
-        if(userCoins >= 5000) {
-            document.getElementById('withdraw-error').style.display = 'none';
-            document.getElementById('withdraw-form').style.display = 'block';
-            if(userPayInfo) { document.getElementById('wd-no-pay').style.display = 'none'; document.getElementById('wd-has-pay').style.display = 'block'; let v=userPayInfo; if(v.includes('::')){ let p=v.split('::'); v=p[0]==='bank'?p[1].replace('|','IFSC:'):p[1]; } document.getElementById('wd-display-pay').innerText = v; }
-            else { document.getElementById('wd-no-pay').style.display = 'block'; document.getElementById('wd-has-pay').style.display = 'none'; }
-        } else {
-            document.getElementById('withdraw-error').style.display = 'block';
-            document.getElementById('withdraw-form').style.display = 'none';
-        }
-    });
-    observer.observe(document.getElementById('prof-balance'), { childList: true });
-  });
-
-  // HARDWARE BACK BUTTON LOGIC (Safe Method)
-  function openPage(pageId) { 
-    document.getElementById(pageId).classList.add('active'); 
-    history.pushState({fsPage: pageId}, null, "#" + pageId);
-  }
-  function closePage(pageId) { 
-    document.getElementById(pageId).classList.remove('active');
-    // Check if the current state matches the page we are closing
-    if(history.state && history.state.fsPage === pageId) {
-        history.back();
-    }
-  }
-  window.addEventListener('popstate', function(event) {
-    document.querySelectorAll('.fs-page').forEach(page => page.classList.remove('active'));
-    if (event.state && event.state.fsPage) {
-        document.getElementById(event.state.fsPage).classList.add('active');
-    }
-  });
-
-  // CONTACT OPTIONS (SOCIAL LOGOS)
-  function toggleContactOptions() {
-     const box = document.getElementById('contact-options-box');
-     box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
-  }
-
-  // ADVANCED VISUAL & ACCESSIBILITY SYSTEM (SAVE THEI)
-  function changeTheme(theme) {
-    document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
-    if (theme === 'dark') document.body.classList.add('dark-mode');
-    if (theme === 'eye-comfort') document.body.classList.add('theme-eye-comfort');
-    if (theme === 'ultra') document.body.classList.add('theme-ultra');
-    localStorage.setItem('cashmizo_theme', theme);
-    
-    document.querySelectorAll('.theme-tile').forEach(t => t.classList.remove('active'));
-    const activeTile = document.getElementById('tile-' + theme);
-    if(activeTile) activeTile.classList.add('active');
-  }
-
-  function setCustomPrimary(colorHex, lightHex) {
-     document.documentElement.style.setProperty('--primary', colorHex);
-     if(lightHex) document.documentElement.style.setProperty('--primary-light', lightHex);
-     localStorage.setItem('cashmizo_custom_primary', colorHex);
-     if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
-     showToast("Color Saved!");
-  }
-
-  function toggleNeonMode() {
-     document.body.classList.toggle('neon-active');
-     const isActive = document.body.classList.contains('neon-active');
-     localStorage.setItem('cashmizo_neon', isActive);
-     document.getElementById('tile-neon').classList.toggle('active', isActive);
-     showToast(isActive ? "Neon Rainbow Activated!" : "Neon Mode Disabled");
-  }
-
-  function toggleHighContrast() {
-     document.body.classList.toggle('high-contrast');
-     const isActive = document.body.classList.contains('high-contrast');
-     localStorage.setItem('cashmizo_contrast', isActive);
-     document.getElementById('tile-contrast').classList.toggle('active', isActive);
-  }
-
-  function toggleGrayscale() {
-     document.body.classList.toggle('grayscale-mode');
-     const isActive = document.body.classList.contains('grayscale-mode');
-     localStorage.setItem('cashmizo_grayscale', isActive);
-     document.getElementById('tile-grayscale').classList.toggle('active', isActive);
-  }
-
-  function toggleLargeText() {
-     document.body.classList.toggle('large-text-mode');
-     const isActive = document.body.classList.contains('large-text-mode');
-     localStorage.setItem('cashmizo_largetext', isActive);
-     document.getElementById('tile-large-text').classList.toggle('active', isActive);
-  }
-
-  // RESET ALL ACCESSIBILITY SETTINGS
-  function resetAllSettings() {
-     changeTheme('default');
-     
-     document.documentElement.style.removeProperty('--primary');
-     document.documentElement.style.removeProperty('--primary-light');
-     localStorage.removeItem('cashmizo_custom_primary');
-     localStorage.removeItem('cashmizo_custom_primary_light');
-     
-     if(document.body.classList.contains('neon-active')) toggleNeonMode();
-     if(document.body.classList.contains('high-contrast')) toggleHighContrast();
-     if(document.body.classList.contains('grayscale-mode')) toggleGrayscale();
-     if(document.body.classList.contains('large-text-mode')) toggleLargeText();
-     
-     currentFontSize = 16;
-     document.body.style.fontSize = currentFontSize + 'px';
-     
-     showToast("All Settings Reset Successfully!");
-  }
-
-  // LOAD ALL SAVED ACCESSIBILITY SETTINGS
-  let savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
-  let savedCustomColor = localStorage.getItem('cashmizo_custom_primary');
-  let savedCustomLight = localStorage.getItem('cashmizo_custom_primary_light');
-
-  document.addEventListener("DOMContentLoaded", () => {
-     changeTheme(savedTheme);
-     if(savedCustomColor) {
-        document.documentElement.style.setProperty('--primary', savedCustomColor);
-        if(savedCustomLight) document.documentElement.style.setProperty('--primary-light', savedCustomLight);
-     }
-     if(localStorage.getItem('cashmizo_neon') === 'true') toggleNeonMode();
-     if(localStorage.getItem('cashmizo_contrast') === 'true') toggleHighContrast();
-     if(localStorage.getItem('cashmizo_grayscale') === 'true') toggleGrayscale();
-     if(localStorage.getItem('cashmizo_largetext') === 'true') toggleLargeText();
-  });
-
-  let currentFontSize = 16;
-  function changeFontSize(step) {
-    currentFontSize += (step * 2);
-    if(currentFontSize < 12) currentFontSize = 12;
-    if(currentFontSize > 22) currentFontSize = 22;
-    document.body.style.fontSize = currentFontSize + 'px';
-  }
-
-  // CUSTOM DROPDOWN CONTROL LOGIC
-  function toggleCustomDropdown() {
-     document.getElementById('custom-dropdown-list').classList.toggle('show');
-  }
-  function selectIssue(label, val) {
-     document.getElementById('selected-issue-text').innerText = label;
-     document.getElementById('ticket-subject').value = val;
-     document.getElementById('custom-dropdown-list').classList.remove('show');
-  }
-  window.addEventListener('click', function(e) {
-     if (!e.target.closest('.custom-dropdown-container')) {
-        const dd = document.getElementById('custom-dropdown-list');
-        if(dd) dd.classList.remove('show');
-     }
-  });
-
-  async function login() {
-    if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
-    document.getElementById('btn-login-text').innerHTML = '...'; 
-    
-    const redirectUrl = window.location.origin + window.location.pathname;
-    const { error } = await supabaseClient.auth.signInWithOAuth({ 
-        provider: 'google', 
-        options: { redirectTo: redirectUrl } 
-    });
-    
-    if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
-  }
-  
-  /* =========================================
-     SMART AI BOT LOGIC (AUTO-FORWARDING)
-     ========================================= */
   function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
-  
   async function sendChatMessage() {
     const input = document.getElementById('chat-input');
     const msg = input.value.trim();
@@ -1096,7 +975,7 @@
     
     aiChatHistory.push({ role: 'user', content: msg });
     localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
-
+    
     const typingId = "typing-" + Date.now();
     chatBox.innerHTML += `<div class="chat-bubble bot-bubble" id="${typingId}">Thinking...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -1137,7 +1016,6 @@
       document.getElementById(typingId).innerHTML = botReply;
       aiChatHistory.push({ role: 'bot', content: botReply });
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
-
     } catch (error) {
       const errorMsg = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: ${error.message}</span>`;
       document.getElementById(typingId).innerHTML = errorMsg;
@@ -1148,6 +1026,499 @@
     }
     chatBox.scrollTop = chatBox.scrollHeight;
   }
+
+  // 5. THEME & ACCESSIBILITY LOGIC
+  function changeTheme(theme) {
+    document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
+    if (theme === 'dark') document.body.classList.add('dark-mode');
+    if (theme === 'eye-comfort') document.body.classList.add('theme-eye-comfort');
+    if (theme === 'ultra') document.body.classList.add('theme-ultra');
+    localStorage.setItem('cashmizo_theme', theme);
+    document.querySelectorAll('.theme-tile').forEach(t => t.classList.remove('active'));
+    const activeTile = document.getElementById('tile-' + theme);
+    if(activeTile) activeTile.classList.add('active');
+  }
+  function setCustomPrimary(colorHex, lightHex) {
+     document.documentElement.style.setProperty('--primary', colorHex);
+     if(lightHex) document.documentElement.style.setProperty('--primary-light', lightHex);
+     localStorage.setItem('cashmizo_custom_primary', colorHex);
+     if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
+     showToast("Color Saved!");
+  }
+  function toggleNeonMode() {
+     document.body.classList.toggle('neon-active');
+     const isActive = document.body.classList.contains('neon-active');
+     localStorage.setItem('cashmizo_neon', isActive);
+     document.getElementById('tile-neon').classList.toggle('active', isActive);
+     showToast(isActive ? "Neon Rainbow Activated!" : "Neon Mode Disabled");
+  }
+  function toggleHighContrast() {
+     document.body.classList.toggle('high-contrast');
+     const isActive = document.body.classList.contains('high-contrast');
+     localStorage.setItem('cashmizo_contrast', isActive);
+     document.getElementById('tile-contrast').classList.toggle('active', isActive);
+  }
+  function toggleGrayscale() {
+     document.body.classList.toggle('grayscale-mode');
+     const isActive = document.body.classList.contains('grayscale-mode');
+     localStorage.setItem('cashmizo_grayscale', isActive);
+     document.getElementById('tile-grayscale').classList.toggle('active', isActive);
+  }
+  function toggleLargeText() {
+     document.body.classList.toggle('large-text-mode');
+     const isActive = document.body.classList.contains('large-text-mode');
+     localStorage.setItem('cashmizo_largetext', isActive);
+     document.getElementById('tile-large-text').classList.toggle('active', isActive);
+  }
+  function resetAllSettings() {
+     changeTheme('default');
+     document.documentElement.style.removeProperty('--primary');
+     document.documentElement.style.removeProperty('--primary-light');
+     localStorage.removeItem('cashmizo_custom_primary');
+     localStorage.removeItem('cashmizo_custom_primary_light');
+     if(document.body.classList.contains('neon-active')) toggleNeonMode();
+     if(document.body.classList.contains('high-contrast')) toggleHighContrast();
+     if(document.body.classList.contains('grayscale-mode')) toggleGrayscale();
+     if(document.body.classList.contains('large-text-mode')) toggleLargeText();
+     currentFontSize = 16;
+     document.body.style.fontSize = currentFontSize + 'px';
+     showToast("All Settings Reset Successfully!");
+  }
+  function changeFontSize(step) {
+    currentFontSize += (step * 2);
+    if(currentFontSize < 12) currentFontSize = 12;
+    if(currentFontSize > 22) currentFontSize = 22;
+    document.body.style.fontSize = currentFontSize + 'px';
+  }
+
+  // 6. UI & NAVIGATION
+  function openPage(pageId) { 
+    document.getElementById(pageId).classList.add('active'); 
+    history.pushState({fsPage: pageId}, null, "#" + pageId);
+  }
+  function closePage(pageId) { 
+    document.getElementById(pageId).classList.remove('active'); 
+    if(history.state && history.state.fsPage === pageId) {
+        history.back();
+    }
+  }
+  window.addEventListener('popstate', function(event) {
+    document.querySelectorAll('.fs-page').forEach(page => page.classList.remove('active'));
+    if (event.state && event.state.fsPage) {
+        document.getElementById(event.state.fsPage).classList.add('active');
+    }
+  });
+  function switchTab(tabId, element) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+    element.classList.add('active');
+  }
+  function toggleInbox() {
+    const box = document.getElementById('inbox-dropdown');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+  function toggleContactOptions() {
+     const box = document.getElementById('contact-options-box');
+     box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+  }
+  function showToast(message, isError = false) {
+    const toast = document.getElementById('toast'); 
+    toast.innerHTML = isError ? `<i class="fa-solid fa-circle-exclamation"></i> ${message}` : `<i class="fa-solid fa-circle-check"></i> ${message}`;
+    if(isError) toast.classList.add('error'); else toast.classList.remove('error');
+    toast.style.top = '40px'; 
+    setTimeout(() => { toast.style.top = '-100px'; }, 3000);
+  }
+
+  // 7. CUSTOM DROPDOWN
+  function toggleCustomDropdown() {
+     document.getElementById('custom-dropdown-list').classList.toggle('show');
+  }
+  function selectIssue(label, val) {
+     document.getElementById('selected-issue-text').innerText = label;
+     document.getElementById('ticket-subject').value = val;
+     document.getElementById('custom-dropdown-list').classList.remove('show');
+  }
+  window.addEventListener('click', function(e) {
+     if (!e.target.closest('.custom-dropdown-container')) {
+        const dd = document.getElementById('custom-dropdown-list');
+        if(dd) dd.classList.remove('show');
+     }
+  });
+
+  // 8. APP LOGIC & SUPABASE ACTIONS
+  function getReferrerFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refId = urlParams.get('ref');
+      if (refId) {
+          localStorage.setItem('cashmizo_referrer', refId); 
+      }
+  }
+  getReferrerFromUrl();
+
+  async function showMainApp(session) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'flex';
+    if (session && session.user) {
+      currentUserId = session.user.id;
+      let fullName = session.user.user_metadata.full_name || 'User';
+      let email = session.user.email || '';
+      
+      document.getElementById('more-name').innerText = fullName;
+      document.getElementById('more-email').innerText = email;
+      document.getElementById('ticket-email').value = email;
+      document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
+      
+      const baseUrl = window.location.origin + window.location.pathname;
+      document.getElementById('refer-link-input').value = `${baseUrl}?ref=${currentUserId}`;
+      const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
+      
+      if (data) {
+        userCoins = data.coins || 0; 
+        lastDailyCheck = data.last_daily_check || null; 
+        lastSpinDate = data.last_spin_date || null;
+        userPayInfo = data.upi_id || ''; 
+        hasCompletedTaskToday = (data.total_tasks_completed && data.total_tasks_completed > 0) ? true : false;
+        
+        if (hasCompletedTaskToday) {
+            document.getElementById('btn-daily').classList.remove('locked');
+            document.getElementById('btn-spin').classList.remove('locked');
+        }
+      } else {
+        let storedReferrer = localStorage.getItem('cashmizo_referrer');
+        await supabaseClient.from('user_profiles').insert([{ 
+            id: currentUserId, name: fullName, coins: 0, referred_by: storedReferrer 
+        }]); 
+        userCoins = 0;
+        localStorage.removeItem('cashmizo_referrer');
+      }
+      updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
+    }
+  }
+
+  function updateBalanceUI() {
+    let formattedCoins = userCoins.toLocaleString('en-US');
+    document.getElementById('header-balance').innerText = formattedCoins;
+    document.getElementById('current-balance').innerText = formattedCoins;
+    document.getElementById('prof-balance').innerText = formattedCoins;
+    
+    let goalPercent = (userCoins / 100) * 100;
+    if(goalPercent > 100) goalPercent = 100;
+    if(goalPercent === 0) goalPercent = 5; 
+    document.getElementById('goal-progress').style.width = goalPercent + '%';
+  }
+
+  function updatePaymentUI() {
+    if (userPayInfo && userPayInfo !== '') {
+      document.getElementById('payment-display-section').style.display = 'block';
+      document.getElementById('payment-edit-section').style.display = 'none';
+      document.getElementById('btn-change-pay').style.display = 'block';
+      
+      let displayValue = userPayInfo;
+      if(userPayInfo.includes('::')) {
+          let parts = userPayInfo.split('::');
+          displayValue = parts[0] === 'bank' ? parts[1].replace('|', '\nIFSC: ') : parts[1];
+          document.getElementById('display-pay-type').innerText = parts[0].toUpperCase();
+      }
+      document.getElementById('prof-pay-id').innerText = displayValue;
+    } else {
+      document.getElementById('payment-display-section').style.display = 'none';
+      document.getElementById('payment-edit-section').style.display = 'block';
+      document.getElementById('btn-change-pay').style.display = 'none';
+    }
+  }
+
+  function togglePaymentEdit() {
+    document.getElementById('payment-display-section').style.display = 'none';
+    document.getElementById('payment-edit-section').style.display = 'block';
+    document.getElementById('btn-change-pay').style.display = 'none';
+  }
+
+  async function savePaymentInfo() {
+    const type = document.getElementById('pay-type-select').value;
+    let saveString = "";
+    if(type === 'upi') {
+        const val = document.getElementById('pay-input-upi').value.trim();
+        if(!val) { showToast("Enter UPI ID", true); return; }
+        saveString = `upi::${val}`;
+    } else if(type === 'paypal') {
+        const val = document.getElementById('pay-input-paypal').value.trim();
+        if(!val) { showToast("Enter PayPal Email", true); return; }
+        saveString = `paypal::${val}`;
+    } else if(type === 'bank') {
+        const acc = document.getElementById('pay-input-acc').value.trim();
+        const ifsc = document.getElementById('pay-input-ifsc').value.trim();
+        if(!acc || !ifsc) { showToast("Enter Account & IFSC", true); return; }
+        saveString = `bank::A/C ${acc} | ${ifsc}`;
+    }
+    
+    const { error } = await supabaseClient.from('user_profiles').update({ upi_id: saveString }).eq('id', currentUserId);
+    if(error) { showToast("Error: " + error.message, true); } 
+    else { userPayInfo = saveString; updatePaymentUI(); showToast("Saved Successfully"); }
+  }
+
+  function checkLockAndRun(action) {
+    if (action === 'daily') requestDailyFromServer();
+  }
+
+  async function startSpin() {
+    if(isSpinning) return;
+    isSpinning = true;
+    document.getElementById('btn-do-spin').innerText = "Spinning...";
+    document.getElementById('btn-do-spin').style.opacity = '0.5';
+    const { data, error } = await supabaseClient.rpc('claim_spin_reward');
+    if (error) { showToast("Error: " + error.message, true); resetSpinBtn(); return; }
+    if (data && !data.success) { showToast(data.message, true); resetSpinBtn(); return; }
+    let prize = data.prize;
+    let pointerDegree = 0;
+    if (prize === 5) pointerDegree = 30;       
+    else if (prize === 10) pointerDegree = 90; 
+    else if (prize === 50) pointerDegree = 150;
+    else if (prize === 0) pointerDegree = 210; 
+    else if (prize === 100) pointerDegree = 270;
+    else if (prize === 20) pointerDegree = 330; 
+    let actualDegree = (360 - pointerDegree) % 360;
+    let totalRotation = 1800 + actualDegree; 
+    let wheel = document.getElementById('wheel');
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
+    setTimeout(() => {
+       if(prize > 0) { showToast(`🎉 I vannei! ${prize} Coins i hmu e!`); } 
+       else { showToast("A pawi hle mai! 0 Coins i hmu. Naktukah try leh rawh.", true); }
+       userCoins = data.new_balance; lastSpinDate = new Date().toISOString();
+       updateBalanceUI(); checkClaimedUI();
+       setTimeout(() => {
+           closePage('spin-page'); resetSpinBtn();
+           wheel.style.transform = `rotate(0deg)`;
+       }, 2500);
+    }, 4000); 
+  }
+
+  function resetSpinBtn() {
+      isSpinning = false;
+      document.getElementById('btn-do-spin').innerText = "SPIN NOW";
+      document.getElementById('btn-do-spin').style.opacity = '1';
+  }
+
+  function checkClaimedUI() {
+    const today = new Date().toDateString();
+    if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = "Claimed \u2714"; }
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = "Spun \u2714"; }
+  }
+
+  function openSpinWheel() {
+    if (!hasCompletedTaskToday) { showToast("Task 1 tal tih zawh hmasak a ngai!", true); return; }
+    const today = new Date().toDateString();
+    if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) {
+       showToast("Vawiin ah i Spin tawh", true);
+       return;
+    }
+    openPage('spin-page');
+  }
+
+  function openTimeWall() {
+    if (!currentUserId) return;
+    window.open(`https://timewall.io/offers?uid=${currentUserId}`, '_blank');
+  }
+
+  function copyReferLink() {
+    const input = document.getElementById('refer-link-input'); input.select(); navigator.clipboard.writeText(input.value);
+    showToast("Copied to clipboard");
+  }
+
+  async function requestDailyFromServer() {
+    if (!currentUserId) return;
+    const { data, error } = await supabaseClient.rpc('claim_daily_reward');
+    if (error) { showToast(error.message, true); return; }
+    if (data && data.success) { userCoins = data.new_balance; lastDailyCheck = new Date().toISOString(); updateBalanceUI(); checkClaimedUI(); showToast(data.message); } 
+    else { showToast(data.message, true); }
+  }
+
+  async function openReferPage() {
+      openPage('refer-page');
+      if (!currentUserId) return;
+      const listDiv = document.getElementById('my-referrals-list');
+      listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center;">Loading...</p>';
+      
+      const { data, error } = await supabaseClient.rpc('get_my_referrals');
+      if (error) { listDiv.innerHTML = `<p style="color: #ef4444; font-size: 13px;">Error: ${error.message}</p>`; return; }
+      if (data && data.length > 0) {
+          let htmlString = '';
+          data.forEach(ref => {
+              let statusHtml = ref.task_done 
+                  ? `<span class="ref-status done">Task ti tawh <i class="fa-solid fa-check"></i></span>` 
+                  : `<span class="ref-status pending">Task a la ti lo <i class="fa-solid fa-xmark"></i></span>`;
+              htmlString += `<div class="ref-list-item"><span class="ref-name"><i class="fa-solid fa-user"></i> ${ref.name || 'User'}</span>${statusHtml}</div>`;
+          });
+          listDiv.innerHTML = htmlString;
+      } else {
+          listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px;">Ṭhian sawm i la nei lo.</p>';
+      }
+  }
+
+  async function openLeaderboard() {
+    openPage('lb-page');
+    document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
+    const { data } = await supabaseClient.from('user_profiles').select('name, coins').order('coins', { ascending: false }).limit(10);
+    if (data) {
+      let htmlString = '';
+      data.forEach((user, i) => {
+        let medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `<span style="color:var(--text-muted); font-size:12px;">${i+1}</span>`;
+        htmlString += `<div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--border-color);"><span style="font-weight:700; color:var(--text-main);">${medal} ${user.name}</span><span style="font-weight:800; color:var(--secondary);">${user.coins.toLocaleString()} C</span></div>`;
+      });
+      document.getElementById('leaderboard-list').innerHTML = htmlString;
+    }
+  }
+
+  async function submitWithdraw() {
+    if (!userPayInfo || userCoins < 5000) return;
+    userCoins -= 5000;
+    const { error } = await supabaseClient.from('withdraw_requests').insert([{ user_id: currentUserId, upi_id: userPayInfo, amount: 5000 }]);
+    if (error) { showToast(error.message, true); return; }
+    await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
+    updateBalanceUI(); closePage('profile-page'); showToast("Withdrawal Requested");
+  }
+
+  async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
+
+  function redeemPromo() {
+    const val = document.getElementById('promo-input').value;
+    if(val.length < 4) showToast("Invalid Promo Code", true);
+    else showToast("Code Expired or Invalid", true);
+    document.getElementById('promo-input').value = '';
+  }
+
+  function submitTicket() {
+    const sub = document.getElementById('ticket-subject').value;
+    const desc = document.getElementById('ticket-desc').value;
+    if(!sub || desc.length < 10) { showToast("Please fill all fields properly.", true); return; }
+    showToast("Ticket submitted! We will email you.");
+    setTimeout(() => closePage('contact-page'), 1500);
+  }
+
+  function selectPayType(type) {
+    document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
+    document.getElementById(`btn-pay-${type}`).classList.add('active');
+    document.getElementById('pay-type-select').value = type;
+    document.getElementById('input-upi-wrap').style.display = 'none';
+    document.getElementById('input-bank-wrap').style.display = 'none';
+    document.getElementById('input-paypal-wrap').style.display = 'none';
+    if(type === 'upi') document.getElementById('input-upi-wrap').style.display = 'block';
+    if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
+    if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
+  }
+
+  // Language & Translation Engine
+  function renderLanguageList(filterText = "") {
+    const container = document.getElementById("lang-list");
+    container.innerHTML = ""; 
+    const lowerFilter = filterText.toLowerCase();
+    languageData.forEach(lang => {
+      if (lang.name.toLowerCase().includes(lowerFilter)) {
+        const div = document.createElement("div");
+        div.className = "lang-item notranslate";
+        div.setAttribute("translate", "no");
+        div.innerHTML = lang.name;
+        div.onclick = () => triggerTranslate(lang.code);
+        container.appendChild(div);
+      }
+    });
+    if(container.innerHTML === "") {
+        container.innerHTML = "<div class='lang-item' style='color:#ef4444; text-align:center;'>Language not found</div>";
+    }
+  }
+
+  function filterLanguages() {
+    const text = document.getElementById("lang-search").value;
+    renderLanguageList(text);
+  }
+
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+  }
+
+  function triggerTranslate(langCode) {
+    var selectField = document.querySelector(".goog-te-combo");
+    if (selectField) {
+      selectField.value = langCode;
+      selectField.dispatchEvent(new Event("change"));
+      closePage('lang-page');
+      showToast("Language changed");
+    } else {
+      showToast("Loading languages, please wait...", true);
+    }
+  }
+
+  // 9. EVENT LISTENERS & INITIALIZATION
+  document.addEventListener("DOMContentLoaded", () => {
+     renderLanguageList();
+     changeTheme(savedTheme);
+     if(savedCustomColor) {
+        document.documentElement.style.setProperty('--primary', savedCustomColor);
+        if(savedCustomLight) document.documentElement.style.setProperty('--primary-light', savedCustomLight);
+     }
+     if(localStorage.getItem('cashmizo_neon') === 'true') toggleNeonMode();
+     if(localStorage.getItem('cashmizo_contrast') === 'true') toggleHighContrast();
+     if(localStorage.getItem('cashmizo_grayscale') === 'true') toggleGrayscale();
+     if(localStorage.getItem('cashmizo_largetext') === 'true') toggleLargeText();
+  });
+
+  window.addEventListener('load', async () => {
+    renderChatHistory();
+    const hash = window.location.hash;
+    
+    if (hash && hash.includes('access_token=')) {
+      const params = new URLSearchParams(hash.substring(1));
+      if (params.get('access_token')) {
+        const { data, error } = await supabaseClient.auth.setSession({ access_token: params.get('access_token'), refresh_token: params.get('refresh_token') });
+        if (!error && data.session) { 
+            window.history.replaceState(null, null, window.location.pathname); 
+            showMainApp(data.session); 
+        }
+      }
+    } else { 
+        supabaseClient.auth.getSession().then(({ data: { session } }) => { 
+            if (session) {
+                showMainApp(session); 
+            }
+        }); 
+    }
+    
+    document.getElementById('agree-check').addEventListener('change', function() {
+        const btn = document.querySelector('.auth-btn.btn-google');
+        if(this.checked) { btn.style.opacity = '1'; btn.style.pointerEvents = 'all'; } 
+        else { btn.style.opacity = '0.5'; btn.style.pointerEvents = 'none'; }
+    });
+    
+    document.querySelector('.auth-btn.btn-google').style.opacity = '0.5';
+    document.querySelector('.auth-btn.btn-google').style.pointerEvents = 'none';
+    
+    const observer = new MutationObserver(() => {
+        if(userCoins >= 5000) {
+            document.getElementById('withdraw-error').style.display = 'none';
+            document.getElementById('withdraw-form').style.display = 'block';
+            if(userPayInfo) { document.getElementById('wd-no-pay').style.display = 'none'; document.getElementById('wd-has-pay').style.display = 'block'; let v=userPayInfo; if(v.includes('::')){ let p=v.split('::'); v=p[0]==='bank'?p[1].replace('|','IFSC:'):p[1]; } document.getElementById('wd-display-pay').innerText = v; }
+            else { document.getElementById('wd-no-pay').style.display = 'block'; document.getElementById('wd-has-pay').style.display = 'none'; }
+        } else {
+            document.getElementById('withdraw-error').style.display = 'block';
+            document.getElementById('withdraw-form').style.display = 'none';
+        }
+    });
+    observer.observe(document.getElementById('prof-balance'), { childList: true });
+  });
+
+  async function login() {
+    if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
+    document.getElementById('btn-login-text').innerHTML = '...'; 
+    
+    const redirectUrl = window.location.origin + window.location.pathname;
+    const { error } = await supabaseClient.auth.signInWithOAuth({ 
+        provider: 'google', 
+        options: { redirectTo: redirectUrl } 
+    });
+    
+    if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
+  }
+
 </script>
 </body>
 </html>
