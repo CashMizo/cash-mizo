@@ -207,12 +207,18 @@
     .btn-reset { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 10px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; width: 100%; justify-content: center; margin-top: 16px;}
     .btn-reset:hover { background: #fca5a5; }
 
-    /* FOOTER STYLING (CLEAN EXPLORE / LEGAL) */
-    .clean-footer { margin-top: 40px; padding-top: 32px; background: #0b1120; margin-left: -24px; margin-right: -24px; margin-bottom: -24px; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; color: #f8fafc; }
-    .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: #ffffff; margin-top: 32px;}
-    .clean-footer h3:first-child { margin-top: 0; }
-    .clean-footer a { display: block; color: #94a3b8; font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .clean-footer a:hover { color: #ffffff; }
+    /* PAGE FOOTER (PHEK HNUAI LAM) */
+    .page-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-color); text-align: left; padding-bottom: 40px;}
+    .page-footer .brand-title { font-size: 20px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .page-footer .brand-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; }
+    .page-footer .footer-heading { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; }
+    .page-footer .footer-link { display: block; color: var(--text-muted); font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .page-footer .footer-link:hover { color: var(--primary); }
+    
+    /* CONTACT SUPPORT WIDGET */
+    .contact-options-box { display: none; flex-direction: column; gap: 16px; margin-top: 12px; margin-bottom: 16px; padding: 16px; background: var(--bg-main); border-radius: 12px; border: 1px solid var(--border-color); }
+    .contact-item { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-weight: 700; font-size: 14px; }
+    .contact-item i { font-size: 24px; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -721,7 +727,7 @@
     </div>
   </div>
   
-  <!-- PREMIUM: HOW IT WORKS / FAQ (EXTENDED CONTENT & CLEAN FOOTER) -->
+  <!-- PREMIUM: HOW IT WORKS / FAQ -->
   <div id="info-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -768,30 +774,18 @@
       </div>
 
       <!-- CLEAN FOOTER -->
-      <div class="clean-footer notranslate" translate="no">
-         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
-            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
-         </div>
-         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      <div class="page-footer notranslate" translate="no">
+         <div class="brand-title"><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</div>
+         <p class="brand-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
-         <h3>Explore</h3>
-         <a onclick="openPage('info-page')">How it works</a>
-         <a href="home.html">Home</a>
-         
-         <h3 style="margin-top: 32px;">Legal & Support</h3>
-         <a onclick="window.open('terms.html', '_blank')">Terms of Service</a>
-         <a onclick="openPage('terms-page')">Privacy Policy</a>
-         <a onclick="openPage('contact-page')">Contact Support</a>
-         
-         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
-           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
-         </div>
+         <h4 class="footer-heading">Explore</h4>
+         <a onclick="openPage('info-page')" class="footer-link">How it works</a>
+         <a href="home.html" class="footer-link">Home</a>
       </div>
     </div>
   </div>
   
-  <!-- PREMIUM: TERMS & PRIVACY (CLEAN FOOTER SYSTEM) -->
+  <!-- PREMIUM: TERMS & PRIVACY -->
   <div id="terms-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -819,24 +813,26 @@
       </div>
 
       <!-- CLEAN FOOTER -->
-      <div class="clean-footer notranslate" translate="no">
-         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
-            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
-         </div>
-         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      <div class="page-footer notranslate" translate="no">
+         <div class="brand-title"><i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> CASH-MIZO</div>
+         <p class="brand-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
-         <h3>Explore</h3>
-         <a onclick="openPage('info-page')">How it works</a>
-         <a href="home.html">Home</a>
+         <h4 class="footer-heading">Legal & Support</h4>
+         <a href="terms.html" target="_blank" class="footer-link">Terms of Service</a>
+         <a onclick="openPage('terms-page')" class="footer-link">Privacy Policy</a>
+         <a onclick="toggleContactOptions()" class="footer-link">Contact Support</a>
          
-         <h3 style="margin-top: 32px;">Legal & Support</h3>
-         <a onclick="window.open('terms.html', '_blank')">Terms of Service</a>
-         <a onclick="openPage('terms-page')">Privacy Policy</a>
-         <a onclick="openPage('contact-page')">Contact Support</a>
-         
-         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
-           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         <!-- EXPANDING CONTACT OPTIONS -->
+         <div id="contact-options-box" class="contact-options-box">
+            <a href="mailto:cashmizoofficial@gmail.com" class="contact-item">
+               <i class="fa-solid fa-envelope" style="color:#ef4444;"></i> Email Us
+            </a>
+            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="contact-item">
+               <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp
+            </a>
+            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="contact-item">
+               <i class="fa-brands fa-telegram" style="color:#0088cc;"></i> Telegram
+            </a>
          </div>
       </div>
     </div>
@@ -884,6 +880,11 @@
     }
   });
 
+  function toggleContactOptions() {
+     const box = document.getElementById('contact-options-box');
+     box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+  }
+
   // ADVANCED VISUAL & ACCESSIBILITY SYSTEM (SAVE THEI)
   function changeTheme(theme) {
     document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
@@ -903,6 +904,15 @@
      localStorage.setItem('cashmizo_custom_primary', colorHex);
      if(lightHex) localStorage.setItem('cashmizo_custom_primary_light', lightHex);
      showToast("Color Saved!");
+  }
+
+  // RESET COLOR TO ORIGINAL
+  function resetCustomColor() {
+     document.documentElement.style.removeProperty('--primary');
+     document.documentElement.style.removeProperty('--primary-light');
+     localStorage.removeItem('cashmizo_custom_primary');
+     localStorage.removeItem('cashmizo_custom_primary_light');
+     showToast("Reset to Default Color");
   }
 
   function toggleNeonMode() {
@@ -1102,6 +1112,25 @@
       showToast("Loading languages, please wait...", true);
     }
   }
+  
+  const translations = {
+    mizo: {
+      success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
+      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Lakchhuahna",
+      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Bonus hmu turin vawiin atan thawk rawh", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna",
+      premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh", m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
+      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "Hman Dan Tur / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out (Chhuak)",
+      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
+    },
+    en: {
+      success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms and Privacy Policy.",
+      nav_home: "Home", nav_earn: "Earn", nav_more: "Profile", your_balance: "Total Balance", withdraw: "Withdraw Funds",
+      daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends",
+      premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys", m_general: "Account", profile: "My Account & Payment", language: "App Language",
+      help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
+      customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
+    }
+  };
   
   let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
   let userCoins = 0; let currentUserId = null; let lastDailyCheck = null; let lastSpinDate = null;
@@ -1392,7 +1421,6 @@
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
   
   window.addEventListener('load', async () => {
-    
     renderChatHistory();
 
     const hash = window.location.hash;
