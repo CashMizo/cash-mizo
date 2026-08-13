@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google" content="notranslate">
   <title>CASH-MIZO | Original Rewards</title>
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Updated FontAwesome version for X (Twitter) Logo support -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <script>
     function clearGoogleTranslateCookies() {
@@ -209,7 +211,8 @@
 
     /* CUSTOM DROPDOWN CONTAINER */
     .custom-dropdown-container { position: relative; margin-bottom: 16px; }
-    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; }
+    #selected-issue-text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; }
     .custom-dropdown-menu { position: absolute; top: 105%; left: 0; width: 100%; max-height: 220px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 100; display: none; }
     .custom-dropdown-menu.show { display: block; }
     .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
@@ -238,6 +241,15 @@
     .share-ig { color: #E1306C; }
     .share-x { color: #000000; }
     body.dark-mode .share-x { color: #ffffff; }
+
+    /* PREMIUM CONTACT CARDS */
+    .contact-premium-card { display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm); transition: transform 0.2s;}
+    .contact-premium-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary);}
+    .cp-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; justify-content: center; align-items: center; font-size: 22px; flex-shrink: 0;}
+    .cp-text { flex: 1; text-align: left; }
+    .cp-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .cp-text p { font-size: 13px; color: var(--text-muted); }
+    .cp-arrow { color: var(--text-muted); font-size: 14px; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -675,13 +687,42 @@
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
-      <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Ticket</h4>
+      
+      <!-- NEW PREMIUM CONTACT OPTIONS CARDS -->
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+        <a href="mailto:cashmizoofficial@gmail.com" class="contact-premium-card">
+            <div class="cp-icon" style="background: #fee2e2; color: #ef4444;"><i class="fa-solid fa-envelope"></i></div>
+            <div class="cp-text">
+                <h4>Email Support</h4>
+                <p>Harsatna thlen nan</p>
+            </div>
+            <i class="fa-solid fa-chevron-right cp-arrow"></i>
+        </a>
+        <a href="javascript:void(0)" onclick="showToast('WhatsApp support is coming soon!')" class="contact-premium-card">
+            <div class="cp-icon" style="background: #dcfce7; color: #16a34a;"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="cp-text">
+                <h4>WhatsApp</h4>
+                <p>Coming soon</p>
+            </div>
+            <i class="fa-solid fa-chevron-right cp-arrow"></i>
+        </a>
+        <a href="javascript:void(0)" onclick="showToast('Telegram support is coming soon!')" class="contact-premium-card">
+            <div class="cp-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fa-brands fa-telegram"></i></div>
+            <div class="cp-text">
+                <h4>Telegram</h4>
+                <p>Coming soon</p>
+            </div>
+            <i class="fa-solid fa-chevron-right cp-arrow"></i>
+        </a>
+      </div>
+
+      <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Or Submit a Ticket</h4>
       <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
       
       <!-- CUSTOM SCROLLABLE DROPDOWN -->
       <div class="custom-dropdown-container">
          <div class="custom-dropdown-trigger" onclick="toggleCustomDropdown()">
-            <span id="selected-issue-text" style="font-size: 14px;">Issue/Harsatna thlang rawh...</span>
+            <span id="selected-issue-text">Issue/Harsatna thlang rawh...</span>
             <i class="fa-solid fa-chevron-down"></i>
          </div>
          <div class="custom-dropdown-menu" id="custom-dropdown-list">
@@ -837,8 +878,8 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Explore</h3>
-         <a href="home.html">How it works</a>
-         <a href="javascript:void(0)">Home</a>
+         <a onclick="openPage('info-page')">How it works</a>
+         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
@@ -883,37 +924,9 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Legal & Support</h3>
-         <a href="terms.html">Terms of Service</a>
-         <a href="javascript:void(0)">Privacy Policy</a>
-         <a onclick="toggleContactOptions()">Contact Support</a>
-         
-         <!-- NEW PREMIUM CONTACT OPTIONS BOX -->
-         <div id="contact-options-box" style="display:none; flex-direction: column; gap: 12px; margin-top: 16px; margin-bottom: 24px;">
-            <a href="mailto:cashmizoofficial@gmail.com" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: #fee2e2; color: #ef4444; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-solid fa-envelope"></i></div>
-                <div style="flex: 1;">
-                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Email Support</h4>
-                    <p style="font-size: 12px; color: var(--text-muted);">cashmizoofficial@gmail.com</p>
-                </div>
-                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
-            </a>
-            <a href="javascript:void(0)" onclick="showToast('WhatsApp support is coming soon!')" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: #dcfce7; color: #16a34a; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></div>
-                <div style="flex: 1;">
-                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">WhatsApp</h4>
-                    <p style="font-size: 12px; color: var(--text-muted);">Coming soon</p>
-                </div>
-                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
-            </a>
-            <a href="javascript:void(0)" onclick="showToast('Telegram support is coming soon!')" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: #e0f2fe; color: #0284c7; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-brands fa-telegram"></i></div>
-                <div style="flex: 1;">
-                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Telegram</h4>
-                    <p style="font-size: 12px; color: var(--text-muted);">Coming soon</p>
-                </div>
-                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
-            </a>
-         </div>
+         <a onclick="openPage('terms-page')">Terms of Service</a>
+         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="openPage('contact-page')">Contact Support</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
