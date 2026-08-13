@@ -77,7 +77,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
-    body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; }
+    body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; top: 0px !important; position: static !important; }
     
     .app-container { width: 100%; max-width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
@@ -217,19 +217,27 @@
     .dropdown-opt:last-child { border-bottom: none; }
 
     /* PAGE FOOTER (CLEAN EXPLORE / LEGAL) */
-    .clean-footer { margin-top: 40px; padding-top: 32px; background: #0b1120; margin-left: -24px; margin-right: -24px; margin-bottom: -24px; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; color: #f8fafc; }
-    .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: #ffffff; margin-top: 32px;}
+    .clean-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-color); margin-bottom: 24px; color: var(--text-main); }
+    .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: var(--text-main); margin-top: 32px;}
     .clean-footer h3:first-child { margin-top: 0; }
-    .clean-footer a { display: block; color: #94a3b8; font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .clean-footer a:hover { color: #ffffff; }
+    .clean-footer a { display: block; color: var(--text-muted); font-size: 15px; margin-bottom: 16px; cursor: pointer; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .clean-footer a:hover { color: var(--primary); }
     
     /* SOCIAL ICONS ROW */
-    .social-icons-row { display: flex; gap: 16px; margin-top: 12px; }
-    .social-icon-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; transition: transform 0.2s; text-decoration: none;}
-    .social-icon-btn:hover { transform: translateY(-3px); }
-    .ic-email { background: #fee2e2; color: #ef4444; }
-    .ic-wa { background: #dcfce7; color: #16a34a; }
-    .ic-tg { background: #e0f2fe; color: #0284c7; }
+    .social-share-btn {
+        display: flex; align-items: center; justify-content: center;
+        width: 44px; height: 44px; border-radius: 12px;
+        background: var(--bg-main); color: var(--text-main);
+        font-size: 20px; border: 1px solid var(--border-color);
+        transition: 0.2s; cursor: pointer; box-shadow: var(--shadow-sm);
+    }
+    .social-share-btn:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+    .share-wa { color: #25D366; }
+    .share-tg { color: #0088cc; }
+    .share-fb { color: #1877F2; }
+    .share-ig { color: #E1306C; }
+    .share-x { color: #000000; }
+    body.dark-mode .share-x { color: #ffffff; }
 
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
@@ -244,20 +252,21 @@
     
     /* GOOGLE TRANSLATE BLOCKER (AGGRESSIVE) */
     .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, 
-    #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate > iframe, 
+    #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover, .skiptranslate, 
     .goog-logo-link, .VIpgJd-Zvi9od-aZ2wEe-wOHMyf, .VIpgJd-Zvi9od-OiiCO, 
     .goog-te-spinner-pos, .goog-te-spinner-animation, .goog-te-spinner-bg, 
     .goog-te-spinner, .VIpgJd-Zvi9od-ORHb-OEVmcd,
-    .VIpgJd-yAWNEb-VIpgJd-fmcmS-snikep, body > .skiptranslate,
-    .goog-te-balloon-frame { 
+    .VIpgJd-yAWNEb-VIpgJd-fmcmS-snikep,
+    .goog-te-balloon-frame, #google_translate_element { 
         display: none !important; 
+        opacity: 0 !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: absolute !important;
+        pointer-events: none !important;
+        z-index: -99999 !important;
     }
-    iframe.skiptranslate { display: none !important; pointer-events: none !important; }
-    #google_translate_element { display: none !important; }
-    body { top: 0px !important; position: static !important; }
-    .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
-    .goog-te-gadget .goog-te-combo { margin: 0; }
-    .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
     
     .lang-search-box { display: flex; align-items: center; gap: 12px; background: var(--bg-main); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 16px; }
     .lang-search-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: var(--text-main); }
@@ -555,20 +564,26 @@
         <div style="font-size: 48px; margin-bottom: 16px; color: var(--secondary);"><i class="fa-solid fa-users"></i></div>
         <p style="font-size: 18px; line-height: 1.5;"><span data-i18n="refer_desc">Invite friends and earn </span> <strong style="color: var(--secondary);">10%</strong> <span data-i18n="refer_desc_2"> of what they earn!</span></p>
         
-        <!-- HIDDEN INPUT AND NEW BIG COPY BUTTON -->
+        <!-- NEW BEAUTIFUL COPY BOX -->
         <input type="hidden" id="refer-link-input" value="">
-        <div style="margin: 24px 0;">
-          <button style="background: var(--primary); color: white; border: none; padding: 16px 24px; border-radius: 16px; font-weight: 800; font-size: 16px; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: var(--shadow-sm);" onclick="copyReferLink()">
-            <i class="fa-solid fa-copy"></i> Copy Referral Link
-          </button>
+        <div style="background: var(--bg-main); border: 1px dashed var(--primary); border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin: 24px 0;">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; overflow: hidden; margin-right: 12px;">
+                <span style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your Invite Link</span>
+                <span style="font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;" id="display-ref-link">https://cashmizo...</span>
+            </div>
+            <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm); flex-shrink: 0;" onclick="copyReferLink()">
+                <i class="fa-solid fa-copy"></i> Copy
+            </button>
         </div>
         
-        <!-- SOCIAL MEDIA SHARE BUTTONS -->
-        <p style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-muted);">Share via:</p>
-        <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 8px;">
-          <button onclick="shareSocial('wa')" style="width: 48px; height: 48px; border-radius: 50%; background: #25D366; color: white; border: none; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);"><i class="fa-brands fa-whatsapp"></i></button>
-          <button onclick="shareSocial('tg')" style="width: 48px; height: 48px; border-radius: 50%; background: #0088cc; color: white; border: none; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);"><i class="fa-brands fa-telegram"></i></button>
-          <button onclick="shareSocial('fb')" style="width: 48px; height: 48px; border-radius: 50%; background: #1877F2; color: white; border: none; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);"><i class="fa-brands fa-facebook-f"></i></button>
+        <!-- NEW PREMIUM SOCIAL MEDIA SHARE BUTTONS -->
+        <p style="font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text-muted);">Share via:</p>
+        <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 8px; flex-wrap: wrap;">
+            <button onclick="shareSocial('wa')" class="social-share-btn share-wa"><i class="fa-brands fa-whatsapp"></i></button>
+            <button onclick="shareSocial('tg')" class="social-share-btn share-tg"><i class="fa-brands fa-telegram"></i></button>
+            <button onclick="shareSocial('ig')" class="social-share-btn share-ig"><i class="fa-brands fa-instagram"></i></button>
+            <button onclick="shareSocial('fb')" class="social-share-btn share-fb"><i class="fa-brands fa-facebook-f"></i></button>
+            <button onclick="shareSocial('tw')" class="social-share-btn share-x"><i class="fa-brands fa-x-twitter"></i></button>
         </div>
         
       </div>
@@ -817,15 +832,15 @@
       <div class="clean-footer notranslate" translate="no">
          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
             <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
+            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
          </div>
-         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Explore</h3>
-         <a onclick="openPage('info-page')">How it works</a>
-         <a onclick="window.location.href='home.html'">Home</a>
+         <a href="home.html">How it works</a>
+         <a href="javascript:void(0)">Home</a>
          
-         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
          </div>
       </div>
@@ -863,23 +878,44 @@
       <div class="clean-footer notranslate" translate="no">
          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
             <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0;">CASH-MIZO</h2>
+            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
          </div>
-         <p style="color:#94a3b8; font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Legal & Support</h3>
-         <a onclick="window.location.href='terms.html'">Terms of Service</a>
-         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a href="terms.html">Terms of Service</a>
+         <a href="javascript:void(0)">Privacy Policy</a>
          <a onclick="toggleContactOptions()">Contact Support</a>
          
-         <!-- SOCIAL CONTACT LOGOS -->
-         <div id="contact-options-box" class="social-icons-row" style="display:none;">
-            <a href="mailto:cashmizoofficial@gmail.com" class="social-icon-btn ic-email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="social-icon-btn ic-wa"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" onclick="showToast('Bot siam mek a ni (Coming soon)')" class="social-icon-btn ic-tg"><i class="fa-brands fa-telegram"></i></a>
+         <!-- NEW PREMIUM CONTACT OPTIONS BOX -->
+         <div id="contact-options-box" style="display:none; flex-direction: column; gap: 12px; margin-top: 16px; margin-bottom: 24px;">
+            <a href="mailto:cashmizoofficial@gmail.com" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: #fee2e2; color: #ef4444; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-solid fa-envelope"></i></div>
+                <div style="flex: 1;">
+                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Email Support</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">cashmizoofficial@gmail.com</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
+            </a>
+            <a href="javascript:void(0)" onclick="showToast('WhatsApp support is coming soon!')" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: #dcfce7; color: #16a34a; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></div>
+                <div style="flex: 1;">
+                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">WhatsApp</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Coming soon</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
+            </a>
+            <a href="javascript:void(0)" onclick="showToast('Telegram support is coming soon!')" style="display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm);">
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: #e0f2fe; color: #0284c7; display: flex; justify-content: center; align-items: center; font-size: 20px;"><i class="fa-brands fa-telegram"></i></div>
+                <div style="flex: 1;">
+                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Telegram</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Coming soon</p>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 14px;"></i>
+            </a>
          </div>
          
-         <div style="border-top: 1px solid #1e293b; margin-top: 32px; padding-top: 24px;">
+         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
          </div>
       </div>
@@ -1193,7 +1229,11 @@
       document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
       
       const baseUrl = window.location.origin + window.location.pathname;
-      document.getElementById('refer-link-input').value = `${baseUrl}?ref=${currentUserId}`;
+      const refUrl = `${baseUrl}?ref=${currentUserId}`;
+      document.getElementById('refer-link-input').value = refUrl;
+      let displayRef = document.getElementById('display-ref-link');
+      if(displayRef) { displayRef.innerText = refUrl.replace(/^https?:\/\//, ''); }
+
       const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
       
       if (data) {
@@ -1345,7 +1385,6 @@
 
   function copyReferLink() {
     const input = document.getElementById('refer-link-input');
-    // Hide the input temporarily by making it type='text' to select, then back to 'hidden'
     input.type = 'text';
     input.select(); 
     navigator.clipboard.writeText(input.value);
@@ -1362,6 +1401,12 @@
     if(platform === 'wa') url = `https://wa.me/?text=${encodedText}`;
     if(platform === 'tg') url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
     if(platform === 'fb') url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+    if(platform === 'tw') url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+    if(platform === 'ig') {
+       showToast("Instagram ah hian direct a link share theih a nilo a, i copy link hi bio/story ah dah mai rawh aw.");
+       copyReferLink();
+       return;
+    }
     
     window.open(url, '_blank');
   }
@@ -1492,7 +1537,12 @@
   // 9. EVENT LISTENERS & INITIALIZATION
   document.addEventListener("DOMContentLoaded", () => {
      renderLanguageList();
+     
+     const savedTheme = localStorage.getItem('cashmizo_theme') || 'default';
      changeTheme(savedTheme);
+     
+     const savedCustomColor = localStorage.getItem('cashmizo_custom_primary');
+     const savedCustomLight = localStorage.getItem('cashmizo_custom_primary_light');
      if(savedCustomColor) {
         document.documentElement.style.setProperty('--primary', savedCustomColor);
         if(savedCustomLight) document.documentElement.style.setProperty('--primary-light', savedCustomLight);
