@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Legal & Privacy - CASH-MIZO</title>
+  <title>Terms of Service - CASH-MIZO</title>
   
   <!-- Font leh Icons -->
   <style>
@@ -14,6 +14,7 @@
   <style>
     :root {
       --primary: #4f46e5;
+      --primary-dark: #3730a3;
       --secondary: #10b981;
       --dark: #0f172a;
       --light: #f8fafc;
@@ -66,12 +67,12 @@
     }
     .btn-back:hover { background: var(--light); border-color: var(--gray); }
 
-    /* HERO BANNER - FIXED HEIGHT & SPACING */
+    /* HERO BANNER */
     .hero-banner {
       position: relative;
       width: 100%;
-      height: 280px; /* Ti sang hret */
-      background: url('https://images.pexels.com/photos/2884150/pexels-photo-2884150.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      height: 280px; 
+      background: url('https://images.pexels.com/photos/5668774/pexels-photo-5668774.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -80,17 +81,17 @@
     .hero-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(79,70,229,0.8) 100%);
+      background: linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(79,70,229,0.85) 100%);
     }
     .hero-content {
       position: relative;
       z-index: 10;
       color: white;
       padding: 0 20px;
-      margin-bottom: 30px; /* Thuziak chhuih chho hret */
+      margin-bottom: 30px; 
     }
-    .hero-content h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px;}
-    .hero-content p { font-size: 15px; font-weight: 500; opacity: 0.9; }
+    .hero-content h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px;}
+    .hero-content p { font-size: 16px; font-weight: 500; opacity: 0.9; }
 
     /* MAIN CONTENT AREA */
     .main-container { 
@@ -123,15 +124,15 @@
     .section-title i { font-size: 24px; }
     .section-title h2 { font-size: 22px; font-weight: 800; color: var(--dark); }
     
-    .article-section { margin-bottom: 40px; }
+    .article-section { margin-bottom: 50px; }
     .article-section:last-child { margin-bottom: 0; }
     
     .section-img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
       border-radius: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       border: 1px solid var(--border-color);
       background-color: var(--light);
@@ -142,95 +143,104 @@
     .article-section ul { padding-left: 20px; margin-top: 8px; margin-bottom: 16px;}
     .article-section li { font-size: 15px; color: var(--gray); margin-bottom: 10px; line-height: 1.6; }
 
-    /* CONTACT SUPPORT SECTION */
-    .support-card {
-      background: linear-gradient(145deg, #ffffff, #f8fafc);
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-      margin-bottom: 40px;
-    }
-    .support-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; color: var(--dark);}
-    .support-card p { color: var(--gray); margin-bottom: 20px; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto;}
-    
-    .contact-toggle-text {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    .contact-toggle-text:hover { background: #e0e7ff; }
-    .contact-toggle-text i { transition: transform 0.3s ease; font-size: 12px; }
-
-    .contact-icons-wrapper {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      margin-top: 24px;
-      animation: slideDown 0.4s ease forwards;
-    }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-    .clean-icon { font-size: 36px; text-decoration: none; transition: transform 0.2s ease; display: flex; }
-    .clean-icon:hover { transform: scale(1.15) translateY(-3px); }
-    .icon-gmail { color: #ea4335; }
-    .icon-whatsapp { color: #25D366; }
-    .icon-telegram { color: #0088cc; }
-
-    /* CLEAN FOOTER - BLUE LINKS */
+    /* REDESIGNED FOOTER */
     footer {
       background: white;
       border-top: 1px solid var(--border-color);
-      padding: 30px 5% 20px;
-      text-align: center;
+      padding: 40px 0 30px;
     }
-    .footer-links {
+    .footer-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+      padding: 0 24px;
+    }
+    .footer-brand {
       display: flex;
-      justify-content: center;
-      gap: 24px;
+      align-items: center;
+      gap: 6px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .footer-desc {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 32px;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+    .footer-heading {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--dark);
       margin-bottom: 16px;
     }
-    .footer-links a { 
-      color: var(--primary); /* A pawl (blue) rawng hmangin */
-      text-decoration: none; 
-      font-weight: 800; 
-      font-size: 15px; 
-      transition: 0.2s; 
-      padding: 6px 12px;
-      background: var(--light);
-      border-radius: 8px;
+    
+    .footer-link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
-    .footer-links a:hover { color: white; background: var(--primary); }
-    .copyright { color: #94a3b8; font-size: 13px; font-weight: 500; margin-top: 12px;}
+    .simple-link {
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      font-size: 15px;
+      color: var(--primary); 
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: 0.2s;
+      display: inline-block;
+      width: fit-content;
+    }
+    .simple-link:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    
+    /* Footer Bottom Section */
+    .footer-bottom {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-    /* CUSTOM LANGUAGE MODAL */
-    .lang-modal {
+    .copyright {
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* MODALS */
+    .full-modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: var(--bg-card); z-index: 9999; display: none; flex-direction: column;
       animation: slideUp 0.3s ease;
     }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     
-    .lang-header {
+    .modal-header {
       display: flex; align-items: center; padding: 16px 20px; 
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color); background: var(--bg-card);
+      position: sticky; top: 0; z-index: 10;
     }
-    .lang-back {
+    .modal-back {
       width: 40px; height: 40px; background: var(--light); border-radius: 50%;
       display: flex; justify-content: center; align-items: center;
       font-size: 16px; cursor: pointer; color: var(--dark); border: none;
     }
-    .lang-header h3 { flex: 1; text-align: center; font-size: 18px; font-weight: 800; margin-right: 40px; }
-    .lang-content { padding: 20px; flex: 1; overflow-y: auto; max-width: 600px; margin: 0 auto; width: 100%; }
+    .modal-header h3 { flex: 1; text-align: center; font-size: 18px; font-weight: 800; margin-right: 40px; }
+    .modal-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 700px; margin: 0 auto; width: 100%; }
+    
+    /* Language List */
     .lang-search-box {
       display: flex; align-items: center; gap: 12px; background: var(--light);
       padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 16px;
@@ -241,30 +251,76 @@
     .lang-item:hover { background: var(--light); color: var(--primary); }
     .lang-item:last-child { border-bottom: none; }
 
+    /* Contact Page Styling */
+    .contact-item-card {
+      background: var(--light);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .contact-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      background-color: white;
+    }
+    .contact-item-card h4 { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 8px;}
+    .contact-item-card p { font-size: 14px; color: var(--gray); margin-bottom: 20px;}
+    
+    /* SQUIRCLE ICON BUTTONS */
+    .clean-icon-btn { 
+      font-size: 32px; text-decoration: none; transition: transform 0.2s ease; 
+      display: inline-flex; justify-content: center; align-items: center;
+      width: 60px; height: 60px; 
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+    }
+    .clean-icon-btn:hover { transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+    
+    .icon-gmail { color: #ea4335; }
+    .icon-whatsapp { color: #25D366; }
+    .icon-telegram { color: #0088cc; }
+
     /* HIDE GOOGLE TRANSLATE DEFAULT WIDGET COMPLETELY */
     .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, 
     #goog-gt-tt, .goog-tooltip, .skiptranslate > iframe, .goog-logo-link { display: none !important; }
     #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
     body { top: 0px !important; position: static !important; }
 
+    /* DESKTOP RESPONSIVE */
+    @media (min-width: 769px) {
+      .hero-banner { height: 380px; }
+      .hero-content h1 { font-size: 42px; }
+      .hero-content p { font-size: 18px; }
+      .main-container { max-width: 1000px; margin-top: -60px; }
+      .content-card { padding: 60px 70px; margin-bottom: 40px; }
+      .section-img { height: 300px; } 
+      .article-section h4 { font-size: 22px; }
+      .article-section p, .article-section li { font-size: 16px; line-height: 1.9; }
+      .footer-container { padding: 0 16px; }
+    }
+
     /* MOBILE RESPONSIVE FIXES */
     @media (max-width: 768px) {
       .hide-mobile { display: none; }
       .btn-back { padding: 8px 12px; border-radius: 50%; }
       .btn-back i { margin: 0; }
-      
-      .hero-banner { height: 260px; } /* Mobile a overlap loh nan ti sang */
-      .hero-content h1 { font-size: 26px; }
-      
-      .main-container { padding: 0 16px; margin-top: -35px; } /* Card hi tlem thlak hret */
-      
-      .content-card, .support-card { 
+      .hero-banner { height: 260px; }
+      .hero-content h1 { font-size: 28px; }
+      .main-container { padding: 0 16px; margin-top: -35px; } 
+      .content-card { 
         border-radius: 20px; 
         padding: 24px 20px; 
         border: 1px solid var(--border-color); 
         margin-bottom: 20px; 
         box-shadow: 0 8px 25px rgba(0,0,0,0.06); 
       }
+      .section-img { height: 180px; }
     }
   </style>
 </head>
@@ -275,7 +331,7 @@
 
   <!-- HEADER -->
   <header>
-    <a href="home.html" class="logo notranslate" translate="no"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</a>
+    <a href="index.html" class="logo notranslate" translate="no"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</a>
     <div class="nav-right">
       <button class="btn-lang notranslate" translate="no" onclick="openLangModal()" title="Change Language">
         <i class="fa-solid fa-globe"></i>
@@ -290,113 +346,159 @@
   <div class="hero-banner">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Legal & Privacy Center</h1>
-      <p>Transparency, Security, and Trust for our Users</p>
+      <h1>Terms of Service</h1>
+      <p>Please read these rules carefully before using our platform.</p>
     </div>
   </div>
 
   <!-- MAIN CONTENT -->
   <div class="main-container">
     
-    <!-- ================= PRIVACY POLICY CARD ================= -->
-    <div class="content-card">
-      <div class="section-title">
-        <i class="fa-solid fa-shield-halved" style="color: var(--secondary);"></i>
-        <h2>Privacy Policy</h2>
-      </div>
-      
-      <div class="article-section">
-        <!-- Thlalak rintlak (Pexels) hman a ni tawh e -->
-        <img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Privacy" class="section-img notranslate" translate="no">
-        <h4>1. Information We Collect</h4>
-        <p>At CASH-MIZO, we prioritize your digital privacy. To provide a seamless and secure experience, we only collect essential information required to create and maintain your account. When you register, we securely process your Name and Email Address via Google OAuth.</p>
-        <p>We may also collect non-personal identification information about users whenever they interact with our app. This includes device models, operating systems, and IP addresses, which are standard metrics used to ensure the platform operates smoothly and securely across all devices.</p>
-      </div>
-
-      <div class="article-section">
-        <img src="https://images.pexels.com/photos/5071144/pexels-photo-5071144.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Usage" class="section-img notranslate" translate="no">
-        <h4>2. How We Use Your Data</h4>
-        <p>Your data is strictly used for account identification, reward tracking, and payout processing. We use your email to send important updates regarding your withdrawals or account status.</p>
-        <p>Your linked payment details (such as UPI ID, PayPal Email, or Bank Account numbers) are used exclusively by our automated system to disburse your earned rewards safely. We do not use your personal data for targeted advertising, nor do we run background tracking software.</p>
-      </div>
-
-      <div class="article-section">
-        <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Security" class="section-img notranslate" translate="no">
-        <h4>3. Data Protection & Security</h4>
-        <p>We adopt appropriate data collection, storage, and processing practices alongside industry-standard security protocols to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</p>
-        <p>Your sensitive data is fully encrypted. We guarantee that your information is <strong>never</strong> leased, sold, traded, or shared with unauthorized third-party marketing agencies or external entities.</p>
-      </div>
-    </div>
-
-    <!-- ================= TERMS OF SERVICE CARD ================= -->
     <div class="content-card">
       <div class="section-title">
         <i class="fa-solid fa-file-contract" style="color: var(--primary);"></i>
-        <h2>Terms of Service</h2>
+        <h2>Terms & Conditions</h2>
       </div>
       
+      <!-- Topic 1 -->
       <div class="article-section">
-        <img src="https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Account Integrity" class="section-img notranslate" translate="no">
-        <h4>1. Account Integrity & Usage</h4>
-        <p>By using the CASH-MIZO platform, you agree to maintain fair play and respect the community guidelines. We strictly enforce a <strong>"One Device, One Account"</strong> policy to ensure a balanced economy within the app.</p>
-        <p>Attempting to create multiple user profiles on a single smartphone to exploit the referral system, daily rewards, or surveys is strictly prohibited. Users found violating this rule will have all associated accounts terminated and earnings forfeited.</p>
+        <img src="https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Acceptance of Terms" class="section-img notranslate" translate="no">
+        <h4>1. Acceptance of Terms</h4>
+        <p>By using the CASH-MIZO app, you agree to follow these rules. If you do not agree with these rules, please do not use the app. This is an agreement between you and the makers of CASH-MIZO.</p>
       </div>
 
+      <!-- Topic 2 -->
       <div class="article-section">
-        <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Anti-Fraud" class="section-img notranslate" translate="no">
-        <h4>2. Anti-Fraud & VPN Policy</h4>
-        <p>Our platform relies on verified, location-based tasks provided by our partners. To maintain the trust of our advertisers and ensure the longevity of our platform, any fraudulent activity is met with zero tolerance.</p>
-        <p>The use of the following tools or methods will result in immediate, permanent account suspension without prior notice:</p>
-        <ul>
-          <li>Virtual Private Networks (VPNs), Proxy servers, or VPS to spoof geographical locations.</li>
-          <li>Emulators (e.g., Bluestacks, Nox) or automated clicker scripts/bots.</li>
-          <li>Modded APKs, reverse engineering, or any attempt to alter the application's client code.</li>
-        </ul>
+        <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Eligibility" class="section-img notranslate" translate="no">
+        <h4>2. Eligibility & Registration</h4>
+        <p>You must be at least 13 years old to use this app. When you sign up with your Google account, you promise that your details are true and belong to you. If you give fake details or if you are under 13, we will close your account.</p>
       </div>
-    </div>
 
-    <!-- ================= MINIMALIST CONTACT SUPPORT SECTION ================= -->
-    <div class="support-card">
-      <h3>Need Assistance?</h3>
-      <p>If you have questions about our policies, missing coins, or withdrawal delays, our team is here to help.</p>
-      
-      <div class="contact-toggle-text notranslate" translate="no" onclick="toggleContactOptions()">
-        Contact Support <i class="fa-solid fa-chevron-down" id="contact-arrow"></i>
+      <!-- Topic 3 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/2773498/pexels-photo-2773498.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Account Responsibility" class="section-img notranslate" translate="no">
+        <h4>3. User Account Responsibilities</h4>
+        <p>You must keep your account safe. You are responsible for everything that happens on your account. If someone else uses your account, please tell us immediately. We are not responsible if you lose your coins because someone else used your account.</p>
       </div>
-      
-      <div class="contact-icons-wrapper" id="contact-icons">
-        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon icon-gmail" title="Email Us">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-        <a href="#" class="clean-icon icon-whatsapp" title="WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="#" class="clean-icon icon-telegram" title="Telegram">
-          <i class="fa-brands fa-telegram"></i>
-        </a>
-      </div>
-    </div>
 
+      <!-- Topic 4 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/5082567/pexels-photo-5082567.jpeg?auto=compress&cs=tinysrgb&w=800" alt="One Device Policy" class="section-img notranslate" translate="no">
+        <h4>4. "One Device, One Account" Policy</h4>
+        <p>To keep things fair, you can only have one account on one phone. You cannot use apps to clone our app, make fake accounts, or reset your phone to get more rewards. If you do this, we will ban your account forever.</p>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Anti Fraud" class="section-img notranslate" translate="no">
+        <h4>5. Anti-Fraud & VPN Restrictions</h4>
+        <p>You are not allowed to use VPNs or Proxies to change your location. You are also not allowed to use auto-clicker apps, bots, or fake apps to earn coins. If you cheat, you will lose all your money and your account will be banned.</p>
+      </div>
+
+      <!-- Topic 6 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/259165/pexels-photo-259165.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Virtual Currency" class="section-img notranslate" translate="no">
+        <h4>6. Earning Virtual Currency (Coins)</h4>
+        <p>You earn "Coins" by doing tasks, watching videos, or answering surveys. These Coins are only for the app. They do not have real money value until you withdraw them to your bank or payment app.</p>
+      </div>
+
+      <!-- Topic 7 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Task Rules" class="section-img notranslate" translate="no">
+        <h4>7. Task & Offerwall Guidelines</h4>
+        <p>When you do surveys or tasks, you must give true answers. Do not rush or give fake answers. The advertisers will check your work. We can only give you coins if the advertisers say your work is good.</p>
+      </div>
+
+      <!-- Topic 8 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Referral Rules" class="section-img notranslate" translate="no">
+        <h4>8. Referral Program Rules</h4>
+        <p>You can invite friends to earn bonuses, but they must be real people. Do not create fake accounts to invite yourself. Do not pay people to download the app. You will only get the bonus if your friend is a real and active user.</p>
+      </div>
+
+      <!-- Topic 9 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/4386404/pexels-photo-4386404.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Withdrawal Policy" class="section-img notranslate" translate="no">
+        <h4>9. Rewards & Payout Terms</h4>
+        <p>You can ask for your money when you have enough coins. We will check your account to make sure you did not cheat. It may take up to 7 days to send your money. If you give us the wrong UPI ID or bank details, your money will be lost and we cannot help you.</p>
+      </div>
+
+      <!-- Topic 10 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/1198264/pexels-photo-1198264.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Inactivity" class="section-img notranslate" translate="no">
+        <h4>10. Account Inactivity</h4>
+        <p>If you do not open the app or do any tasks for 6 months, we will remove your coins. If you do not use the app for 12 months, we will delete your account forever. We will send you an email before we do this.</p>
+      </div>
+
+      <!-- Topic 11 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Intellectual Property" class="section-img notranslate" translate="no">
+        <h4>11. Intellectual Property Rights</h4>
+        <p>Everything in the app, like pictures, designs, and code, belongs to CASH-MIZO. You are not allowed to copy, steal, or change anything in the app without our permission.</p>
+      </div>
+
+      <!-- Topic 12 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3183131/pexels-photo-3183131.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Third Party Links" class="section-img notranslate" translate="no">
+        <h4>12. Third-Party Links & Services</h4>
+        <p>Our app has links to other websites and tasks from other companies. We do not control these websites. We are not responsible for what happens on their websites. Please read their rules before giving them your information.</p>
+      </div>
+
+      <!-- Topic 13 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Disclaimer" class="section-img notranslate" translate="no">
+        <h4>13. Disclaimer of Warranties</h4>
+        <p>We give you the app "as it is". We cannot promise that it will work perfectly all the time. Sometimes there might be problems or bugs. We also do not promise that there will always be tasks for you to do.</p>
+      </div>
+
+      <!-- Topic 14 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/5668774/pexels-photo-5668774.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Liability" class="section-img notranslate" translate="no">
+        <h4>14. Limitation of Liability</h4>
+        <p>CASH-MIZO is not responsible if you lose money, time, or data while using the app. You use the app at your own risk. We will not pay for any problems caused by the app.</p>
+      </div>
+
+      <!-- Topic 15 (THLALAK HMANLAI CHHE TAWH LO TUR) -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Updates to Terms" class="section-img notranslate" translate="no">
+        <h4>15. Modifications to the Terms</h4>
+        <p>We can change these rules at any time. If we make big changes, we will send a message inside the app. If you keep using the app after the changes, it means you agree to the new rules.</p>
+      </div>
+
+    </div>
   </div>
 
-  <!-- CLEAN FOOTER WITH BLUE BUTTON-LIKE LINKS -->
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="home.html#how-it-works">How it works</a>
-    </div>
-    <div class="copyright">
-      &copy; 2026 CASH-MIZO. All Rights Reserved.
+    <div class="footer-container">
+      
+      <div class="footer-brand"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
+      <p class="footer-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      
+      <!-- List Links -->
+      <div class="footer-heading">Legal & Support</div>
+      <div class="footer-link-list">
+        <a href="home.html" class="simple-link">How it works</a>
+        <a href="privacy.html" class="simple-link">Privacy Policy</a>
+        <button onclick="openContactModal()" class="simple-link">Contact Support</button>
+      </div>
+      
+      <!-- Home Dashboard leh Copyright hnuai bera awm tur -->
+      <div class="footer-bottom">
+        <a href="index.html" class="simple-link">Home Dashboard</a>
+        <div class="copyright">&copy; 2026 CASH-MIZO. All Rights Reserved.</div>
+      </div>
+
     </div>
   </footer>
 
-  <!-- ================= CUSTOM LANGUAGE MODAL ================= -->
-  <div id="lang-modal" class="lang-modal">
-    <div class="lang-header">
-      <button class="lang-back" onclick="closeLangModal()"><i class="fa-solid fa-arrow-left"></i></button>
+  <!-- CUSTOM LANGUAGE MODAL -->
+  <div id="lang-modal" class="full-modal">
+    <div class="modal-header">
+      <button class="modal-back" onclick="closeLangModal()"><i class="fa-solid fa-arrow-left"></i></button>
       <h3 class="notranslate" translate="no">App Language</h3>
     </div>
-    <div class="lang-content">
+    <div class="modal-content">
       <div class="lang-search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: var(--gray);"></i>
         <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
@@ -404,6 +506,47 @@
       <div class="lang-list-container notranslate" id="lang-list" translate="no">
         <!-- JS in a rawn dah lut ang -->
       </div>
+    </div>
+  </div>
+
+  <!-- CONTACT SUPPORT MODAL -->
+  <div id="contact-modal" class="full-modal">
+    <div class="modal-header">
+      <button class="modal-back" onclick="closeContactModal()"><i class="fa-solid fa-arrow-left"></i></button>
+      <h3 class="notranslate" translate="no">Contact Support</h3>
+    </div>
+    <div class="modal-content" style="background: var(--bg-card);">
+      
+      <!-- Contact 1: Gmail -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
+        <h4>Email Support</h4>
+        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
+        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <!-- Contact 2: WhatsApp -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
+        <h4>WhatsApp Support</h4>
+        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
+        <a href="#" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- Contact 3: Telegram -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
+        <h4>Telegram Support</h4>
+        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
+        <a href="#" class="clean-icon-btn icon-telegram" title="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+      </div>
+
     </div>
   </div>
 
@@ -415,20 +558,23 @@
       new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
     }
 
-    /* Contact Toggle */
-    function toggleContactOptions() {
-      const icons = document.getElementById('contact-icons');
-      const arrow = document.getElementById('contact-arrow');
-      if (icons.style.display === 'none' || icons.style.display === '') {
-        icons.style.display = 'flex';
-        arrow.style.transform = 'rotate(180deg)';
-      } else {
-        icons.style.display = 'none';
-        arrow.style.transform = 'rotate(0deg)';
-      }
+    /* Modals Logic */
+    function openLangModal() {
+      document.getElementById('lang-modal').style.display = 'flex';
+      renderLanguageList();
+    }
+    function closeLangModal() {
+      document.getElementById('lang-modal').style.display = 'none';
     }
 
-    /* ================= CUSTOM LANGUAGE LOGIC ================= */
+    function openContactModal() {
+      document.getElementById('contact-modal').style.display = 'flex';
+    }
+    function closeContactModal() {
+      document.getElementById('contact-modal').style.display = 'none';
+    }
+
+    /* Language Logic */
     const languageData = [
       { code: 'lus', name: 'Mizo (Mizoram)' },
       { code: 'en', name: 'English' },
@@ -447,14 +593,6 @@
       { code: 'es', name: 'Spanish (Español)' },
       { code: 'th', name: 'Thai (ไทย)' }
     ];
-    
-    function openLangModal() {
-      document.getElementById('lang-modal').style.display = 'flex';
-      renderLanguageList();
-    }
-    function closeLangModal() {
-      document.getElementById('lang-modal').style.display = 'none';
-    }
 
     function renderLanguageList(filterText = "") {
       const container = document.getElementById("lang-list");
