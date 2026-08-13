@@ -17,7 +17,6 @@
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + document.domain + ";";
     }
     clearGoogleTranslateCookies();
-
     function setDocHeight() {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
     }
@@ -25,7 +24,6 @@
     window.addEventListener('orientationchange', setDocHeight);
     setDocHeight();
   </script>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
@@ -63,7 +61,6 @@
     body.large-text-mode {
       font-size: 19px !important;
     }
-
     /* NEON RAINBOW ANIMATION */
     @keyframes neonGlow {
       0% { --primary: #ff0055; --primary-light: #ffe6ec; }
@@ -75,7 +72,6 @@
     body.neon-active {
       animation: neonGlow 6s infinite alternate linear;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
@@ -201,14 +197,12 @@
     .theme-tile span { font-size: 12px; font-weight: 700; color: var(--text-main); }
     .theme-tile.active { background: var(--primary-light); border-color: var(--primary); }
     .theme-tile.active i, .theme-tile.active span { color: var(--primary); }
-
     .color-swatch-box { display: flex; gap: 12px; align-items: center; overflow-x: auto; padding: 8px 0; margin-bottom: 16px; }
     .color-swatch { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid var(--bg-card); box-shadow: var(--shadow-sm); flex-shrink: 0; transition: transform 0.2s; }
     .color-swatch:hover { transform: scale(1.15); }
     
     .btn-reset { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 10px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; width: 100%; justify-content: center; margin-top: 16px;}
     .btn-reset:hover { background: #fca5a5; }
-
     /* CUSTOM DROPDOWN CONTAINER */
     .custom-dropdown-container { position: relative; margin-bottom: 16px; }
     .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; }
@@ -218,7 +212,6 @@
     .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
     .dropdown-opt:hover { background: var(--primary-light); color: var(--primary); }
     .dropdown-opt:last-child { border-bottom: none; }
-
     /* PAGE FOOTER (CLEAN EXPLORE / LEGAL) */
     .clean-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-color); margin-bottom: 24px; color: var(--text-main); }
     .clean-footer h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; color: var(--text-main); margin-top: 32px;}
@@ -241,7 +234,6 @@
     .share-ig { color: #E1306C; }
     .share-x { color: #000000; }
     body.dark-mode .share-x { color: #ffffff; }
-
     /* PREMIUM CONTACT CARDS */
     .contact-premium-card { display: flex; align-items: center; gap: 16px; background: var(--bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); box-shadow: var(--shadow-sm); transition: transform 0.2s;}
     .contact-premium-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary);}
@@ -250,7 +242,6 @@
     .cp-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
     .cp-text p { font-size: 13px; color: var(--text-muted); }
     .cp-arrow { color: var(--text-muted); font-size: 14px; }
-
     /* AI CHAT CSS */
     .chat-container { display: flex; flex-direction: column; flex: 1; min-height: 0; background: #F9FAFB; position: relative; max-width: 800px; margin: 0 auto; width: 100%;}
     .chat-messages { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
@@ -294,7 +285,6 @@
   </style>
 </head>
 <body>
-
 <div class="app-container">
   
   <!-- TOAST ALERTS - NOTRANSLATE ADDED -->
@@ -632,7 +622,6 @@
               <i class="fa-solid fa-bolt"></i><span>Ultra Vision</span>
            </div>
         </div>
-
         <h4 style="margin-bottom: 12px;">Custom Color Palette</h4>
         <div class="color-swatch-box notranslate" translate="no">
            <div class="color-swatch" style="background:#4f46e5;" onclick="setCustomPrimary('#4f46e5','#e0e7ff')"></div>
@@ -649,7 +638,6 @@
                <input type="color" id="primary-color-picker" onchange="setCustomPrimary(this.value)" style="border:none; width:36px; height:36px; cursor:pointer; background:transparent;">
            </div>
         </div>
-
         <h4 style="margin-bottom: 12px;">Special Modes</h4>
         <div class="theme-grid notranslate" translate="no" style="margin-bottom: 24px;">
            <div class="theme-tile" id="tile-neon" onclick="toggleNeonMode()">
@@ -665,7 +653,6 @@
               <i class="fa-solid fa-text-height"></i><span>Large Text</span>
            </div>
         </div>
-
         <h4 style="margin-bottom: 12px;">Hawrawp Adjust</h4>
         <div style="background: var(--bg-main); padding: 16px; border-radius: 12px;">
           <div style="display: flex; gap: 12px;">
@@ -688,32 +675,32 @@
     </div>
     <div class="fs-content">
       
-      <!-- NEW PREMIUM CONTACT OPTIONS CARDS -->
-      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-        <a href="mailto:cashmizoofficial@gmail.com" class="contact-premium-card">
-            <div class="cp-icon" style="background: #fee2e2; color: #ef4444;"><i class="fa-solid fa-envelope"></i></div>
-            <div class="cp-text">
-                <h4>Email Support</h4>
-                <p>Harsatna thlen nan</p>
-            </div>
-            <i class="fa-solid fa-chevron-right cp-arrow"></i>
-        </a>
-        <a href="javascript:void(0)" onclick="showToast('WhatsApp support is coming soon!')" class="contact-premium-card">
-            <div class="cp-icon" style="background: #dcfce7; color: #16a34a;"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="cp-text">
-                <h4>WhatsApp</h4>
-                <p>Coming soon</p>
-            </div>
-            <i class="fa-solid fa-chevron-right cp-arrow"></i>
-        </a>
-        <a href="javascript:void(0)" onclick="showToast('Telegram support is coming soon!')" class="contact-premium-card">
-            <div class="cp-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fa-brands fa-telegram"></i></div>
-            <div class="cp-text">
-                <h4>Telegram</h4>
-                <p>Coming soon</p>
-            </div>
-            <i class="fa-solid fa-chevron-right cp-arrow"></i>
-        </a>
+      <!-- NEW MODERN ICON CONTACT ROW (SIAMṬHAT) -->
+      <p style="font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 16px;">Direct Support</p>
+      <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 32px;">
+          <!-- Gmail -->
+          <a href="mailto:cashmizoofficial@gmail.com" style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none;">
+              <div style="width: 56px; height: 56px; border-radius: 16px; background: #fee2e2; color: #ef4444; display: flex; justify-content: center; align-items: center; font-size: 28px; box-shadow: var(--shadow-sm); transition: 0.2s;">
+                  <i class="fa-solid fa-envelope"></i>
+              </div>
+              <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">Email</span>
+          </a>
+          
+          <!-- WhatsApp -->
+          <a href="javascript:void(0)" onclick="showToast('WhatsApp support is coming soon!')" style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none;">
+              <div style="width: 56px; height: 56px; border-radius: 16px; background: #dcfce7; color: #16a34a; display: flex; justify-content: center; align-items: center; font-size: 28px; box-shadow: var(--shadow-sm); transition: 0.2s;">
+                  <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">WhatsApp</span>
+          </a>
+          
+          <!-- Telegram -->
+          <a href="javascript:void(0)" onclick="showToast('Telegram support is coming soon!')" style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none;">
+              <div style="width: 56px; height: 56px; border-radius: 16px; background: #e0f2fe; color: #0284c7; display: flex; justify-content: center; align-items: center; font-size: 28px; box-shadow: var(--shadow-sm); transition: 0.2s;">
+                  <i class="fa-brands fa-telegram"></i>
+              </div>
+              <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">Telegram</span>
+          </a>
       </div>
 
       <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Or Submit a Ticket</h4>
@@ -860,7 +847,6 @@
           <p>Once your wallet reaches the minimum threshold of 5,000 Coins, navigate to Profile settings, link your preferred payout method (UPI, Bank Account, or PayPal), and submit a withdrawal request.</p>
         </div>
       </div>
-
       <div class="info-card">
         <div class="info-icon"><i class="fa-solid fa-shield-cat"></i></div>
         <div class="info-text">
@@ -868,8 +854,7 @@
           <p>Strictly avoid using VPNs, Proxies, or multiple accounts on the same device. Automated security algorithms actively detect suspicious activities to maintain system integrity.</p>
         </div>
       </div>
-
-      <!-- CLEAN FOOTER: EXPLORE -->
+      <!-- CLEAN FOOTER: EXPLORE (SIAMṬHAT) -->
       <div class="clean-footer notranslate" translate="no">
          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
             <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
@@ -878,8 +863,9 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Explore</h3>
-         <a onclick="openPage('info-page')">How it works</a>
-         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
+         <!-- Hemi lai hi siamṭhat a ni -->
+         <a href="home.html">How it works</a>
+         <a href="javascript:void(0)">Home</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
@@ -914,8 +900,7 @@
           <li style="margin-bottom: 8px;"><strong>System Exploits:</strong> Attempts to manipulate, alter, or exploit application client code will void all accumulated coin balances.</li>
         </ul>
       </div>
-
-      <!-- CLEAN FOOTER: LEGAL & SUPPORT -->
+      <!-- CLEAN FOOTER: LEGAL & SUPPORT (SIAMṬHAT) -->
       <div class="clean-footer notranslate" translate="no">
          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
             <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
@@ -924,8 +909,9 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Legal & Support</h3>
-         <a onclick="openPage('terms-page')">Terms of Service</a>
-         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <!-- Hemi lai hi siamṭhat a ni -->
+         <a href="terms.html">Terms of Service</a>
+         <a href="javascript:void(0)">Privacy Policy</a>
          <a onclick="openPage('contact-page')">Contact Support</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
@@ -936,7 +922,6 @@
   </div>
   
 </div> <!-- END APP CONTAINER -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
@@ -944,7 +929,6 @@
   const supabaseUrl = 'https://igwjhemaybfgdbrwobci.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnd2poZW1heWJmZ2RicndvYmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NDA0NTIsImV4cCI6MjEwMTMxNjQ1Mn0.UWdilgWToFaBLHzCj_dYFUvqL-y8fbDg4QwaiyIzTmA'; 
   const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'implicit' } });
-
   // 2. STATE VARIABLES
   let aiChatHistory = JSON.parse(localStorage.getItem('cashmizo_ai_chat')) || [];
   let currentLang = localStorage.getItem('cashmizo_lang') || 'en';
@@ -956,7 +940,6 @@
   let hasCompletedTaskToday = false; 
   let isSpinning = false;
   let currentFontSize = 16;
-
   // 3. TRANSLATIONS & LANGUAGES
   const languageData = [
     { code: 'lus', name: 'Mizo (Mizoram)' }, { code: 'en', name: 'English' },
@@ -999,7 +982,6 @@
     { code: 'vi', name: 'Vietnamese (Tiếng Việt)' }, { code: 'cy', name: 'Welsh (Cymraeg)' },
     { code: 'yi', name: 'Yiddish (יידיש)' }, { code: 'zu', name: 'Zulu (isiZulu)' }
   ];
-
   const translations = {
     mizo: {
       success: "Hlawhtling!", hero_title: "Pawisa Khek rawh.\nPawisa Hlawh rawh.", hero_desc: "Mizo thalai sang tam tak zingah tel ve nghal rawh.", join_free: "Create Account", agree_terms: "Terms leh Privacy Policy ka pawm e.",
@@ -1018,7 +1000,6 @@
       customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
     }
   };
-
   // 4. CHAT BOT LOGIC
   function renderChatHistory() {
     const chatBox = document.getElementById('chat-box');
@@ -1098,7 +1079,6 @@
     }
     chatBox.scrollTop = chatBox.scrollHeight;
   }
-
   // 5. THEME & ACCESSIBILITY LOGIC
   function changeTheme(theme) {
     document.body.classList.remove('dark-mode', 'theme-eye-comfort', 'theme-ultra');
@@ -1162,7 +1142,6 @@
     if(currentFontSize > 22) currentFontSize = 22;
     document.body.style.fontSize = currentFontSize + 'px';
   }
-
   // 6. UI & NAVIGATION
   function openPage(pageId) { 
     document.getElementById(pageId).classList.add('active'); 
@@ -1201,7 +1180,6 @@
     toast.style.top = '40px'; 
     setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
-
   // 7. CUSTOM DROPDOWN
   function toggleCustomDropdown() {
      document.getElementById('custom-dropdown-list').classList.toggle('show');
@@ -1217,7 +1195,6 @@
         if(dd) dd.classList.remove('show');
      }
   });
-
   // 8. APP LOGIC & SUPABASE ACTIONS
   function getReferrerFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -1227,7 +1204,6 @@
       }
   }
   getReferrerFromUrl();
-
   async function showMainApp(session) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'flex';
@@ -1246,7 +1222,6 @@
       document.getElementById('refer-link-input').value = refUrl;
       let displayRef = document.getElementById('display-ref-link');
       if(displayRef) { displayRef.innerText = refUrl.replace(/^https?:\/\//, ''); }
-
       const { data, error } = await supabaseClient.from('user_profiles').select('*').eq('id', currentUserId).single();
       
       if (data) {
@@ -1271,7 +1246,6 @@
       updateBalanceUI(); checkClaimedUI(); updatePaymentUI();
     }
   }
-
   function updateBalanceUI() {
     let formattedCoins = userCoins.toLocaleString('en-US');
     document.getElementById('header-balance').innerText = formattedCoins;
@@ -1283,7 +1257,6 @@
     if(goalPercent === 0) goalPercent = 5; 
     document.getElementById('goal-progress').style.width = goalPercent + '%';
   }
-
   function updatePaymentUI() {
     if (userPayInfo && userPayInfo !== '') {
       document.getElementById('payment-display-section').style.display = 'block';
@@ -1303,13 +1276,11 @@
       document.getElementById('btn-change-pay').style.display = 'none';
     }
   }
-
   function togglePaymentEdit() {
     document.getElementById('payment-display-section').style.display = 'none';
     document.getElementById('payment-edit-section').style.display = 'block';
     document.getElementById('btn-change-pay').style.display = 'none';
   }
-
   async function savePaymentInfo() {
     const type = document.getElementById('pay-type-select').value;
     let saveString = "";
@@ -1332,11 +1303,9 @@
     if(error) { showToast("Error: " + error.message, true); } 
     else { userPayInfo = saveString; updatePaymentUI(); showToast("Saved Successfully"); }
   }
-
   function checkLockAndRun(action) {
     if (action === 'daily') requestDailyFromServer();
   }
-
   async function startSpin() {
     if(isSpinning) return;
     isSpinning = true;
@@ -1368,19 +1337,16 @@
        }, 2500);
     }, 4000); 
   }
-
   function resetSpinBtn() {
       isSpinning = false;
       document.getElementById('btn-do-spin').innerText = "SPIN NOW";
       document.getElementById('btn-do-spin').style.opacity = '1';
   }
-
   function checkClaimedUI() {
     const today = new Date().toDateString();
     if (lastDailyCheck && new Date(lastDailyCheck).toDateString() === today) { document.getElementById('txt-daily').innerText = "Claimed \u2714"; }
     if (lastSpinDate && new Date(lastSpinDate).toDateString() === today) { document.getElementById('txt-spin').innerText = "Spun \u2714"; }
   }
-
   function openSpinWheel() {
     if (!hasCompletedTaskToday) { showToast("Task 1 tal tih zawh hmasak a ngai!", true); return; }
     const today = new Date().toDateString();
@@ -1390,12 +1356,10 @@
     }
     openPage('spin-page');
   }
-
   function openTimeWall() {
     if (!currentUserId) return;
     window.open(`https://timewall.io/offers?uid=${currentUserId}`, '_blank');
   }
-
   function copyReferLink() {
     const input = document.getElementById('refer-link-input');
     input.type = 'text';
@@ -1404,7 +1368,6 @@
     input.type = 'hidden';
     showToast("Referral Link Copied!");
   }
-
   function shareSocial(platform) {
     const link = document.getElementById('refer-link-input').value;
     const text = "He app ah hian pawisa a hlawh theih e! Lo join ve rawh: ";
@@ -1423,7 +1386,6 @@
     
     window.open(url, '_blank');
   }
-
   async function requestDailyFromServer() {
     if (!currentUserId) return;
     const { data, error } = await supabaseClient.rpc('claim_daily_reward');
@@ -1431,7 +1393,6 @@
     if (data && data.success) { userCoins = data.new_balance; lastDailyCheck = new Date().toISOString(); updateBalanceUI(); checkClaimedUI(); showToast(data.message); } 
     else { showToast(data.message, true); }
   }
-
   async function openReferPage() {
       openPage('refer-page');
       if (!currentUserId) return;
@@ -1453,7 +1414,6 @@
           listDiv.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px;">Ṭhian sawm i la nei lo.</p>';
       }
   }
-
   async function openLeaderboard() {
     openPage('lb-page');
     document.getElementById('leaderboard-list').innerHTML = '<p style="text-align:center; padding: 20px; color:var(--text-muted);">Loading...</p>';
@@ -1467,7 +1427,6 @@
       document.getElementById('leaderboard-list').innerHTML = htmlString;
     }
   }
-
   async function submitWithdraw() {
     if (!userPayInfo || userCoins < 5000) return;
     userCoins -= 5000;
@@ -1476,16 +1435,13 @@
     await supabaseClient.from('user_profiles').update({ coins: userCoins }).eq('id', currentUserId);
     updateBalanceUI(); closePage('profile-page'); showToast("Withdrawal Requested");
   }
-
   async function logout() { await supabaseClient.auth.signOut(); window.location.reload(); }
-
   function redeemPromo() {
     const val = document.getElementById('promo-input').value;
     if(val.length < 4) showToast("Invalid Promo Code", true);
     else showToast("Code Expired or Invalid", true);
     document.getElementById('promo-input').value = '';
   }
-
   function submitTicket() {
     const sub = document.getElementById('ticket-subject').value;
     const desc = document.getElementById('ticket-desc').value;
@@ -1493,7 +1449,6 @@
     showToast("Ticket submitted! We will email you.");
     setTimeout(() => closePage('contact-page'), 1500);
   }
-
   function selectPayType(type) {
     document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
     document.getElementById(`btn-pay-${type}`).classList.add('active');
@@ -1505,7 +1460,6 @@
     if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
     if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
   }
-
   // Language & Translation Engine
   function renderLanguageList(filterText = "") {
     const container = document.getElementById("lang-list");
@@ -1525,16 +1479,13 @@
         container.innerHTML = "<div class='lang-item' style='color:#ef4444; text-align:center;'>Language not found</div>";
     }
   }
-
   function filterLanguages() {
     const text = document.getElementById("lang-search").value;
     renderLanguageList(text);
   }
-
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
   }
-
   function triggerTranslate(langCode) {
     var selectField = document.querySelector(".goog-te-combo");
     if (selectField) {
@@ -1546,7 +1497,6 @@
       showToast("Loading languages, please wait...", true);
     }
   }
-
   // 9. EVENT LISTENERS & INITIALIZATION
   document.addEventListener("DOMContentLoaded", () => {
      renderLanguageList();
@@ -1565,7 +1515,6 @@
      if(localStorage.getItem('cashmizo_grayscale') === 'true') toggleGrayscale();
      if(localStorage.getItem('cashmizo_largetext') === 'true') toggleLargeText();
   });
-
   window.addEventListener('load', async () => {
     renderChatHistory();
     const hash = window.location.hash;
@@ -1609,7 +1558,6 @@
     });
     observer.observe(document.getElementById('prof-balance'), { childList: true });
   });
-
   async function login() {
     if(!document.getElementById('agree-check').checked) { showToast("Terms and Privacy Policy kha pawm (check) hmasa rawh.", true); return; }
     document.getElementById('btn-login-text').innerHTML = '...'; 
@@ -1622,7 +1570,6 @@
     
     if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
   }
-
 </script>
 </body>
 </html>
