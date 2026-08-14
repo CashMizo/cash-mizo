@@ -49,7 +49,7 @@
     }
     .logo { font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; letter-spacing: -0.5px;}
     
-    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
 
     /* Language Button */
     .btn-lang { 
@@ -59,23 +59,31 @@
     }
     .btn-lang:hover { background: var(--light); color: var(--primary); }
 
-    /* Header Login Button - CHANGKANG ZAWK A THLAK */
-    .btn-login { 
-      background: var(--primary); color: white; padding: 10px 18px; 
-      border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; 
-      display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2); 
-      transition: 0.3s; border: none; cursor: pointer;
+    /* Header Text Login Button (A VAR / TE ZAWKIN SIAM A NI) */
+    .header-auth-btn {
+      background: white; /* Background var */
+      color: var(--primary); /* Text rawng pawl */
+      padding: 6px 14px; /* A letlem in siam a ni */
+      border-radius: 8px;
+      font-weight: 700; /* Font weight tlem lak hniam a ni */
+      font-size: 13px; /* Font size tih tet a ni */
+      text-decoration: none;
+      transition: 0.2s;
+      border: 1px solid var(--primary); /* Border sin te dah a ni */
     }
-    .btn-login:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3); }
+    .header-auth-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
 
-    /* HERO BANNER - HEIGHT FIX (Translate pawn a hliah tawh lo ang) */
+    /* HERO BANNER */
     .hero-banner {
       position: relative;
       width: 100%;
-      min-height: 400px; /* Fixed height aiah min-height hman a ni */
-      padding: 80px 0 90px; /* Padding pek a ni, space a awm theih nan */
+      padding: 100px 20px 140px; 
       background: url('https://images.pexels.com/photos/5082567/pexels-photo-5082567.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -89,7 +97,6 @@
       position: relative;
       z-index: 10;
       color: white;
-      padding: 0 20px;
     }
     .hero-content h1 { font-size: 38px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.2;}
     .hero-content p { font-size: 16px; font-weight: 500; opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto;}
@@ -107,7 +114,7 @@
       flex: 1;
       width: 100%;
       max-width: 900px; 
-      margin: -50px auto 40px; 
+      margin: -60px auto 40px; 
       padding: 0 16px;
       position: relative;
       z-index: 20;
@@ -161,7 +168,7 @@
     }
     .rule-box p { margin: 0; color: #b45309; font-weight: 600; font-size: 15px;}
 
-    /* REDESIGNED FOOTER - EXPLORE & LOGIN BUTTONS BELH A NI */
+    /* REDESIGNED FOOTER */
     footer {
       background: white;
       border-top: 1px solid var(--border-color);
@@ -228,31 +235,51 @@
     .simple-link i { font-size: 12px; color: var(--primary); }
     .simple-link:hover { color: var(--primary); }
     
-    /* Footer Authentication Buttons (Sign In & Login) */
-    .footer-auth-section {
-      display: flex;
-      gap: 16px;
-      padding-bottom: 30px;
+    /* ==========================================
+       FOOTER AUTHENTICATION SECTION 
+       ========================================== */
+    .footer-auth-wrapper {
+      background: var(--light);
+      padding: 30px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
       margin-bottom: 30px;
-      border-bottom: 1px solid var(--border-color);
-      flex-wrap: wrap;
+      text-align: center; 
     }
-    .f-btn-outline {
-      background: white; color: var(--primary); border: 2px solid var(--primary); 
-      padding: 10px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
-      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; 
-      transition: 0.3s;
+    .footer-auth-wrapper h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 20px;
     }
-    .f-btn-outline:hover { background: var(--light); transform: translateY(-2px); }
+    .footer-auth-btns {
+      display: flex;
+      flex-direction: column; 
+      gap: 14px;
+      max-width: 350px; 
+      margin: 0 auto; 
+    }
+    .f-auth-solid {
+      background: white; color: var(--dark); border: 1px solid var(--border-color);
+      padding: 14px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
+      text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px; 
+      transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); width: 100%;
+    }
+    .f-auth-solid:hover { border-color: var(--primary); transform: translateY(-2px); }
     
-    .f-btn-solid {
-      background: var(--primary); color: white; border: 2px solid var(--primary);
-      padding: 10px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
-      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; 
-      transition: 0.3s; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+    .f-auth-outline {
+      background: var(--primary); color: white; border: 1px solid var(--primary);
+      padding: 14px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
+      text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px; 
+      transition: 0.3s; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2); width: 100%;
     }
-    .f-btn-solid:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3); }
+    .f-auth-outline:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
     .copyright { color: #94a3b8; font-size: 13px; font-weight: 500; }
 
     /* MODALS */
@@ -329,25 +356,24 @@
 
     /* DESKTOP RESPONSIVE */
     @media (min-width: 769px) {
-      .hero-banner { min-height: 480px; padding: 100px 0 100px; }
+      .hero-banner { padding: 140px 0 160px; }
       .hero-content h1 { font-size: 52px; }
       .hero-content p { font-size: 18px; max-width: 600px; margin-bottom: 35px;}
-      .main-container { max-width: 1000px; margin-top: -60px; }
+      .main-container { max-width: 1000px; margin-top: -80px; }
       .content-card { padding: 60px 70px; margin-bottom: 40px; }
       .section-img { height: 320px; } 
       .article-section h4 { font-size: 24px; }
       .footer-container { padding: 0 16px; }
-      .btn-login { padding: 10px 24px; font-size: 15px;}
     }
 
     /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
       .btn-lang { width: 38px; height: 38px; font-size: 16px;}
-      .btn-login { padding: 8px 14px; font-size: 13px; }
-      .btn-login i { font-size: 14px; }
+      /* Mobile ah chuan Header button hi tlem in a te theih deuh hlek nan */
+      .header-auth-btn { padding: 5px 12px; font-size: 12px; }
       .logo { font-size: 18px; }
       
-      .hero-banner { min-height: 380px; padding: 70px 0 80px; } /* Mobile space for long text */
+      .hero-banner { padding: 80px 20px 100px; } 
       .hero-content h1 { font-size: 32px; }
       .main-container { padding: 0 16px; margin-top: -40px; } 
       .content-card { 
@@ -355,7 +381,7 @@
         border: 1px solid var(--border-color); margin-bottom: 20px; 
       }
       .section-img { height: 180px; }
-      .footer-links-grid { grid-template-columns: 1fr; gap: 24px; } /* Stack on mobile */
+      .footer-links-grid { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
 </head>
@@ -372,9 +398,9 @@
       <button class="btn-lang notranslate" translate="no" onclick="openLangModal()" title="Change Language">
         <i class="fa-solid fa-globe"></i>
       </button>
-      <!-- Login / Sign In Button (Text + Icon) -->
-      <a href="login.html" class="btn-login notranslate" translate="no">
-        <i class="fa-solid fa-circle-user"></i> <span>Sign In / Login</span>
+      <!-- Login / Sign In Button (Link to index.html for auto routing) -->
+      <a href="index.html" class="header-auth-btn notranslate" translate="no">
+        Sign In / Login
       </a>
     </div>
   </header>
@@ -385,8 +411,8 @@
     <div class="hero-content">
       <h1>Earn Real Cash Daily</h1>
       <p>Turn your free time into money. Complete simple tasks, play games, and get paid directly to your account.</p>
-      <!-- Login CTA in banner -->
-      <a href="login.html" class="btn-hero notranslate" translate="no">Start Earning Now</a>
+      <!-- Login CTA in banner (Links to index.html) -->
+      <a href="index.html" class="btn-hero notranslate" translate="no">Start Earning Now</a>
     </div>
   </div>
 
@@ -509,7 +535,7 @@
       <div class="article-section">
         <img src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Start Earning" class="section-img notranslate" translate="no">
         <h4><span>15</span> Join Us Today!</h4>
-        <p>Thousands of users are already earning real cash every day. Do not miss this opportunity. Click the "Login / Sign In" button to start your journey right now.</p>
+        <p>Thousands of users are already earning real cash every day. Do not miss this opportunity. Click the "Sign In / Login" button to start your journey right now.</p>
       </div>
 
     </div>
@@ -528,7 +554,9 @@
         <div class="footer-col">
           <div class="footer-heading">Explore</div>
           <div class="footer-link-list">
+            <!-- Redirects to App Dashboard (index.html) -->
             <a href="index.html" class="simple-link"><i class="fa-solid fa-house"></i> Home (Dashboard)</a>
+            <!-- Refreshes current page -->
             <a href="home.html" class="simple-link"><i class="fa-solid fa-rocket"></i> How it works</a>
           </div>
         </div>
@@ -544,14 +572,20 @@
         </div>
       </div>
       
-      <!-- FOOTER AUTHENTICATION BUTTONS -->
-      <div class="footer-auth-section">
-        <a href="login.html" class="f-btn-outline notranslate" translate="no">
-          <i class="fa-solid fa-user-plus"></i> Sign In
-        </a>
-        <a href="login.html" class="f-btn-solid notranslate" translate="no">
-          <i class="fa-solid fa-right-to-bracket"></i> Login
-        </a>
+      <!-- =============================================
+           FOOTER AUTHENTICATION SECTION 
+           ============================================= -->
+      <div class="footer-auth-wrapper">
+        <h4>Get Started & Join Now</h4>
+        <div class="footer-auth-btns">
+          <!-- Both link to index.html logic -->
+          <a href="index.html" class="f-auth-solid notranslate" translate="no">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" style="width: 18px;"> Sign In
+          </a>
+          <a href="index.html" class="f-auth-outline notranslate" translate="no">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </a>
+        </div>
       </div>
       
       <!-- COPYRIGHT -->
