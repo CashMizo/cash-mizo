@@ -2,156 +2,704 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CASH-MIZO | Earn Cash Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Welcome to CASH-MIZO | Earn Cash Daily</title>
+  
+  <!-- Font and Icons -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
-    
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
     :root {
       --primary: #4f46e5;
+      --primary-dark: #3730a3;
       --secondary: #10b981;
       --dark: #0f172a;
       --light: #f8fafc;
       --gray: #64748b;
       --border-color: #e2e8f0;
+      --bg-card: #ffffff;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    
+    body { 
+      background-color: var(--light); 
+      color: var(--dark); 
+      line-height: 1.6; 
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
     /* HEADER */
-    header { background: white; padding: 16px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-    .logo { font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-links { display: flex; gap: 16px; }
-    .nav-links a { text-decoration: none; color: var(--gray); font-weight: 600; font-size: 14px; transition: 0.3s; }
-    .nav-links a:hover { color: var(--primary); }
-    .btn-login { background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; transition: 0.3s; white-space: nowrap; }
-    .btn-login:hover { background: #4338ca; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); transform: translateY(-2px); }
+    header { 
+      background: rgba(255, 255, 255, 0.98); 
+      padding: 16px 5%; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+      position: sticky; 
+      top: 0; 
+      z-index: 999; 
+    }
+    .logo { font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; letter-spacing: -0.5px;}
+    
+    .nav-right { display: flex; align-items: center; gap: 10px; }
 
-    /* HERO SECTION */
-    .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 5%; background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); gap: 30px; }
-    .hero-text { flex: 1; }
-    .hero-text h1 { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--dark); }
-    .hero-text p { font-size: 16px; color: var(--gray); margin-bottom: 28px; max-width: 90%; }
-    .hero-img { flex: 1; text-align: right; }
-    .hero-img img { max-width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 4px solid white; }
+    /* Language Button */
+    .btn-lang { 
+      background: var(--bg-card); color: var(--gray); width: 40px; height: 40px; 
+      border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+      font-size: 18px; cursor: pointer; border: 1px solid var(--border-color); transition: 0.2s;
+    }
+    .btn-lang:hover { background: var(--light); color: var(--primary); }
 
-    /* TRUST BADGES */
-    .trust-banner { display: flex; justify-content: center; gap: 40px; background: white; padding: 24px 5%; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; }
-    .trust-item { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--dark); font-size: 14px; }
-    .trust-item span { font-size: 20px; }
+    /* Header Login Button - CHANGKANG ZAWK A THLAK */
+    .btn-login { 
+      background: var(--primary); color: white; padding: 10px 18px; 
+      border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; 
+      display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2); 
+      transition: 0.3s; border: none; cursor: pointer;
+    }
+    .btn-login:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3); }
 
-    /* FEATURES */
-    .features { padding: 60px 5%; text-align: center; background: var(--light); }
-    .section-title { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-    .section-desc { color: var(--gray); margin-bottom: 40px; font-size: 16px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
-    .card { background: white; padding: 32px 24px; border-radius: 16px; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: var(--primary); }
-    .card-icon { font-size: 40px; margin-bottom: 16px; background: var(--primary-light); display: inline-block; padding: 12px; border-radius: 12px; }
-    .card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-    .card p { color: var(--gray); font-size: 14px; line-height: 1.6; }
+    /* HERO BANNER - HEIGHT FIX (Translate pawn a hliah tawh lo ang) */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      min-height: 400px; /* Fixed height aiah min-height hman a ni */
+      padding: 80px 0 90px; /* Padding pek a ni, space a awm theih nan */
+      background: url('https://images.pexels.com/photos/5082567/pexels-photo-5082567.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(16,185,129,0.85) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      color: white;
+      padding: 0 20px;
+    }
+    .hero-content h1 { font-size: 38px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.2;}
+    .hero-content p { font-size: 16px; font-weight: 500; opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto;}
+    
+    .btn-hero {
+      background: white; color: var(--primary); padding: 14px 30px;
+      border-radius: 50px; font-weight: 800; font-size: 16px; text-decoration: none;
+      display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0,0,0,0.15); }
 
-    /* PROFESSIONAL FOOTER */
-    footer { background: var(--dark); color: white; padding: 60px 5% 30px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid #334155; padding-bottom: 40px; margin-bottom: 24px; }
-    .footer-col h3 { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: white; }
-    .footer-col a { display: block; color: #94a3b8; text-decoration: none; margin-bottom: 12px; font-size: 14px; font-weight: 500; transition: 0.2s; }
-    .footer-col a:hover { color: var(--primary-light); }
-    .footer-bottom { text-align: center; color: #64748b; font-size: 13px; font-weight: 500; }
+    /* MAIN CONTENT AREA */
+    .main-container { 
+      flex: 1;
+      width: 100%;
+      max-width: 900px; 
+      margin: -50px auto 40px; 
+      padding: 0 16px;
+      position: relative;
+      z-index: 20;
+    }
+    
+    .content-card { 
+      background: var(--bg-card); 
+      padding: 40px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06); 
+      border: 1px solid var(--border-color); 
+      margin-bottom: 24px;
+    }
+
+    .section-title { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-bottom: 30px; 
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--light);
+    }
+    .section-title i { font-size: 28px; }
+    .section-title h2 { font-size: 24px; font-weight: 800; color: var(--dark); }
+    
+    .article-section { margin-bottom: 50px; }
+    .article-section:last-child { margin-bottom: 0; }
+    
+    .section-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-color);
+      background-color: var(--light);
+    }
+
+    .article-section h4 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 12px; display: flex; align-items: center; gap: 10px;}
+    .article-section h4 span { background: var(--light); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 14px; border: 1px solid var(--border-color);}
+    .article-section p { font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+    
+    /* Highlight Box for Important Rules */
+    .rule-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 10px;
+    }
+    .rule-box p { margin: 0; color: #b45309; font-weight: 600; font-size: 15px;}
+
+    /* REDESIGNED FOOTER - EXPLORE & LOGIN BUTTONS BELH A NI */
+    footer {
+      background: white;
+      border-top: 1px solid var(--border-color);
+      padding: 50px 0 30px;
+    }
+    .footer-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+      padding: 0 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .footer-desc {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 40px;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+    
+    /* Footer Grid for Links */
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-heading {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .footer-link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .simple-link {
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      font-size: 15px;
+      color: var(--gray); 
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+    }
+    .simple-link i { font-size: 12px; color: var(--primary); }
+    .simple-link:hover { color: var(--primary); }
+    
+    /* Footer Authentication Buttons (Sign In & Login) */
+    .footer-auth-section {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+    .f-btn-outline {
+      background: white; color: var(--primary); border: 2px solid var(--primary); 
+      padding: 10px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; 
+      transition: 0.3s;
+    }
+    .f-btn-outline:hover { background: var(--light); transform: translateY(-2px); }
+    
+    .f-btn-solid {
+      background: var(--primary); color: white; border: 2px solid var(--primary);
+      padding: 10px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; 
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; 
+      transition: 0.3s; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+    }
+    .f-btn-solid:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3); }
+
+    .copyright { color: #94a3b8; font-size: 13px; font-weight: 500; }
+
+    /* MODALS */
+    .full-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--bg-card); z-index: 9999; display: none; flex-direction: column;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    
+    .modal-header {
+      display: flex; align-items: center; padding: 16px 20px; 
+      border-bottom: 1px solid var(--border-color); background: var(--bg-card);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .modal-back {
+      width: 40px; height: 40px; background: var(--light); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 16px; cursor: pointer; color: var(--dark); border: none;
+    }
+    .modal-header h3 { flex: 1; text-align: center; font-size: 18px; font-weight: 800; margin-right: 40px; }
+    .modal-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 700px; margin: 0 auto; width: 100%; }
+    
+    /* Language List */
+    .lang-search-box {
+      display: flex; align-items: center; gap: 12px; background: var(--light);
+      padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 16px;
+    }
+    .lang-search-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 15px; }
+    .lang-list-container { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); }
+    .lang-item { padding: 16px 20px; border-bottom: 1px solid var(--border-color); font-weight: 600; color: var(--dark); cursor: pointer; transition: 0.2s; }
+    .lang-item:hover { background: var(--light); color: var(--primary); }
+    .lang-item:last-child { border-bottom: none; }
+
+    /* Contact Page Styling */
+    .contact-item-card {
+      background: var(--light);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .contact-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      background-color: white;
+    }
+    .contact-item-card h4 { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 8px;}
+    .contact-item-card p { font-size: 14px; color: var(--gray); margin-bottom: 20px;}
+    
+    .clean-icon-btn { 
+      font-size: 32px; text-decoration: none; transition: transform 0.2s ease; 
+      display: inline-flex; justify-content: center; align-items: center;
+      width: 60px; height: 60px; 
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+    }
+    .clean-icon-btn:hover { transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+    
+    .icon-gmail { color: #ea4335; }
+    .icon-whatsapp { color: #25D366; }
+    .icon-telegram { color: #0088cc; }
+
+    /* HIDE GOOGLE TRANSLATE DEFAULT WIDGET */
+    .goog-te-banner-frame, .goog-te-gadget-icon, .goog-te-gadget-simple, 
+    #goog-gt-tt, .goog-tooltip, .skiptranslate > iframe, .goog-logo-link { display: none !important; }
+    #google_translate_element { position: absolute; left: -9999px; top: -9999px; z-index: -9999; opacity: 0; }
+    body { top: 0px !important; position: static !important; }
+
+    /* DESKTOP RESPONSIVE */
+    @media (min-width: 769px) {
+      .hero-banner { min-height: 480px; padding: 100px 0 100px; }
+      .hero-content h1 { font-size: 52px; }
+      .hero-content p { font-size: 18px; max-width: 600px; margin-bottom: 35px;}
+      .main-container { max-width: 1000px; margin-top: -60px; }
+      .content-card { padding: 60px 70px; margin-bottom: 40px; }
+      .section-img { height: 320px; } 
+      .article-section h4 { font-size: 24px; }
+      .footer-container { padding: 0 16px; }
+      .btn-login { padding: 10px 24px; font-size: 15px;}
+    }
 
     /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
-      .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
-      .hero-text { padding-right: 0; }
-      .hero-text h1 { font-size: 32px; }
-      .hero-text p { max-width: 100%; }
-      .nav-links { display: none; }
-      .trust-banner { gap: 20px; justify-content: center; }
+      .btn-lang { width: 38px; height: 38px; font-size: 16px;}
+      .btn-login { padding: 8px 14px; font-size: 13px; }
+      .btn-login i { font-size: 14px; }
+      .logo { font-size: 18px; }
+      
+      .hero-banner { min-height: 380px; padding: 70px 0 80px; } /* Mobile space for long text */
+      .hero-content h1 { font-size: 32px; }
+      .main-container { padding: 0 16px; margin-top: -40px; } 
+      .content-card { 
+        border-radius: 20px; padding: 24px 20px; 
+        border: 1px solid var(--border-color); margin-bottom: 20px; 
+      }
+      .section-img { height: 180px; }
+      .footer-links-grid { grid-template-columns: 1fr; gap: 24px; } /* Stack on mobile */
     }
   </style>
 </head>
 <body>
 
+  <!-- HIDDEN GOOGLE TRANSLATE ELEMENT -->
+  <div id="google_translate_element"></div>
+
   <!-- HEADER -->
   <header>
-    <a href="#" class="logo">⚡ CASH-MIZO</a>
+    <a href="#" class="logo notranslate" translate="no"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</a>
     <div class="nav-right">
-      <span class="nav-links">
-        <a href="#how-it-works">How it works</a>
-        <a href="terms.html">Terms & Policy</a>
-      </span>
-      <a href="index.html" class="btn-login">Open App</a>
+      <!-- Language Button -->
+      <button class="btn-lang notranslate" translate="no" onclick="openLangModal()" title="Change Language">
+        <i class="fa-solid fa-globe"></i>
+      </button>
+      <!-- Login / Sign In Button (Text + Icon) -->
+      <a href="login.html" class="btn-login notranslate" translate="no">
+        <i class="fa-solid fa-circle-user"></i> <span>Sign In / Login</span>
+      </a>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Turn your free time into <span style="color: var(--secondary);">Real Cash</span>.</h1>
-      <p>Join CASH-MIZO today. Answer surveys, complete simple tasks, and get paid directly to your Bank, UPI, or PayPal account securely.</p>
-      <a href="index.html" class="btn-login" style="display: inline-block; font-size: 16px; padding: 14px 32px;">Start Earning Now — It's Free</a>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Earn Real Cash Daily</h1>
+      <p>Turn your free time into money. Complete simple tasks, play games, and get paid directly to your account.</p>
+      <!-- Login CTA in banner -->
+      <a href="login.html" class="btn-hero notranslate" translate="no">Start Earning Now</a>
     </div>
-    <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Earning on phone">
-    </div>
-  </section>
-
-  <!-- TRUST BANNER FOR OFFERWALLS -->
-  <div class="trust-banner">
-    <div class="trust-item"><span>🔒</span> 256-bit SSL Secure</div>
-    <div class="trust-item"><span>⚡</span> Fast Payouts</div>
-    <div class="trust-item"><span>✅</span> 100% Verified Tasks</div>
   </div>
 
-  <!-- FEATURES (How it works) -->
-  <section class="features" id="how-it-works">
-    <h2 class="section-title">How It Works</h2>
-    <p class="section-desc">Earning money has never been this easy and transparent.</p>
-    
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>1. Do Simple Tasks</h3>
-        <p>Take daily surveys, play games, or complete premium offers from our trusted partners like TimeWall. New tasks added daily.</p>
+  <!-- MAIN CONTENT (15 Features / How it works) -->
+  <div class="main-container">
+    <div class="content-card">
+      <div class="section-title">
+        <i class="fa-solid fa-rocket" style="color: var(--primary);"></i>
+        <h2>How CASH-MIZO Works</h2>
       </div>
-      <div class="card">
-        <div class="card-icon">🪙</div>
-        <h3>2. Earn Coins</h3>
-        <p>Watch your balance grow instantly. Get a daily bonus, spin the lucky wheel, and invite friends for a 10% lifetime commission.</p>
+      
+      <!-- Feature 1 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/5082560/pexels-photo-5082560.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Easy Registration" class="section-img notranslate" translate="no">
+        <h4><span>1</span> Easy Sign Up</h4>
+        <p>Getting started is very easy. You can create an account in a few seconds using your Google account. There are no long forms to fill out and no passwords to remember.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">💸</div>
-        <h3>3. Cash Out Safely</h3>
-        <p>Once you reach 5,000 Coins, withdraw your earnings directly to your UPI, Bank Account, or PayPal securely within 48 hours.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- PROFESSIONAL FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>⚡ CASH-MIZO</h3>
-        <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      <!-- Feature 2 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Many Offerwalls" class="section-img notranslate" translate="no">
+        <h4><span>2</span> Multiple Offerwalls</h4>
+        <p>We work with many top offerwall companies around the world. Because we have multiple offerwalls, you will never run out of tasks. There are always new surveys, games, and offers waiting for you.</p>
       </div>
-      <div class="footer-col">
-        <h3>Explore</h3>
-        <a href="#how-it-works">How it works</a>
-        <a href="index.html">Open Web App</a>
+
+      <!-- Feature 3 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Complete Tasks" class="section-img notranslate" translate="no">
+        <h4><span>3</span> Complete Simple Tasks</h4>
+        <p>Earning coins is simple. Choose an offerwall, read the instructions carefully, and complete the task. You can earn by answering surveys, downloading new apps, or playing games on your phone.</p>
       </div>
-      <div class="footer-col">
-        <h3>Legal & Support</h3>
-        <a href="terms.html">Terms of Service</a>
-        <a href="terms.html">Privacy Policy</a>
-        <a href="mailto:support@cashmizo.com">Contact Support</a>
+
+      <!-- Feature 4 (Daily Claim Logic) -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/273153/pexels-photo-273153.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Daily Claim" class="section-img notranslate" translate="no">
+        <h4><span>4</span> Daily Free Claim</h4>
+        <p>We reward active users! You can claim free bonus coins every single day just by opening the app.</p>
+        <div class="rule-box">
+          <p><i class="fa-solid fa-circle-exclamation"></i> Rule: To unlock the Daily Claim, you must complete at least 1 offerwall task first.</p>
+        </div>
       </div>
+
+      <!-- Feature 5 (Spin Wheel Logic) -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Spin Wheel" class="section-img notranslate" translate="no">
+        <h4><span>5</span> Lucky Spin Wheel</h4>
+        <p>Test your luck and win big prizes with our Spin Wheel. It is a fun way to multiply your daily earnings easily.</p>
+        <div class="rule-box">
+          <p><i class="fa-solid fa-circle-exclamation"></i> Rule: Just like the daily claim, you must successfully finish at least 1 task before you can spin the wheel.</p>
+        </div>
+      </div>
+
+      <!-- Feature 6 (Referral System Logic) -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Refer Friends" class="section-img notranslate" translate="no">
+        <h4><span>6</span> Honest Referral System</h4>
+        <p>You can invite your family and friends to use CASH-MIZO using your special link. But please note, you will only earn rewards when your friends actually work.</p>
+        <div class="rule-box">
+          <p><i class="fa-solid fa-circle-exclamation"></i> Rule: If you invite 1,000 people but they do not complete any tasks, you will earn nothing. They must complete tasks for you to get paid.</p>
+        </div>
+      </div>
+
+      <!-- Feature 7 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/4386404/pexels-photo-4386404.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lifetime Commission" class="section-img notranslate" translate="no">
+        <h4><span>7</span> Lifetime Commission</h4>
+        <p>When your invited friends work hard and complete tasks, you will receive a percentage of their earnings as a commission forever! This is a great way to build passive income.</p>
+      </div>
+
+      <!-- Feature 8 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/259165/pexels-photo-259165.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fast Withdrawals" class="section-img notranslate" translate="no">
+        <h4><span>8</span> Fast Cash Withdrawals</h4>
+        <p>Once you collect enough coins, you can withdraw your money. We process payments very fast. You can receive your money directly into your Bank Account, UPI, or PayPal.</p>
+      </div>
+
+      <!-- Feature 9 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/164527/pexels-photo-164527.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Low Minimum Payout" class="section-img notranslate" translate="no">
+        <h4><span>9</span> Low Minimum Payout</h4>
+        <p>You do not have to wait for months to see your money. Our withdrawal limit is very low, so you can easily reach the goal and cash out your earnings in a few days.</p>
+      </div>
+
+      <!-- Feature 10 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Anti Fraud" class="section-img notranslate" translate="no">
+        <h4><span>10</span> Strict Anti-Fraud System</h4>
+        <p>To keep the platform safe for everyone, we use a smart system to stop cheaters. Using VPNs, fake IP addresses, or automatic click bots is not allowed. Fair play means better rewards for all.</p>
+      </div>
+
+      <!-- Feature 11 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Real Time Tracking" class="section-img notranslate" translate="no">
+        <h4><span>11</span> Real-Time Tracking</h4>
+        <p>Whenever you finish a task, your coins are added to your wallet automatically. You can always see your earning history and track your progress in real-time inside the app.</p>
+      </div>
+
+      <!-- Feature 12 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Earn Anywhere" class="section-img notranslate" translate="no">
+        <h4><span>12</span> Work Anywhere, Anytime</h4>
+        <p>You are your own boss. You can open the app and complete tasks whether you are resting at home, travelling, or taking a break. Earn money whenever you have free time.</p>
+      </div>
+
+      <!-- Feature 13 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/2884150/pexels-photo-2884150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Privacy" class="section-img notranslate" translate="no">
+        <h4><span>13</span> Total Data Privacy</h4>
+        <p>We respect your privacy. Your personal details and earning data are heavily protected. We never sell your information to unknown companies. You are completely safe with us.</p>
+      </div>
+
+      <!-- Feature 14 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/7709287/pexels-photo-7709287.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dedicated Support" class="section-img notranslate" translate="no">
+        <h4><span>14</span> 24/7 Dedicated Support</h4>
+        <p>If you face any problems with missing coins or withdrawals, our support team is always ready to help. You can chat with our smart bot or send us an email at any time.</p>
+      </div>
+
+      <!-- Feature 15 -->
+      <div class="article-section">
+        <img src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Start Earning" class="section-img notranslate" translate="no">
+        <h4><span>15</span> Join Us Today!</h4>
+        <p>Thousands of users are already earning real cash every day. Do not miss this opportunity. Click the "Login / Sign In" button to start your journey right now.</p>
+      </div>
+
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 CASH-MIZO. All rights reserved. Registered Rewards Platform.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      
+      <div class="footer-brand"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> CASH-MIZO</div>
+      <p class="footer-desc">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+      
+      <!-- FOOTER LINKS GRID -->
+      <div class="footer-links-grid">
+        <!-- Explore Column -->
+        <div class="footer-col">
+          <div class="footer-heading">Explore</div>
+          <div class="footer-link-list">
+            <a href="index.html" class="simple-link"><i class="fa-solid fa-house"></i> Home (Dashboard)</a>
+            <a href="home.html" class="simple-link"><i class="fa-solid fa-rocket"></i> How it works</a>
+          </div>
+        </div>
+        
+        <!-- Legal & Support Column -->
+        <div class="footer-col">
+          <div class="footer-heading">Legal & Support</div>
+          <div class="footer-link-list">
+            <a href="terms.html" class="simple-link"><i class="fa-solid fa-file-contract"></i> Terms of Service</a>
+            <a href="privacy.html" class="simple-link"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+            <button onclick="openContactModal()" class="simple-link"><i class="fa-solid fa-headset"></i> Contact Support</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- FOOTER AUTHENTICATION BUTTONS -->
+      <div class="footer-auth-section">
+        <a href="login.html" class="f-btn-outline notranslate" translate="no">
+          <i class="fa-solid fa-user-plus"></i> Sign In
+        </a>
+        <a href="login.html" class="f-btn-solid notranslate" translate="no">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+      
+      <!-- COPYRIGHT -->
+      <div class="footer-bottom">
+        <div class="copyright">&copy; 2026 CASH-MIZO. All Rights Reserved.</div>
+      </div>
+
     </div>
   </footer>
+
+  <!-- CUSTOM LANGUAGE MODAL -->
+  <div id="lang-modal" class="full-modal">
+    <div class="modal-header">
+      <button class="modal-back" onclick="closeLangModal()"><i class="fa-solid fa-arrow-left"></i></button>
+      <h3 class="notranslate" translate="no">App Language</h3>
+    </div>
+    <div class="modal-content">
+      <div class="lang-search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--gray);"></i>
+        <input type="text" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()">
+      </div>
+      <div class="lang-list-container notranslate" id="lang-list" translate="no">
+        <!-- JS in a rawn dah lut ang -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT SUPPORT MODAL -->
+  <div id="contact-modal" class="full-modal">
+    <div class="modal-header">
+      <button class="modal-back" onclick="closeContactModal()"><i class="fa-solid fa-arrow-left"></i></button>
+      <h3 class="notranslate" translate="no">Contact Support</h3>
+    </div>
+    <div class="modal-content" style="background: var(--bg-card);">
+      
+      <!-- Contact 1: Gmail -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
+        <h4>Email Support</h4>
+        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
+        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <!-- Contact 2: WhatsApp -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
+        <h4>WhatsApp Support</h4>
+        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
+        <a href="#" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- Contact 3: Telegram -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
+        <h4>Telegram Support</h4>
+        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
+        <a href="#" class="clean-icon-btn icon-telegram" title="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    /* Google Translate Hidden Init */
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+    }
+
+    /* Modals Logic */
+    function openLangModal() {
+      document.getElementById('lang-modal').style.display = 'flex';
+      renderLanguageList();
+    }
+    function closeLangModal() {
+      document.getElementById('lang-modal').style.display = 'none';
+    }
+
+    function openContactModal() {
+      document.getElementById('contact-modal').style.display = 'flex';
+    }
+    function closeContactModal() {
+      document.getElementById('contact-modal').style.display = 'none';
+    }
+
+    /* Language Logic */
+    const languageData = [
+      { code: 'lus', name: 'Mizo (Mizoram)' },
+      { code: 'en', name: 'English' },
+      { code: 'hi', name: 'Hindi (हिन्दी)' },
+      { code: 'bn', name: 'Bengali (বাংলা)' },
+      { code: 'af', name: 'Afrikaans' },
+      { code: 'ar', name: 'Arabic (العربية)' },
+      { code: 'zh-CN', name: 'Chinese (Simplified)' },
+      { code: 'fr', name: 'French (Français)' },
+      { code: 'de', name: 'German (Deutsch)' },
+      { code: 'id', name: 'Indonesian (Indonesia)' },
+      { code: 'ja', name: 'Japanese (日本語)' },
+      { code: 'ko', name: 'Korean (한국어)' },
+      { code: 'pt', name: 'Portuguese (Português)' },
+      { code: 'ru', name: 'Russian (Русский)' },
+      { code: 'es', name: 'Spanish (Español)' },
+      { code: 'th', name: 'Thai (ไทย)' }
+    ];
+
+    function renderLanguageList(filterText = "") {
+      const container = document.getElementById("lang-list");
+      container.innerHTML = ""; 
+      const lowerFilter = filterText.toLowerCase();
+      
+      languageData.forEach(lang => {
+        if (lang.name.toLowerCase().includes(lowerFilter)) {
+          const div = document.createElement("div");
+          div.className = "lang-item";
+          div.innerHTML = lang.name;
+          div.onclick = () => triggerTranslate(lang.code);
+          container.appendChild(div);
+        }
+      });
+      
+      if(container.innerHTML === "") {
+        container.innerHTML = "<div class='lang-item' style='color:#ef4444; text-align:center;'>Language not found</div>";
+      }
+    }
+    
+    function filterLanguages() {
+      const text = document.getElementById("lang-search").value;
+      renderLanguageList(text);
+    }
+    
+    function triggerTranslate(langCode) {
+      var selectField = document.querySelector(".goog-te-combo");
+      if (selectField) {
+        selectField.value = langCode;
+        selectField.dispatchEvent(new Event("change"));
+        closeLangModal();
+      } else {
+        alert("Loading languages, please wait...");
+      }
+    }
+  </script>
 
 </body>
 </html>
