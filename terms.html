@@ -458,7 +458,7 @@
         <p>CASH-MIZO is not responsible if you lose money, time, or data while using the app. You use the app at your own risk. We will not pay for any problems caused by the app.</p>
       </div>
 
-      <!-- Topic 15 (THLALAK HMANLAI CHHE TAWH LO TUR) -->
+      <!-- Topic 15 -->
       <div class="article-section">
         <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Updates to Terms" class="section-img notranslate" translate="no">
         <h4>15. Modifications to the Terms</h4>
@@ -527,22 +527,22 @@
         </a>
       </div>
 
-      <!-- Contact 2: WhatsApp -->
+      <!-- Contact 2: WhatsApp (HIM TAKA UPDATE SA) -->
       <div class="contact-item-card">
         <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
         <h4>WhatsApp Support</h4>
         <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
-        <a href="#" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
       </div>
 
-      <!-- Contact 3: Telegram -->
+      <!-- Contact 3: Telegram (HIM TAKA UPDATE SA) -->
       <div class="contact-item-card">
         <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
         <h4>Telegram Support</h4>
         <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
-        <a href="#" class="clean-icon-btn icon-telegram" title="Telegram">
+        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-telegram" title="Telegram">
           <i class="fa-brands fa-telegram"></i>
         </a>
       </div>
@@ -603,7 +603,8 @@
         if (lang.name.toLowerCase().includes(lowerFilter)) {
           const div = document.createElement("div");
           div.className = "lang-item";
-          div.innerHTML = lang.name;
+          /* XSS laka him nan innerHTML hmang lovin textContent kan hmang ta zawk */
+          div.textContent = lang.name;
           div.onclick = () => triggerTranslate(lang.code);
           container.appendChild(div);
         }
