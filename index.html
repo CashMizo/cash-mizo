@@ -274,8 +274,19 @@
        🔥 KHAWVEL A CHANGKANG BER: CONTACT SUPPORT STYLES 🔥
        ======================================================== */
        
-    .contact-premium-bg { background: #f1f5f9; }
-    body.dark-mode .contact-premium-bg { background: #0f172a; }
+    /* Premium Modern Radial Gradient Background */
+    .contact-premium-bg { 
+        background-color: var(--bg-main); 
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+    }
+    body.dark-mode .contact-premium-bg { 
+        background-color: var(--bg-main); 
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 40%);
+    }
 
     .fs-header {
         background: rgba(255, 255, 255, 0.85);
@@ -288,48 +299,60 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* THE FORM CONTAINER */
-    .modern-form-container {
+    /* PREMIUM FORM CONTAINER (Offerwall Proof) */
+    .premium-form-wrapper {
         background: var(--bg-card);
-        border-radius: 20px;
-        padding: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); 
-        margin-bottom: 32px;
-        border: 1px solid rgba(0,0,0,0.04);
+        border-radius: 24px;
+        padding: 32px 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 40px;
     }
-    body.dark-mode .modern-form-container { border-color: rgba(255,255,255,0.05); }
+    .premium-form-wrapper::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
     
-    .modern-alert {
-        background: #dcfce7; color: #166534; padding: 16px; border-radius: 12px;
-        display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px;
-        font-size: 13.5px; font-weight: 600; line-height: 1.5;
+    .p-alert {
+        background: var(--primary-light); color: var(--primary);
+        padding: 16px; border-radius: 16px; display: flex; align-items: flex-start; gap: 12px;
+        font-size: 13.5px; font-weight: 700; line-height: 1.5; margin-bottom: 24px;
+        border: 1px dashed rgba(79, 70, 229, 0.3);
     }
-    body.dark-mode .modern-alert { background: rgba(22, 163, 74, 0.15); color: #4ade80; }
-    .modern-alert i { font-size: 20px; color: #15803d; margin-top: 2px;}
-    body.dark-mode .modern-alert i { color: #4ade80; }
+    .p-alert i { font-size: 20px; margin-top: 2px; }
 
-    .modern-input-group { margin-bottom: 16px; }
-    .modern-input {
-        width: 100%; padding: 16px 20px; background: var(--bg-main);
-        border: 1.5px solid transparent; border-radius: 12px;
-        font-size: 15px; font-weight: 500; color: var(--text-main);
-        outline: none; transition: all 0.3s ease; font-family: inherit;
+    .p-input-group { position: relative; margin-bottom: 20px; }
+    .p-input-icon {
+        position: absolute; top: 18px; left: 16px;
+        color: var(--text-muted); font-size: 16px; transition: 0.3s;
     }
-    .modern-input:focus {
+    .p-input {
+        width: 100%; padding: 16px 20px 16px 48px;
+        background: var(--bg-main); border: 2px solid transparent;
+        border-radius: 16px; font-size: 15px; font-weight: 500;
+        color: var(--text-main); transition: 0.3s; outline: none; font-family: inherit;
+    }
+    .p-input:focus {
         border-color: var(--primary); background: var(--bg-card);
-        box-shadow: 0 0 0 4px var(--primary-light);
+        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.1);
     }
-    .modern-textarea { min-height: 140px; resize: none; }
-    body.dark-mode .modern-input { border-color: #334155; }
+    .p-input:focus + .p-input-icon, .p-input:focus ~ .p-input-icon {
+        color: var(--primary);
+    }
+    body.dark-mode .p-input { border-color: #334155; }
+    .p-textarea { min-height: 140px; resize: none; padding-top: 18px; }
 
-    .modern-submit-btn {
-        width: 100%; background: var(--primary); color: white; border: none; padding: 16px;
-        border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25); transition: all 0.3s ease;
+    .p-submit-btn {
+        width: 100%; background: linear-gradient(135deg, var(--primary), #312e81);
+        color: white; border: none; padding: 18px; border-radius: 16px;
+        font-size: 16px; font-weight: 800; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.25); transition: all 0.3s ease;
     }
-    .modern-submit-btn:hover { background: #4338ca; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35); }
-    .modern-submit-btn:active { transform: translateY(1px); }
+    .p-submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35); }
+    .p-submit-btn:active { transform: translateY(1px); }
 
     /* GUIDELINES */
     .guidelines-section { margin-bottom: 48px; }
@@ -577,6 +600,8 @@
           <span><i class="fa-solid fa-language"></i> <span data-i18n="language">App Language</span></span> <i class="fa-solid fa-chevron-right"></i>
         </div>
         <div class="menu-group-title" data-i18n="help_center">Help Center</div>
+        
+        <!-- MAIN CONTACT PAGE OPENER -->
         <div class="list-menu-item" onclick="openPage('contact-page')">
           <span><i class="fa-solid fa-headset"></i> <span data-i18n="missing_sb">Contact Us / Support</span></span> <i class="fa-solid fa-chevron-right"></i>
         </div>
@@ -777,7 +802,7 @@
   
   <!-- ==============================================
        🔥 MAIN CONTACT US PAGE 🔥
-       (Helai ah hian Form leh Guidelines a awm tawh ang)
+       (Helai ah hian Form leh Guidelines a awm ang)
        ============================================== -->
   <div id="contact-page" class="fs-page contact-premium-bg">
     
@@ -789,62 +814,67 @@
     
     <div class="fs-content">
       
-      <!-- 1. Direct Admin Contact Form -->
-      <div class="modern-form-container">
-         <div class="modern-alert">
-             <i class="fa-solid fa-clock"></i>
-             <div>Admin ten i message thawn hi an lo endik anga, darkar 24 chhung ngeiin chhanna an rawn pe ang che.</div>
+      <!-- 1. PREMIUM FORM (OFFERWALL PROOF) -->
+      <div class="premium-form-wrapper">
+         <div class="p-alert">
+             <i class="fa-solid fa-headset"></i>
+             <div>Our support team will carefully review your message and respond within 24 hours.</div>
          </div>
-         <div class="modern-input-group">
-             <input type="text" id="ticket-subject" class="modern-input" placeholder="Subject (Eng chungchang nge?)">
+         
+         <div class="p-input-group">
+             <i class="fa-solid fa-envelope-open-text p-input-icon"></i>
+             <input type="text" id="ticket-subject" class="p-input" placeholder="Subject (What is this regarding?)">
          </div>
-         <div class="modern-input-group">
-             <textarea id="ticket-desc" class="modern-input modern-textarea" placeholder="I harsatna kimchang takin ziak rawh..."></textarea>
+         
+         <div class="p-input-group">
+             <i class="fa-solid fa-pen-to-square p-input-icon"></i>
+             <textarea id="ticket-desc" class="p-input p-textarea" placeholder="Please describe your issue in detail..."></textarea>
          </div>
-         <button class="modern-submit-btn" onclick="submitTicket()">
-            Send Message <i class="fa-solid fa-paper-plane"></i>
+         
+         <button class="p-submit-btn" onclick="submitTicket()">
+            Submit Request <i class="fa-solid fa-paper-plane"></i>
          </button>
       </div>
 
-      <!-- 2. Support Guidelines -->
+      <!-- 2. SUPPORT GUIDELINES -->
       <div class="guidelines-section">
          <div class="guideline-title">
-            <i class="fa-solid fa-clipboard-list" style="color: var(--primary);"></i> Support Guidelines
+            <i class="fa-solid fa-clipboard-check" style="color: var(--primary);"></i> Support Guidelines
          </div>
          <div class="guideline-list">
              <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-reply-all"></i></div>
+                 <div class="guideline-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                  <div class="guideline-text">
                      <h5>1. Response Time</h5>
-                     <p>Message i thawn atang hian darkar 24 chhung ngeiin kan team ten uluk takin an lo endik anga, a rang thei ang berin chhanna pek let nghal zel i ni ang.</p>
+                     <p>Our team carefully reviews all messages and typically responds to tickets within 24 hours.</p>
                  </div>
              </div>
              <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                 <div class="guideline-icon"><i class="fa-solid fa-list-ul"></i></div>
                  <div class="guideline-text">
                      <h5>2. Be Specific</h5>
-                     <p>I harsatna leh buaina te kha a tawi thei ang ber ni lovin, a kimchang thei ang berin ziak la, tichuan kan lo puih zung zung theih nan che a tangkai hle dawn a ni.</p>
+                     <p>Please provide complete details about your issue to help us assist you quickly and effectively.</p>
                  </div>
              </div>
              <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-wallet"></i></div>
+                 <div class="guideline-icon"><i class="fa-solid fa-building-columns"></i></div>
                  <div class="guideline-text">
                      <h5>3. Payment Issues</h5>
-                     <p>Pawisa lakchhuah (Withdrawal) chungchangah buaina i nei a nih chuan, i account hming, i UPI ID emaw Bank Account details dik tak kimchangin tarlang tel ngei ngei ang che.</p>
+                     <p>For withdrawal issues, strictly include your correct Account Name and UPI ID or Bank details.</p>
                  </div>
              </div>
              <div class="guideline-row">
-                 <div class="guideline-icon" style="color: #ef4444; background: rgba(239,68,68,0.1);"><i class="fa-solid fa-user-xmark"></i></div>
+                 <div class="guideline-icon" style="color: #ef4444; background: rgba(239,68,68,0.1);"><i class="fa-solid fa-user-lock"></i></div>
                  <div class="guideline-text">
                      <h5>4. Account Suspension</h5>
-                     <p>Dan kalh a thil i tih avanga i account block (ban) a nih tawh chuan, engtiang pawhin rawn dil mahla <strong>hawn let sak leh theih a ni tawh lo</strong>.</p>
+                     <p>If your account is suspended due to violations, it cannot be restored under any circumstances.</p>
                  </div>
              </div>
              <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-user-shield"></i></div>
+                 <div class="guideline-icon"><i class="fa-solid fa-shield-cat"></i></div>
                  <div class="guideline-text">
                      <h5>5. Account Security</h5>
-                     <p>Kan Admin te emaw Cash-Mizo official te hian i OTP, Password emaw thil pawimawh dang reng reng kan zawt ngai lo che. Midang lakah fimkhur hle ang che.</p>
+                     <p>Our official team will never ask for your OTP or Password. Do not share these with anyone.</p>
                  </div>
              </div>
          </div>
@@ -865,8 +895,9 @@
          <h3>Legal & Support</h3>
          <a onclick="window.location.href='terms.html'">Terms of Service</a>
          <a onclick="window.location.href='privacy.html'">Privacy Policy</a>
-         <!-- HETAH HIAN FOOTER LINK KHA PAGE THAR A HAWNG TURIN KA THLAK TA E -->
-         <a onclick="openPage('support-channels-page')">Contact Support</a>
+         
+         <!-- ⚡ FOOTER LINK THLAK THAR: THLALAK PAGE A HAWNG DAWN TAWH ⚡ -->
+         <a onclick="openPage('support-channels-page')" style="color: var(--primary); font-weight: 800;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Other Support Channels</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
             <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
