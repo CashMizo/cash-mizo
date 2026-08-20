@@ -430,6 +430,93 @@
     .bg-wa { background: linear-gradient(135deg, #22c55e, #15803d); }
     .bg-tg { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
 
+  
+    /* =========================================================
+       CASH-MIZO — CONTACT SUPPORT EXPERIENCE v2
+       Drop-in premium redesign. Uses existing app theme variables.
+       ========================================================= */
+    .contact-premium-bg{
+      background:
+        radial-gradient(900px 460px at 100% -10%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 60%),
+        radial-gradient(700px 420px at -10% 22%, rgba(16,185,129,.10), transparent 62%),
+        var(--bg-main);
+    }
+    .contact-page-content{padding:20px 18px 52px!important;max-width:760px!important}
+    .support-hero{
+      position:relative;overflow:hidden;padding:26px 22px 22px;border-radius:28px;margin-bottom:18px;
+      background:linear-gradient(135deg,var(--primary),#312e81 62%,#111827);
+      color:#fff;box-shadow:0 18px 42px rgba(79,70,229,.24);
+    }
+    .support-hero:before,.support-hero:after{content:"";position:absolute;border-radius:999px;pointer-events:none}
+    .support-hero:before{width:220px;height:220px;right:-85px;top:-105px;background:rgba(255,255,255,.10)}
+    .support-hero:after{width:130px;height:130px;right:35px;bottom:-95px;border:1px solid rgba(255,255,255,.18)}
+    .support-kicker{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#c7d2fe;margin-bottom:12px}
+    .support-kicker i{display:grid;place-items:center;width:28px;height:28px;border-radius:10px;background:rgba(255,255,255,.12)}
+    .support-hero h2{position:relative;z-index:1;font-size:27px;line-height:1.15;letter-spacing:-.04em;margin:0 0 9px}
+    .support-hero p{position:relative;z-index:1;max-width:480px;color:#e0e7ff;font-size:13px;line-height:1.65;margin:0}
+    .support-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .support-meta span{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.13);font-size:11px;font-weight:700}
+    .support-form-card{
+      background:color-mix(in srgb,var(--bg-card) 92%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border:1px solid color-mix(in srgb,var(--border-color) 80%,transparent);border-radius:28px;padding:22px 18px;
+      box-shadow:0 16px 44px rgba(15,23,42,.08);margin-bottom:22px;
+    }
+    .support-form-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px}
+    .support-form-head h3{font-size:18px;letter-spacing:-.02em;margin:0 0 5px}
+    .support-form-head p{margin:0;color:var(--text-muted);font-size:12px;line-height:1.5}
+    .support-secure{flex:0 0 auto;display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--primary-light);color:var(--primary)}
+    .ticket-field{margin-bottom:17px}
+    .ticket-label{display:flex;justify-content:space-between;align-items:center;margin:0 2px 8px;font-size:12px;font-weight:800;color:var(--text-main)}
+    .ticket-label small{font-size:10px;font-weight:700;color:var(--text-muted)}
+    .ticket-control{position:relative}
+    .ticket-control>i{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:15px;pointer-events:none;transition:.25s}
+    .ticket-control:focus-within>i{color:var(--primary)}
+    .ticket-input{
+      width:100%;border:1.5px solid var(--border-color);outline:0;background:var(--bg-main);color:var(--text-main);
+      border-radius:16px;padding:15px 16px 15px 45px;font:600 14px/1.4 inherit;transition:.22s;
+    }
+    .ticket-input:focus{background:var(--bg-card);border-color:var(--primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 11%,transparent)}
+    .ticket-textarea{min-height:152px;resize:vertical;padding-top:15px}
+    .ticket-counter{display:flex;justify-content:flex-end;margin-top:7px;color:var(--text-muted);font-size:10px;font-weight:700}
+    .ticket-upload{
+      position:relative;min-height:112px;border:1.5px dashed var(--border-color);border-radius:18px;background:var(--bg-main);
+      display:flex;align-items:center;padding:14px;overflow:hidden;transition:.25s;cursor:pointer;
+    }
+    .ticket-upload:hover,.ticket-upload.dragover{border-color:var(--primary);background:var(--primary-light)}
+    .ticket-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:3}
+    .upload-icon{display:grid;place-items:center;flex:0 0 auto;width:52px;height:52px;border-radius:16px;background:var(--bg-card);color:var(--primary);font-size:20px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+    .upload-copy{min-width:0;padding:0 12px;flex:1}
+    .upload-copy strong,.upload-copy span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .upload-copy strong{font-size:13px;color:var(--text-main);margin-bottom:4px}
+    .upload-copy span{font-size:11px;color:var(--text-muted);font-weight:600}
+    .upload-remove{position:relative;z-index:4;border:0;background:transparent;color:var(--text-muted);width:36px;height:36px;border-radius:12px;display:none;cursor:pointer}
+    .upload-remove.visible{display:grid;place-items:center}
+    .ticket-submit{
+      width:100%;min-height:56px;border:0;border-radius:17px;color:#fff;cursor:pointer;font:800 14px inherit;
+      display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--primary),#312e81);
+      box-shadow:0 13px 28px color-mix(in srgb,var(--primary) 28%,transparent);transition:transform .2s,box-shadow .2s,opacity .2s;
+    }
+    .ticket-submit:hover{transform:translateY(-2px);box-shadow:0 18px 34px color-mix(in srgb,var(--primary) 34%,transparent)}
+    .ticket-submit:active{transform:translateY(0)}
+    .ticket-submit:disabled{opacity:.72;cursor:wait;transform:none}
+    .ticket-footnote{display:flex;justify-content:center;align-items:center;gap:7px;color:var(--text-muted);font-size:10px;font-weight:700;margin-top:13px}
+    .ticket-footnote i{color:var(--secondary)}
+    .support-guidelines{margin:6px 2px 26px}
+    .support-section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+    .support-section-title .title-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:var(--primary-light);color:var(--primary)}
+    .guideline-stack{display:grid;gap:10px}
+    .guideline-card{display:flex;gap:13px;align-items:flex-start;padding:15px;border:1px solid var(--border-color);background:var(--bg-card);border-radius:18px;transition:.2s}
+    .guideline-card:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--border-color));transform:translateY(-1px)}
+    .guideline-card .guide-icon{display:grid;place-items:center;flex:0 0 auto;width:40px;height:40px;border-radius:13px;background:var(--primary-light);color:var(--primary)}
+    .guideline-card.danger .guide-icon{background:rgba(239,68,68,.10);color:#ef4444}
+    .guide-copy h4{font-size:13px;margin:1px 0 5px}.guide-copy p{font-size:11px;line-height:1.6;color:var(--text-muted);margin:0}
+    .support-alt{border:1px solid var(--border-color);background:linear-gradient(135deg,var(--bg-card),var(--bg-main));border-radius:22px;padding:18px;display:flex;align-items:center;gap:14px}
+    .support-alt-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:#ecfdf5;color:var(--secondary);font-size:19px;flex:0 0 auto}
+    .support-alt-copy{min-width:0;flex:1}.support-alt-copy strong{display:block;font-size:13px;margin-bottom:4px}.support-alt-copy span{display:block;color:var(--text-muted);font-size:11px;line-height:1.5}
+    .support-alt button{border:0;background:var(--text-main);color:var(--bg-card);padding:10px 12px;border-radius:12px;font:800 11px inherit;cursor:pointer;white-space:nowrap}
+    @media (max-width:380px){.support-hero{padding:22px 18px}.support-hero h2{font-size:24px}.support-form-card{padding:18px 14px}.support-alt{align-items:flex-start}.support-alt button{padding:9px}}
+    @media (prefers-reduced-motion:reduce){.ticket-submit,.guideline-card{transition:none}}
+
   </style>
 </head>
 <body>
@@ -827,116 +914,92 @@
        (Helai ah hian Form leh Guidelines a awm ang)
        ============================================== -->
   <div id="contact-page" class="fs-page contact-premium-bg">
-    
     <div class="fs-header">
-      <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main);">Contact Support</h3>
-      <div style="width: 44px;"></div>
+      <div class="back-btn" onclick="closePage('contact-page')" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></div>
+      <h3 style="font-size:18px;font-weight:800;color:var(--text-main);">Contact Support</h3>
+      <div style="width:44px;"></div>
     </div>
-    
-    <div class="fs-content">
-      
-      <!-- 1. PREMIUM FORM (OFFERWALL PROOF) -->
-      <div class="premium-form-wrapper">
-         <div class="p-alert">
-             <i class="fa-solid fa-headset"></i>
-             <div>Our support team will carefully review your message and respond within 24 hours.</div>
-         </div>
-         
-         <div class="p-input-group">
-             <i class="fa-solid fa-envelope-open-text p-input-icon"></i>
-             <input type="text" id="ticket-subject" class="p-input" placeholder="Subject (What is this regarding?)">
-         </div>
-         
-         <div class="p-input-group">
-             <i class="fa-solid fa-pen-to-square p-input-icon"></i>
-             <textarea id="ticket-desc" class="p-input p-textarea" placeholder="Please describe your issue in detail..."></textarea>
-         </div>
 
-         <!-- ⚡ SCREENSHOT UPLOAD THAR ⚡ -->
-         <div class="file-upload-wrapper">
-             <input type="file" id="ticket-screenshot" class="file-upload-input" accept="image/*" onchange="updateFileName(this)" title="Attach Screenshot">
-             <div class="file-upload-ui" id="file-upload-text">
-                 Attach Screenshot (Optional)
-             </div>
-             <i class="fa-solid fa-image file-upload-icon"></i>
-         </div>
-         
-         <!-- ⚡ BUTTON ICON THLAK THAR ⚡ -->
-         <button class="p-submit-btn" onclick="submitTicket()">
-            Submit Request <i class="fa-solid fa-arrow-right"></i>
-         </button>
-      </div>
+    <div class="fs-content contact-page-content">
+      <section class="support-hero">
+        <div class="support-kicker"><i class="fa-solid fa-sparkles"></i> CASH-MIZO CARE</div>
+        <h2>Tell us what happened.<br>We’ll take it from here.</h2>
+        <p>Send a detailed request and our support team can review the information you provide.</p>
+        <div class="support-meta">
+          <span><i class="fa-regular fa-clock"></i> Usually within 24 hours</span>
+          <span><i class="fa-solid fa-shield-halved"></i> Private & secure</span>
+        </div>
+      </section>
 
-      <!-- 2. SUPPORT GUIDELINES -->
-      <div class="guidelines-section">
-         <div class="guideline-title">
-            <i class="fa-solid fa-clipboard-check" style="color: var(--primary);"></i> Support Guidelines
-         </div>
-         <div class="guideline-list">
-             <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                 <div class="guideline-text">
-                     <h5>1. Response Time</h5>
-                     <p>Our team carefully reviews all messages and typically responds to tickets within 24 hours.</p>
-                 </div>
-             </div>
-             <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-list-ul"></i></div>
-                 <div class="guideline-text">
-                     <h5>2. Be Specific</h5>
-                     <p>Please provide complete details about your issue to help us assist you quickly and effectively.</p>
-                 </div>
-             </div>
-             <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-building-columns"></i></div>
-                 <div class="guideline-text">
-                     <h5>3. Payment Issues</h5>
-                     <p>For withdrawal issues, strictly include your correct Account Name and UPI ID or Bank details.</p>
-                 </div>
-             </div>
-             <div class="guideline-row">
-                 <div class="guideline-icon" style="color: #ef4444; background: rgba(239,68,68,0.1);"><i class="fa-solid fa-user-lock"></i></div>
-                 <div class="guideline-text">
-                     <h5>4. Account Suspension</h5>
-                     <p>If your account is suspended due to violations, it cannot be restored under any circumstances.</p>
-                 </div>
-             </div>
-             <div class="guideline-row">
-                 <div class="guideline-icon"><i class="fa-solid fa-shield-cat"></i></div>
-                 <div class="guideline-text">
-                     <h5>5. Account Security</h5>
-                     <p>Our official team will never ask for your OTP or Password. Do not share these with anyone.</p>
-                 </div>
-             </div>
-         </div>
-      </div>
+      <section class="support-form-card" aria-labelledby="support-form-title">
+        <div class="support-form-head">
+          <div>
+            <h3 id="support-form-title">Create a support request</h3>
+            <p>The more detail you provide, the easier it is for our team to investigate.</p>
+          </div>
+          <div class="support-secure"><i class="fa-solid fa-headset"></i></div>
+        </div>
 
-      <!-- 3. FOOTER -->
-      <div class="clean-footer notranslate" translate="no">
-         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
-            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
-         </div>
-         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
-         
-         <h3>Explore</h3>
-         <!-- ⚡ HOME THLAK DANGLAM THAR LEH A AWMNA SAWN ⚡ -->
-         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home - Dashboard</a>
-         <a onclick="window.location.href='home.html'">How it works</a>
-         
-         <h3>Legal & Support</h3>
-         <a onclick="window.location.href='terms.html'">Terms of Service</a>
-         <a onclick="window.location.href='privacy.html'">Privacy Policy</a>
-         
-         <!-- ⚡ FOOTER LINK HMING THLAK LET LEH THAR ⚡ -->
-         <a onclick="openPage('support-channels-page')" style="color: var(--primary); font-weight: 800;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Contact Support</a>
-         
-         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
-            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
-         </div>
-      </div>
+        <div class="ticket-field">
+          <label class="ticket-label" for="ticket-subject"><span>What do you need help with?</span><small>Required</small></label>
+          <div class="ticket-control">
+            <i class="fa-solid fa-message"></i>
+            <input type="text" id="ticket-subject" class="ticket-input" maxlength="100" placeholder="e.g. My reward is still pending">
+          </div>
+        </div>
 
+        <div class="ticket-field">
+          <label class="ticket-label" for="ticket-desc"><span>Describe the issue</span><small>At least 10 characters</small></label>
+          <div class="ticket-control">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <textarea id="ticket-desc" class="ticket-input ticket-textarea" maxlength="2000" placeholder="Include what happened, when it happened, and any relevant details..." oninput="updateTicketCounter(this)"></textarea>
+          </div>
+          <div class="ticket-counter"><span id="ticket-counter">0</span>&nbsp;/&nbsp;2,000</div>
+        </div>
+
+        <div class="ticket-field">
+          <div class="ticket-label"><span>Screenshot or proof</span><small>Optional · Image only</small></div>
+          <label class="ticket-upload" id="ticket-upload-zone">
+            <input type="file" id="ticket-screenshot" accept="image/*" onchange="updateFileName(this)">
+            <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <div class="upload-copy">
+              <strong id="file-upload-text">Attach a screenshot</strong>
+              <span id="file-upload-subtext">PNG, JPG or other image formats</span>
+            </div>
+            <button type="button" class="upload-remove" id="file-upload-remove" onclick="removeTicketFile(event)" aria-label="Remove attachment"><i class="fa-solid fa-xmark"></i></button>
+          </label>
+        </div>
+
+        <button class="ticket-submit" id="ticket-submit-btn" onclick="submitTicket()">
+          <span class="ticket-submit-label">Submit request</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <div class="ticket-footnote"><i class="fa-solid fa-circle-check"></i> Your request is reviewed before any response is sent.</div>
+      </section>
+
+      <section class="support-guidelines">
+        <div class="support-section-title"><span class="title-icon"><i class="fa-solid fa-clipboard-check"></i></span> Before you submit</div>
+        <div class="guideline-stack">
+          <article class="guideline-card">
+            <div class="guide-icon"><i class="fa-solid fa-list-check"></i></div>
+            <div class="guide-copy"><h4>Be specific</h4><p>Include the task, reward, transaction, or feature involved so we can investigate faster.</p></div>
+          </article>
+          <article class="guideline-card">
+            <div class="guide-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="guide-copy"><h4>Payment details matter</h4><p>For withdrawal issues, include the correct account name and relevant UPI or bank information.</p></div>
+          </article>
+          <article class="guideline-card danger">
+            <div class="guide-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <div class="guide-copy"><h4>Keep your account secure</h4><p>Never send your password or OTP to anyone claiming to be support.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="support-alt">
+        <div class="support-alt-icon"><i class="fa-solid fa-comments"></i></div>
+        <div class="support-alt-copy"><strong>Prefer another support channel?</strong><span>Browse the available ways to reach the CASH-MIZO support team.</span></div>
+        <button onclick="openPage('support-channels-page')">View options</button>
+      </section>
     </div>
   </div>
 
@@ -1304,18 +1367,41 @@
     setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
   
-  // File Upload Text Changer
+  // Contact attachment UI
   function updateFileName(input) {
       const textLabel = document.getElementById('file-upload-text');
+      const subtext = document.getElementById('file-upload-subtext');
+      const removeBtn = document.getElementById('file-upload-remove');
+      const zone = document.getElementById('ticket-upload-zone');
       if (input.files && input.files.length > 0) {
-          textLabel.innerText = input.files[0].name;
+          const file = input.files[0];
+          textLabel.innerText = file.name;
+          subtext.innerText = `${Math.max(1, Math.round(file.size / 1024))} KB · Ready to attach`;
           textLabel.style.color = 'var(--primary)';
+          removeBtn.classList.add('visible');
+          zone.classList.add('has-file');
       } else {
-          textLabel.innerText = 'Attach Screenshot (Optional)';
-          textLabel.style.color = 'var(--text-muted)';
+          textLabel.innerText = 'Attach a screenshot';
+          subtext.innerText = 'PNG, JPG or other image formats';
+          textLabel.style.color = '';
+          removeBtn.classList.remove('visible');
+          zone.classList.remove('has-file');
       }
   }
-  
+
+  function removeTicketFile(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const input = document.getElementById('ticket-screenshot');
+      input.value = '';
+      updateFileName(input);
+  }
+
+  function updateTicketCounter(input) {
+      const counter = document.getElementById('ticket-counter');
+      if (counter) counter.textContent = input.value.length;
+  }
+
   // 8. APP LOGIC & SUPABASE ACTIONS
   function getReferrerFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -1563,23 +1649,70 @@
     document.getElementById('promo-input').value = '';
   }
   
-  function submitTicket() {
-    const sub = document.getElementById('ticket-subject').value;
-    const desc = document.getElementById('ticket-desc').value;
+  async function submitTicket() {
+    const subjectInput = document.getElementById('ticket-subject');
+    const descInput = document.getElementById('ticket-desc');
     const fileInput = document.getElementById('ticket-screenshot');
-    const hasFile = fileInput.files.length > 0;
-    
-    if(!sub || desc.length < 10) { showToast("Harsatna kimchang takin ziak rawh.", true); return; }
-    
-    // Future Admin Panel Connection:
-    if(currentUserId) {
-        supabaseClient.from('admin_reports').insert([{ user_id: currentUserId, message: desc, status: 'pending' }]).then();
+    const button = document.getElementById('ticket-submit-btn');
+    const label = button.querySelector('.ticket-submit-label');
+    const sub = subjectInput.value.trim();
+    const desc = descInput.value.trim();
+
+    if (!sub) {
+      subjectInput.focus();
+      showToast("Please add a subject for your request.", true);
+      return;
     }
-    
-    showToast(hasFile ? "Screenshot nen thawn a ni e!" : "Message him takin thawn a ni e!");
-    setTimeout(() => closePage('contact-page'), 1500);
+    if (desc.length < 10) {
+      descInput.focus();
+      showToast("Please describe the issue in a little more detail.", true);
+      return;
+    }
+
+    const hasFile = fileInput.files && fileInput.files.length > 0;
+    button.disabled = true;
+    label.textContent = 'Submitting...';
+    button.querySelector('i').className = 'fa-solid fa-spinner fa-spin';
+
+    try {
+      if (currentUserId) {
+        const { error } = await supabaseClient
+          .from('admin_reports')
+          .insert([{
+            user_id: currentUserId,
+            subject: sub,
+            message: desc,
+            status: 'pending'
+          }]);
+
+        // Keeps the original app working even if the table does not yet have
+        // a `subject` column. The original insert only used user_id/message/status.
+        if (error && /subject/i.test(error.message || '')) {
+          const fallback = await supabaseClient
+            .from('admin_reports')
+            .insert([{ user_id: currentUserId, message: desc, status: 'pending' }]);
+          if (fallback.error) throw fallback.error;
+        } else if (error) {
+          throw error;
+        }
+      }
+
+      showToast(hasFile ? "Request submitted with your screenshot." : "Your support request has been submitted.");
+      subjectInput.value = '';
+      descInput.value = '';
+      updateTicketCounter(descInput);
+      removeTicketFile({preventDefault(){}, stopPropagation(){}});
+      setTimeout(() => closePage('contact-page'), 1300);
+    } catch (error) {
+      console.error('Ticket submission failed:', error);
+      showToast(error.message || "We couldn't submit your request. Please try again.", true);
+    } finally {
+      button.disabled = false;
+      label.textContent = 'Submit request';
+      button.querySelector('i').className = 'fa-solid fa-arrow-right';
+    }
   }
-  
+
   function selectPayType(type) {
     document.querySelectorAll('.pay-logo-card').forEach(card => card.classList.remove('active'));
     document.getElementById(`btn-pay-${type}`).classList.add('active');
@@ -1700,6 +1833,33 @@
     
     if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
   }
+  // Premium attachment drag-and-drop support
+  document.addEventListener('DOMContentLoaded', () => {
+    const zone = document.getElementById('ticket-upload-zone');
+    const input = document.getElementById('ticket-screenshot');
+    if (!zone || !input) return;
+    ['dragenter', 'dragover'].forEach(type => zone.addEventListener(type, event => {
+      event.preventDefault();
+      zone.classList.add('dragover');
+    }));
+    ['dragleave', 'drop'].forEach(type => zone.addEventListener(type, event => {
+      event.preventDefault();
+      zone.classList.remove('dragover');
+    }));
+    zone.addEventListener('drop', event => {
+      const files = event.dataTransfer && event.dataTransfer.files;
+      if (!files || !files.length) return;
+      if (!files[0].type.startsWith('image/')) {
+        showToast('Please attach an image file.', true);
+        return;
+      }
+      const dt = new DataTransfer();
+      dt.items.add(files[0]);
+      input.files = dt.files;
+      updateFileName(input);
+    });
+  });
+
 </script>
 </body>
 </html>
