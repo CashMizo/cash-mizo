@@ -285,6 +285,22 @@
     .clean-icon-btn { font-size: 32px; text-decoration: none; transition: transform 0.2s ease; display: inline-flex; justify-content: center; align-items: center; width: 60px; height: 60px; border-radius: 16px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
     .clean-icon-btn:hover { transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
     .icon-gmail { color: #ea4335; } .icon-whatsapp { color: #25D366; } .icon-telegram { color: #0088cc; }
+
+    /* NEW CONTACT SUPPORT STYLES */
+    .support-form-container { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 24px; box-shadow: var(--shadow-sm); }
+    .support-input { width: 100%; padding: 14px 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 14px; font-weight: 500; color: var(--text-main); font-family: inherit; outline: none; transition: 0.2s; }
+    .support-input:focus { border-color: var(--primary); }
+    textarea.support-input { resize: vertical; min-height: 120px; }
+    
+    .support-notice { font-size: 13px; color: #15803d; background: #dcfce7; padding: 14px; border-radius: 12px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-weight: 700; border: 1px solid #bbf7d0;}
+    body.dark-mode .support-notice { background: rgba(21, 128, 61, 0.2); border-color: rgba(21, 128, 61, 0.4); color: #4ade80; }
+    
+    .guidelines-box { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 24px; }
+    .guide-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+    .guide-item:last-child { margin-bottom: 0; }
+    .guide-icon { color: var(--primary); font-size: 20px; margin-top: 2px; width: 24px; text-align: center; flex-shrink: 0;}
+    .guide-text h5 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+    .guide-text p { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 500;}
   </style>
 </head>
 <body>
@@ -677,43 +693,93 @@
   </div>
   
   <!-- CONTACT US PAGE -->
-  <div id="contact-page" class="fs-page">
+  <div id="contact-page" class="fs-page fs-premium-bg">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 class="notranslate" translate="no" data-i18n="customer_care">Contact Support</h3>
       <div style="width: 40px;"></div>
     </div>
-    <!-- HOME.HTML AMI ANG CHIAH CONTACT CARDS -->
-    <div class="fs-content" style="background: var(--bg-card);">
+    <div class="fs-content">
       
-      <!-- Contact 1: Gmail -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
-        <h4>Email Support</h4>
-        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
-        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
+      <!-- Direct Admin Contact Form -->
+      <div class="support-form-container">
+         <div class="support-notice">
+             <i class="fa-solid fa-clock" style="font-size: 18px;"></i>
+             Admin ten i message thawn hi an lo endik anga, darkar 24 chhungin chhanna an rawn pe ang che.
+         </div>
+         <input type="text" id="ticket-subject" class="support-input" placeholder="Subject (Eng chungchang nge?)">
+         <textarea id="ticket-desc" class="support-input" placeholder="I harsatna kimchang takin ziak rawh..."></textarea>
+         <button class="btn-primary" onclick="submitTicket()">Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
       </div>
 
-      <!-- Contact 2: WhatsApp -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
-        <h4>WhatsApp Support</h4>
-        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
-        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
+      <!-- 8 Guidelines / Info Points -->
+      <div class="guidelines-box">
+         <h4 style="font-size: 16px; font-weight: 800; margin-bottom: 24px; color: var(--text-main);"><i class="fa-solid fa-shield-cat" style="color: var(--primary); margin-right: 8px;"></i> Support Guidelines</h4>
+
+         <div class="guide-item">
+             <i class="fa-solid fa-reply-all guide-icon"></i>
+             <div class="guide-text"><h5>1. Response Time</h5><p>Message i thawn atanga darkar 24 chhungin theih tawp chhuahin chhanna pek thin i ni ang.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-pen-to-square guide-icon"></i>
+             <div class="guide-text"><h5>2. Be Specific</h5><p>I buaina i ziah rualin a kimchang thei ang berin ziah tum la, chhan let i awlsam bik ang.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-wallet guide-icon"></i>
+             <div class="guide-text"><h5>3. Payment Issues</h5><p>Withdrawal lamah buaina i nei a nih chuan i UPI ID/Bank account details dik tak tarlang tel ang che.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-user-xmark guide-icon"></i>
+             <div class="guide-text"><h5>4. Account Suspension</h5><p>I account block (ban) a nih tawh chuan support ah dil ngawt mahla hawn let sak theih a ni lo.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-ban guide-icon"></i>
+             <div class="guide-text"><h5>5. No Spamming</h5><p>Message thuhmun vawi tam tak i thawn a nih chuan i hming leh details system atanga paih nghal a ni ang.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-user-shield guide-icon"></i>
+             <div class="guide-text"><h5>6. Account Security</h5><p>I OTP emaw password engmah Admin ten an zawt ngai lo che, tuman lo dil che sela pe reng reng suh.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-bug guide-icon"></i>
+             <div class="guide-text"><h5>7. Report Bugs</h5><p>Application chhungah thil dik lo leh kal kawi i hmu a nih chuan a rang lamin min rawn hriattir dawn nia.</p></div>
+         </div>
+         <div class="guide-item">
+             <i class="fa-solid fa-calendar-days guide-icon"></i>
+             <div class="guide-text"><h5>8. Working Hours</h5><p>Inrinni (Saturday) leh Pathianni (Sunday) ah chuan support chhanna a muang deuh thin tih hriattir in ni e.</p></div>
+         </div>
       </div>
 
-      <!-- Contact 3: Telegram -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
-        <h4>Telegram Support</h4>
-        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
-        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-telegram" title="Telegram">
-          <i class="fa-brands fa-telegram"></i>
-        </a>
+      <!-- Small backup icons preserving your links -->
+      <div style="text-align: center; margin-bottom: 32px;">
+         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700;">Emergency Contacts</p>
+         <div style="display: flex; gap: 16px; justify-content: center;">
+             <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-solid fa-envelope"></i></a>
+             <a href="https://wa.me/919862341446" class="clean-icon-btn icon-whatsapp" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></a>
+             <a href="https://t.me/CashMizoSupport_bot" class="clean-icon-btn icon-telegram" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-brands fa-telegram"></i></a>
+         </div>
+      </div>
+
+      <!-- Footer (Screenshot 2 design) -->
+      <div class="clean-footer notranslate" translate="no">
+         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
+            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
+         </div>
+         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
+         
+         <h3>Explore</h3>
+         <a onclick="openPage('info-page')">How it works</a>
+         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
+         
+         <h3>Legal & Support</h3>
+         <a onclick="openPage('terms-page')">Terms of Service</a>
+         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="openPage('contact-page')">Contact Support</a>
+         
+         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+         </div>
       </div>
 
     </div>
@@ -931,7 +997,7 @@
          <a onclick="openPage('contact-page')">Contact Support</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
-           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
          </div>
       </div>
     </div>
@@ -1204,7 +1270,6 @@
       
       document.getElementById('more-name').innerText = fullName;
       document.getElementById('more-email').innerText = email;
-      document.getElementById('ticket-email').value = email;
       document.getElementById('more-initial').innerText = fullName.charAt(0).toUpperCase();
       
       const baseUrl = window.location.origin + window.location.pathname;
