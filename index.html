@@ -68,7 +68,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
     body, html { height: 100vh; height: calc(var(--vh, 1vh) * 100); margin: 0; padding: 0; overflow: hidden; }
-    body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 16px; top: 0px !important; position: static !important; }
+    body { background-color: #cbd5e1; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 12px; top: 0px !important; position: static !important; }
     
     .app-container { width: 100%; max-width: 100%; background-color: var(--bg-main); height: 100vh; height: calc(var(--vh, 1vh) * 100); position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);}
     
@@ -163,6 +163,11 @@
     .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
     .back-btn:hover { background: var(--border-color); }
     .fs-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; }
+    
+    /* SPECIAL INFO / TERMS BACKGROUND */
+    .fs-premium-bg { background: #f1f5f9; }
+    body.dark-mode .fs-premium-bg { background: var(--bg-main); }
+    
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 24px;}
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
     .btn-primary { background: var(--primary); color: white; border: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; width: 100%; font-size: 16px; cursor: pointer; }
@@ -207,16 +212,6 @@
     
     .btn-reset { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 10px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; width: 100%; justify-content: center; margin-top: 16px;}
     .btn-reset:hover { background: #fca5a5; }
-
-    /* CUSTOM DROPDOWN CONTAINER */
-    .custom-dropdown-container { position: relative; margin-bottom: 16px; }
-    .custom-dropdown-trigger { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; }
-    #selected-issue-text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; }
-    .custom-dropdown-menu { position: absolute; top: 105%; left: 0; width: 100%; max-height: 220px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 100; display: none; }
-    .custom-dropdown-menu.show { display: block; }
-    .dropdown-opt { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-color); cursor: pointer; }
-    .dropdown-opt:hover { background: var(--primary-light); color: var(--primary); }
-    .dropdown-opt:last-child { border-bottom: none; }
 
     /* PAGE FOOTER (CLEAN EXPLORE / LEGAL) */
     .clean-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-color); margin-bottom: 24px; color: var(--text-main); }
@@ -277,10 +272,19 @@
     .lang-item:hover { background: var(--bg-main); color: var(--primary); }
     .lang-item:last-child { border-bottom: none; }
     
-    .info-card { display: flex; gap: 16px; margin-bottom: 20px; background: var(--bg-card); padding: 16px; border-radius: 16px; align-items: flex-start; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);}
-    .info-icon { background: var(--primary-light); color: var(--primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;}
-    .info-text h4 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-    .info-text p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .info-card { display: flex; gap: 16px; margin-bottom: 20px; padding: 16px; align-items: flex-start; }
+    .info-icon { color: var(--primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;}
+    .info-text h4 { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+    .info-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* CONTACT PAGE STYLING (FROM HOME.HTML) */
+    .contact-item-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 24px; text-align: center; }
+    .contact-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; background-color: white; }
+    .contact-item-card h4 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;}
+    .contact-item-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px;}
+    .clean-icon-btn { font-size: 32px; text-decoration: none; transition: transform 0.2s ease; display: inline-flex; justify-content: center; align-items: center; width: 60px; height: 60px; border-radius: 16px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+    .clean-icon-btn:hover { transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+    .icon-gmail { color: #ea4335; } .icon-whatsapp { color: #25D366; } .icon-telegram { color: #0088cc; }
   </style>
 </head>
 <body>
@@ -509,7 +513,7 @@
   
   <!-- ================= FULLSCREEN PAGES ================= -->
   
-  <!-- SMART AI ASSISTANT CHAT PAGE (UPDATE: CHANGKANG SEND BUTTON) -->
+  <!-- SMART AI ASSISTANT CHAT PAGE -->
   <div id="ai-chat-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('ai-chat-page')"><i class="fa-solid fa-arrow-left"></i></div>
@@ -521,6 +525,7 @@
       </div>
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+        <!-- TELEGRAM LOGO NILO, ARROW UP CHANGKANG TAK ZAWK -->
         <button onclick="sendChatMessage()"><i class="fa-solid fa-arrow-up"></i></button>
       </div>
     </div>
@@ -602,7 +607,7 @@
     </div>
   </div>
   
-  <!-- ACCESSIBILITY PAGE (UPDATE: SLIDER DAH LALUH A NI) -->
+  <!-- ACCESSIBILITY PAGE -->
   <div id="access-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('access-page')"><i class="fa-solid fa-xmark"></i></div>
@@ -658,10 +663,11 @@
            </div>
         </div>
         
-        <h4 style="margin-bottom: 12px;">Hawrawp Adjust</h4>
+        <h4 style="margin-bottom: 12px;">Hawrawp Adjust (Text Size)</h4>
         <div style="background: var(--bg-main); padding: 16px; border-radius: 12px; display: flex; align-items: center; gap: 12px;">
           <i class="fa-solid fa-font" style="color: var(--text-muted); font-size: 14px;"></i>
-          <input type="range" id="font-slider" min="12" max="24" value="16" step="1" style="flex: 1; accent-color: var(--primary);" oninput="changeFontSizeSlider(this.value)">
+          <!-- SLIDER A TE BER (12px) AH A IN SET SA THLAP E -->
+          <input type="range" id="font-slider" min="12" max="24" value="12" step="1" style="flex: 1; accent-color: var(--primary);" oninput="changeFontSizeSlider(this.value)">
           <i class="fa-solid fa-font" style="color: var(--text-main); font-size: 20px;"></i>
         </div>
         
@@ -670,48 +676,46 @@
     </div>
   </div>
   
-  <!-- CONTACT US PAGE (UPDATE: PREMIUM BANNER LEH FORM CHAUH) -->
+  <!-- CONTACT US PAGE -->
   <div id="contact-page" class="fs-page">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="customer_care">Customer Care</h3>
+      <h3 class="notranslate" translate="no" data-i18n="customer_care">Contact Support</h3>
       <div style="width: 40px;"></div>
     </div>
-    <div class="fs-content">
+    <!-- HOME.HTML AMI ANG CHIAH CONTACT CARDS -->
+    <div class="fs-content" style="background: var(--bg-card);">
       
-      <div style="width: 100%; height: 160px; border-radius: 16px; background: url('https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800') center/cover; margin-bottom: 24px; position: relative; overflow: hidden; box-shadow: var(--shadow-sm);">
-         <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(0deg, rgba(15,23,42,0.9), transparent);"></div>
-         <h2 style="position: absolute; bottom: 16px; left: 16px; color: white; font-size: 20px; font-weight: 800;"><i class="fa-solid fa-headset" style="color: var(--secondary);"></i> How can we help?</h2>
+      <!-- Contact 1: Gmail -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
+        <h4>Email Support</h4>
+        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
+        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
 
-      <h4 style="margin-bottom: 16px;" data-i18n="submit_ticket">Submit a Help Ticket</h4>
-      <input type="email" id="ticket-email" class="input-field" placeholder="Your Email Address" readonly>
-      
-      <!-- CUSTOM SCROLLABLE DROPDOWN -->
-      <div class="custom-dropdown-container">
-         <div class="custom-dropdown-trigger" onclick="toggleCustomDropdown()">
-            <span id="selected-issue-text">Issue/Harsatna thlang rawh...</span>
-            <i class="fa-solid fa-chevron-down"></i>
-         </div>
-         <div class="custom-dropdown-menu" id="custom-dropdown-list">
-            <div class="dropdown-opt" onclick="selectIssue('Missing Coins (Task hlawh lak luh loh)', 'missing')">Missing Coins (Task hlawh lak luh loh)</div>
-            <div class="dropdown-opt" onclick="selectIssue('Withdrawal / Pawisa lachhuak thei lo', 'withdraw')">Withdrawal / Pawisa lachhuak thei lo</div>
-            <div class="dropdown-opt" onclick="selectIssue('Account Block / Login theih loh', 'account')">Account Block / Login theih loh</div>
-            <div class="dropdown-opt" onclick="selectIssue('Payment details thlak danglam chungchang', 'payment_info')">Payment details thlak danglam chungchang</div>
-            <div class="dropdown-opt" onclick="selectIssue('App hman a buaithlak / Bug Report', 'bug')">App hman a buaithlak / Bug Report</div>
-            <div class="dropdown-opt" onclick="selectIssue('Thil dang (Others)', 'other')">Thil dang (Others)</div>
-         </div>
-      </div>
-      <input type="hidden" id="ticket-subject" value="">
-      
-      <textarea id="ticket-desc" class="input-field" style="height: 120px; resize: none;" placeholder="I harsatna kimchang takin han ziak rawh..."></textarea>
-      
-      <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px; display: flex; gap: 8px;">
-          <i class="fa-solid fa-lock" style="color: var(--secondary); margin-top: 2px;"></i>
-          <span>I message thawn hi him takin CASH-MIZO Admin Panel ah a thleng dawn a, darkar 24 chhungin email hmangin kan rawn chhang ang che.</span>
+      <!-- Contact 2: WhatsApp -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
+        <h4>WhatsApp Support</h4>
+        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
+        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
       </div>
 
-      <button class="btn-primary" onclick="submitTicket()" data-i18n="send_ticket">Send Message</button>
+      <!-- Contact 3: Telegram -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
+        <h4>Telegram Support</h4>
+        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
+        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-telegram" title="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+      </div>
+
     </div>
   </div>
   
@@ -798,25 +802,20 @@
   </div>
   
   <!-- PREMIUM: HOW IT WORKS / FAQ -->
-  <div id="info-page" class="fs-page">
+  <div id="info-page" class="fs-page fs-premium-bg">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 class="notranslate" translate="no" data-i18n="how_it_works">How it works</h3>
       <div style="width: 40px;"></div>
     </div>
     <div class="fs-content">
-      <div class="doc-box" style="text-align: center; border: none; background: transparent; padding: 0 0 20px 0;">
-        <div style="font-size: 48px; color: var(--primary); margin-bottom: 16px;"><i class="fa-solid fa-book-open-reader"></i></div>
-        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">CASH-MIZO Guide & Rules</h2>
-        <p style="color: var(--text-muted); font-size: 14px;">Master the art of earning coins and withdrawing funds efficiently.</p>
-      </div>
       
       <!-- 6 PREMIUM TOPICS -->
       <div class="info-card">
         <div class="info-icon"><i class="fa-solid fa-user-plus"></i></div>
         <div class="info-text">
           <h4>1. Easy Registration & Setup</h4>
-          <p>Getting started is seamless. Create an account instantly using your secure Google login. Your unique profile is automatically created to safely track all your lifetime earnings and task progress.</p>
+          <p>Getting started is seamless and secure. You can create an account instantly using your secure Google login. Your unique profile is automatically created in our system to safely track all your lifetime earnings and task progress. We do not ask for unnecessary personal details.</p>
         </div>
       </div>
       <div class="info-card">
@@ -875,7 +874,7 @@
   </div>
   
   <!-- PREMIUM: TERMS & PRIVACY -->
-  <div id="terms-page" class="fs-page">
+  <div id="terms-page" class="fs-page fs-premium-bg">
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
       <h3 class="notranslate" translate="no" data-i18n="terms">Terms & Privacy Policy</h3>
@@ -883,9 +882,9 @@
     </div>
     <div class="fs-content">
       
-      <div class="doc-box" style="border: none; padding: 0;">
+      <div class="info-card" style="display: flex; flex-direction: column;">
         
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; margin-top: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
           <i class="fa-solid fa-shield-halved" style="font-size: 24px; color: var(--secondary);"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Privacy Guidelines</h3>
         </div>
@@ -899,7 +898,7 @@
         <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">3. Cookies and Analytics</h5>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px;">We utilize basic functional cookies to maintain your active login session and device analytics to prevent fraudulent login attempts. We do not track your browsing history outside of our application.</p>
         
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-top: 1px solid var(--border-color); padding-top: 24px;">
           <i class="fa-solid fa-file-contract" style="font-size: 24px; color: var(--primary);"></i>
           <h3 style="font-size: 18px; font-weight: 800;">Terms & Operating Rules</h3>
         </div>
@@ -913,11 +912,8 @@
         <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">6. Task Verification Integrity</h5>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">Coins are rewarded only upon successful verification by our advertiser partners. Providing false survey data, rushing, or exploiting tasks will lead to reward rejection and potential bans.</p>
         
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">7. Virtual Currency Valuation</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">"Coins" hold no real-world monetary value outside of the platform. Their equivalent exchange rate is determined exclusively at the time of an approved withdrawal request.</p>
-
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">8. Policy Modifications</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">CASH-MIZO reserves the right to modify these terms or adjust reward mechanics at our discretion to maintain economic stability. Continued use of the app signifies acceptance of updated policies.</p>
+        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">7. Payment & Policy Rules</h5>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px;">"Coins" hold no real-world monetary value outside of the platform. CASH-MIZO reserves the right to modify these terms or adjust reward mechanics at our discretion to maintain economic stability.</p>
         
       </div>
       
@@ -960,7 +956,7 @@
   let userPayInfo = null; 
   let hasCompletedTaskToday = false; 
   let isSpinning = false;
-  let currentFontSize = 16;
+  let currentFontSize = 12; // Te berah a in set sa
   
   // 3. TRANSLATIONS & LANGUAGES
   const languageData = [
@@ -981,7 +977,7 @@
       daily_goal: "Daily Goal: 100 Coins", goal_desc: "Bonus hmu turin vawiin atan thawk rawh", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Thiante Sawmna",
       premium_tasks: "Premium Tasks", timewall_desc: "Task thawk la, pawisa hlawh rawh", m_general: "Account Settings", profile: "Ka Account & Payment", language: "App Tawng Thlan",
       help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "Hman Dan Tur / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out (Chhuak)",
-      customer_care: "Customer Care", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
+      customer_care: "Contact Support", care_title: "Puih theihna che kan nei em?", submit_ticket: "Ticket Thehluhna", refer_title: "Refer & Earn"
     },
     en: {
       success: "Success!", hero_title: "Earn real money.\nSecure & Fast.", hero_desc: "Join thousands of youths earning from their smartphones everyday.", join_free: "Create Account", agree_terms: "I have read and agree to the Terms and Privacy Policy.",
@@ -989,11 +985,11 @@
       daily_goal: "Daily Goal: 100 Coins", goal_desc: "Earn today to get bonus", daily_check: "Daily Claim", spin_wheel: "Lucky Spin", refer: "Refer Friends",
       premium_tasks: "Premium Tasks", timewall_desc: "Complete tasks & surveys", m_general: "Account", profile: "My Account & Payment", language: "App Language",
       help_center: "Help Center", missing_sb: "Contact Us / Support", how_it_works: "How it works / FAQ", m_info: "Legal", terms: "Terms & Privacy", logout: "Log Out",
-      customer_care: "Customer Care", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
+      customer_care: "Contact Support", care_title: "We are here to help", submit_ticket: "Submit a Ticket", refer_title: "Refer & Earn"
     }
   };
   
-  // 4. CHAT BOT LOGIC (UPDATE: CLOUDFLARE SECURE API LAAK LALUH A NI)
+  // 4. CHAT BOT LOGIC (API HIM HMAN A NI)
   function renderChatHistory() {
     const chatBox = document.getElementById('chat-box');
     chatBox.innerHTML = '<div class="chat-bubble bot-bubble">Hello! I am your AI Assistant. How can I help you today?</div>';
@@ -1029,7 +1025,7 @@
     chatBox.scrollTop = chatBox.scrollHeight;
     
     try {
-      // 🚨 HACKER LAKA HIMNA: Hetiang hian Cloudflare hmangin thuhruk vek a ni tawh
+      // Cloudflare API HIM, base64 tel lovin
       const response = await fetch('https://ai.cashmizoofficial.workers.dev', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1039,7 +1035,8 @@
       const data = await response.json();
       if(data.error) { throw new Error(`${data.error}`); }
       
-      let botReply = data.reply.replace(/\n/g, "<br>");
+      let botReply = data.reply || data.response || "Ka hrethiam lo.";
+      botReply = botReply.replace(/\n/g, "<br>");
       
       if (botReply.includes('[ADMIN_REPORT]')) {
          botReply = botReply.replace(/\[ADMIN_REPORT\]/g, '');
@@ -1059,7 +1056,7 @@
       localStorage.setItem('cashmizo_ai_chat', JSON.stringify(aiChatHistory));
       
     } catch (error) {
-      const errorMsg = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: System kan bepawh thei lo. Network check rawh.</span>`;
+      const errorMsg = `<span style="color:#ef4444; font-size:13px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: System kan bepawh thei lo. I internet check rawh.</span>`;
       document.getElementById(typingId).innerHTML = errorMsg;
       console.error(error);
       
@@ -1113,7 +1110,6 @@
      document.getElementById('tile-large-text').classList.toggle('active', isActive);
   }
   
-  // NEW FONT SLIDER LOGIC
   function changeFontSizeSlider(val) {
     currentFontSize = val;
     document.body.style.fontSize = currentFontSize + 'px';
@@ -1129,9 +1125,9 @@
      if(document.body.classList.contains('high-contrast')) toggleHighContrast();
      if(document.body.classList.contains('grayscale-mode')) toggleGrayscale();
      if(document.body.classList.contains('large-text-mode')) toggleLargeText();
-     currentFontSize = 16;
+     currentFontSize = 12;
      document.body.style.fontSize = currentFontSize + 'px';
-     document.getElementById('font-slider').value = 16;
+     document.getElementById('font-slider').value = 12;
      showToast("All Settings Reset Successfully!");
   }
   
@@ -1164,16 +1160,8 @@
   }
   function togglePushNotif() {
     const isOn = document.getElementById('notif-toggle').checked;
-    if(isOn) {
-        showToast("Push Notifications enabled!");
-        // Future Admin panel connection
-    } else {
-        showToast("Notifications disabled.");
-    }
-  }
-  function toggleContactOptions() {
-     const box = document.getElementById('contact-options-box');
-     box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    if(isOn) { showToast("Push Notifications enabled!"); } 
+    else { showToast("Notifications disabled."); }
   }
   function showToast(message, isError = false) {
     const toast = document.getElementById('toast'); 
@@ -1203,9 +1191,7 @@
   function getReferrerFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       const refId = urlParams.get('ref');
-      if (refId) {
-          localStorage.setItem('cashmizo_referrer', refId); 
-      }
+      if (refId) { localStorage.setItem('cashmizo_referrer', refId); }
   }
   getReferrerFromUrl();
   async function showMainApp(session) {
@@ -1432,7 +1418,7 @@
     }
   }
   
-  // NOTE: Coin Security hi update a la ni rih lo (Client-side in a la deduct hrih)
+  // NOTE: Coin Security hi update a la ni rih lo
   async function submitWithdraw() {
     if (!userPayInfo || userCoins < 5000) return;
     userCoins -= 5000;
@@ -1472,7 +1458,7 @@
     if(type === 'bank') document.getElementById('input-bank-wrap').style.display = 'block';
     if(type === 'paypal') document.getElementById('input-paypal-wrap').style.display = 'block';
   }
-  // Language & Translation Engine (UPDATE: XSS HIMNA THUN LALUH A NI)
+  // Language & Translation Engine
   function renderLanguageList(filterText = "") {
     const container = document.getElementById("lang-list");
     container.innerHTML = ""; 
@@ -1482,7 +1468,7 @@
         const div = document.createElement("div");
         div.className = "lang-item notranslate";
         div.setAttribute("translate", "no");
-        div.textContent = lang.name; // Hacker ten code an thun luh theih loh nan
+        div.textContent = lang.name; // XSS VENNA HIM TAK
         div.onclick = () => triggerTranslate(lang.code);
         container.appendChild(div);
       }
@@ -1526,6 +1512,8 @@
      if(localStorage.getItem('cashmizo_contrast') === 'true') toggleHighContrast();
      if(localStorage.getItem('cashmizo_grayscale') === 'true') toggleGrayscale();
      if(localStorage.getItem('cashmizo_largetext') === 'true') toggleLargeText();
+     
+     document.body.style.fontSize = currentFontSize + 'px';
   });
   window.addEventListener('load', async () => {
     renderChatHistory();
@@ -1542,9 +1530,7 @@
       }
     } else { 
         supabaseClient.auth.getSession().then(({ data: { session } }) => { 
-            if (session) {
-                showMainApp(session); 
-            }
+            if (session) { showMainApp(session); }
         }); 
     }
     
@@ -1576,8 +1562,7 @@
     
     const redirectUrl = window.location.origin + window.location.pathname;
     const { error } = await supabaseClient.auth.signInWithOAuth({ 
-        provider: 'google', 
-        options: { redirectTo: redirectUrl } 
+        provider: 'google', options: { redirectTo: redirectUrl } 
     });
     
     if (error) { alert(error.message); document.getElementById('btn-login-text').innerHTML = 'Continue with Google'; }
