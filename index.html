@@ -161,10 +161,9 @@
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; z-index: 9999; position: relative;}
     
-    /* BACK BUTTON FIX: Hit area lian pui leh z-index sang berin ka siam e */
-    .back-btn { width: 44px; height: 44px; background: transparent; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; cursor: pointer; color: var(--text-main); transition: 0.2s; position: relative; z-index: 100000;}
-    .back-btn::before { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; } /* Hitbox lian pui */
-    .back-btn:hover { background: var(--bg-main); }
+    /* ======== BACK BUTTON FIX - TANG TLAT THIN KHA ======== */
+    .back-btn { width: 50px; height: 50px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; cursor: pointer; color: var(--text-main); transition: 0.2s; position: relative; z-index: 999999; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
+    .back-btn:hover { background: var(--border-color); }
     
     .fs-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; }
     
@@ -271,47 +270,164 @@
     .lang-item { padding: 16px 20px; border-bottom: 1px solid var(--border-color); font-weight: 600; color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s;}
     .lang-item:hover { background: var(--bg-main); color: var(--primary); }
     .lang-item:last-child { border-bottom: none; }
-    
-    .info-card { display: flex; gap: 16px; margin-bottom: 20px; padding: 16px; align-items: flex-start; }
-    .info-icon { color: var(--primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;}
-    .info-text h4 { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
-    .info-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
-    /* CONTACT PAGE BIG CARDS */
-    .contact-item-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 24px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-    .contact-img { width: 100%; height: 180px; object-fit: cover; border-radius: 14px; margin-bottom: 20px; background-color: #f8fafc; }
-    .contact-item-card h4 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 12px;}
-    .contact-item-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;}
-    .clean-icon-btn { font-size: 32px; text-decoration: none; transition: transform 0.2s ease; display: inline-flex; justify-content: center; align-items: center; width: 64px; height: 64px; border-radius: 16px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid var(--border-color); }
-    .clean-icon-btn:hover { transform: scale(1.08); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-    .icon-gmail { color: #ea4335; } .icon-whatsapp { color: #25D366; } .icon-telegram { color: #0088cc; }
 
-    /* NEW WORLD CLASS CONTACT SUPPORT STYLES */
-    .fs-premium-bg { background: linear-gradient(180deg, #f4f7fb 0%, #e2e8f0 100%); }
-    body.dark-mode .fs-premium-bg { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); }
+    /* ========================================================
+       🔥 KHAWVEL A CHANGKANG BER: CONTACT SUPPORT STYLES 🔥
+       ======================================================== */
+       
+    /* 1. Page Background Premium Effect */
+    .contact-premium-bg {
+        background: #f8fafc;
+        background: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #f8fafc 45%, #f1f5f9 100%);
+    }
+    body.dark-mode .contact-premium-bg {
+        background: #0f172a;
+        background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0f172a 45%, #020617 100%);
+    }
 
-    .support-form-container { background: var(--bg-card); padding: 28px; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.5); }
-    body.dark-mode .support-form-container { border-color: #334155; }
+    /* 2. Glassmorphism Header */
+    #contact-page .fs-header {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    body.dark-mode #contact-page .fs-header {
+        background: rgba(15, 23, 42, 0.7);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* 3. The Form Container (Super Modern) */
+    .premium-form-box {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 28px;
+        padding: 32px 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        margin-bottom: 32px;
+    }
+    body.dark-mode .premium-form-box {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 4. Inputs with Icons inside */
+    .input-wrapper { position: relative; margin-bottom: 20px; }
+    .input-wrapper i { position: absolute; left: 20px; top: 18px; color: var(--text-muted); font-size: 16px; transition: 0.3s; }
     
-    .support-input-modern { width: 100%; padding: 16px 20px; background: var(--bg-main); border: 1.5px solid var(--border-color); border-radius: 14px; margin-bottom: 20px; font-size: 15px; font-weight: 500; color: var(--text-main); font-family: inherit; outline: none; transition: all 0.3s ease; }
-    .support-input-modern:focus { border-color: var(--primary); background: var(--bg-card); box-shadow: 0 0 0 4px var(--primary-light); }
-    
-    .btn-send-modern { background: var(--primary); color: white; border: none; padding: 18px; border-radius: 16px; font-weight: 800; font-size: 16px; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.2s; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
-    .btn-send-modern:active { transform: scale(0.97); }
-    
-    .support-notice { background: #dcfce7; color: #166534; padding: 16px 20px; border-radius: 14px; font-size: 14px; font-weight: 700; display: flex; gap: 14px; margin-bottom: 28px; line-height: 1.5; border: 1px solid #bbf7d0; align-items: center;}
-    body.dark-mode .support-notice { background: rgba(21, 128, 61, 0.2); border-color: rgba(21, 128, 61, 0.4); color: #4ade80; }
-    
-    /* MODERN GUIDELINES */
-    .guide-container { background: var(--bg-card); border-radius: 20px; padding: 28px; box-shadow: 0 8px 30px rgba(0,0,0,0.04); border: 1px solid rgba(255,255,255,0.5); margin-bottom: 36px; }
-    body.dark-mode .guide-container { border-color: #334155; }
-    
-    .guide-header-row { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
-    .guide-row { display: flex; gap: 18px; margin-bottom: 28px; align-items: flex-start; }
-    .guide-row:last-child { margin-bottom: 0; }
-    .guide-icon-wrapper { width: 44px; height: 44px; border-radius: 14px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .guide-content h5 { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
-    .guide-content p { font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; margin: 0;}
+    .premium-input {
+        width: 100%;
+        padding: 16px 20px 16px 52px;
+        background: var(--bg-card);
+        border: 1.5px solid var(--border-color);
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-main);
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+    }
+    .premium-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px var(--primary-light), inset 0 2px 4px rgba(0,0,0,0.01);
+    }
+    .premium-input:focus + i { color: var(--primary); }
+    .premium-textarea { min-height: 140px; resize: none; padding-top: 16px; }
+
+    /* 5. Glowing Send Button */
+    .btn-glow {
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 16px;
+        font-size: 16px;
+        font-weight: 800;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+        transition: all 0.3s ease;
+    }
+    .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(79, 70, 229, 0.45); }
+    .btn-glow:active { transform: translateY(1px); }
+
+    /* 6. Modern Alert Notice */
+    .premium-alert {
+        display: flex; align-items: center; gap: 16px;
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 18px; border-radius: 20px; margin-bottom: 28px;
+        box-shadow: 0 8px 20px rgba(22, 101, 52, 0.08);
+    }
+    body.dark-mode .premium-alert {
+        background: linear-gradient(135deg, rgba(21, 128, 61, 0.15) 0%, rgba(22, 101, 52, 0.3) 100%);
+        box-shadow: none; border: 1px solid rgba(74, 222, 128, 0.2);
+    }
+    .alert-icon {
+        width: 44px; height: 44px; background: #166534; color: white;
+        border-radius: 14px; display: flex; align-items: center; justify-content: center;
+        font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(22, 101, 52, 0.3);
+    }
+    .alert-text { color: #14532d; font-size: 13.5px; line-height: 1.5; font-weight: 700; }
+    body.dark-mode .alert-text { color: #4ade80; }
+
+    /* 7. Guidelines - Floating Cards Style */
+    .premium-guide-box {
+        background: rgba(255,255,255,0.6); backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.8); border-radius: 28px;
+        padding: 32px 24px; margin-bottom: 40px;
+    }
+    body.dark-mode .premium-guide-box {
+        background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.05);
+    }
+    .guide-item-modern {
+        display: flex; gap: 18px; background: var(--bg-card);
+        padding: 20px; border-radius: 20px; margin-bottom: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
+        transition: 0.3s;
+    }
+    .guide-item-modern:last-child { margin-bottom: 0; }
+    .guide-item-modern:hover {
+        transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border-color: var(--primary-light);
+    }
+    .guide-icon-wrapper {
+        width: 48px; height: 48px; border-radius: 14px;
+        background: var(--primary-light); color: var(--primary);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px; flex-shrink: 0;
+    }
+    .guide-content h5 { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+    .guide-content p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500; margin: 0;}
+
+    /* 8. Big Contact Cards (Bottom) */
+    .big-contact-card {
+        background: var(--bg-card); border-radius: 28px; padding: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1px solid var(--border-color);
+        margin-bottom: 24px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .big-contact-card:hover {
+        transform: scale(1.02); border-color: var(--primary); box-shadow: 0 15px 40px rgba(79, 70, 229, 0.1);
+    }
+    .big-contact-card img {
+        width: 100%; height: 180px; object-fit: cover; border-radius: 16px; margin-bottom: 20px;
+    }
+    .big-contact-card h4 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 12px; }
+    .big-contact-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; padding: 0 10px; }
+    .big-icon-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 64px; height: 64px; border-radius: 20px; font-size: 30px; color: white;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: 0.3s; text-decoration: none;
+    }
+    .big-icon-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,0.25); color: white;}
+    .bg-gmail { background: linear-gradient(135deg, #ea4335, #c5221f); }
+    .bg-whatsapp { background: linear-gradient(135deg, #25D366, #16a34a); }
+    .bg-telegram { background: linear-gradient(135deg, #0088cc, #0284c7); }
   </style>
 </head>
 <body>
@@ -703,125 +819,152 @@
     </div>
   </div>
   
-  <!-- CONTACT US PAGE -->
-  <div id="contact-page" class="fs-page fs-premium-bg">
+  <!-- ==============================================
+       🔥 PREMIUM CONTACT US PAGE 🔥
+       ============================================== -->
+  <div id="contact-page" class="fs-page contact-premium-bg">
+    
+    <!-- Premium Header -->
     <div class="fs-header">
       <div class="back-btn" onclick="closePage('contact-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="customer_care" style="font-size: 18px; font-weight: 800; color: var(--text-main);">Contact Support</h3>
-      <div style="width: 40px;"></div>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main);">Contact Support</h3>
+      <div style="width: 44px;"></div>
     </div>
+    
     <div class="fs-content">
       
-      <!-- Direct Admin Contact Form -->
-      <div class="support-form-container">
-         <div class="support-notice">
-             <i class="fa-solid fa-clock" style="font-size: 20px;"></i>
-             <div>Admin ten i message thawn hi an lo endik anga, darkar 24 chhungin chhanna an rawn pe ang che.</div>
+      <!-- 1. Direct Admin Contact Form (WORLD CLASS DESIGN) -->
+      <div class="premium-form-box">
+         
+         <div class="premium-alert">
+             <div class="alert-icon"><i class="fa-solid fa-headset"></i></div>
+             <div class="alert-text">
+                 Admin ten i message thawn hi an lo endik anga, darkar 24 chhung ngeiin chhanna an rawn pe ang che.
+             </div>
          </div>
-         <input type="text" id="ticket-subject" class="support-input-modern" placeholder="Subject (Eng chungchang nge?)">
-         <textarea id="ticket-desc" class="support-input-modern" style="min-height: 140px; resize: none;" placeholder="I harsatna kimchang takin ziak rawh..."></textarea>
-         <button class="btn-send-modern" onclick="submitTicket()">Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 6px;"></i></button>
+         
+         <div class="input-wrapper">
+             <i class="fa-solid fa-heading"></i>
+             <input type="text" id="ticket-subject" class="premium-input" placeholder="Subject (Eng chungchang nge?)">
+         </div>
+         
+         <div class="input-wrapper">
+             <i class="fa-solid fa-pen"></i>
+             <textarea id="ticket-desc" class="premium-input premium-textarea" placeholder="I harsatna leh buaina kimchang takin han ziak rawh le..."></textarea>
+         </div>
+         
+         <button class="btn-glow" onclick="submitTicket()">
+            <span>Send Message</span>
+            <i class="fa-solid fa-paper-plane"></i>
+         </button>
       </div>
 
-      <!-- 8 Guidelines / Info Points (Modern & Translatable) -->
-      <div class="guide-container">
-         <div class="guide-header-row">
+      <!-- 2. Support Guidelines (FLOATING CARDS - TRANSLATABLE) -->
+      <div class="premium-guide-box">
+         <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
             <div style="width: 46px; height: 46px; background: var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;"><i class="fa-solid fa-shield-halved"></i></div>
             <h4 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin: 0;">Support Guidelines</h4>
          </div>
 
-         <div class="guide-row">
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-reply-all"></i></div>
              <div class="guide-content">
                  <h5>1. Response Time</h5>
                  <p>Message i thawn atang hian darkar 24 chhung ngeiin kan team ten uluk takin an lo endik anga, a rang thei ang berin chhanna pek let nghal zel i ni ang.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-pen-to-square"></i></div>
              <div class="guide-content">
                  <h5>2. Be Specific</h5>
                  <p>I harsatna leh buaina te kha a tawi thei ang ber ni lovin, a kimchang thei ang berin ziak la, tichuan kan lo puih zung zung theih nan che a tangkai hle dawn a ni.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-wallet"></i></div>
              <div class="guide-content">
                  <h5>3. Payment Issues</h5>
                  <p>Pawisa lakchhuah (Withdrawal) chungchangah buaina i nei a nih chuan, i account hming, i UPI ID emaw Bank Account details dik tak kimchangin tarlang tel ngei ngei ang che.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern" style="border-color: #fecaca;">
              <div class="guide-icon-wrapper" style="color: #ef4444; background: #fee2e2;"><i class="fa-solid fa-user-xmark"></i></div>
              <div class="guide-content">
                  <h5>4. Account Suspension</h5>
                  <p>Dan kalh a thil i tih avanga i account block (ban) a nih tawh chuan, engtiang pawhin rawn dil mahla hawn let sak leh theih a ni tawh lo.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern" style="border-color: #fecaca;">
              <div class="guide-icon-wrapper" style="color: #ef4444; background: #fee2e2;"><i class="fa-solid fa-ban"></i></div>
              <div class="guide-content">
                  <h5>5. No Spamming</h5>
                  <p>Harsatna thuhmunah vawi tam tak message inang i rawn thawn nawn sek a nih chuan, system in spammer ah ngaiin i account a ti chhe (delete) nghal thei a ni.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-user-shield"></i></div>
              <div class="guide-content">
                  <h5>6. Account Security</h5>
                  <p>Kan Admin te emaw Cash-Mizo official te hian i OTP, Password emaw thil pawimawh dang reng reng kan zawt ngai lo che. Midang lakah fimkhur hle ang che.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-bug"></i></div>
              <div class="guide-content">
                  <h5>7. Report Bugs</h5>
-                 <p>Application chhungah thil dik lo, dik hlel deuh, emaw hmet dik theih miah loh i hmuh chuan thlalak (screenshot) nen a rang lamin min rawn hriattir thin dawn nia.</p>
+                 <p>Application chhungah thil dik lo, dik hlel deuh, emaw hmet dik theih miah loh i hmuh chuan a rang lamin min rawn hriattir thin dawn nia.</p>
              </div>
          </div>
-         <div class="guide-row">
+         
+         <div class="guide-item-modern">
              <div class="guide-icon-wrapper"><i class="fa-solid fa-calendar-days"></i></div>
              <div class="guide-content">
                  <h5>8. Working Hours</h5>
-                 <p>Zirtawp zan atanga Pathianni zan (Weekend) chhung hian chuan kan chhanna a muang deuh thin a, dawhthei takin min lo nghak hram hram thin dawn nia.</p>
+                 <p>Inrinni (Saturday) leh Pathianni (Sunday) chhung hian chuan kan chhanna a muang deuh thin a, dawhthei takin min lo nghak hram hram thin dawn nia.</p>
              </div>
          </div>
       </div>
 
-      <!-- THE BIG CONTACT CARDS YOU REQUESTED -->
-      <h4 style="font-size: 20px; font-weight: 800; margin-top: 40px; margin-bottom: 24px; text-align: center; color: var(--text-main);">Other Support Channels</h4>
+      <!-- 3. THE BIG CONTACT CARDS (A HNUAI BERAH) -->
+      <h4 style="font-size: 22px; font-weight: 800; margin-top: 48px; margin-bottom: 24px; text-align: center; color: var(--text-main);">Other Support Channels</h4>
       
       <!-- Contact 1: Gmail -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
-        <h4>Email Support</h4>
-        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
-        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
+      <div class="big-contact-card">
+        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support">
+        <h4 class="big-contact-title">Email Support</h4>
+        <p class="big-contact-desc">Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
+        <a href="mailto:cashmizoofficial@gmail.com" class="big-icon-btn bg-gmail" title="Email Us">
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
 
       <!-- Contact 2: WhatsApp -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
-        <h4>WhatsApp Support</h4>
-        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
-        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+      <div class="big-contact-card">
+        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support">
+        <h4 class="big-contact-title">WhatsApp Support</h4>
+        <p class="big-contact-desc">Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
+        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="big-icon-btn bg-whatsapp" title="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
       </div>
 
       <!-- Contact 3: Telegram -->
-      <div class="contact-item-card">
-        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
-        <h4>Telegram Support</h4>
-        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
-        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-telegram" title="Telegram">
+      <div class="big-contact-card">
+        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support">
+        <h4 class="big-contact-title">Telegram Support</h4>
+        <p class="big-contact-desc">Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
+        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="big-icon-btn bg-telegram" title="Telegram">
           <i class="fa-brands fa-telegram"></i>
         </a>
       </div>
 
-      <!-- Footer (Screenshot 2 design) -->
+      <!-- 4. FOOTER (LINKS SIAMDAN DIK THLAPIN) -->
       <div class="clean-footer notranslate" translate="no">
          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
             <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
@@ -845,6 +988,7 @@
 
     </div>
   </div>
+  <!-- END CONTACT US PAGE -->
   
   <!-- PROFILE & WITHDRAW PAGE -->
   <div id="profile-page" class="fs-page">
