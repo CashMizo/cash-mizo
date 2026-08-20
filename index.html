@@ -299,7 +299,7 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* PREMIUM FORM CONTAINER (Offerwall Proof) */
+    /* PREMIUM FORM CONTAINER */
     .premium-form-wrapper {
         background: var(--bg-card);
         border-radius: 24px;
@@ -344,6 +344,28 @@
     body.dark-mode .p-input { border-color: #334155; }
     .p-textarea { min-height: 140px; resize: none; padding-top: 18px; }
 
+    /* IMAGE UPLOAD UI */
+    .file-upload-wrapper {
+        position: relative; width: 100%; margin-bottom: 24px;
+    }
+    .file-upload-input {
+        position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 2;
+    }
+    .file-upload-ui {
+        width: 100%; padding: 16px 20px 16px 48px;
+        background: var(--bg-main); border: 2px dashed var(--border-color);
+        border-radius: 16px; font-size: 14px; font-weight: 600;
+        color: var(--text-muted); display: flex; align-items: center;
+        transition: 0.3s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .file-upload-wrapper:hover .file-upload-ui {
+        border-color: var(--primary); background: var(--bg-card);
+    }
+    .file-upload-icon {
+        position: absolute; top: 18px; left: 16px; color: var(--text-muted); font-size: 16px; z-index: 1;
+    }
+
+    /* SUBMIT BUTTON WITH NEW ARROW ICON */
     .p-submit-btn {
         width: 100%; background: linear-gradient(135deg, var(--primary), #312e81);
         color: white; border: none; padding: 18px; border-radius: 16px;
@@ -830,9 +852,19 @@
              <i class="fa-solid fa-pen-to-square p-input-icon"></i>
              <textarea id="ticket-desc" class="p-input p-textarea" placeholder="Please describe your issue in detail..."></textarea>
          </div>
+
+         <!-- ⚡ SCREENSHOT UPLOAD THAR ⚡ -->
+         <div class="file-upload-wrapper">
+             <input type="file" id="ticket-screenshot" class="file-upload-input" accept="image/*" onchange="updateFileName(this)" title="Attach Screenshot">
+             <div class="file-upload-ui" id="file-upload-text">
+                 Attach Screenshot (Optional)
+             </div>
+             <i class="fa-solid fa-image file-upload-icon"></i>
+         </div>
          
+         <!-- ⚡ BUTTON ICON THLAK THAR ⚡ -->
          <button class="p-submit-btn" onclick="submitTicket()">
-            Submit Request <i class="fa-solid fa-paper-plane"></i>
+            Submit Request <i class="fa-solid fa-arrow-right"></i>
          </button>
       </div>
 
@@ -889,15 +921,16 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Explore</h3>
+         <!-- ⚡ HOME THLAK DANGLAM THAR LEH A AWMNA SAWN ⚡ -->
+         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home - Dashboard</a>
          <a onclick="window.location.href='home.html'">How it works</a>
-         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
          
          <h3>Legal & Support</h3>
          <a onclick="window.location.href='terms.html'">Terms of Service</a>
          <a onclick="window.location.href='privacy.html'">Privacy Policy</a>
          
-         <!-- ⚡ FOOTER LINK THLAK THAR: THLALAK PAGE A HAWNG DAWN TAWH ⚡ -->
-         <a onclick="openPage('support-channels-page')" style="color: var(--primary); font-weight: 800;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Other Support Channels</a>
+         <!-- ⚡ FOOTER LINK HMING THLAK LET LEH THAR ⚡ -->
+         <a onclick="openPage('support-channels-page')" style="color: var(--primary); font-weight: 800;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Contact Support</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
             <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
@@ -1126,7 +1159,6 @@
     chatBox.scrollTop = chatBox.scrollHeight;
     
     try {
-      // Cloudflare API HIM, base64 tel lovin
       const response = await fetch('https://ai.cashmizoofficial.workers.dev', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1272,21 +1304,17 @@
     setTimeout(() => { toast.style.top = '-100px'; }, 3000);
   }
   
-  // 7. CUSTOM DROPDOWN
-  function toggleCustomDropdown() {
-     document.getElementById('custom-dropdown-list').classList.toggle('show');
+  // File Upload Text Changer
+  function updateFileName(input) {
+      const textLabel = document.getElementById('file-upload-text');
+      if (input.files && input.files.length > 0) {
+          textLabel.innerText = input.files[0].name;
+          textLabel.style.color = 'var(--primary)';
+      } else {
+          textLabel.innerText = 'Attach Screenshot (Optional)';
+          textLabel.style.color = 'var(--text-muted)';
+      }
   }
-  function selectIssue(label, val) {
-     document.getElementById('selected-issue-text').innerText = label;
-     document.getElementById('ticket-subject').value = val;
-     document.getElementById('custom-dropdown-list').classList.remove('show');
-  }
-  window.addEventListener('click', function(e) {
-     if (!e.target.closest('.custom-dropdown-container')) {
-        const dd = document.getElementById('custom-dropdown-list');
-        if(dd) dd.classList.remove('show');
-     }
-  });
   
   // 8. APP LOGIC & SUPABASE ACTIONS
   function getReferrerFromUrl() {
@@ -1533,6 +1561,23 @@
     if(val.length < 4) showToast("Invalid Promo Code", true);
     else showToast("Code Expired or Invalid", true);
     document.getElementById('promo-input').value = '';
+  }
+  
+  function submitTicket() {
+    const sub = document.getElementById('ticket-subject').value;
+    const desc = document.getElementById('ticket-desc').value;
+    const fileInput = document.getElementById('ticket-screenshot');
+    const hasFile = fileInput.files.length > 0;
+    
+    if(!sub || desc.length < 10) { showToast("Harsatna kimchang takin ziak rawh.", true); return; }
+    
+    // Future Admin Panel Connection:
+    if(currentUserId) {
+        supabaseClient.from('admin_reports').insert([{ user_id: currentUserId, message: desc, status: 'pending' }]).then();
+    }
+    
+    showToast(hasFile ? "Screenshot nen thawn a ni e!" : "Message him takin thawn a ni e!");
+    setTimeout(() => closePage('contact-page'), 1500);
   }
   
   function selectPayType(type) {
