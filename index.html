@@ -160,13 +160,16 @@
     .fs-page { position: absolute; top: 0; left: 100%; width: 100%; max-width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100); background: var(--bg-main); z-index: 200; transition: left 0.3s; display: flex; flex-direction: column; overflow: hidden; }
     .fs-page.active { left: 0; }
     .fs-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); flex-shrink: 0; z-index: 9999; position: relative;}
-    .back-btn { width: 40px; height: 40px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; cursor: pointer; color: var(--text-main); transition: 0.2s;}
+    
+    /* BACK BUTTON FIX: Hit area lian deuh leh z-index sang berin ka siam e */
+    .back-btn { width: 48px; height: 48px; background: var(--bg-main); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; cursor: pointer; color: var(--text-main); transition: 0.2s; position: relative; z-index: 10000;}
     .back-btn:hover { background: var(--border-color); }
+    
     .fs-content { padding: 24px; flex: 1; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; }
     
-    /* SPECIAL INFO / TERMS BACKGROUND */
-    .fs-premium-bg { background: #f1f5f9; }
-    body.dark-mode .fs-premium-bg { background: var(--bg-main); }
+    /* SPECIAL INFO / TERMS BACKGROUND - Premium Gradient */
+    .fs-premium-bg { background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%); }
+    body.dark-mode .fs-premium-bg { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); }
     
     .doc-box { background: var(--bg-card); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 24px;}
     .input-field { width: 100%; padding: 16px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; outline: none; color: var(--text-main); }
@@ -497,11 +500,11 @@
           <span><i class="fa-solid fa-headset"></i> <span data-i18n="missing_sb">Contact Us / Support</span></span> <i class="fa-solid fa-chevron-right"></i>
         </div>
         
-        <div class="list-menu-item" onclick="openPage('info-page')">
+        <div class="list-menu-item" onclick="window.location.href='home.html'">
           <span><i class="fa-solid fa-circle-question"></i> <span data-i18n="how_it_works">How it works / FAQ</span></span> <i class="fa-solid fa-chevron-right"></i>
         </div>
         <div class="menu-group-title" data-i18n="m_info">Legal</div>
-        <div class="list-menu-item" onclick="openPage('terms-page')">
+        <div class="list-menu-item" onclick="window.location.href='terms.html'">
           <span><i class="fa-solid fa-shield-halved"></i> <span data-i18n="terms">Terms & Privacy</span></span> <i class="fa-solid fa-chevron-right"></i>
         </div>
         <button class="btn-secondary" style="margin-top: 24px; color: #ef4444; border-color: #fecaca; background: #fef2f2;" onclick="logout()" data-i18n="logout">
@@ -750,14 +753,37 @@
          </div>
       </div>
 
-      <!-- Small backup icons preserving your links -->
-      <div style="text-align: center; margin-bottom: 32px;">
-         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700;">Emergency Contacts</p>
-         <div style="display: flex; gap: 16px; justify-content: center;">
-             <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-solid fa-envelope"></i></a>
-             <a href="https://wa.me/919862341446" class="clean-icon-btn icon-whatsapp" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></a>
-             <a href="https://t.me/CashMizoSupport_bot" class="clean-icon-btn icon-telegram" style="width: 44px; height: 44px; font-size: 20px;"><i class="fa-brands fa-telegram"></i></a>
-         </div>
+      <!-- THE BIG CONTACT CARDS YOU REQUESTED -->
+      <h4 style="font-size: 16px; font-weight: 800; margin-top: 32px; margin-bottom: 16px; text-align: center; color: var(--text-main);">Other Support Channels</h4>
+      
+      <!-- Contact 1: Gmail -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Email Support" class="contact-img notranslate" translate="no">
+        <h4>Email Support</h4>
+        <p>Send us a detailed message regarding your issue, and our team will get back to you within 24 hours.</p>
+        <a href="mailto:cashmizoofficial@gmail.com" class="clean-icon-btn icon-gmail" title="Email Us">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <!-- Contact 2: WhatsApp -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/4009021/pexels-photo-4009021.jpeg?auto=compress&cs=tinysrgb&w=800" alt="WhatsApp Support" class="contact-img notranslate" translate="no">
+        <h4>WhatsApp Support</h4>
+        <p>Need quick assistance? Chat with our official CASH-MIZO support bot to resolve your issues.</p>
+        <a href="https://wa.me/919862341446" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-whatsapp" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- Contact 3: Telegram -->
+      <div class="contact-item-card">
+        <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Telegram Support" class="contact-img notranslate" translate="no">
+        <h4>Telegram Support</h4>
+        <p>Have questions or facing issues? Message our official CASH-MIZO support bot directly for assistance.</p>
+        <a href="https://t.me/CashMizoSupport_bot" target="_blank" rel="noopener noreferrer" class="clean-icon-btn icon-telegram" title="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
       </div>
 
       <!-- Footer (Screenshot 2 design) -->
@@ -769,12 +795,12 @@
          <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
          
          <h3>Explore</h3>
-         <a onclick="openPage('info-page')">How it works</a>
+         <a onclick="window.location.href='home.html'">How it works</a>
          <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
          
          <h3>Legal & Support</h3>
-         <a onclick="openPage('terms-page')">Terms of Service</a>
-         <a onclick="openPage('terms-page')">Privacy Policy</a>
+         <a onclick="window.location.href='terms.html'">Terms of Service</a>
+         <a onclick="window.location.href='privacy.html'">Privacy Policy</a>
          <a onclick="openPage('contact-page')">Contact Support</a>
          
          <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
@@ -863,142 +889,6 @@
       <div class="doc-box">
         <p data-i18n="lb_desc" style="color: var(--text-muted); margin-bottom: 16px; text-align: center;">List of top earners</p>
         <div id="leaderboard-list"></div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- PREMIUM: HOW IT WORKS / FAQ -->
-  <div id="info-page" class="fs-page fs-premium-bg">
-    <div class="fs-header">
-      <div class="back-btn" onclick="closePage('info-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="how_it_works">How it works</h3>
-      <div style="width: 40px;"></div>
-    </div>
-    <div class="fs-content">
-      
-      <!-- 6 PREMIUM TOPICS -->
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-user-plus"></i></div>
-        <div class="info-text">
-          <h4>1. Easy Registration & Setup</h4>
-          <p>Getting started is seamless and secure. You can create an account instantly using your secure Google login. Your unique profile is automatically created in our system to safely track all your lifetime earnings and task progress. We do not ask for unnecessary personal details.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-list-check"></i></div>
-        <div class="info-text">
-          <h4>2. Completing Premium Tasks</h4>
-          <p>Navigate to the 'Earn' tab to access high-paying Offerwalls. Follow advertiser instructions carefully—complete surveys, test new apps, and play games. Validated tasks will credit coins directly to your wallet.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-calendar-check"></i></div>
-        <div class="info-text">
-          <h4>3. Unlock Daily Check-in Bonus</h4>
-          <p>We reward consistent users. By successfully completing at least one verified task, you unlock the ability to claim free bonus coins every single day from the Home dashboard.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-dharmachakra"></i></div>
-        <div class="info-text">
-          <h4>4. Spin the Lucky Wheel</h4>
-          <p>Feeling lucky? After unlocking the feature via task completion, you can spin the wheel to multiply your earnings. Win exciting coin bundles instantly and boost your balance.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-users-rays"></i></div>
-        <div class="info-text">
-          <h4>5. Build a Referral Network</h4>
-          <p>Share your exclusive Referral Link with friends. When they sign up and start earning, you automatically receive a lifetime 10% commission on their earnings, building a passive income stream.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon"><i class="fa-solid fa-building-columns"></i></div>
-        <div class="info-text">
-          <h4>6. Fast Cash Withdrawals</h4>
-          <p>Once your balance reaches the 5,000 Coin threshold, visit your Profile to link your UPI, Bank Account, or PayPal. Submit a request and our automated system will securely process your payout.</p>
-        </div>
-      </div>
-      
-      <!-- CLEAN FOOTER: EXPLORE -->
-      <div class="clean-footer notranslate" translate="no">
-         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
-            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
-         </div>
-         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
-         
-         <h3>Explore</h3>
-         <a onclick="return false;" style="opacity: 0.5; cursor: default;">How it works</a>
-         <a onclick="document.querySelectorAll('.fs-page').forEach(p => p.classList.remove('active'));">Home</a>
-         
-         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
-           <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
-         </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- PREMIUM: TERMS & PRIVACY -->
-  <div id="terms-page" class="fs-page fs-premium-bg">
-    <div class="fs-header">
-      <div class="back-btn" onclick="closePage('terms-page')"><i class="fa-solid fa-arrow-left"></i></div>
-      <h3 class="notranslate" translate="no" data-i18n="terms">Terms & Privacy Policy</h3>
-      <div style="width: 40px;"></div>
-    </div>
-    <div class="fs-content">
-      
-      <div class="info-card" style="display: flex; flex-direction: column;">
-        
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-          <i class="fa-solid fa-shield-halved" style="font-size: 24px; color: var(--secondary);"></i>
-          <h3 style="font-size: 18px; font-weight: 800;">Privacy Guidelines</h3>
-        </div>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">1. Minimal Data Collection</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">We respect your privacy. Cash-Mizo only gathers essential credentials (Name, Email) securely processed via Google OAuth to identify your unique account balance and execute payment transactions safely.</p>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">2. Zero Third-Party Sharing</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">Your sensitive information, including linked payment methods, is heavily encrypted. We guarantee your data is never leased, sold, or shared with unauthorized third-party marketing agencies.</p>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">3. Cookies and Analytics</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px;">We utilize basic functional cookies to maintain your active login session and device analytics to prevent fraudulent login attempts. We do not track your browsing history outside of our application.</p>
-        
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-top: 1px solid var(--border-color); padding-top: 24px;">
-          <i class="fa-solid fa-file-contract" style="font-size: 24px; color: var(--primary);"></i>
-          <h3 style="font-size: 18px; font-weight: 800;">Terms & Operating Rules</h3>
-        </div>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">4. Zero VPN Tolerance</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">Utilizing Virtual Private Networks (VPNs) or Proxies to spoof geolocations is strictly prohibited. Our automated security algorithms will flag such activities, resulting in immediate, permanent account suspension.</p>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">5. One Device, One Account</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">Operating multiple user profiles on a single device using cloning apps or emulators violates fair play. Accounts detected sharing hardware fingerprints will be terminated simultaneously.</p>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">6. Task Verification Integrity</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">Coins are rewarded only upon successful verification by our advertiser partners. Providing false survey data, rushing, or exploiting tasks will lead to reward rejection and potential bans.</p>
-        
-        <h5 style="font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">7. Payment & Policy Rules</h5>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px;">"Coins" hold no real-world monetary value outside of the platform. CASH-MIZO reserves the right to modify these terms or adjust reward mechanics at our discretion to maintain economic stability.</p>
-        
-      </div>
-      
-      <!-- CLEAN FOOTER: LEGAL & SUPPORT -->
-      <div class="clean-footer notranslate" translate="no">
-         <div style="display:flex; align-items:center; gap:8px; margin-bottom: 16px;">
-            <i class="fa-solid fa-bolt" style="color:#f59e0b; font-size:24px;"></i>
-            <h2 style="font-size:20px; font-weight:800; margin:0; color: var(--text-main);">CASH-MIZO</h2>
-         </div>
-         <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin-bottom:32px;">The premier rewards platform for youths to earn real cash by completing simple, everyday tasks on their smartphones.</p>
-         
-         <h3>Legal & Support</h3>
-         <a onclick="return false;" style="opacity: 0.5; cursor: default;">Terms of Service</a>
-         <a onclick="return false;" style="opacity: 0.5; cursor: default;">Privacy Policy</a>
-         <a onclick="openPage('contact-page')">Contact Support</a>
-         
-         <div style="border-top: 1px solid var(--border-color); margin-top: 32px; padding-top: 24px;">
-            <p style="font-size:12px; color:var(--text-muted); margin-bottom:0;">© 2026 CASH-MIZO. All Rights Reserved.</p>
-         </div>
       </div>
     </div>
   </div>
